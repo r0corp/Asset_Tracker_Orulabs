@@ -1,0 +1,1234 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Add Asset Movement') }} - {{ asset.asset_tag or '-' }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ============================================================
+   MOVEMENT FORM
+   ============================================================ */
+
+.movement-form-page {
+    max-width: 1100px;
+    margin: 25px auto;
+}
+
+
+/* ============================================================
+   ASSET SUMMARY
+   ============================================================ */
+
+.asset-summary {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.asset-summary-title {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.asset-summary-item {
+    margin-bottom: 10px;
+}
+
+.asset-summary-label {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 2px;
+}
+
+.asset-summary-value {
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   MOVEMENT CARD
+   ============================================================ */
+
+.movement-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: #ffffff;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.movement-card-header {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.movement-card-header h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.movement-card-body {
+    padding: 20px;
+}
+
+
+/* ============================================================
+   FROM / TO
+   ============================================================ */
+
+.movement-columns {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        60px
+        minmax(0, 1fr);
+
+    gap: 15px;
+
+    align-items: stretch;
+}
+
+.movement-panel {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.movement-panel-header {
+    padding: 12px 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.movement-panel.from .movement-panel-header {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.movement-panel.to .movement-panel-header {
+    background: #e7f1ff;
+    color: #084298;
+}
+
+.movement-panel-body {
+    padding: 18px;
+}
+
+
+/* ============================================================
+   READONLY FROM
+   ============================================================ */
+
+.from-field {
+    margin-bottom: 15px;
+}
+
+.from-field:last-child {
+    margin-bottom: 0;
+}
+
+.from-field label {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 4px;
+}
+
+.from-value {
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 7px 10px;
+
+    background: #f8f9fa;
+
+    border: 1px solid #dee2e6;
+
+    border-radius: 5px;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   TO FIELD
+   ============================================================ */
+
+.to-field {
+    margin-bottom: 15px;
+}
+
+.to-field:last-child {
+    margin-bottom: 0;
+}
+
+.to-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.to-field .form-control,
+.to-field .form-select {
+    min-height: 38px;
+}
+
+
+/* ============================================================
+   ARROW
+   ============================================================ */
+
+.movement-arrow-box {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #0d6efd;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   INFORMATION
+   ============================================================ */
+
+.info-alert {
+    margin-top: 15px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #b6d4fe;
+
+    background: #cfe2ff;
+
+    color: #084298;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.form-label {
+    font-weight: 600;
+}
+
+.required {
+    color: #dc3545;
+}
+
+
+/* ============================================================
+   SIGNATURE
+   ============================================================ */
+
+.signature-box {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    margin-bottom: 20px;
+}
+
+.signature-section-title {
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+.signature-preview {
+    min-height: 90px;
+
+    border: 1px dashed #adb5bd;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    margin-top: 10px;
+}
+
+.signature-preview img {
+    max-width: 220px;
+    max-height: 80px;
+}
+
+
+/* ============================================================
+   ACTION
+   ============================================================ */
+
+.form-actions {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 10px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .movement-form-page {
+        margin: 15px;
+    }
+
+    .movement-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .movement-arrow-box {
+        transform: rotate(90deg);
+        min-height: 40px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+
+<div class="movement-form-page container-fluid">
+
+
+    <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-arrow-left-right"></i>
+                </div>
+
+                <div>
+
+                    <h3 class="page-header-title">
+
+                        {{ _('Add Asset Movement') }}
+
+                    </h3>
+
+                    <p class="page-header-subtitle mb-0">
+
+                        {{ _('Record asset movement and changes in location, department, and PIC.') }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         ASSET SUMMARY
+         ======================================================== -->
+
+    <div class="asset-summary">
+
+        <div class="asset-summary-title">
+
+            <i class="bi bi-box-seam"></i>
+
+            {{ _('Asset to be moved') }}
+
+        </div>
+
+
+        <div class="row">
+
+
+            <!-- ASSET TAG -->
+
+            <div class="col-md-3 asset-summary-item">
+
+                <span class="asset-summary-label">
+                    {{ _('Asset Tag') }}
+                </span>
+
+                <span class="asset-summary-value">
+
+                    {{ asset.asset_tag or '-' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- ASSET NAME -->
+
+            <div class="col-md-3 asset-summary-item">
+
+                <span class="asset-summary-label">
+                    {{ _('Asset Name') }}
+                </span>
+
+                <span class="asset-summary-value">
+
+                    {{ asset.asset_name or '-' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- SERIAL -->
+
+            <div class="col-md-3 asset-summary-item">
+
+                <span class="asset-summary-label">
+                    {{ _('Serial Number') }}
+                </span>
+
+                <span class="asset-summary-value">
+
+                    {{ asset.serial_number or '-' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="col-md-3 asset-summary-item">
+
+                <span class="asset-summary-label">
+                    {{ _('Status') }}
+                </span>
+
+                <span class="asset-summary-value">
+
+                    {{ asset.status or '-' }}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         FORM
+         ======================================================== -->
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+        autocomplete="off"
+    >
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+        <!-- ====================================================
+             MOVEMENT DATE
+             ==================================================== -->
+
+        <div class="movement-card">
+
+            <div class="movement-card-header">
+
+                <h5>
+
+                    <i class="bi bi-calendar-event"></i>
+
+                    {{ _('Movement Information') }}
+
+                </h5>
+
+            </div>
+
+
+            <div class="movement-card-body">
+
+                <div class="row g-3">
+
+
+                    <!-- DATE -->
+
+                    <div class="col-md-4">
+
+                        <label
+                            for="movement_date"
+                            class="form-label"
+                        >
+
+                            {{ _('Movement Date') }}
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="movement_date"
+                            name="movement_date"
+                            class="form-control"
+                            value="{{
+                                request.form.get(
+                                    'movement_date',
+                                    ''
+                                )
+                            }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- REASON -->
+
+                    <div class="col-md-8">
+
+                        <label
+                            for="reason"
+                            class="form-label"
+                        >
+
+                            {{ _('Movement Reason') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="reason"
+                            name="reason"
+                            class="form-control"
+                            maxlength="255"
+                            value="{{
+                                request.form.get(
+                                    'reason',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Example: Employee rotation') }}"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             FROM / TO
+             ==================================================== -->
+
+        <div class="movement-card">
+
+            <div class="movement-card-header">
+
+                <h5>
+
+                    <i class="bi bi-signpost-split"></i>
+
+                    {{ _('Asset Change') }}
+
+                </h5>
+
+            </div>
+
+
+            <div class="movement-card-body">
+
+
+                <div class="movement-columns">
+
+
+                    <!-- =========================================
+                         FROM
+                         ========================================= -->
+
+                    <div class="movement-panel from">
+
+
+                        <div class="movement-panel-header">
+
+                            {{ _('CURRENT CONDITION') }}
+
+                        </div>
+
+
+                        <div class="movement-panel-body">
+
+
+                            <!-- LOCATION -->
+
+                            <div class="from-field">
+
+                                <label>
+                                    {{ _('Location') }}
+                                </label>
+
+                                <div class="from-value">
+
+                                    {{ asset.location or '-' }}
+
+                                </div>
+
+                                <input
+                                    type="hidden"
+                                    name="from_location"
+                                    value="{{
+                                        asset.location or ''
+                                    }}"
+                                >
+
+                            </div>
+
+
+                            <!-- DEPARTMENT -->
+
+                            <div class="from-field">
+
+                                <label>
+                                    {{ _('Department') }}
+                                </label>
+
+                                <div class="from-value">
+
+                                    {{ asset.department or '-' }}
+
+                                </div>
+
+                                <input
+                                    type="hidden"
+                                    name="from_department"
+                                    value="{{
+                                        asset.department or ''
+                                    }}"
+                                >
+
+                            </div>
+
+
+                            <!-- PIC -->
+
+                            <div class="from-field">
+
+                                <label>
+                                    {{ _('PIC') }}
+                                </label>
+
+                                <div class="from-value">
+
+                                    {{ asset.pic or '-' }}
+
+                                </div>
+
+                                <input
+                                    type="hidden"
+                                    name="from_pic"
+                                    value="{{
+                                        asset.pic or ''
+                                    }}"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         ARROW
+                         ========================================= -->
+
+                    <div class="movement-arrow-box">
+
+                        →
+
+                    </div>
+
+
+                    <!-- =========================================
+                         TO
+                         ========================================= -->
+
+                    <div class="movement-panel to">
+
+
+                        <div class="movement-panel-header">
+
+                            {{ _('NEW CONDITION') }}
+
+                        </div>
+
+
+                        <div class="movement-panel-body">
+
+
+                            <!-- LOCATION -->
+
+                            <div class="to-field">
+
+                                <label
+                                    for="to_location"
+                                >
+
+                                    {{ _('Destination Location') }}
+
+                                    <span class="required">
+                                        *
+                                    </span>
+
+                                </label>
+
+
+                                <select
+                                    id="to_location"
+                                    name="to_location"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        {{ _('-- Select Location --') }}
+                                    </option>
+
+
+                                    {% for location in locations %}
+
+                                        {% set location_name = (
+                                            location.name
+                                            if location.name is defined
+                                            else location
+                                        ) %}
+
+                                        <option
+                                            value="{{ location_name }}"
+                                            {% if request.form.get(
+                                                'to_location'
+                                            ) == location_name %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            {{ location_name }}
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- DEPARTMENT -->
+
+                            <div class="to-field">
+
+                                <label
+                                    for="to_department"
+                                >
+
+                                    {{ _('Destination Department') }}
+
+                                    <span class="required">
+                                        *
+                                    </span>
+
+                                </label>
+
+
+                                <select
+                                    id="to_department"
+                                    name="to_department"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        {{ _('-- Select Department --') }}
+                                    </option>
+
+
+                                    {% for department in departments %}
+
+                                        {% set department_name = (
+                                            department.name
+                                            if department.name is defined
+                                            else department
+                                        ) %}
+
+                                        <option
+                                            value="{{ department_name }}"
+                                            {% if request.form.get(
+                                                'to_department'
+                                            ) == department_name %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            {{ department_name }}
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- PIC -->
+
+                            <div class="to-field">
+
+                                <label
+                                    for="to_pic"
+                                >
+
+                                    {{ _('New PIC') }}
+
+                                    <span class="required">
+                                        *
+                                    </span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="to_pic"
+                                    name="to_pic"
+                                    class="form-control"
+                                    maxlength="100"
+                                    value="{{
+                                        request.form.get(
+                                            'to_pic',
+                                            ''
+                                        )
+                                    }}"
+                                    placeholder="{{ _('New PIC name') }}"
+                                    required
+                                >
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="info-alert">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    <strong>
+                        {{ _('Current condition') }}
+                    </strong>
+                    {{ _('is automatically taken from the asset data. You only need to specify') }}
+                    <strong>{{ _('the destination condition') }}</strong>.
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             CATATAN
+             ==================================================== -->
+
+        <div class="movement-card">
+
+            <div class="movement-card-header">
+
+                <h5>
+
+                    <i class="bi bi-journal-text"></i>
+
+                    {{ _('Movement Notes') }}
+
+                </h5>
+
+            </div>
+
+
+            <div class="movement-card-body">
+
+                <label
+                    for="notes"
+                    class="form-label"
+                >
+
+                    {{ _('Notes') }}
+
+                </label>
+
+
+                <textarea
+                    id="notes"
+                    name="notes"
+                    class="form-control"
+                    rows="4"
+                    placeholder="{{ _('Add notes if needed...') }}"
+                >{{ request.form.get('notes', '') }}</textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             SIGNATURE
+             ==================================================== -->
+
+        <div class="signature-box">
+
+            <div class="signature-section-title">
+
+                <i class="bi bi-pen"></i>
+
+                {{ _('Signatory Information') }}
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- ============================================
+                     PENYERAH
+                     ============================================ -->
+
+                <div class="col-md-6">
+
+                    <h6 class="fw-bold mb-3">
+
+                        {{ _('Handed Over By') }}
+
+                    </h6>
+
+
+                    <!-- NAME -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="from_signer_name"
+                            class="form-label"
+                        >
+
+                            {{ _('Name') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="from_signer_name"
+                            name="from_signer_name"
+                            class="form-control"
+                            maxlength="100"
+                            value="{{
+                                request.form.get(
+                                    'from_signer_name',
+                                    asset.pic or ''
+                                )
+                            }}"
+                            placeholder="{{ _('Name of the person handing over') }}"
+                        >
+
+                    </div>
+
+
+                    <!-- POSITION -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="from_signer_position"
+                            class="form-label"
+                        >
+
+                            {{ _('Position') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="from_signer_position"
+                            name="from_signer_position"
+                            class="form-control"
+                            maxlength="100"
+                            value="{{
+                                request.form.get(
+                                    'from_signer_position',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Position of the person handing over') }}"
+                        >
+
+                    </div>
+
+
+                    <!-- SIGNATURE -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="from_signature"
+                            class="form-label"
+                        >
+
+                            {{ _('Signature') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="from_signature"
+                            name="from_signature"
+                            class="form-control"
+                            value="{{
+                                request.form.get(
+                                    'from_signature',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Signature URL / data') }}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ============================================
+                     PENERIMA
+                     ============================================ -->
+
+                <div class="col-md-6">
+
+                    <h6 class="fw-bold mb-3">
+
+                        {{ _('Received By') }}
+
+                    </h6>
+
+
+                    <!-- NAME -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="to_signer_name"
+                            class="form-label"
+                        >
+
+                            {{ _('Name') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="to_signer_name"
+                            name="to_signer_name"
+                            class="form-control"
+                            maxlength="100"
+                            value="{{
+                                request.form.get(
+                                    'to_signer_name',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Name of the recipient') }}"
+                        >
+
+                    </div>
+
+
+                    <!-- POSITION -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="to_signer_position"
+                            class="form-label"
+                        >
+
+                            {{ _('Position') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="to_signer_position"
+                            name="to_signer_position"
+                            class="form-control"
+                            maxlength="100"
+                            value="{{
+                                request.form.get(
+                                    'to_signer_position',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Position of the recipient') }}"
+                        >
+
+                    </div>
+
+
+                    <!-- SIGNATURE -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="to_signature"
+                            class="form-label"
+                        >
+
+                            {{ _('Signature') }}
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="to_signature"
+                            name="to_signature"
+                            class="form-control"
+                            value="{{
+                                request.form.get(
+                                    'to_signature',
+                                    ''
+                                )
+                            }}"
+                            placeholder="{{ _('Signature URL / data') }}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             ACTION
+             ==================================================== -->
+
+        <div class="form-actions">
+
+
+            <a
+                href="{{ url_for(
+                    'main.asset_detail',
+                    asset_id=asset.id
+                ) }}"
+                class="btn btn-secondary"
+            >
+
+                <i class="bi bi-arrow-left"></i>
+
+                {{ _('Cancel') }}
+
+            </a>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+
+                <i class="bi bi-check-circle"></i>
+
+                {{ _('Save Movement') }}
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

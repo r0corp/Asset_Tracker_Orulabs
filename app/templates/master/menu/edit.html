@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Menu Item') }} - {{ menu_item.label }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Edit Menu Item') }}</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Label') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="label"
+                            class="form-control"
+                            value="{{ menu_item.label }}"
+                        >
+
+                        <div class="form-text">
+                            {{ _('Can be left blank if this menu item will be a divider.') }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('URL') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="url"
+                            class="form-control"
+                            value="{{ menu_item.url or '' }}"
+                        >
+
+                        <div class="form-text">
+                            {{ _('Leave blank if this menu item is only a dropdown group (has submenus).') }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Icon (Bootstrap Icons)') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="icon"
+                            class="form-control"
+                            value="{{ menu_item.icon or '' }}"
+                            placeholder="{{ _('Example: bi-box-seam') }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Parent Menu') }}
+                        </label>
+
+                        <select
+                            name="parent_id"
+                            class="form-select"
+                        >
+                            <option value="" {% if not menu_item.parent_id %}selected{% endif %}>
+                                -- {{ _('None (top-level menu)') }} --
+                            </option>
+
+                            {% for parent in parent_choices %}
+                            <option value="{{ parent.id }}" {% if menu_item.parent_id==parent.id %}selected{% endif %}>
+                                {{ parent.label }}
+                            </option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Order') }}
+                        </label>
+
+                        <input
+                            type="number"
+                            name="order"
+                            class="form-control"
+                            value="{{ menu_item.order }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-8 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Visible For Roles') }}
+                        </label>
+
+                        <div>
+
+                            {% set active_roles = menu_item.allowed_roles() %}
+
+                            {% for choice in role_choices %}
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="roles"
+                                    value="{{ choice }}"
+                                    id="role_{{ choice }}"
+                                    {% if choice in active_roles %}checked{% endif %}
+                                >
+                                <label class="form-check-label" for="role_{{ choice }}">
+                                    {{ choice }}
+                                </label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="form-text">
+                            {{ _('Leave all unchecked if this menu item should be visible to all roles.') }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4 mb-3">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_active"
+                                name="is_active"
+                                value="1"
+                                {% if menu_item.is_active %}checked{% endif %}
+                            >
+
+                            <label class="form-check-label" for="is_active">
+                                {{ _('Active Menu') }}
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4 mb-3">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_divider"
+                                name="is_divider"
+                                value="1"
+                                {% if menu_item.is_divider %}checked{% endif %}
+                            >
+
+                            <label class="form-check-label" for="is_divider">
+                                {{ _('Make this a divider (not a link)') }}
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    {{ _('Save Changes') }}
+                </button>
+
+                <a
+                    href="{{ url_for('main.menus') }}"
+                    class="btn btn-secondary"
+                >
+                    {{ _('Cancel') }}
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

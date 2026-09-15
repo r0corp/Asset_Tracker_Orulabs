@@ -1,0 +1,463 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Asset Movement History') }} - {{ asset.asset_tag }}{% endblock %}
+{% block content %}
+
+<style>
+  .card-body.p-0 .table-responsive {
+    padding: 0 20px;
+  }
+</style>
+
+<div class="container-fluid py-4">
+  <!-- ====================================================== -->
+  <!-- HEADER -->
+  <!-- ====================================================== -->
+
+  <div class="page-header-card">
+    <div class="page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon">
+          <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div>
+          <h3 class="page-header-title">{{ _('Asset Movement History') }}</h3>
+
+          <p class="page-header-subtitle mb-0">
+            {{ asset.asset_tag }} - {{ asset.asset_name }}
+          </p>
+        </div>
+      </div>
+
+      <div class="page-header-actions">
+        <a
+          href="{{ url_for('main.asset_detail', asset_id=asset.id) }}"
+          class="btn btn-outline-secondary"
+        >
+          <i class="bi bi-arrow-left"></i>
+          {{ _('Back to Asset') }}
+        </a>
+
+        <a
+          href="{{ url_for('main.add_asset_movement', asset_id=asset.id) }}"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-plus-circle"></i>
+          {{ _('Add Movement') }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- ASSET INFORMATION -->
+  <!-- ====================================================== -->
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <strong>
+          <i class="bi bi-box-seam"></i>
+          {{ _('Asset Information') }}
+        </strong>
+
+        <span class="badge bg-secondary"> {{ movement_count }} {{ _('Movement') }} </span>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-3">
+        <!-- Asset Tag -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Asset Tag') }}</div>
+
+          <div class="fw-semibold">{{ asset.asset_tag or "-" }}</div>
+        </div>
+
+        <!-- Asset Name -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Asset Name') }}</div>
+
+          <div class="fw-semibold">{{ asset.asset_name or "-" }}</div>
+        </div>
+
+        <!-- Brand -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Brand') }}</div>
+
+          <div class="fw-semibold">{{ asset.brand or "-" }}</div>
+        </div>
+
+        <!-- Model -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Model') }}</div>
+
+          <div class="fw-semibold">{{ asset.model or "-" }}</div>
+        </div>
+
+        <!-- Serial Number -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Serial Number') }}</div>
+
+          <div class="fw-semibold">{{ asset.serial_number or "-" }}</div>
+        </div>
+
+        <!-- Status -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Status') }}</div>
+
+          <div>
+            {% if asset.status == "Active" %}
+
+            <span class="badge bg-success"> {{ _('Active') }} </span>
+
+            {% elif asset.status == "Maintenance" %}
+
+            <span class="badge bg-warning text-dark"> {{ _('Maintenance') }} </span>
+
+            {% elif asset.status == "Inactive" %}
+
+            <span class="badge bg-secondary"> {{ _('Inactive') }} </span>
+
+            {% else %}
+
+            <span class="badge bg-light text-dark border">
+              {{ asset.status or "-" }}
+            </span>
+
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Current Location -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Current Location') }}</div>
+
+          <div class="fw-semibold">{{ asset.location or "-" }}</div>
+        </div>
+
+        <!-- Current Department -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Current Department') }}</div>
+
+          <div class="fw-semibold">{{ asset.department or "-" }}</div>
+        </div>
+
+        <!-- Current PIC -->
+
+        <div class="col-md-3">
+          <div class="text-muted small">{{ _('Current PIC') }}</div>
+
+          <div class="fw-semibold">{{ asset.pic or "-" }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- CURRENT CONDITION -->
+  <!-- ====================================================== -->
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <strong>
+        <i class="bi bi-geo-alt"></i>
+        {{ _('Current Asset Condition') }}
+      </strong>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="border rounded p-3 h-100">
+            <div class="text-muted small mb-1">{{ _('Location') }}</div>
+
+            <div class="fs-5 fw-semibold">{{ asset.location or "-" }}</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="border rounded p-3 h-100">
+            <div class="text-muted small mb-1">{{ _('Department') }}</div>
+
+            <div class="fs-5 fw-semibold">{{ asset.department or "-" }}</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="border rounded p-3 h-100">
+            <div class="text-muted small mb-1">{{ _('PIC') }}</div>
+
+            <div class="fs-5 fw-semibold">{{ asset.pic or "-" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- MOVEMENT HISTORY -->
+  <!-- ====================================================== -->
+
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <strong>
+          <i class="bi bi-clock-history"></i>
+          {{ _('Movement History') }}
+        </strong>
+
+        <span class="text-muted small"> {{ movement_count }} {{ _('movement') }} </span>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      {% if movements %}
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="text-center">#</th>
+
+              <th>{{ _('Date') }}</th>
+
+              <th>{{ _('Movement') }}</th>
+
+              <th>{{ _('Location') }}</th>
+
+              <th>{{ _('Department') }}</th>
+
+              <th>{{ _('PIC') }}</th>
+
+              <th class="text-center">{{ _('Status') }}</th>
+
+              <th class="text-center">{{ _('Actions') }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for movement in movements %}
+
+            <tr>
+              <!-- ======================================== -->
+              <!-- NUMBER -->
+              <!-- ======================================== -->
+
+              <td class="text-center">{{ loop.index }}</td>
+
+              <!-- ======================================== -->
+              <!-- DATE -->
+              <!-- ======================================== -->
+
+              <td>
+                {% if movement.movement_date %} {{
+                movement.movement_date.strftime("%d-%m-%Y") }} {% else %} - {%
+                endif %}
+              </td>
+
+              <!-- ======================================== -->
+              <!-- MOVEMENT NUMBER -->
+              <!-- ======================================== -->
+
+              <td>
+                <div class="fw-semibold">{{ movement.movement_no or "-" }}</div>
+
+                {% if movement.reason %}
+
+                <div class="small text-muted">{{ movement.reason }}</div>
+
+                {% endif %}
+              </td>
+
+              <!-- ======================================== -->
+              <!-- LOCATION -->
+              <!-- ======================================== -->
+
+              <td>
+                <div class="small text-muted">{{ _('FROM') }}</div>
+
+                <div class="fw-semibold">
+                  {{ movement.from_location or "-" }}
+                </div>
+
+                <div class="my-1">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+
+                <div class="small text-muted">{{ _('TO') }}</div>
+
+                <div class="fw-semibold">{{ movement.to_location or "-" }}</div>
+              </td>
+
+              <!-- ======================================== -->
+              <!-- DEPARTMENT -->
+              <!-- ======================================== -->
+
+              <td>
+                <div class="small text-muted">{{ _('FROM') }}</div>
+
+                <div class="fw-semibold">
+                  {{ movement.from_department or "-" }}
+                </div>
+
+                <div class="my-1">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+
+                <div class="small text-muted">{{ _('TO') }}</div>
+
+                <div class="fw-semibold">
+                  {{ movement.to_department or "-" }}
+                </div>
+              </td>
+
+              <!-- ======================================== -->
+              <!-- PIC -->
+              <!-- ======================================== -->
+
+              <td>
+                <div class="small text-muted">{{ _('FROM') }}</div>
+
+                <div class="fw-semibold">{{ movement.from_pic or "-" }}</div>
+
+                <div class="my-1">
+                  <i class="bi bi-arrow-down"></i>
+                </div>
+
+                <div class="small text-muted">{{ _('TO') }}</div>
+
+                <div class="fw-semibold">{{ movement.to_pic or "-" }}</div>
+              </td>
+
+              <!-- ======================================== -->
+              <!-- STATUS -->
+              <!-- ======================================== -->
+
+              <td class="text-center">
+                {% if last_movement and movement.id == last_movement.id %}
+
+                <span class="badge bg-success"> {{ _('CURRENT') }} </span>
+
+                {% else %}
+
+                <span class="badge bg-secondary"> {{ _('HISTORY') }} </span>
+
+                {% endif %}
+              </td>
+
+              <!-- ======================================== -->
+              <!-- ACTION -->
+              <!-- ======================================== -->
+
+              <td class="text-center">
+                <div class="d-flex flex-column gap-2">
+                  <a
+                    href="{{ url_for(
+                      'main.asset_movement_detail',
+                      asset_id=asset.id,
+                      movement_id=movement.id
+                    ) }}"
+                    class="btn btn-sm btn-outline-primary"
+                  >
+                    <i class="bi bi-eye"></i>
+                    {{ _('Detail') }}
+                  </a>
+
+                  {% if last_movement and movement.id == last_movement.id %}
+
+                  <a
+                    href="{{ url_for(
+                      'main.correct_asset_movement',
+                      asset_id=asset.id,
+                      movement_id=movement.id
+                    ) }}"
+                    class="btn btn-sm btn-outline-warning"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                    {{ _('Correct') }}
+                  </a>
+
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+
+      <!-- ================================================== -->
+      <!-- EMPTY STATE -->
+      <!-- ================================================== -->
+
+      <div class="text-center py-5">
+        <div class="mb-3">
+          <i class="bi bi-clock-history fs-1 text-muted"></i>
+        </div>
+
+        <h5>{{ _('No movement history yet') }}</h5>
+
+        <p class="text-muted mb-3">
+          {{ _('This asset does not have any movement history yet.') }}
+        </p>
+
+        <a
+          href="{{ url_for(
+            'main.add_asset_movement',
+            asset_id=asset.id
+          ) }}"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-plus-circle"></i>
+          {{ _('Add Movement') }}
+        </a>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- PRINT STYLE -->
+<!-- ======================================================== -->
+
+<style>
+  @media print {
+    body {
+      background: #ffffff !important;
+    }
+
+    .btn,
+    nav,
+    footer,
+    .navbar,
+    .app-footer,
+    .sidebar {
+      display: none !important;
+    }
+
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+    }
+
+    .container-fluid {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+</style>
+
+{% endblock %}

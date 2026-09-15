@@ -1,0 +1,26 @@
+# Environment & secrets
+.env
+
+# Virtual environments
+venv/
+venvScriptsactivate/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Real application data - never commit real company/asset data
+instance/
+backups/
+uploads/
+app/static/uploads/
+app/static/qrcodes/
+
+# Editor / tooling
+.vscode/
+.idea/
+
+# Leftover local artifacts
+.refactor_backup/

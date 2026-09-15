@@ -1,0 +1,1239 @@
+{% extends "base.html" %} {% block title %} {{ _('Dashboard') }} - {{ app_setting.app_name }} {%
+endblock %} {% block content %}
+
+<style>
+  /* ============================================================
+   DASHBOARD GLOBAL
+   ============================================================ */
+
+  .dashboard-page {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+
+  .dashboard-page .card {
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+  }
+
+  .dashboard-page .card-header {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .dashboard-page .card-body {
+    min-width: 0;
+  }
+
+  .dashboard-section {
+    margin-bottom: 24px;
+  }
+
+  /* ============================================================
+   KPI CARD
+   ============================================================ */
+
+  .dashboard-kpi-row {
+    align-items: stretch;
+  }
+
+  .dashboard-kpi-col {
+    display: flex;
+  }
+
+  .dashboard-kpi-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .dashboard-kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+  }
+
+  .dashboard-kpi-card .card-body {
+    min-height: 125px;
+    display: flex;
+    align-items: center;
+  }
+
+  .dashboard-kpi-content {
+    width: 100%;
+  }
+
+  .movement-stat-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .movement-stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+  }
+
+  .dashboard-kpi-label {
+    color: #6c757d;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .dashboard-kpi-value {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  .dashboard-kpi-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .dashboard-kpi-icon-primary,
+  .dashboard-kpi-icon-success,
+  .dashboard-kpi-icon-warning,
+  .dashboard-kpi-icon-info {
+    color: #fff;
+  }
+
+  .dashboard-kpi-icon-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a4fb0 100%);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.28);
+  }
+
+  .dashboard-kpi-icon-success {
+    background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.28);
+  }
+
+  .dashboard-kpi-icon-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+  }
+
+  .dashboard-kpi-icon-info {
+    background: linear-gradient(135deg, #0dcaf0 0%, #087990 100%);
+    box-shadow: 0 4px 12px rgba(13, 202, 240, 0.28);
+  }
+
+  /* ============================================================
+   SUMMARY GRID
+   ============================================================ */
+
+  .dashboard-summary-row {
+    align-items: stretch;
+  }
+
+  .dashboard-summary-col {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  .dashboard-summary-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboard-summary-card .card-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .dashboard-summary-table-wrapper {
+    height: 100%;
+  }
+
+  .dashboard-summary-table {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .dashboard-summary-table th,
+  .dashboard-summary-table td {
+    vertical-align: middle;
+  }
+
+  .dashboard-summary-table th:first-child,
+  .dashboard-summary-table td:first-child {
+    padding-left: 18px;
+  }
+
+  .dashboard-summary-table th:last-child,
+  .dashboard-summary-table td:last-child {
+    padding-right: 18px;
+  }
+
+  .dashboard-empty {
+    min-height: 180px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #6c757d;
+    padding: 30px 20px;
+  }
+
+  /* ============================================================
+   MOVEMENT CHART
+   ============================================================ */
+
+  .movement-chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 5px 5px;
+  }
+
+  .movement-chart {
+    width: 100%;
+    min-width: 650px;
+    height: 320px;
+
+    display: flex;
+    align-items: stretch;
+
+    gap: 10px;
+    padding: 10px 10px 0 10px;
+
+    border-bottom: 1px solid #dee2e6;
+
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 63px,
+      #f1f3f5 64px
+    );
+  }
+
+  .movement-chart-column {
+    flex: 1 1 0;
+    min-width: 35px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .movement-chart-value {
+    min-height: 20px;
+    margin-bottom: 4px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #495057;
+    text-align: center;
+  }
+
+  .movement-chart-bar-area {
+    width: 100%;
+    height: 235px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .movement-chart-bar {
+    width: 70%;
+    min-width: 18px;
+    max-width: 42px;
+    min-height: 2px;
+
+    background: #0d6efd;
+
+    border-radius: 5px 5px 0 0;
+
+    transition:
+      height 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .movement-chart-bar:hover {
+    opacity: 0.75;
+  }
+
+  .movement-chart-bar-zero {
+    background: #adb5bd;
+  }
+
+  .movement-chart-label {
+    width: 100%;
+    min-height: 35px;
+
+    padding-top: 8px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    color: #6c757d;
+    text-align: center;
+
+    white-space: nowrap;
+  }
+
+  /* ============================================================
+   TABLE
+   ============================================================ */
+
+  .dashboard-table {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .dashboard-table th,
+  .dashboard-table td {
+    vertical-align: middle;
+  }
+
+  .dashboard-table th {
+    white-space: nowrap;
+  }
+
+  .dashboard-table td {
+    white-space: nowrap;
+  }
+
+  .dashboard-table a {
+    text-decoration: none;
+  }
+
+  .dashboard-table a:hover {
+    text-decoration: underline;
+  }
+
+  /* ============================================================
+   RECENT TABLE
+   ============================================================ */
+
+  .recent-table-card {
+    width: 100%;
+  }
+
+  .recent-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 0 20px;
+  }
+
+  .recent-table {
+    min-width: 850px;
+  }
+
+  .recent-table th,
+  .recent-table td {
+    vertical-align: middle;
+  }
+
+  /* ============================================================
+   MOVEMENT TABLE
+   ============================================================ */
+
+  .movement-table {
+    min-width: 850px;
+  }
+
+  /* ============================================================
+   BADGE
+   ============================================================ */
+
+  .dashboard-status-badge {
+    min-width: 75px;
+    text-align: center;
+  }
+
+  /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+  @media (max-width: 1199.98px) {
+    .dashboard-kpi-value {
+      font-size: 1.6rem;
+    }
+
+    .dashboard-kpi-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .dashboard-summary-col {
+      margin-bottom: 16px;
+    }
+
+    .dashboard-summary-col:last-child {
+      margin-bottom: 0;
+    }
+
+    .dashboard-kpi-col {
+      margin-bottom: 16px;
+    }
+
+    .dashboard-kpi-col:nth-last-child(-n + 2) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .dashboard-page {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    .dashboard-kpi-col {
+      margin-bottom: 12px;
+    }
+
+    .dashboard-kpi-col:nth-last-child(-n + 2) {
+      margin-bottom: 12px;
+    }
+
+    .dashboard-kpi-col:last-child {
+      margin-bottom: 0;
+    }
+
+    .dashboard-kpi-card .card-body {
+      min-height: 110px;
+    }
+
+    .dashboard-summary-col {
+      margin-bottom: 16px;
+    }
+
+    .dashboard-summary-col:last-child {
+      margin-bottom: 0;
+    }
+
+    .movement-chart {
+      min-width: 600px;
+      height: 280px;
+      gap: 6px;
+    }
+
+    .movement-chart-bar-area {
+      height: 200px;
+    }
+
+    .movement-chart-bar {
+      width: 65%;
+      min-width: 14px;
+    }
+
+    .movement-chart-label {
+      font-size: 9px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .dashboard-page {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .dashboard-kpi-value {
+      font-size: 1.45rem;
+    }
+
+    .dashboard-kpi-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      font-size: 20px;
+    }
+
+    .dashboard-summary-table th:first-child,
+    .dashboard-summary-table td:first-child {
+      padding-left: 12px;
+    }
+
+    .dashboard-summary-table th:last-child,
+    .dashboard-summary-table td:last-child {
+      padding-right: 12px;
+    }
+  }
+</style>
+
+<div class="container-fluid py-4 dashboard-page">
+  <!-- ============================================================
+         HEADER
+         ============================================================ -->
+
+  <div class="page-header-card">
+    <div class="page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon">
+          <i class="bi bi-speedometer2"></i>
+        </div>
+
+        <div>
+          <h2 class="page-header-title">
+            {{ _('Dashboard') }}
+          </h2>
+
+          <p class="page-header-subtitle mb-0">
+            {{ _('Asset Tracker summary information') }}
+          </p>
+        </div>
+      </div>
+
+      <div class="page-header-actions">
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary">
+          <i class="bi bi-box-seam"></i>
+
+          {{ _('Asset List') }}
+        </a>
+
+        <a
+          href="{{ url_for('main.asset_movements_report') }}"
+          class="btn btn-outline-primary"
+        >
+          <i class="bi bi-arrow-left-right"></i>
+
+          {{ _('Movement Report') }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+         KPI
+         ============================================================ -->
+
+  <div class="row g-3 dashboard-kpi-row dashboard-section">
+    <!-- TOTAL ASSET -->
+
+    <div class="col-xl-3 col-md-6 dashboard-kpi-col">
+      <div class="card shadow-sm dashboard-kpi-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="dashboard-kpi-content">
+              <div class="dashboard-kpi-label">{{ _('Total Assets') }}</div>
+
+              <div class="dashboard-kpi-value">{{ total_assets or 0 }}</div>
+            </div>
+
+            <div class="dashboard-kpi-icon dashboard-kpi-icon-primary">
+              <i class="bi bi-box-seam"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL NILAI ASSET -->
+
+    <div class="col-xl-3 col-md-6 dashboard-kpi-col">
+      <div class="card shadow-sm dashboard-kpi-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="dashboard-kpi-content">
+              <div class="dashboard-kpi-label">{{ _('Total Asset Value') }}</div>
+
+              <div class="dashboard-kpi-value">
+                Rp {{ "{:,.0f}".format( total_value or 0 ).replace(",", ".") }}
+              </div>
+            </div>
+
+            <div class="dashboard-kpi-icon dashboard-kpi-icon-success">
+              <i class="bi bi-cash-stack"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JENIS STATUS -->
+
+    <div class="col-xl-3 col-md-6 dashboard-kpi-col">
+      <div class="card shadow-sm dashboard-kpi-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="dashboard-kpi-content">
+              <div class="dashboard-kpi-label">{{ _('Status Types') }}</div>
+
+              <div class="dashboard-kpi-value">{{ status_summary|length }}</div>
+            </div>
+
+            <div class="dashboard-kpi-icon dashboard-kpi-icon-warning">
+              <i class="bi bi-pie-chart"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL MOVEMENT -->
+
+    <div class="col-xl-3 col-md-6 dashboard-kpi-col">
+      <div class="card shadow-sm dashboard-kpi-card">
+        <div class="card-body">
+          {% set total_movement_count = namespace(value=0) %} {% for item in
+          monthly_movement_summary %} {% set total_movement_count.value =
+          total_movement_count.value + (item.count or 0) %} {% endfor %}
+
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="dashboard-kpi-content">
+              <div class="dashboard-kpi-label">{{ _('Movements (12 Months)') }}</div>
+
+              <div class="dashboard-kpi-value">
+                {{ total_movement_count.value }}
+              </div>
+            </div>
+
+            <div class="dashboard-kpi-icon dashboard-kpi-icon-info">
+              <i class="bi bi-arrow-left-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+         RINGKASAN ASSET
+         SEMUA KOLOM MEMILIKI TINGGI YANG SAMA
+         ============================================================ -->
+
+  <div class="row g-4 dashboard-summary-row dashboard-section">
+    <!-- STATUS -->
+
+    <div class="col-lg-6 dashboard-summary-col">
+      <div class="card shadow-sm dashboard-summary-card">
+        <div class="card-header-accent">
+          <div class="card-header-accent-left">
+            <div class="card-header-accent-icon">
+              <i class="bi bi-bar-chart"></i>
+            </div>
+            <div class="card-header-accent-title">
+              {{ _('Assets by Status') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          {% if status_summary %}
+
+          <div class="table-responsive dashboard-summary-table-wrapper">
+            <table class="table table-hover dashboard-summary-table">
+              <thead class="table-light">
+                <tr>
+                  <th>{{ _('Status') }}</th>
+
+                  <th class="text-end">{{ _('Count') }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for item in status_summary %}
+
+                <tr>
+                  <td>
+                    {% if item.status == "Active" %}
+
+                    <span class="badge bg-success dashboard-status-badge">
+                      {{ item.status }}
+                    </span>
+
+                    {% elif item.status == "Maintenance" %}
+
+                    <span
+                      class="badge bg-warning text-dark dashboard-status-badge"
+                    >
+                      {{ item.status }}
+                    </span>
+
+                    {% elif item.status == "Lost" %}
+
+                    <span class="badge bg-danger dashboard-status-badge">
+                      {{ item.status }}
+                    </span>
+
+                    {% elif item.status == "Retired" %}
+
+                    <span class="badge bg-secondary dashboard-status-badge">
+                      {{ item.status }}
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-info dashboard-status-badge">
+                      {{ item.status }}
+                    </span>
+
+                    {% endif %}
+                  </td>
+
+                  <td class="text-end fw-bold">{{ item.count or 0 }}</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% else %}
+
+          <div class="dashboard-empty">
+            <div>
+              <i class="bi bi-bar-chart fs-1"></i>
+
+              <div class="mt-2">{{ _('No status data yet.') }}</div>
+            </div>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY -->
+
+    <div class="col-lg-6 dashboard-summary-col">
+      <div class="card shadow-sm dashboard-summary-card">
+        <div class="card-header-accent">
+          <div class="card-header-accent-left">
+            <div class="card-header-accent-icon">
+              <i class="bi bi-tags"></i>
+            </div>
+            <div class="card-header-accent-title">
+              {{ _('Assets by Category') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          {% if category_summary %}
+
+          <div class="table-responsive dashboard-summary-table-wrapper">
+            <table class="table table-hover dashboard-summary-table">
+              <thead class="table-light">
+                <tr>
+                  <th>{{ _('Category') }}</th>
+
+                  <th class="text-end">{{ _('Count') }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for item in category_summary %}
+
+                <tr>
+                  <td>{{ item.category or "-" }}</td>
+
+                  <td class="text-end fw-bold">{{ item.count or 0 }}</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% else %}
+
+          <div class="dashboard-empty">
+            <div>
+              <i class="bi bi-tags fs-1"></i>
+
+              <div class="mt-2">{{ _('No category data yet.') }}</div>
+            </div>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCATION -->
+
+    <div class="col-lg-6 dashboard-summary-col">
+      <div class="card shadow-sm dashboard-summary-card">
+        <div class="card-header-accent">
+          <div class="card-header-accent-left">
+            <div class="card-header-accent-icon">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="card-header-accent-title">
+              {{ _('Assets by Location') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          {% if location_summary %}
+
+          <div class="table-responsive dashboard-summary-table-wrapper">
+            <table class="table table-hover dashboard-summary-table">
+              <thead class="table-light">
+                <tr>
+                  <th>{{ _('Location') }}</th>
+
+                  <th class="text-end">{{ _('Count') }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for item in location_summary %}
+
+                <tr>
+                  <td>{{ item.location or "-" }}</td>
+
+                  <td class="text-end fw-bold">{{ item.count or 0 }}</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% else %}
+
+          <div class="dashboard-empty">
+            <div>
+              <i class="bi bi-geo-alt fs-1"></i>
+
+              <div class="mt-2">{{ _('No location data yet.') }}</div>
+            </div>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPARTMENT -->
+
+    <div class="col-lg-6 dashboard-summary-col">
+      <div class="card shadow-sm dashboard-summary-card">
+        <div class="card-header-accent">
+          <div class="card-header-accent-left">
+            <div class="card-header-accent-icon">
+              <i class="bi bi-building"></i>
+            </div>
+            <div class="card-header-accent-title">
+              {{ _('Assets by Department') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          {% if department_summary %}
+
+          <div class="table-responsive dashboard-summary-table-wrapper">
+            <table class="table table-hover dashboard-summary-table">
+              <thead class="table-light">
+                <tr>
+                  <th>{{ _('Department') }}</th>
+
+                  <th class="text-end">{{ _('Count') }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for item in department_summary %}
+
+                <tr>
+                  <td>{{ item.department or "-" }}</td>
+
+                  <td class="text-end fw-bold">{{ item.count or 0 }}</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% else %}
+
+          <div class="dashboard-empty">
+            <div>
+              <i class="bi bi-building fs-1"></i>
+
+              <div class="mt-2">{{ _('No department data yet.') }}</div>
+            </div>
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+         GRAFIK MUTASI 12 BULAN TERAKHIR
+         ============================================================ -->
+
+  <div class="card shadow-sm dashboard-section">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-bar-chart-line"></i>
+        </div>
+        <div class="card-header-accent-title">
+          {{ _('Asset Movements - Last 12 Months') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      {% if monthly_movement_summary %} {% set chart_max = namespace(value=0) %}
+      {% for item in monthly_movement_summary %} {% if (item.count or 0) >
+      chart_max.value %} {% set chart_max.value = item.count or 0 %} {% endif %}
+      {% endfor %}
+
+      <div class="movement-chart-wrapper">
+        <div class="movement-chart">
+          {% for item in monthly_movement_summary %} {% set current_count =
+          item.count or 0 %} {% if chart_max.value > 0 %} {% set bar_height = (
+          current_count / chart_max.value * 100 ) %} {% else %} {% set
+          bar_height = 0 %} {% endif %}
+
+          <div class="movement-chart-column">
+            <div class="movement-chart-value">{{ current_count }}</div>
+
+            <div class="movement-chart-bar-area">
+              {% if current_count > 0 %}
+
+              <div
+                class="movement-chart-bar"
+                style="height: {{ bar_height }}%;"
+                title="{{ item.month }} : {{ current_count }} {{ _('movements') }}"
+              ></div>
+
+              {% else %}
+
+              <div
+                class="movement-chart-bar movement-chart-bar-zero"
+                style="height: 2px"
+                title="{{ item.month }} : 0 {{ _('movements') }}"
+              ></div>
+
+              {% endif %}
+            </div>
+
+            <div class="movement-chart-label">{{ item.month }}</div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+
+      {% else %}
+
+      <div class="text-center text-muted py-5">
+        <i class="bi bi-bar-chart fs-1"></i>
+
+        <div class="mt-2">{{ _('No movement data yet.') }}</div>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="card shadow-sm h-100 movement-stat-card">
+        <div class="card-body">
+          <div class="text-muted small">{{ _('Total Movements') }}</div>
+
+          <div class="fs-3 fw-bold">{{ total_movements or 0 }}</div>
+
+          <div class="small text-muted">{{ _('Entire movement history') }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card shadow-sm h-100 movement-stat-card">
+        <div class="card-body">
+          <div class="text-muted small">{{ _('Total Corrections') }}</div>
+
+          <div class="fs-3 fw-bold">{{ total_corrections or 0 }}</div>
+
+          <div class="small text-muted">{{ _('Entire movement correction history') }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card shadow-sm h-100 movement-stat-card">
+        <div class="card-body">
+          <div class="text-muted small">{{ _('Movements This Month') }}</div>
+
+          <div class="fs-3 fw-bold">{{ monthly_movements or 0 }}</div>
+
+          <div class="small text-muted">{{ today.strftime("%B %Y") }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card shadow-sm h-100 movement-stat-card">
+        <div class="card-body">
+          <div class="text-muted small">{{ _('Corrections This Month') }}</div>
+
+          <div class="fs-3 fw-bold">{{ monthly_corrections or 0 }}</div>
+
+          <div class="small text-muted">{{ _('Corrections in the current month') }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+         ASSET TERBARU
+         ============================================================ -->
+
+  <div class="card shadow-sm dashboard-section recent-table-card">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-box-seam"></i>
+        </div>
+        <div class="card-header-accent-title">
+          {{ _('Recent Assets') }}
+        </div>
+      </div>
+
+      <div class="card-header-accent-actions">
+        <a
+          href="{{ url_for('main.index') }}"
+          class="btn btn-sm btn-outline-primary"
+        >
+          {{ _('View All') }}
+        </a>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      {% if recent_assets %}
+
+      <div class="recent-table-wrapper">
+        <table
+          class="table table-hover mb-0 align-middle dashboard-table recent-table"
+        >
+          <thead class="table-light">
+            <tr>
+              <th>{{ _('No.') }}</th>
+
+              <th>{{ _('Asset Tag') }}</th>
+
+              <th>{{ _('Asset Name') }}</th>
+
+              <th>{{ _('Category') }}</th>
+
+              <th>{{ _('Location') }}</th>
+
+              <th>{{ _('Department') }}</th>
+
+              <th>{{ _('Status') }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for asset in recent_assets %}
+
+            <tr>
+              <td>{{ loop.index }}</td>
+
+              <td>
+                <a
+                  href="{{ url_for(
+                                        'main.asset_detail',
+                                        asset_id=asset.id
+                                    ) }}"
+                >
+                  {{ asset.asset_tag or "-" }}
+                </a>
+              </td>
+
+              <td>{{ asset.asset_name or "-" }}</td>
+
+              <td>{{ asset.category or "-" }}</td>
+
+              <td>{{ asset.location or "-" }}</td>
+
+              <td>{{ asset.department or "-" }}</td>
+
+              <td>
+                {% if asset.status == "Active" %}
+
+                <span class="badge bg-success"> {{ _('Active') }} </span>
+
+                {% elif asset.status == "Maintenance" %}
+
+                <span class="badge bg-warning text-dark"> {{ _('Maintenance') }} </span>
+
+                {% elif asset.status == "Lost" %}
+
+                <span class="badge bg-danger"> {{ _('Lost') }} </span>
+
+                {% elif asset.status == "Retired" %}
+
+                <span class="badge bg-secondary"> {{ _('Retired') }} </span>
+
+                {% elif asset.status %}
+
+                <span class="badge bg-info"> {{ asset.status }} </span>
+
+                {% else %} - {% endif %}
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+
+      <div class="p-4 text-center text-muted">
+        <i class="bi bi-box-seam fs-1"></i>
+
+        <div class="mt-2">{{ _('No assets yet.') }}</div>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ============================================================
+         MUTASI TERBARU
+         ============================================================ -->
+
+  <div class="card shadow-sm dashboard-section recent-table-card">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div class="card-header-accent-title">
+          {{ _('Recent Asset Movements') }}
+        </div>
+      </div>
+
+      <div class="card-header-accent-actions">
+        <a
+          href="{{ url_for('main.asset_movements_report') }}"
+          class="btn btn-sm btn-outline-primary"
+        >
+          {{ _('View Report') }}
+        </a>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      {% if recent_movements %}
+
+      <div class="recent-table-wrapper">
+        <table
+          class="table table-hover mb-0 align-middle dashboard-table movement-table"
+        >
+          <thead class="table-light">
+            <tr>
+              <th>{{ _('No.') }}</th>
+
+              <th>{{ _('Movement No.') }}</th>
+
+              <th>{{ _('Date') }}</th>
+
+              <th>{{ _('Asset') }}</th>
+
+              <th>{{ _('From') }}</th>
+
+              <th>{{ _('To') }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for movement in recent_movements %}
+
+            <tr>
+              <td>{{ loop.index }}</td>
+
+              <td>
+                <a
+                  href="{{ url_for(
+                                        'main.asset_movement_detail',
+                                        asset_id=movement.asset_id,
+                                        movement_id=movement.id
+                                    ) }}"
+                >
+                  {{ movement.movement_no or "-" }}
+                </a>
+              </td>
+
+              <td>
+                {% if movement.movement_date %} {{
+                movement.movement_date.strftime( '%d-%m-%Y' ) }} {% else %} - {%
+                endif %}
+              </td>
+
+              <td>
+                {% if movement.asset %}
+
+                <a
+                  href="{{ url_for(
+                                            'main.asset_detail',
+                                            asset_id=movement.asset.id
+                                        ) }}"
+                >
+                  {{ movement.asset.asset_tag or "-" }}
+                </a>
+
+                {% else %} - {% endif %}
+              </td>
+
+              <td>{{ movement.from_location or "-" }}</td>
+
+              <td>{{ movement.to_location or "-" }}</td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+
+      <div class="p-4 text-center text-muted">
+        <i class="bi bi-arrow-left-right fs-1"></i>
+
+        <div class="mt-2">{{ _('No movement data yet.') }}</div>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

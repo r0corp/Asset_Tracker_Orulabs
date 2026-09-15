@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Restore from Uploaded File') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Restore from Uploaded File') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle me-1"></i>
+                {{ _('This will') }} <strong>{{ _('OVERWRITE') }}</strong> {{ _('the entire database and photos currently in use with the contents of the backup file you upload. The current state will automatically be backed up first before being overwritten.') }}
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="mb-3">
+                    <label class="form-label">{{ _('Backup File (.zip)') }}</label>
+                    <input type="file" name="file" class="form-control" accept=".zip" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ _('Type') }} <strong>RESTORE</strong> {{ _('to confirm') }}</label>
+                    <input type="text" name="confirm_text" class="form-control" autocomplete="off" required>
+                </div>
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i>
+                    {{ _('Overwrite Database Now') }}
+                </button>
+
+                <a href="{{ url_for('main.backup_list') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,1100 @@
+/* ============================================================
+   THEME TERPUSAT - SATU-SATUNYA SUMBER WARNA DARK MODE
+   ============================================================
+
+   Light mode = biru (default Bootstrap/AdminLTE, tidak perlu
+   di-override). Dark mode = merah + kartu gelap, terinspirasi
+   dari template "DarkPan".
+
+   ATURAN PENTING:
+   - Semua override warna untuk [data-bs-theme="dark"] HARUS
+     ditulis di file ini, BUKAN di dalam <style> block template
+     manapun. Kalau menambah halaman/komponen baru yang butuh
+     tampilan dark-mode khusus, tambahkan section baru di sini.
+   - Palet warna baku yang dipakai di seluruh file ini (JANGAN
+     pakai warna lain supaya semua halaman terasa satu sistem):
+       - Card / kotak background : #1b1e27 (utama) atau #20232c
+         (sedikit lebih terang, untuk kotak di dalam card)
+       - Card hover / lebih terang lagi : #262933
+       - Border tipis antar elemen : #2c2f38
+       - Border/divider sangat tipis : rgba(255,255,255,0.08)
+       - Teks label kecil/muted : #9aa0ac
+       - Teks value/heading utama : #f1f3f5 (atau #e9ecef sedikit
+         lebih redup untuk body text panjang)
+       - Aksen merah : #ef4444 (utama), #dc2626 (hover/active),
+         #b91c1c (gradient gelap)
+   - Class Bootstrap generik (.card, .btn, .table, .modal, dst)
+     SUDAH otomatis theme-aware lewat CSS variable Bootstrap -
+     TIDAK perlu di-override lagi di sini kecuali komponennya
+     memang tidak memakai CSS variable (lihat section komponen
+     di bawah).
+   - Class custom per-halaman (mis. .dashboard-card, .kpi-card,
+     .info-tile) mayoritas ditulis dengan warna hardcode karena
+     dibuat sebelum ada dark mode - override-nya dikelompokkan
+     per halaman di section 3 ke bawah, dikumpulkan jadi satu
+     selector gabungan per pola warna supaya gampang dirawat.
+   ============================================================ */
+
+
+/* ============================================================
+   1. WARNA DASAR & KOMPONEN BOOTSTRAP
+   ============================================================ */
+
+:root[data-bs-theme="dark"] {
+    --bs-primary: #ef4444;
+    --bs-primary-rgb: 239, 68, 68;
+    --bs-primary-text-emphasis: #fca5a5;
+    --bs-primary-bg-subtle: #3f1212;
+    --bs-primary-border-subtle: #7f1d1d;
+    --bs-link-color: #f87171;
+    --bs-link-color-rgb: 248, 113, 113;
+    --bs-link-hover-color: #fca5a5;
+    --bs-link-hover-color-rgb: 252, 165, 165;
+}
+
+[data-bs-theme="dark"] .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ef4444;
+    --bs-btn-border-color: #ef4444;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #dc2626;
+    --bs-btn-hover-border-color: #dc2626;
+    --bs-btn-focus-shadow-rgb: 239, 68, 68;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #dc2626;
+    --bs-btn-active-border-color: #dc2626;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ef4444;
+    --bs-btn-disabled-border-color: #ef4444;
+}
+
+[data-bs-theme="dark"] .btn-outline-primary {
+    --bs-btn-color: #f87171;
+    --bs-btn-border-color: #ef4444;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ef4444;
+    --bs-btn-hover-border-color: #ef4444;
+    --bs-btn-focus-shadow-rgb: 239, 68, 68;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #ef4444;
+    --bs-btn-active-border-color: #ef4444;
+}
+
+[data-bs-theme="dark"] .page-item.active .page-link {
+    background-color: #ef4444;
+    border-color: #ef4444;
+}
+
+[data-bs-theme="dark"] .form-check-input:checked {
+    background-color: #ef4444;
+    border-color: #ef4444;
+}
+
+[data-bs-theme="dark"] .spinner-border.text-primary,
+[data-bs-theme="dark"] .spinner-grow.text-primary {
+    color: #ef4444 !important;
+}
+
+/* Tombol btn-primary di dalam header berwarna (lihat base.html)
+   dibuat merah juga di dark mode, bukan biru bawaan. */
+[data-bs-theme="dark"] .card-header .btn-primary,
+[data-bs-theme="dark"] .dashboard-card-header .btn-primary,
+[data-bs-theme="dark"] .movement-card-header .btn-primary,
+[data-bs-theme="dark"] .correction-card-header .btn-primary,
+[data-bs-theme="dark"] .filter-card-header .btn-primary,
+[data-bs-theme="dark"] .table-card-header .btn-primary,
+[data-bs-theme="dark"] .history-card-header .btn-primary {
+    --bs-btn-color: #ef4444;
+    --bs-btn-hover-color: #ef4444;
+}
+
+/* Header kolom SEMUA tabel (thead polos maupun class table-light)
+   jadi gradient merah di dark mode juga - lihat catatan teknis
+   "th dibuat transparan" & "@media screen" di base.html (supaya
+   dokumen cetak tidak ikut terwarnai). */
+@media screen {
+    [data-bs-theme="dark"] thead,
+    [data-bs-theme="dark"] .table-light {
+        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+    }
+}
+
+/* Bootstrap mengecat setiap sel <td>/<th> lewat variable
+   --bs-table-bg, yang di dark mode default-nya abu Bootstrap
+   sendiri (#212529) - beda dengan warna kartu custom kita
+   (#1b1e27), jadi badan tabel terlihat "belang" (beda shade)
+   dari card pembungkusnya. Dibuat transparan supaya sel tabel
+   otomatis menyatu dengan background kartu apa pun yang
+   membungkusnya, di halaman manapun. */
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+    --bs-table-hover-bg: #262933;
+}
+
+
+/* ============================================================
+   2. HEADER SIDEBAR / NAVBAR
+   ============================================================ */
+
+[data-bs-theme="dark"] .sidebar-menu .nav-link.active {
+    background-color: #ef4444 !important;
+    color: #fff !important;
+}
+
+[data-bs-theme="dark"] .sidebar-menu .nav-link.active .nav-icon,
+[data-bs-theme="dark"] .sidebar-menu .nav-link.active p {
+    color: #fff !important;
+}
+
+/* Header dropdown profil (avatar+nama) di navbar - biru di light
+   mode, disamakan merah di dark mode seperti aksen lainnya. */
+[data-bs-theme="dark"] .user-menu-header {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+}
+
+/* Semua header card/tabel (varian warna lama diabaikan, lihat
+   base.html) jadi merah seragam di dark mode. !important supaya
+   menang dari rule per-halaman lain yang class-nya kebetulan sama
+   (lihat catatan !important di base.html). */
+[data-bs-theme="dark"] .card-header-color,
+[data-bs-theme="dark"] .card-header,
+[data-bs-theme="dark"] .dashboard-card-header,
+[data-bs-theme="dark"] .movement-card-header,
+[data-bs-theme="dark"] .correction-card-header,
+[data-bs-theme="dark"] .filter-card-header,
+[data-bs-theme="dark"] .table-card-header,
+[data-bs-theme="dark"] .history-card-header {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+}
+
+
+/* ============================================================
+   3. index.html - Dashboard / halaman "Asset"
+   ============================================================ */
+
+[data-bs-theme="dark"] .kpi-card,
+[data-bs-theme="dark"] .dashboard-card,
+[data-bs-theme="dark"] .dashboard-card-header,
+[data-bs-theme="dark"] .warranty-alert-safe {
+    background: #1b1e27;
+}
+
+[data-bs-theme="dark"] .dashboard-card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .kpi-label,
+[data-bs-theme="dark"] .dashboard-card-subtitle,
+[data-bs-theme="dark"] .dashboard-table th,
+[data-bs-theme="dark"] .warranty-table th {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .kpi-value {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .kpi-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .empty-dashboard {
+    color: #9aa0ac;
+}
+
+/* .kpi-icon.bg-primary dipakai untuk "Total Assets"/"Total Asset
+   Value" - di light mode gradientnya biru (lihat index.html),
+   tapi di dark mode aksen utama aplikasi adalah merah, jadi
+   di-override supaya senada dengan card-header-accent-icon dkk. */
+[data-bs-theme="dark"] .kpi-icon.bg-primary {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+[data-bs-theme="dark"] .warranty-alert-safe {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .warranty-alert-safe .wa-header,
+[data-bs-theme="dark"] .warranty-alert-safe .wa-item {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .warranty-alert-safe .wa-title {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .warranty-alert-safe .wa-subtitle,
+[data-bs-theme="dark"] .warranty-alert-safe .wa-label {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .warranty-alert-safe .wa-footer {
+    background: #20232c;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #9aa0ac;
+}
+
+
+/* ============================================================
+   4. asset/detail.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .asset-top-content {
+    background: #1b1e27;
+}
+
+[data-bs-theme="dark"] .asset-media-column {
+    border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .asset-section-title,
+[data-bs-theme="dark"] .empty-movement {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .asset-photo-box,
+[data-bs-theme="dark"] .asset-qr-box {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .asset-qr-section {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .asset-information-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .info-tile,
+[data-bs-theme="dark"] .asset-description-box {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .info-tile:hover {
+    background: #262933;
+    border-color: #363a45;
+}
+
+[data-bs-theme="dark"] .info-tile-label {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .info-tile-value,
+[data-bs-theme="dark"] .asset-description {
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .movement-table th {
+    background: #20232c;
+}
+
+
+/* ============================================================
+   5. asset/add.html, asset/edit.html, company/edit.html,
+      dashboard.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .asset-form-card .card-header,
+[data-bs-theme="dark"] .edit-asset-header {
+    background: #1b1e27;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .form-section-title {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .form-actions,
+[data-bs-theme="dark"] .edit-action-buttons {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .edit-asset-subtitle,
+[data-bs-theme="dark"] .form-label {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .photo-upload-box,
+[data-bs-theme="dark"] .edit-photo-wrapper,
+[data-bs-theme="dark"] .photo-preview,
+[data-bs-theme="dark"] .edit-photo-preview,
+[data-bs-theme="dark"] .logo-preview {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .photo-upload-box:hover {
+    background: #262933;
+    border-color: #363a45;
+}
+
+[data-bs-theme="dark"] .photo-upload-icon,
+[data-bs-theme="dark"] .photo-upload-help,
+[data-bs-theme="dark"] .photo-preview-name,
+[data-bs-theme="dark"] .edit-photo-empty,
+[data-bs-theme="dark"] .logo-placeholder {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .logo-placeholder {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .delete-photo-box {
+    background: #3f1212;
+    border-color: #7f1d1d;
+}
+
+[data-bs-theme="dark"] .dashboard-page .card {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .dashboard-page .card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .dashboard-header-subtitle,
+[data-bs-theme="dark"] .dashboard-kpi-label,
+[data-bs-theme="dark"] .dashboard-empty,
+[data-bs-theme="dark"] .movement-chart-label {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .movement-chart {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 63px, rgba(255, 255, 255, 0.08) 64px);
+}
+
+/* .dashboard-kpi-icon-primary biru di light mode, tapi aksen utama
+   aplikasi di dark mode adalah merah - disamakan dengan
+   card-header-accent-icon dkk. */
+[data-bs-theme="dark"] .dashboard-kpi-icon-primary {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+[data-bs-theme="dark"] .dashboard-kpi-card::before,
+[data-bs-theme="dark"] .movement-stat-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .movement-chart-value {
+    color: #f1f3f5;
+}
+
+
+/* ============================================================
+   6. asset/list.html, asset/movement_corrections.html,
+      asset/labels_select.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .asset-list-header p,
+[data-bs-theme="dark"] .asset-filter-label,
+[data-bs-theme="dark"] .asset-empty-state,
+[data-bs-theme="dark"] .asset-empty-state i,
+[data-bs-theme="dark"] .asset-list-photo-empty,
+[data-bs-theme="dark"] .label-result-info {
+    color: #9aa0ac;
+}
+
+/* .asset-table thead sekarang pakai class "table-light" di markup,
+   jadi warnanya otomatis ikut section 1 (satu sumber, sama seperti
+   semua tabel lain) - tidak perlu override terpisah di sini lagi. */
+
+[data-bs-theme="dark"] .asset-table tbody tr:hover {
+    background-color: #262933;
+}
+
+[data-bs-theme="dark"] .asset-list-photo,
+[data-bs-theme="dark"] .asset-list-photo-empty {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .asset-list-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+/* .asset-name: asset/list.html wants a prominent heading color;
+   movement_report.html/warranty pages use it for a secondary
+   sub-label - resolved in favor of the higher-traffic list page. */
+[data-bs-theme="dark"] .asset-name {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .asset-table-footer {
+    background: #1b1e27;
+    border-top-color: #2c2f38;
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .correction-card .card-header {
+    background: #20232c;
+}
+
+[data-bs-theme="dark"] .label-toolbar {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .label-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+
+/* ============================================================
+   7. asset/labels.html, asset/labels_print.html,
+      asset/movement_qr.html, asset/movement_detail.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .label-sheet-preview,
+[data-bs-theme="dark"] .qr-card,
+[data-bs-theme="dark"] .qr-header,
+[data-bs-theme="dark"] .movement-document {
+    background: #1b1e27;
+}
+
+[data-bs-theme="dark"] .qr-card {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .qr-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .movement-document {
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .asset-label,
+[data-bs-theme="dark"] .qr-image-box,
+[data-bs-theme="dark"] .verification-box,
+[data-bs-theme="dark"] .info-table th,
+[data-bs-theme="dark"] .info-table .label,
+[data-bs-theme="dark"] .qr-box,
+[data-bs-theme="dark"] .section-title {
+    background: #20232c;
+}
+
+[data-bs-theme="dark"] .asset-label,
+[data-bs-theme="dark"] .asset-label-qr-empty,
+[data-bs-theme="dark"] .qr-image-box,
+[data-bs-theme="dark"] .verification-box,
+[data-bs-theme="dark"] .info-table th,
+[data-bs-theme="dark"] .info-table td,
+[data-bs-theme="dark"] .section-title,
+[data-bs-theme="dark"] .section-body,
+[data-bs-theme="dark"] .movement-table th,
+[data-bs-theme="dark"] .movement-table td {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .label-header p,
+[data-bs-theme="dark"] .label-empty,
+[data-bs-theme="dark"] .asset-label-qr-empty,
+[data-bs-theme="dark"] .label-title,
+[data-bs-theme="dark"] .label-key,
+[data-bs-theme="dark"] .label-footer,
+[data-bs-theme="dark"] .qr-header small,
+[data-bs-theme="dark"] .qr-caption,
+[data-bs-theme="dark"] .verification-url,
+[data-bs-theme="dark"] .company-address,
+[data-bs-theme="dark"] .qr-label,
+[data-bs-theme="dark"] .company-contact .separator,
+[data-bs-theme="dark"] .signature-position,
+[data-bs-theme="dark"] .signature-empty,
+[data-bs-theme="dark"] .document-footer {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .label-title,
+[data-bs-theme="dark"] .document-footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .label-footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .document-header,
+[data-bs-theme="dark"] .letterhead-line {
+    border-bottom-color: #e9ecef;
+}
+
+
+/* ============================================================
+   8. asset/movement_add.html, asset/movement_verify.html,
+      warranty/history.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .page-header .subtitle,
+[data-bs-theme="dark"] .asset-summary-label,
+[data-bs-theme="dark"] .from-field label,
+[data-bs-theme="dark"] .verify-header p,
+[data-bs-theme="dark"] .history-header p,
+[data-bs-theme="dark"] .asset-summary-meta,
+[data-bs-theme="dark"] .history-card-subtitle,
+[data-bs-theme="dark"] .old-value,
+[data-bs-theme="dark"] .arrow-change,
+[data-bs-theme="dark"] .history-notes,
+[data-bs-theme="dark"] .empty-history {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .asset-summary,
+[data-bs-theme="dark"] .signature-box,
+[data-bs-theme="dark"] .verify-card,
+[data-bs-theme="dark"] .history-card {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .movement-panel.from .movement-panel-header,
+[data-bs-theme="dark"] .from-value,
+[data-bs-theme="dark"] .verify-table th,
+[data-bs-theme="dark"] .movement-from,
+[data-bs-theme="dark"] .history-table th {
+    background: #20232c;
+}
+
+[data-bs-theme="dark"] .from-value,
+[data-bs-theme="dark"] .movement-panel,
+[data-bs-theme="dark"] .verify-table th,
+[data-bs-theme="dark"] .verify-table td,
+[data-bs-theme="dark"] .movement-from {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .movement-panel.from .movement-panel-header,
+[data-bs-theme="dark"] .from-value,
+[data-bs-theme="dark"] .history-table th {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .signature-preview {
+    border-color: #363a45;
+}
+
+[data-bs-theme="dark"] .verify-header {
+    background: #20232c;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .history-card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .history-table th {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .history-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .history-table tbody tr:hover {
+    background: #262933;
+}
+
+[data-bs-theme="dark"] .history-card-header .badge.bg-light {
+    background-color: #20232c !important;
+    color: #e9ecef !important;
+    border-color: #2c2f38 !important;
+}
+
+/* Kotak-kotak informasi berwarna pastel (biru/hijau/kuning) yang
+   dibuat sebelum ada dark mode - kalau tidak di-override akan
+   tetap pastel-di-atas-putih dan sulit dibaca di kartu gelap. */
+[data-bs-theme="dark"] .movement-panel.to .movement-panel-header,
+[data-bs-theme="dark"] .movement-to,
+[data-bs-theme="dark"] .verified-badge span {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+[data-bs-theme="dark"] .info-alert {
+    background: rgba(13, 202, 240, 0.1);
+    border-color: rgba(13, 202, 240, 0.3);
+    color: #67e8f9;
+}
+
+[data-bs-theme="dark"] .security-note {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #e9ecef;
+}
+
+/* asset/history.html - timeline (halaman ini saat ini tidak
+   dirender oleh route manapun, tapi tetap disamakan untuk
+   konsistensi kalau suatu saat dipakai lagi). */
+[data-bs-theme="dark"] .timeline::before {
+    background: #2c2f38;
+}
+
+
+/* ============================================================
+   9. asset/movement_correct.html, asset/movement_report.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .correction-header,
+[data-bs-theme="dark"] .correction-card,
+[data-bs-theme="dark"] .signature-panel,
+[data-bs-theme="dark"] .report-header,
+[data-bs-theme="dark"] .summary-card,
+[data-bs-theme="dark"] .filter-card,
+[data-bs-theme="dark"] .table-card {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .summary-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .correction-card-header,
+[data-bs-theme="dark"] .movement-column-before,
+[data-bs-theme="dark"] .movement-column-after,
+[data-bs-theme="dark"] .signature-existing,
+[data-bs-theme="dark"] .filter-card-header,
+[data-bs-theme="dark"] .table-card-header {
+    background: #20232c;
+}
+
+/* Tombol Print di header Laporan Mutasi - outline abu bawaan
+   Bootstrap terlalu redup di kartu gelap, dipertegas supaya
+   kontrasnya senada dengan tombol Export Excel di sebelahnya. */
+[data-bs-theme="dark"] .report-actions .btn-outline-secondary {
+    border-color: #3a3f4b;
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .report-actions .btn-outline-secondary:hover {
+    background: #262933;
+    border-color: #4a4f5b;
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .warranty-header-actions .btn-outline-secondary {
+    border-color: #3a3f4b;
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .warranty-header-actions .btn-outline-secondary:hover {
+    background: #262933;
+    border-color: #4a4f5b;
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .correction-warning {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .correction-card-header,
+[data-bs-theme="dark"] .filter-card-header,
+[data-bs-theme="dark"] .table-card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .movement-column,
+[data-bs-theme="dark"] .movement-column-title,
+[data-bs-theme="dark"] .signature-existing {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .asset-info-table td,
+[data-bs-theme="dark"] .movement-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .movement-table tbody tr:hover {
+    background: #262933;
+}
+
+[data-bs-theme="dark"] .correction-subtitle,
+[data-bs-theme="dark"] .asset-info-label,
+[data-bs-theme="dark"] .signature-existing-label,
+[data-bs-theme="dark"] .signature-hint,
+[data-bs-theme="dark"] .signature-status.empty,
+[data-bs-theme="dark"] .report-subtitle,
+[data-bs-theme="dark"] .flow-from,
+[data-bs-theme="dark"] .flow-arrow,
+[data-bs-theme="dark"] .pic-from,
+[data-bs-theme="dark"] .notes-text,
+[data-bs-theme="dark"] .report-footer,
+[data-bs-theme="dark"] .empty-state-title,
+[data-bs-theme="dark"] .empty-state-text {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .report-title,
+[data-bs-theme="dark"] .summary-value,
+[data-bs-theme="dark"] .asset-tag {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .reason-main {
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .movement-number {
+    color: #f87171;
+}
+
+
+/* ============================================================
+   10. asset/history.html, warranty/index.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .history-header,
+[data-bs-theme="dark"] .timeline-card,
+[data-bs-theme="dark"] .current-status,
+[data-bs-theme="dark"] .w-card {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+/* .movement-card: nested item card (e.g. inside a timeline) reads
+   better one shade lighter than a top-level card. */
+[data-bs-theme="dark"] .movement-card {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .movement-card-header {
+    background: #262933;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .asset-summary-header,
+[data-bs-theme="dark"] .timeline-header {
+    background: #20232c;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .info-item,
+[data-bs-theme="dark"] .flow-box.from,
+[data-bs-theme="dark"] .flow-box.to {
+    background: #20232c;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .flow-box,
+[data-bs-theme="dark"] .meta-box {
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .timeline-dot {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .movement-count {
+    background: #2c2f38;
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .movement-actions {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .history-subtitle,
+[data-bs-theme="dark"] .info-label,
+[data-bs-theme="dark"] .current-status-label,
+[data-bs-theme="dark"] .movement-date,
+[data-bs-theme="dark"] .flow-title,
+[data-bs-theme="dark"] .flow-detail,
+[data-bs-theme="dark"] .flow-arrow,
+[data-bs-theme="dark"] .meta-label,
+[data-bs-theme="dark"] .w-subtitle,
+[data-bs-theme="dark"] .filter-label,
+[data-bs-theme="dark"] .table-count,
+[data-bs-theme="dark"] .asset-meta {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .info-value,
+[data-bs-theme="dark"] .current-status-value,
+[data-bs-theme="dark"] .meta-value,
+[data-bs-theme="dark"] .flow-detail strong {
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .current-status-title,
+[data-bs-theme="dark"] .empty-history-title,
+[data-bs-theme="dark"] .w-title,
+[data-bs-theme="dark"] .table-title {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .filter-box,
+[data-bs-theme="dark"] .table-header {
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .filter-box .form-control,
+[data-bs-theme="dark"] .filter-box .form-select {
+    border-color: #2c2f38;
+}
+
+
+/* ============================================================
+   11. warranty/alert.html, warranty/notifications.html
+   ============================================================ */
+
+[data-bs-theme="dark"] .warranty-summary-card,
+[data-bs-theme="dark"] .warranty-toolbar,
+[data-bs-theme="dark"] .warranty-table-card,
+[data-bs-theme="dark"] .notification-summary-card,
+[data-bs-theme="dark"] .notification-section,
+[data-bs-theme="dark"] .notification-filter {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+/* Pill status warranty/alert.html (badge-active/urgent/warning/
+   expired/unknown) - warna aslinya pastel-di-atas-putih, jadi
+   nyaris tak kelihatan di kartu gelap kalau tidak di-override. */
+[data-bs-theme="dark"] .badge-active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+[data-bs-theme="dark"] .badge-urgent {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+[data-bs-theme="dark"] .badge-warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+[data-bs-theme="dark"] .badge-expired,
+[data-bs-theme="dark"] .badge-unknown {
+    background: #2c2f38;
+    color: #9aa0ac;
+}
+
+
+/* ============================================================
+   12. .page-header-card - komponen header halaman terpusat
+   (base.html), dipakai di semua halaman (Master Data, Import,
+   Global Movement, dll). Aksen merah menggantikan biru, badge
+   ikon dan garis atas ikut disesuaikan.
+   ============================================================ */
+
+[data-bs-theme="dark"] .page-header-card {
+    background: #1b1e27;
+    border-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .page-header-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .page-header-icon {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+[data-bs-theme="dark"] .page-header-title {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .page-header-subtitle {
+    color: #9aa0ac;
+}
+
+
+/* ============================================================
+   13. .card-header-accent - varian header kartu alternatif
+   (contoh di index.html, kartu "Warranty Expiring Soon")
+   ============================================================ */
+
+[data-bs-theme="dark"] .card-header-accent {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .card-header-accent::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .card-header-accent-icon {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+[data-bs-theme="dark"] .card-header-accent-title {
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .card-header-accent-subtitle {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .warranty-table th {
+    background: #20232c;
+    color: #9aa0ac;
+    border-bottom-color: #2c2f38;
+}
+
+[data-bs-theme="dark"] .warranty-table td,
+[data-bs-theme="dark"] .notification-item {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .warranty-table tbody tr:hover,
+[data-bs-theme="dark"] .notification-item:hover {
+    background: #262933;
+}
+
+[data-bs-theme="dark"] .warranty-header p,
+[data-bs-theme="dark"] .warranty-summary-label,
+[data-bs-theme="dark"] .warranty-table-subtitle,
+[data-bs-theme="dark"] .empty-state,
+[data-bs-theme="dark"] .notification-header p,
+[data-bs-theme="dark"] .notification-summary-label,
+[data-bs-theme="dark"] .notification-section-subtitle,
+[data-bs-theme="dark"] .notification-meta,
+[data-bs-theme="dark"] .notification-empty,
+[data-bs-theme="dark"] .notification-filter-label {
+    color: #9aa0ac;
+}
+
+
+/* ============================================================
+   14. Kalender (Flatpickr) - dipakai di semua <input type="date">
+   lewat script terpusat di base.html. Kalender-nya sendiri
+   ditempel ke <body>, di luar kartu manapun, jadi butuh reskin
+   dark mode penuh sendiri (tidak otomatis ikut warna kartu).
+   ============================================================ */
+
+[data-bs-theme="dark"] .flatpickr-calendar {
+    background: #1b1e27;
+    border-color: #2c2f38;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar.arrowTop::before,
+[data-bs-theme="dark"] .flatpickr-calendar.arrowTop::after {
+    border-bottom-color: #1b1e27;
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar.arrowBottom::before,
+[data-bs-theme="dark"] .flatpickr-calendar.arrowBottom::after {
+    border-top-color: #1b1e27;
+}
+
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-month,
+[data-bs-theme="dark"] .flatpickr-current-month,
+[data-bs-theme="dark"] .flatpickr-current-month input.cur-year,
+[data-bs-theme="dark"] .flatpickr-monthDropdown-months,
+[data-bs-theme="dark"] .flatpickr-weekdays {
+    background: #1b1e27;
+    color: #f1f3f5;
+    fill: #f1f3f5;
+}
+
+[data-bs-theme="dark"] .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+    background: #1b1e27;
+    color: #f1f3f5;
+}
+
+[data-bs-theme="dark"] span.flatpickr-weekday {
+    background: #1b1e27;
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .flatpickr-day {
+    color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.flatpickr-disabled,
+[data-bs-theme="dark"] .flatpickr-day.prevMonthDay,
+[data-bs-theme="dark"] .flatpickr-day.nextMonthDay {
+    color: #4b5160;
+}
+
+[data-bs-theme="dark"] .flatpickr-day:hover {
+    background: #262933;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.today {
+    border-color: #ef4444;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.today:hover,
+[data-bs-theme="dark"] .flatpickr-day.today:focus {
+    background: #ef4444;
+    color: #fff;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.selected,
+[data-bs-theme="dark"] .flatpickr-day.selected:hover,
+[data-bs-theme="dark"] .flatpickr-day.selected:focus {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #fff;
+}
+
+[data-bs-theme="dark"] .flatpickr-prev-month svg,
+[data-bs-theme="dark"] .flatpickr-next-month svg {
+    fill: #e9ecef;
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowUp::after {
+    border-bottom-color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowDown::after {
+    border-top-color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .flatpickr-time input,
+[data-bs-theme="dark"] .flatpickr-time .flatpickr-am-pm {
+    color: #e9ecef;
+}
+
+
+/* ============================================================
+   15. company/list.html - kartu identitas & tabel kontak
+   ============================================================ */
+
+[data-bs-theme="dark"] .company-identity-card::before {
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 35%, #f87171 50%, #ef4444 65%, #b91c1c 100%);
+}
+
+[data-bs-theme="dark"] .company-logo-wrap {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.03) 100%);
+}
+
+[data-bs-theme="dark"] .company-logo-placeholder {
+    color: #4b5160;
+}
+
+[data-bs-theme="dark"] .company-prefix-badge {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+[data-bs-theme="dark"] .company-contact-table tr:hover {
+    background: #262933;
+}
+
+[data-bs-theme="dark"] .company-contact-table th {
+    color: #9aa0ac;
+}
+
+[data-bs-theme="dark"] .company-contact-icon {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}

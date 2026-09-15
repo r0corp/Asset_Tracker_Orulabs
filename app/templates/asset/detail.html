@@ -1,0 +1,1073 @@
+{% extends "base.html" %} {% block title %} {{ _('Asset Detail') }} - {{ asset.asset_tag }}
+{% endblock %} {% block content %}
+
+<style>
+  /* ============================================================
+   DETAIL ASSET
+   ============================================================ */
+
+  .asset-detail-page {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card-body.p-0 .table-responsive {
+    padding: 0 20px;
+  }
+
+  /* ============================================================
+   MAIN CARD
+   ============================================================ */
+
+  .asset-main-card {
+    border: 0;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.1);
+  }
+
+  /* ============================================================
+   TOP CONTENT
+   ============================================================ */
+
+  .asset-top-content {
+    background: #ffffff;
+  }
+
+  /* ============================================================
+   LEFT COLUMN
+   FOTO + QR
+   ============================================================ */
+
+  .asset-media-column {
+    padding: 28px;
+
+    border-right: 1px solid #eeeeee;
+
+    text-align: center;
+  }
+
+  /* ============================================================
+   SECTION TITLE
+   ============================================================ */
+
+  .asset-section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    color: #6c757d;
+
+    margin-bottom: 14px;
+  }
+
+  .asset-section-title .section-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+
+    font-size: 13px;
+  }
+
+  /* ============================================================
+   PHOTO
+   ============================================================ */
+
+  .asset-photo-box {
+    width: 100%;
+
+    max-width: 380px;
+
+    height: 260px;
+
+    margin: 0 auto;
+
+    border: 1px solid #e9ecef;
+
+    border-radius: 14px;
+
+    background: #f8f9fa;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .asset-photo-box img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+  }
+
+  .asset-photo-empty {
+    color: #adb5bd;
+
+    text-align: center;
+  }
+
+  .asset-photo-empty i {
+    display: block;
+
+    font-size: 52px;
+
+    margin-bottom: 8px;
+  }
+
+  /* ============================================================
+   QR SECTION
+   ============================================================ */
+
+  .asset-qr-section {
+    margin-top: 28px;
+
+    padding-top: 24px;
+
+    border-top: 1px dashed #dee2e6;
+  }
+
+  .asset-qr-box {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 14px;
+
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 14px;
+
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .asset-qr-box img {
+    width: 200px;
+
+    height: 200px;
+
+    object-fit: contain;
+
+    display: block;
+  }
+
+  .asset-qr-tag {
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+  }
+
+  /* ============================================================
+   RIGHT COLUMN
+   INFORMASI ASSET
+   ============================================================ */
+
+  .asset-information-column {
+    padding: 28px;
+  }
+
+  .asset-information-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    padding-bottom: 14px;
+
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  /* ============================================================
+   INFO TILE GRID
+   ============================================================ */
+
+  .info-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .info-tile {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+    background: #f8f9fb;
+    border: 1px solid #eef0f3;
+
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .info-tile:hover {
+    background: #f1f4f9;
+    border-color: #e2e7ee;
+  }
+
+  .info-tile-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+  }
+
+  .info-tile-body {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .info-tile-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #8a94a6;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .info-tile-value {
+    color: #212529;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    word-break: break-word;
+  }
+
+  /* ============================================================
+   STATUS
+   ============================================================ */
+
+  .asset-status-badge {
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+  }
+
+  /* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+  .asset-description-box {
+    margin-top: 16px;
+
+    padding: 16px 18px;
+
+    border-radius: 12px;
+    background: #f8f9fb;
+    border: 1px solid #eef0f3;
+    border-left: 3px solid #0d6efd;
+  }
+
+  .asset-description {
+    white-space: pre-line;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+    color: #495057;
+  }
+
+  /* ============================================================
+   MOVEMENT SECTION
+   ============================================================ */
+
+  .movement-card {
+    border: 0;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.08);
+
+    overflow: hidden;
+  }
+
+  .movement-table {
+    margin: 0;
+  }
+
+  .movement-table th {
+    font-size: 11px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    background: #f8f9fa;
+  }
+
+  .movement-table td {
+    font-size: 13px;
+
+    vertical-align: middle;
+  }
+
+  .movement-transition {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .movement-transition .badge {
+    font-weight: 500;
+  }
+
+  /* ============================================================
+   EMPTY MOVEMENT
+   ============================================================ */
+
+  .empty-movement {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: #6c757d;
+  }
+
+  .empty-movement i {
+    display: block;
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+
+    color: #adb5bd;
+  }
+
+  /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+  @media (max-width: 991px) {
+    .asset-media-column {
+      border-right: 0;
+
+      border-bottom: 1px solid #eeeeee;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .asset-media-column,
+    .asset-information-column {
+      padding: 20px;
+    }
+
+    .asset-photo-box {
+      height: 230px;
+    }
+
+    .asset-qr-box img {
+      width: 180px;
+
+      height: 180px;
+    }
+
+    .info-tile-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .movement-table {
+      min-width: 850px;
+    }
+  }
+
+  /* ============================================================
+   FOTO ASSET CLICKABLE
+   ============================================================ */
+
+  .asset-photo-clickable {
+    cursor: zoom-in;
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .asset-photo-clickable:hover {
+    opacity: 0.92;
+
+    transform: scale(1.015);
+  }
+
+  /* ============================================================
+   FOTO DALAM MODAL
+   ============================================================ */
+
+  .asset-photo-modal-image {
+    max-width: 100%;
+
+    max-height: 75vh;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+  }
+
+  /* Override warna dark-mode untuk halaman ini ada di file
+     terpusat: app/static/css/theme-dark.css (section 4). */
+</style>
+
+<div class="container-fluid py-4 asset-detail-page">
+  <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+  <div class="page-header-card">
+    <div class="page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon">
+          <i class="bi bi-box-seam"></i>
+        </div>
+
+        <div>
+          <h3 class="page-header-title">{{ _('Asset Detail') }}</h3>
+
+          <p class="page-header-subtitle mb-0">
+            {{ asset.asset_tag }} &middot; {{ asset.asset_name }}
+          </p>
+        </div>
+      </div>
+
+      <div class="page-header-actions">
+        <a
+          href="{{ url_for('main.assets') }}"
+          class="btn btn-outline-secondary"
+        >
+          <i class="bi bi-arrow-left me-1"></i>
+
+          {{ _('Back') }}
+        </a>
+
+        <a
+          href="{{ url_for(
+                        'main.edit_asset',
+                        asset_id=asset.id
+                    ) }}"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-pencil me-1"></i>
+
+          {{ _('Edit Asset') }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card asset-main-card mb-4">
+    <!-- ====================================================
+             FOTO + QR | INFORMASI ASSET
+             ==================================================== -->
+
+    <div class="row g-0 asset-top-content">
+      <!-- =================================================
+                 KOLOM KIRI
+                 FOTO + QR CODE
+                 ================================================= -->
+
+      <div class="col-lg-5">
+        <div class="asset-media-column">
+          <!-- =========================================
+                         FOTO ASSET
+                         ========================================= -->
+
+          <div class="asset-section-title">
+            <span class="section-icon"><i class="bi bi-camera"></i></span>
+
+            {{ _('Asset Photo') }}
+          </div>
+
+          <div class="asset-photo-box">
+            {% if asset.photo %}
+
+            <img
+              src="{{ url_for(
+                                'static',
+                                filename='uploads/assets/' ~ asset.photo
+                            ) }}"
+              alt="{{ asset.asset_name }}"
+              class="asset-photo-clickable"
+              data-bs-toggle="modal"
+              data-bs-target="#assetPhotoModal"
+            />
+
+            {% else %}
+
+            <div class="asset-photo-empty">
+              <i class="bi bi-image"></i>
+
+              <div>{{ _('No asset photo yet') }}</div>
+            </div>
+
+            {% endif %}
+          </div>
+
+          <!-- =========================================
+                         QR CODE
+                         ========================================= -->
+
+          <div class="asset-qr-section">
+            <div class="asset-section-title">
+              <span class="section-icon"><i class="bi bi-qr-code"></i></span>
+
+              {{ _('Asset QR Code') }}
+            </div>
+
+            <div class="asset-qr-box">
+              <img
+                src="{{ url_for(
+                                    'static',
+                                    filename='qrcodes/' ~ qr_filename
+                                ) }}"
+                alt="{{ _('QR Code') }} {{ asset.asset_tag }}"
+              />
+            </div>
+
+            <div class="asset-qr-tag">{{ asset.asset_tag }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+                 KOLOM KANAN
+                 INFORMASI ASSET
+                 ================================================= -->
+
+      <div class="col-lg-7">
+        <div class="asset-information-column">
+          <div class="asset-information-header">
+            <i class="bi bi-info-circle text-primary"></i>
+
+            {{ _('Asset Information') }}
+          </div>
+
+          <div class="info-tile-grid">
+            <!-- ASSET TAG -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-primary bg-opacity-10 text-primary">
+                <i class="bi bi-upc"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Asset Tag') }}</div>
+                <div class="info-tile-value">{{ asset.asset_tag or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- ASSET NAME -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-primary bg-opacity-10 text-primary">
+                <i class="bi bi-box-seam"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Asset Name') }}</div>
+                <div class="info-tile-value">{{ asset.asset_name or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- CATEGORY -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-info bg-opacity-10 text-info">
+                <i class="bi bi-tags"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Category') }}</div>
+                <div class="info-tile-value">{{ asset.category or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- BRAND -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-secondary bg-opacity-10 text-secondary">
+                <i class="bi bi-award"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Brand') }}</div>
+                <div class="info-tile-value">{{ asset.brand or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- MODEL -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-secondary bg-opacity-10 text-secondary">
+                <i class="bi bi-cpu"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Model') }}</div>
+                <div class="info-tile-value">{{ asset.model or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- SERIAL NUMBER -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-dark bg-opacity-10 text-dark">
+                <i class="bi bi-hash"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Serial Number') }}</div>
+                <div class="info-tile-value">
+                  {{ asset.serial_number or "-" }}
+                </div>
+              </div>
+            </div>
+
+            <!-- LOCATION -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-success bg-opacity-10 text-success">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Location') }}</div>
+                <div class="info-tile-value">{{ asset.location or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- DEPARTMENT -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-success bg-opacity-10 text-success">
+                <i class="bi bi-diagram-3"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Department') }}</div>
+                <div class="info-tile-value">{{ asset.department or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- PIC -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-warning bg-opacity-10 text-warning">
+                <i class="bi bi-person"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('PIC') }}</div>
+                <div class="info-tile-value">{{ asset.pic or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- PURCHASE DATE -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-info bg-opacity-10 text-info">
+                <i class="bi bi-calendar-event"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Purchase Date') }}</div>
+                <div class="info-tile-value">
+                  {% if asset.purchase_date %} {{ asset.purchase_date.strftime(
+                  "%d-%m-%Y" ) }} {% else %} - {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <!-- PURCHASE PRICE -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-success bg-opacity-10 text-success">
+                <i class="bi bi-cash-coin"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Purchase Price') }}</div>
+                <div class="info-tile-value">
+                  Rp {{ "{:,.0f}".format( asset.purchase_price or 0 ).replace(",",
+                  ".") }}
+                </div>
+              </div>
+            </div>
+
+            <!-- VENDOR -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-primary bg-opacity-10 text-primary">
+                <i class="bi bi-shop"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Vendor') }}</div>
+                <div class="info-tile-value">{{ asset.vendor or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- WARRANTY -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-warning bg-opacity-10 text-warning">
+                <i class="bi bi-shield-check"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Warranty') }}</div>
+                <div class="info-tile-value">{{ asset.warranty or "-" }}</div>
+              </div>
+            </div>
+
+            <!-- STATUS -->
+
+            <div class="info-tile">
+              <div class="info-tile-icon bg-dark bg-opacity-10 text-dark">
+                <i class="bi bi-activity"></i>
+              </div>
+
+              <div class="info-tile-body">
+                <div class="info-tile-label">{{ _('Status') }}</div>
+                <div class="info-tile-value">
+                  {% if asset.status == "Active" %}
+
+                  <span class="badge bg-success asset-status-badge"> {{ _('Active') }} </span>
+
+                  {% elif asset.status == "Maintenance" %}
+
+                  <span class="badge bg-warning text-dark asset-status-badge">
+                    {{ _('Maintenance') }}
+                  </span>
+
+                  {% elif asset.status == "Inactive" %}
+
+                  <span class="badge bg-secondary asset-status-badge">
+                    {{ _('Inactive') }}
+                  </span>
+
+                  {% elif asset.status == "Lost" %}
+
+                  <span class="badge bg-danger asset-status-badge"> {{ _('Lost') }} </span>
+
+                  {% elif asset.status == "Retired" %}
+
+                  <span class="badge bg-dark asset-status-badge"> {{ _('Retired') }} </span>
+
+                  {% else %}
+
+                  <span class="badge bg-info asset-status-badge">
+                    {{ asset.status or _('No Status') }}
+                  </span>
+
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESCRIPTION -->
+
+          <div class="asset-description-box">
+            <div class="info-tile-label mb-2">
+              <i class="bi bi-card-text me-1"></i> {{ _('Description') }}
+            </div>
+
+            <div class="asset-description">
+              {{ asset.description or "-" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     RIWAYAT MOVEMENT ASSET
+     ============================================================ -->
+
+  <div class="card movement-card mt-4 overflow-hidden">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div>
+          <div class="card-header-accent-title">
+            {{ _('Asset Movement History') }}
+          </div>
+          <div class="card-header-accent-subtitle"> {{ _('Asset movement history') }} </div>
+        </div>
+      </div>
+
+      <div class="card-header-accent-actions">
+        <a
+          href="{{ url_for('main.add_asset_movement', asset_id=asset.id) }}"
+          class="btn btn-primary btn-sm"
+        >
+          <i class="bi bi-plus-circle"></i>
+          {{ _('Add Movement') }}
+        </a>
+
+        <a
+          href="{{ url_for('main.asset_movements', asset_id=asset.id) }}"
+          class="btn btn-outline-secondary btn-sm"
+        >
+          <i class="bi bi-clock-history"></i>
+          {{ _('View All') }}
+        </a>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      {% if movements %}
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 movement-table">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 50px">#</th>
+
+              <th>{{ _('Date') }}</th>
+
+              <th>{{ _('Movement No.') }}</th>
+
+              <th>{{ _('Location') }}</th>
+
+              <th>{{ _('Department') }}</th>
+
+              <th>{{ _('PIC') }}</th>
+
+              <th>{{ _('Reason') }}</th>
+
+              <th class="text-center">{{ _('Actions') }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for movement in movements %}
+
+            <tr>
+              <td>{{ loop.index }}</td>
+
+              <td>
+                {% if movement.movement_date %} {{
+                movement.movement_date.strftime('%d-%m-%Y') }} {% else %} - {%
+                endif %}
+              </td>
+
+              <td>
+                <strong> {{ movement.movement_no or '-' }} </strong>
+              </td>
+
+              <td>
+                <div class="movement-transition">
+                  <span class="badge bg-secondary-subtle text-secondary-emphasis">
+                    {{ movement.from_location or '-' }}
+                  </span>
+
+                  <i class="bi bi-arrow-right text-muted small"></i>
+
+                  <span class="badge bg-primary-subtle text-primary-emphasis">
+                    {{ movement.to_location or '-' }}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <div class="movement-transition">
+                  <span class="badge bg-secondary-subtle text-secondary-emphasis">
+                    {{ movement.from_department or '-' }}
+                  </span>
+
+                  <i class="bi bi-arrow-right text-muted small"></i>
+
+                  <span class="badge bg-primary-subtle text-primary-emphasis">
+                    {{ movement.to_department or '-' }}
+                  </span>
+                </div>
+              </td>
+
+              <td>
+                <div class="movement-transition">
+                  <span class="badge bg-secondary-subtle text-secondary-emphasis">
+                    {{ movement.from_pic or '-' }}
+                  </span>
+
+                  <i class="bi bi-arrow-right text-muted small"></i>
+
+                  <span class="badge bg-primary-subtle text-primary-emphasis">
+                    {{ movement.to_pic or '-' }}
+                  </span>
+                </div>
+              </td>
+
+              <td>{{ movement.reason or '-' }}</td>
+
+              <td class="text-center">
+                <div class="btn-group">
+                  <a
+                    href="{{ url_for(
+                                        'main.asset_movement_detail',
+                                        asset_id=asset.id,
+                                        movement_id=movement.id
+                                    ) }}"
+                    class="btn btn-sm btn-outline-primary"
+                    title="{{ _('Movement Detail') }}"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </a>
+
+                  <a
+                    href="{{ url_for(
+                                        'main.asset_movement_qr',
+                                        asset_id=asset.id,
+                                        movement_id=movement.id
+                                    ) }}"
+                    class="btn btn-sm btn-outline-secondary"
+                    title="{{ _('Movement QR') }}"
+                  >
+                    <i class="bi bi-qr-code"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+
+      <div class="empty-movement">
+        <i class="bi bi-arrow-left-right"></i>
+
+        <h6>{{ _('No movement history yet') }}</h6>
+
+        <p class="text-muted mb-3">
+          {{ _('This asset does not have any movement history yet.') }}
+        </p>
+
+        <a
+          href="{{ url_for(
+                    'main.add_asset_movement',
+                    asset_id=asset.id
+                ) }}"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-plus-circle"></i>
+          {{ _('Add First Movement') }}
+        </a>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL FOTO ASSET
+     ============================================================ -->
+
+{% if asset.photo %}
+
+<div
+  class="modal fade"
+  id="assetPhotoModal"
+  tabindex="-1"
+  aria-labelledby="assetPhotoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assetPhotoModalLabel">
+          <i class="bi bi-image me-2"></i>
+
+          {{ asset.asset_name }}
+
+          <small class="text-muted"> ({{ asset.asset_tag }}) </small>
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body text-center p-3">
+        <img
+          src="{{ url_for(
+                        'static',
+                        filename='uploads/assets/' ~ asset.photo
+                    ) }}"
+          alt="{{ asset.asset_name }}"
+          class="img-fluid asset-photo-modal-image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %} {% endblock %}

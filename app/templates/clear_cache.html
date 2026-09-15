@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Clear Cache') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Clear Browser Cache') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body text-center py-5">
+
+            <i class="bi bi-arrow-repeat" style="font-size: 3rem; color: #6c757d;"></i>
+
+            <p class="mt-3 mb-1">
+                {{ _('If the app display feels "stuck" or is not showing the latest changes, try clearing the browser cache for this page.') }}
+            </p>
+
+            <p class="text-muted mb-4">
+                {{ _('This does not delete any data in the database, only temporary data stored in your browser. If you do not need to, you may ignore this.') }}
+            </p>
+
+            <button type="button" class="btn btn-primary" id="clearCacheBtn">
+                <i class="bi bi-trash me-1"></i>
+                {{ _('Clear Cache Now') }}
+            </button>
+
+            <div id="clearCacheStatus" class="mt-3"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('clearCacheBtn').addEventListener('click', async function () {
+
+    const statusEl = document.getElementById('clearCacheStatus');
+    const btn = this;
+
+    btn.disabled = true;
+    statusEl.innerHTML = '<span class="text-muted">{{ _('Clearing...') }}</span>';
+
+    try {
+
+        if (window.caches && caches.keys) {
+            const keys = await caches.keys();
+            await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+
+        try { localStorage.clear(); } catch (e) {}
+        try { sessionStorage.clear(); } catch (e) {}
+
+        statusEl.innerHTML = '<span class="text-success"><i class="bi bi-check-circle me-1"></i>{{ _('Cache cleared successfully. Reloading page...') }}</span>';
+
+        setTimeout(function () {
+            window.location.href = window.location.pathname + '?_=' + Date.now();
+        }, 800);
+
+    } catch (err) {
+
+        statusEl.innerHTML = '<span class="text-danger">{{ _('Failed to clear cache:') }} ' + err + '</span>';
+        btn.disabled = false;
+
+    }
+
+});
+</script>
+{% endblock %}

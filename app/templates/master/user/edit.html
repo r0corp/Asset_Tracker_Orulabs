@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit User') }} - {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-person-gear"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Edit User') }}</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Username') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            value="{{ user.username }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Full Name') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="full_name"
+                            class="form-control"
+                            value="{{ user.full_name }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('New Password') }}
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="{{ _('Leave blank if you do not want to change your password.') }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Role') }}
+                        </label>
+
+                        <select
+                            name="role"
+                            class="form-select"
+                            required
+                        >
+
+                            {% for choice in role_choices %}
+                            <option value="{{ choice }}" {% if user.role==choice %}selected{% endif %}>
+                                {{ choice }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="is_active"
+                                name="is_active"
+                                value="1"
+                                {% if user.is_active %}checked{% endif %}
+                            >
+
+                            <label class="form-check-label" for="is_active">
+                                {{ _('Active Account') }}
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    {{ _('Save Changes') }}
+                </button>
+
+                <a
+                    href="{{ url_for('main.users') }}"
+                    class="btn btn-secondary"
+                >
+                    {{ _('Cancel') }}
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

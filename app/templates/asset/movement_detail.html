@@ -1,0 +1,1223 @@
+{% extends "base.html" %} {% block title %} {{ _('Asset Movement Proof') }} - {{
+movement.movement_no or '-' }} {% endblock %} {% block content %}
+
+<style>
+
+   /* =========================================================
+      A4 DOCUMENT
+      ========================================================= */
+
+   .movement-document {
+       max-width: 210mm;
+       min-height: 297mm;
+       margin: 20px auto;
+       padding: 15mm;
+       background: #ffffff;
+       color: #212529;
+       font-family: Arial, Helvetica, sans-serif;
+       box-sizing: border-box;
+   }
+
+   /* =========================================================
+      HEADER / KOP
+      ========================================================= */
+
+
+   .document-header {
+       display: flex;
+
+       justify-content: space-between;
+
+       align-items: flex-start;
+
+       border-bottom: 3px solid #212529;
+
+       padding-bottom: 10px;
+
+       padding-right: 38mm;
+
+       margin-bottom: 15px;
+
+       min-height: 32mm;
+
+       box-sizing: border-box;
+   }
+
+
+
+   .company-info {
+       flex: 1;
+       padding-right: 20px;
+   }
+
+   .company-name {
+       font-size: 20px;
+       font-weight: 700;
+       text-transform: uppercase;
+       margin-bottom: 4px;
+   }
+
+   .company-address {
+       font-size: 11px;
+       line-height: 1.5;
+       color: #555;
+   }
+
+   .document-title {
+       text-align: right;
+
+       min-width: 55mm;
+
+       max-width: 65mm;
+
+       padding-right: 2mm;
+
+       box-sizing: border-box;
+   }
+
+   .document-title h1 {
+       font-size: 17px;
+
+       font-weight: 700;
+
+       margin: 0 0 5px 0;
+
+       text-transform: uppercase;
+
+       line-height: 1.25;
+   }
+
+   .document-number {
+       font-size: 10px;
+
+       font-weight: 600;
+
+       line-height: 1.4;
+   }
+
+
+   /* =========================================================
+  QR CODE - POJOK KANAN ATAS DOKUMEN
+  ========================================================= */
+
+   .movement-document {
+       position: relative;
+   }
+
+   .qr-box {
+       position: absolute;
+       top: 14mm;
+       right: 8mm;
+       width: 45mm;
+       text-align: center;
+       z-index: 20;
+       background: #ffffff;
+       /* padding: 2mm; */
+       box-sizing: border-box;
+   }
+
+   .qr-box img {
+       display: block;
+
+       width: 26mm;
+       height: 26mm;
+
+       margin: 0 auto;
+
+       object-fit: contain;
+   }
+
+   .qr-label {
+       margin-top: 1.5mm;
+
+       font-size: 7px;
+
+       line-height: 1.2;
+
+       color: #555;
+
+       text-align: center;
+   }
+
+   /* =========================================================
+      SECTION
+      ========================================================= */
+
+   .section {
+       margin-bottom: 15px;
+   }
+
+   .section-title {
+       background: #f1f3f5;
+       border: 1px solid #ced4da;
+       padding: 7px 9px;
+       font-size: 12px;
+       font-weight: 700;
+       text-transform: uppercase;
+   }
+
+   .section-body {
+       border: 1px solid #ced4da;
+       border-top: 0;
+       padding: 10px;
+   }
+
+   /* =========================================================
+      INFORMATION TABLE
+      ========================================================= */
+
+   .info-table {
+       width: 100%;
+       border-collapse: collapse;
+       font-size: 11px;
+   }
+
+   .info-table td {
+       border: 1px solid #dee2e6;
+       padding: 7px 8px;
+       vertical-align: top;
+   }
+
+   .info-table .label {
+       width: 20%;
+       font-weight: 700;
+       background: #f8f9fa;
+   }
+
+   .info-table .value {
+       width: 30%;
+   }
+
+   /* =========================================================
+      MOVEMENT TABLE
+      ========================================================= */
+
+   .movement-table {
+       width: 100%;
+       border-collapse: collapse;
+       font-size: 10.5px;
+   }
+
+   .movement-table th,
+   .movement-table td {
+       border: 1px solid #adb5bd;
+       padding: 8px;
+       vertical-align: top;
+   }
+
+   .movement-table th {
+       background: #f1f3f5;
+       text-align: center;
+       font-weight: 700;
+   }
+
+   .movement-arrow {
+       width: 35px;
+       text-align: center;
+       font-size: 18px;
+       font-weight: 700;
+   }
+
+   /* =========================================================
+      KETERANGAN
+      ========================================================= */
+
+   .notes-box {
+       font-size: 11px;
+       line-height: 1.6;
+   }
+
+   .notes-row {
+       margin-bottom: 8px;
+   }
+
+   .notes-label {
+       font-weight: 700;
+       display: block;
+       margin-bottom: 2px;
+   }
+
+   /* =========================================================
+      SIGNATURE
+      ========================================================= */
+
+   .signature-table {
+       width: 100%;
+       border-collapse: collapse;
+       table-layout: fixed;
+   }
+
+   .signature-table td {
+       width: 50%;
+       text-align: center;
+       vertical-align: top;
+       padding: 8px 15px;
+   }
+
+   .signature-title {
+       font-size: 11px;
+       font-weight: 700;
+       text-transform: uppercase;
+   }
+
+   .signature-position {
+       font-size: 10px;
+       color: #666;
+       margin-top: 3px;
+   }
+
+   .signature-area {
+       height: 75px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin: 8px 0;
+   }
+
+   .signature-area img {
+       max-width: 150px;
+       max-height: 65px;
+       object-fit: contain;
+   }
+
+   .signature-empty {
+       color: #999;
+       font-size: 10px;
+       font-style: italic;
+   }
+
+   .signature-status {
+       font-size: 9px;
+       font-weight: 600;
+       color: #198754;
+       margin-bottom: 8px;
+   }
+
+   .signature-name {
+       font-size: 11px;
+       font-weight: 700;
+       text-decoration: underline;
+   }
+
+   /* =========================================================
+      FOOTER
+      ========================================================= */
+
+   .document-footer {
+       border-top: 1px solid #adb5bd;
+       margin-top: 20px;
+       padding-top: 7px;
+       display: flex;
+       justify-content: space-between;
+       font-size: 8px;
+       color: #6c757d;
+   }
+
+   .verification-url {
+       word-break: break-all;
+       font-size: 8px;
+       color: #6c757d;
+       margin-top: 5px;
+   }
+
+   /* =========================================================
+      SCREEN ACTION
+      ========================================================= */
+
+   .screen-actions {
+       max-width: 210mm;
+       margin: 15px auto;
+   }
+
+   /* =========================================================
+      PRINT
+      ========================================================= */
+
+   @page {
+       size: A4;
+       margin: 0;
+   }
+
+   @media print {
+
+       body {
+           background: #ffffff !important;
+           margin: 0 !important;
+           padding: 0 !important;
+       }
+
+       nav,
+       header,
+       footer,
+       .navbar,
+       .sidebar,
+       .screen-actions {
+           display: none !important;
+       }
+
+       .container,
+       .container-fluid {
+           max-width: none !important;
+           width: auto !important;
+           margin: 0 !important;
+           padding: 0 !important;
+       }
+
+       .movement-document {
+           position: relative;
+
+           width: 210mm;
+
+           min-height: 297mm;
+
+           margin: 0;
+
+           padding: 15mm;
+
+           box-shadow: none !important;
+
+           border: none !important;
+       }
+
+       .qr-box {
+           position: absolute;
+
+           top: 15mm;
+
+           right: 15mm;
+
+           width: 30mm;
+
+           padding: 2mm;
+
+           background: #ffffff;
+
+           z-index: 20;
+       }
+
+       .qr-box img {
+           width: 26mm;
+           height: 26mm;
+       }
+
+       .section,
+       .signature-table,
+       .movement-table {
+           page-break-inside: avoid;
+       }
+
+       .document-header {
+           page-break-inside: avoid;
+       }
+
+       a {
+           color: inherit !important;
+           text-decoration: none !important;
+       }
+   }
+
+
+   .company-letterhead {
+
+       display: flex;
+
+       align-items: center;
+
+       gap: 18px;
+
+       width: 100%;
+
+       min-height: 105px;
+
+   }
+
+
+   .company-logo {
+
+       width: 105px;
+
+       min-width: 105px;
+
+       height: 90px;
+
+       display: flex;
+
+       align-items: center;
+
+       justify-content: center;
+
+   }
+
+
+   .company-logo img {
+
+       max-width: 100px;
+
+       max-height: 85px;
+
+       object-fit: contain;
+
+   }
+
+
+   .company-information {
+
+       flex: 1;
+
+       text-align: center;
+
+   }
+
+
+   .company-name {
+
+       font-size: 20px;
+
+       font-weight: 800;
+
+       text-transform: uppercase;
+
+       line-height: 1.2;
+
+   }
+
+
+   .company-address {
+
+       margin-top: 5px;
+
+       font-size: 11px;
+
+       line-height: 1.4;
+
+   }
+
+
+   .company-contact {
+
+       margin-top: 3px;
+
+       font-size: 10px;
+
+       line-height: 1.4;
+
+   }
+
+
+   .company-contact .separator {
+
+       margin: 0 5px;
+
+       color: #777;
+
+   }
+
+
+   .company-document {
+
+       width: 145px;
+
+       min-width: 145px;
+
+       text-align: right;
+
+   }
+
+
+   .document-label {
+
+       font-size: 11px;
+
+       font-weight: 700;
+
+   }
+
+
+   .document-number {
+
+       margin-top: 5px;
+
+       font-size: 12px;
+
+       font-weight: 700;
+
+   }
+
+
+   .letterhead-line {
+
+       border-bottom: 3px solid #212529;
+
+       margin-top: 5px;
+
+       margin-bottom: 20px;
+
+   }
+
+
+   /* ============================================================
+  PRINT A4
+  ============================================================ */
+
+   @media print {
+
+       .company-letterhead {
+
+           min-height: 95px;
+
+       }
+
+
+       .company-logo {
+
+           width: 95px;
+
+           min-width: 95px;
+
+           height: 80px;
+
+       }
+
+
+       .company-logo img {
+
+           max-width: 90px;
+
+           max-height: 75px;
+
+       }
+
+
+       .company-name {
+
+           font-size: 18px;
+
+       }
+
+
+       .company-address {
+
+           font-size: 10px;
+
+       }
+
+
+       .company-contact {
+
+           font-size: 9px;
+
+       }
+
+
+       .company-document {
+
+           width: 135px;
+
+           min-width: 135px;
+
+       }
+
+   }
+
+
+   /* =========================================================
+      FINAL MOVEMENT DETAIL UI
+      ========================================================= */
+   .screen-actions {
+       max-width: 210mm;
+       margin: 15px auto;
+       padding: 0 4px;
+   }
+
+   .screen-actions .btn {
+       display: inline-flex;
+       align-items: center;
+       gap: 6px;
+       white-space: nowrap;
+       border-radius: 8px;
+       font-weight: 600;
+       transition: transform 0.15s ease, box-shadow 0.15s ease;
+   }
+
+   .screen-actions .btn:hover {
+       transform: translateY(-1px);
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+   }
+
+   .movement-document {
+       position: relative;
+       overflow: hidden;
+   }
+
+   .section {
+       page-break-inside: avoid;
+   }
+
+   @media (max-width: 768px) {
+       .screen-actions {
+           max-width: 100%;
+           margin: 10px 0;
+       }
+
+       .screen-actions > div {
+           width: 100%;
+       }
+
+       .screen-actions > div:last-child {
+           display: flex;
+           flex-wrap: wrap;
+       }
+
+       .screen-actions .btn {
+           flex: 1 1 auto;
+       }
+
+       .movement-document {
+           width: 100%;
+           min-height: auto;
+           margin: 0;
+           padding: 15px;
+       }
+
+       .company-letterhead {
+           flex-wrap: wrap;
+           gap: 10px;
+       }
+
+       .company-logo {
+           width: 75px;
+           min-width: 75px;
+           height: 70px;
+       }
+
+       .company-logo img {
+           max-width: 70px;
+           max-height: 65px;
+       }
+
+       .company-information {
+           min-width: 180px;
+       }
+
+       .company-document {
+           width: 100%;
+           min-width: 100%;
+           text-align: left;
+       }
+
+       .qr-box {
+           position: static;
+           width: 100%;
+           margin: 0 0 10px;
+       }
+
+       .info-table, .movement-table {
+           font-size: 10px;
+       }
+
+       .info-table td, .movement-table th, .movement-table td {
+           padding: 6px;
+       }
+   }
+
+   @media print {
+       .screen-actions {
+           display: none !important;
+       }
+
+       .movement-document {
+           width: 210mm;
+           min-height: 297mm;
+           margin: 0;
+           padding: 15mm;
+           overflow: visible;
+       }
+
+       .qr-box {
+           position: absolute;
+           top: 15mm;
+           right: 15mm;
+           width: 30mm;
+           margin: 0;
+       }
+   }
+</style>
+
+<!-- =========================================================
+     SCREEN ACTION
+     ========================================================= -->
+
+<div
+  class="screen-actions d-flex flex-wrap justify-content-between align-items-center gap-2"
+>
+  <div class="d-flex flex-wrap gap-2">
+    <a
+      href="{{ url_for(
+                'main.asset_movements',
+                asset_id=asset.id
+            ) }}"
+      class="btn btn-secondary btn-sm"
+    >
+      <i class="bi bi-arrow-left"></i>
+      {{ _('Back to History') }}
+    </a>
+
+    <a
+      href="{{ url_for(
+                'main.asset_movement_detail',
+                asset_id=asset.id,
+                movement_id=movement.id
+            ) }}"
+      class="btn btn-outline-primary btn-sm"
+    >
+      <i class="bi bi-eye"></i>
+      {{ _('Detail') }}
+    </a>
+  </div>
+
+  <div class="d-flex flex-wrap gap-2">
+    <a
+      href="{{ url_for(
+                'main.asset_movement_qr',
+                asset_id=asset.id,
+                movement_id=movement.id
+            ) }}"
+      class="btn btn-outline-primary btn-sm"
+    >
+      <i class="bi bi-qr-code"></i>
+      {{ _('Verification QR') }}
+    </a>
+
+    <a
+      href="{{ verification_url }}"
+      target="_blank"
+      rel="noopener"
+      class="btn btn-outline-success btn-sm"
+    >
+      <i class="bi bi-shield-check"></i>
+      {{ _('Verify') }}
+    </a>
+
+    <a
+      href="{{ url_for(
+                'main.correct_asset_movement',
+                asset_id=asset.id,
+                movement_id=movement.id
+            ) }}"
+      class="btn btn-outline-danger btn-sm"
+    >
+      <i class="bi bi-pencil-square"></i>
+      {{ _('Correct Movement') }}
+    </a>
+
+    {% if movement.corrections %}
+    <a
+      href="{{ url_for(
+                'main.asset_movement_corrections',
+                asset_id=asset.id,
+                movement_id=movement.id
+            ) }}"
+      class="btn btn-outline-secondary btn-sm"
+    >
+      <i class="bi bi-clock-history"></i>
+      {{ _('Correction History') }}
+    </a>
+    {% endif %}
+
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      onclick="window.print()"
+    >
+      <i class="bi bi-printer"></i>
+      {{ _('Print A4') }}
+    </button>
+  </div>
+</div>
+
+<!-- =========================================================
+     DOKUMEN A4
+     ========================================================= -->
+
+<div class="movement-document">
+  <!-- =====================================================
+         QR
+         ===================================================== -->
+
+  <div class="qr-box">
+    <img
+      src="{{ url_for(
+                'static',
+                filename='qrcodes/' ~ qr_filename
+            ) }}"
+      alt="{{ _('Movement Verification QR') }}"
+    />
+
+    <div class="qr-label">{{ _('Scan to verify') }}</div>
+  </div>
+
+  <!-- ============================================================
+     KOP PERUSAHAAN
+     ============================================================ -->
+
+  <div class="company-letterhead">
+    <div class="company-logo">
+      {% if company and company.logo %}
+
+      <img
+        src="{{ url_for(
+                    'static',
+                    filename='uploads/company/' ~ company.logo
+                ) }}"
+        alt="{{ _('Logo') }} {{ company.name }}"
+      />
+
+      {% endif %}
+    </div>
+
+    <div class="company-information">
+      <div class="company-name">
+        {{ company.name if company else _('COMPANY NAME') }}
+      </div>
+
+      {% if company and company.address %}
+
+      <div class="company-address">{{ company.address }}</div>
+
+      {% endif %}
+
+      <div class="company-contact">
+        {% if company and company.phone %}
+
+        <span> {{ _('Tel.') }} {{ company.phone }} </span>
+
+        {% endif %} {% if company and company.phone and company.email %}
+
+        <span class="separator"> | </span>
+
+        {% endif %} {% if company and company.email %}
+
+        <span> {{ _('Email') }}: {{ company.email }} </span>
+
+        {% endif %} {% if company and company.website %}
+
+        <span class="separator"> | </span>
+
+        <span> {{ company.website }} </span>
+
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="company-document">
+      <div class="document-label">{{ _('ASSET MOVEMENT PROOF') }}</div>
+
+      <div class="document-number">{{ movement.movement_no or '-' }}</div>
+    </div>
+  </div>
+
+  <div class="letterhead-line"></div>
+
+  <!-- =====================================================
+         INFORMASI DOKUMEN
+         ===================================================== -->
+
+  <div class="section">
+    <div class="section-title">{{ _('Document Information') }}</div>
+
+    <div class="section-body">
+      <table class="info-table">
+        <tr>
+          <td class="label">{{ _('Movement No.') }}</td>
+
+          <td class="value">{{ movement.movement_no or '-' }}</td>
+
+          <td class="label">{{ _('Movement Date') }}</td>
+
+          <td class="value">
+            {% if movement.movement_date %} {{ movement.movement_date.strftime(
+            '%d-%m-%Y' ) }} {% else %} - {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label">{{ _('Created') }}</td>
+
+          <td class="value">
+            {% if movement.created_at %} {{ movement.created_at.strftime(
+            '%d-%m-%Y %H:%M' ) }} {% else %} - {% endif %}
+          </td>
+
+          <td class="label">{{ _('Status') }}</td>
+
+          <td class="value">
+            <strong style="color: #198754"> {{ _('COMPLETED') }} </strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         DATA ASSET
+         ===================================================== -->
+
+  <div class="section">
+    <div class="section-title">{{ _('Asset Identity') }}</div>
+
+    <div class="section-body">
+      <table class="info-table">
+        <tr>
+          <td class="label">{{ _('Asset Tag') }}</td>
+
+          <td class="value">
+            <strong> {{ asset.asset_tag or '-' }} </strong>
+          </td>
+
+          <td class="label">{{ _('Asset Name') }}</td>
+
+          <td class="value">{{ asset.asset_name or '-' }}</td>
+        </tr>
+
+        <tr>
+          <td class="label">{{ _('Category') }}</td>
+
+          <td class="value">{{ asset.category or '-' }}</td>
+
+          <td class="label">{{ _('Brand / Model') }}</td>
+
+          <td class="value">
+            {{ asset.brand or '-' }} {% if asset.model %} / {{ asset.model }} {%
+            endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label">{{ _('Serial Number') }}</td>
+
+          <td class="value">{{ asset.serial_number or '-' }}</td>
+
+          <td class="label">{{ _('Asset Status') }}</td>
+
+          <td class="value">{{ asset.status or '-' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         PERPINDAHAN
+         ===================================================== -->
+
+  <div class="section">
+    <div class="section-title">{{ _('Asset Transfer Detail') }}</div>
+
+    <div class="section-body">
+      <table class="movement-table">
+        <thead>
+          <tr>
+            <th>{{ _('DESCRIPTION') }}</th>
+
+            <th>{{ _('BEFORE') }}</th>
+
+            <th class="movement-arrow">→</th>
+
+            <th>{{ _('AFTER') }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              <strong>{{ _('Location') }}</strong>
+            </td>
+
+            <td>{{ movement.from_location or '-' }}</td>
+
+            <td class="movement-arrow">→</td>
+
+            <td>
+              <strong> {{ movement.to_location or '-' }} </strong>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <strong>{{ _('Department') }}</strong>
+            </td>
+
+            <td>{{ movement.from_department or '-' }}</td>
+
+            <td class="movement-arrow">→</td>
+
+            <td>
+              <strong> {{ movement.to_department or '-' }} </strong>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <strong>{{ _('PIC') }}</strong>
+            </td>
+
+            <td>{{ movement.from_pic or '-' }}</td>
+
+            <td class="movement-arrow">→</td>
+
+            <td>
+              <strong> {{ movement.to_pic or '-' }} </strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         ALASAN & CATATAN
+         ===================================================== -->
+
+  {% if movement.reason or movement.notes %}
+
+  <div class="section">
+    <div class="section-title">{{ _('Movement Description') }}</div>
+
+    <div class="section-body notes-box">
+      {% if movement.reason %}
+
+      <div class="notes-row">
+        <span class="notes-label"> {{ _('Movement Reason') }} </span>
+
+        {{ movement.reason }}
+      </div>
+
+      {% endif %} {% if movement.notes %}
+
+      <div class="notes-row">
+        <span class="notes-label"> {{ _('Notes') }} </span>
+
+        {{ movement.notes }}
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+
+  {% endif %}
+
+  <!-- =====================================================
+         PERNYATAAN
+         ===================================================== -->
+
+  <div class="section">
+    <div class="section-body">
+      <div style="font-size: 11px; line-height: 1.7; text-align: justify">
+        {{ _('By signing this document, the parties declare that the asset listed in this document has been handed over and received in accordance with the movement information recorded in the Asset Tracker system.') }}
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         TANDA TANGAN
+         ===================================================== -->
+
+  <div class="section">
+    <div class="section-title">{{ _('Approval / Handover') }}</div>
+
+    <div class="section-body">
+      <table class="signature-table">
+        <tr>
+          <!-- PENYERAH -->
+
+          <td>
+            <div class="signature-title">{{ _('HANDED OVER BY') }}</div>
+
+            <div class="signature-position">
+              {{ movement.from_signer_position or _('Position') }}
+            </div>
+
+            <div class="signature-area">
+              {% if movement.from_signature %}
+
+              <img
+                src="{{ movement.from_signature }}"
+                alt="{{ _('Signature of the handing-over party') }}"
+              />
+
+              {% else %}
+
+              <div class="signature-empty">{{ _('No signature') }}</div>
+
+              {% endif %}
+            </div>
+
+            {% if movement.from_signature %}
+
+            <div class="signature-status">✓ {{ _('Signed') }}</div>
+
+            {% endif %}
+
+            <div class="signature-name">
+              {{ movement.from_signer_name or movement.from_pic or '-' }}
+            </div>
+          </td>
+
+          <!-- PENERIMA -->
+
+          <td>
+            <div class="signature-title">{{ _('RECEIVED BY') }}</div>
+
+            <div class="signature-position">
+              {{ movement.to_signer_position or _('Position') }}
+            </div>
+
+            <div class="signature-area">
+              {% if movement.to_signature %}
+
+              <img
+                src="{{ movement.to_signature }}"
+                alt="{{ _('Signature of the receiving party') }}"
+              />
+
+              {% else %}
+
+              <div class="signature-empty">{{ _('No signature') }}</div>
+
+              {% endif %}
+            </div>
+
+            {% if movement.to_signature %}
+
+            <div class="signature-status">✓ {{ _('Signed') }}</div>
+
+            {% endif %}
+
+            <div class="signature-name">
+              {{ movement.to_signer_name or movement.to_pic or '-' }}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+  <div class="document-footer">
+    <div>Asset Tracker</div>
+
+    <div>{{ movement.movement_no or '-' }}</div>
+
+    <div>{{ _('Asset Movement Document') }}</div>
+  </div>
+
+  <!-- =====================================================
+         VERIFICATION URL
+         ===================================================== -->
+
+  <div class="verification-url">{{ _('Verification') }}: {{ verification_url }}</div>
+</div>
+
+{% endblock %}

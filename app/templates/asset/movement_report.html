@@ -1,0 +1,879 @@
+{% extends "base.html" %} {% block title %} {{ _('Asset Movement Report') }} {% endblock %}
+{% block content %}
+
+<style>
+  .movement-report-wrapper {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .report-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .report-title {
+    margin: 0;
+  }
+
+  .report-subtitle {
+    margin-top: 0;
+  }
+
+  .report-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .report-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .report-actions .btn-outline-secondary {
+    border-color: #ced4da;
+    color: #495057;
+  }
+
+  .report-actions .btn-outline-secondary:hover {
+    background: #f1f3f5;
+    border-color: #adb5bd;
+    color: #212529;
+    transform: translateY(-1px);
+  }
+
+  .report-actions .btn-success {
+    background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.28);
+  }
+
+  .report-actions .btn-success:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #14532d 100%);
+    box-shadow: 0 6px 14px rgba(34, 197, 94, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .summary-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 110px;
+    overflow: hidden;
+  }
+
+  .summary-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+  }
+
+  .summary-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 8px;
+  }
+
+  .summary-value {
+    font-size: 25px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .summary-value.small-value {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .filter-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .filter-card-body {
+    padding: 20px;
+  }
+
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    align-items: end;
+  }
+
+  .filter-field {
+    min-width: 0;
+  }
+
+  .filter-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+  }
+
+  .filter-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .filter-info-text {
+    padding-bottom: 8px;
+  }
+
+  .table-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    padding: 0 20px;
+  }
+
+  .movement-table {
+    width: 100%;
+    min-width: 1250px;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .movement-table th {
+    background: #f8f9fa;
+    color: #495057;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 12px 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .movement-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .movement-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .movement-table tbody tr:hover {
+    background: #f8fbff;
+  }
+
+  .movement-number {
+    font-weight: 700;
+    color: #0d6efd;
+    white-space: nowrap;
+  }
+
+  .asset-tag {
+    font-weight: 700;
+    color: #212529;
+    white-space: nowrap;
+  }
+
+  .asset-name {
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .date-value {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .flow-cell {
+    min-width: 190px;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+
+  .flow-from {
+    color: #6c757d;
+  }
+
+  .flow-to {
+    color: #198754;
+    font-weight: 700;
+  }
+
+  .flow-arrow {
+    color: #adb5bd;
+    font-weight: 700;
+  }
+
+  .pic-cell {
+    min-width: 150px;
+  }
+
+  .pic-from {
+    color: #6c757d;
+  }
+
+  .pic-to {
+    color: #198754;
+    font-weight: 600;
+  }
+
+  .reason-cell {
+    min-width: 180px;
+    max-width: 280px;
+  }
+
+  .reason-main {
+    font-weight: 600;
+    color: #343a40;
+  }
+
+  .notes-text {
+    color: #6c757d;
+    font-size: 12px;
+    margin-top: 3px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .action-cell {
+    min-width: 100px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .empty-state {
+    padding: 60px 25px;
+    text-align: center;
+    color: #6c757d;
+  }
+
+  .empty-state-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+    opacity: 0.65;
+  }
+
+  .empty-state-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 5px;
+  }
+
+  .empty-state-text {
+    font-size: 13px;
+  }
+
+  .report-footer {
+    margin-top: 15px;
+    color: #6c757d;
+    font-size: 12px;
+  }
+
+  .print-only {
+    display: none;
+  }
+
+  @media (max-width: 1100px) {
+    .summary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .movement-report-wrapper {
+      padding-top: 15px;
+      padding-bottom: 30px;
+    }
+
+    .report-header {
+      padding: 18px;
+    }
+
+    .report-title {
+      font-size: 20px;
+    }
+
+    .summary-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .report-actions {
+      width: 100%;
+    }
+
+    .report-actions .btn {
+      flex: 1 1 auto;
+    }
+
+    .filter-actions .btn {
+      flex: 1 1 auto;
+    }
+  }
+
+  @media print {
+    @page {
+      size: landscape;
+      margin: 10mm;
+    }
+
+    body {
+      background: #ffffff !important;
+    }
+
+    .movement-report-wrapper {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .no-print,
+    .filter-card,
+    .report-actions,
+    .action-cell,
+    nav,
+    header,
+    footer {
+      display: none !important;
+    }
+
+    .print-only {
+      display: block;
+    }
+
+    .report-header {
+      border: none;
+      padding: 0 0 12px 0;
+      margin-bottom: 10px;
+    }
+
+    .report-title {
+      font-size: 20px;
+    }
+
+    .report-subtitle {
+      font-size: 11px;
+    }
+
+    .summary-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .summary-card {
+      min-height: auto;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    .summary-label {
+      font-size: 9px;
+      margin-bottom: 3px;
+    }
+
+    .summary-value {
+      font-size: 15px;
+    }
+
+    .summary-value.small-value {
+      font-size: 12px;
+    }
+
+    .table-card {
+      border: 1px solid #adb5bd;
+      border-radius: 0;
+    }
+
+    .movement-table {
+      min-width: 0;
+      width: 100%;
+      font-size: 9px;
+    }
+
+    .movement-table th {
+      font-size: 8px;
+      padding: 6px 5px;
+      white-space: normal;
+    }
+
+    .movement-table td {
+      font-size: 8px;
+      padding: 6px 5px;
+    }
+
+    .asset-name {
+      font-size: 8px;
+    }
+
+    .flow-cell {
+      min-width: 0;
+    }
+
+    .flow-row {
+      gap: 3px;
+      white-space: normal;
+    }
+
+    .reason-cell {
+      min-width: 0;
+      max-width: none;
+    }
+
+    .notes-text {
+      font-size: 8px;
+    }
+
+    .report-footer {
+      margin-top: 8px;
+      font-size: 8px;
+    }
+
+    .page-break-avoid {
+      break-inside: avoid;
+    }
+  }
+</style>
+
+<div class="movement-report-wrapper container-fluid">
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <div class="report-header page-header-card page-break-avoid">
+    <div class="report-header-row page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon no-print">
+          <i class="bi bi-arrow-left-right"></i>
+        </div>
+
+        <div>
+          <h1 class="report-title page-header-title">{{ _('Asset Movement Report') }}</h1>
+
+          <div class="report-subtitle page-header-subtitle">
+            {{ _('Asset movement history by movement date.') }}
+          </div>
+
+          <div class="print-only report-subtitle">
+            {{ _('Printed from the Asset Tracker system.') }}
+          </div>
+        </div>
+      </div>
+
+      <div class="report-actions page-header-actions no-print">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          onclick="window.print()"
+        >
+          <i class="bi bi-printer"></i>
+          {{ _('Print') }}
+        </button>
+
+        <a
+          href="{{ url_for(
+              'main.export_asset_movements_report',
+              start_date=request.args.get('start_date', ''),
+              end_date=request.args.get('end_date', '')
+          ) }}"
+          class="btn btn-success"
+        >
+          <i class="bi bi-file-earmark-excel"></i>
+          {{ _('Export Excel') }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SUMMARY
+       ========================================================= -->
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-label">{{ _('Total Movements') }}</div>
+
+      <div class="summary-value">{{ total_movements or 0 }}</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-label">{{ _('Filtered Results') }}</div>
+
+      <div class="summary-value">{{ filtered_movements or 0 }}</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-label">{{ _('Most Common Destination Location') }}</div>
+
+      <div class="summary-value small-value">{{ top_location or '-' }}</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-label">{{ _('Most Common Destination Department') }}</div>
+
+      <div class="summary-value small-value">{{ top_department or '-' }}</div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FILTER
+       ========================================================= -->
+
+  <div class="filter-card no-print">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-funnel"></i>
+        </div>
+        <div class="card-header-accent-title">{{ _('Report Filter') }}</div>
+      </div>
+    </div>
+
+    <div class="filter-card-body">
+      <form method="GET" action="{{ url_for('main.asset_movements_report') }}">
+        <div class="filter-grid">
+          <div class="filter-field">
+            <label for="start_date" class="filter-label"> {{ _('Start Date') }} </label>
+
+            <input
+              type="date"
+              id="start_date"
+              name="start_date"
+              class="form-control"
+              value="{% if start_date %}{{ start_date.strftime('%Y-%m-%d') }}{% else %}{{ request.args.get('start_date', '') }}{% endif %}"
+            />
+          </div>
+
+          <div class="filter-field">
+            <label for="end_date" class="filter-label"> {{ _('End Date') }} </label>
+
+            <input
+              type="date"
+              id="end_date"
+              name="end_date"
+              class="form-control"
+              value="{% if end_date %}{{ end_date.strftime('%Y-%m-%d') }}{% else %}{{ request.args.get('end_date', '') }}{% endif %}"
+            />
+          </div>
+
+          <div class="filter-field">
+            <div class="text-muted small filter-info-text">
+              {% if start_date and end_date %} {{ _('Showing movements from') }}
+              <strong> {{ start_date.strftime('%d-%m-%Y') }} </strong>
+              {{ _('to') }}
+              <strong> {{ end_date.strftime('%d-%m-%Y') }} </strong>. {% elif
+              start_date %} {{ _('Showing movements from') }}
+              <strong> {{ start_date.strftime('%d-%m-%Y') }} </strong>. {% elif
+              end_date %} {{ _('Showing movements until') }}
+              <strong> {{ end_date.strftime('%d-%m-%Y') }} </strong>. {% else %}
+              {{ _('Showing all movements.') }} {% endif %}
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="filter-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+                {{ _('Apply Filter') }}
+              </button>
+
+              <a
+                href="{{ url_for('main.asset_movements_report') }}"
+                class="btn btn-outline-secondary"
+              >
+                <i class="bi bi-arrow-counterclockwise"></i>
+                {{ _('Reset') }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       TABLE
+       ========================================================= -->
+
+  <div class="table-card">
+    <div class="card-header-accent">
+      <div class="card-header-accent-left">
+        <div class="card-header-accent-icon">
+          <i class="bi bi-table"></i>
+        </div>
+        <div>
+          <div class="card-header-accent-title">{{ _('Asset Movement Data') }}</div>
+
+          <div class="card-header-accent-subtitle">
+            {{ filtered_movements or 0 }} {{ _('movements shown') }}
+          </div>
+        </div>
+      </div>
+
+        <div class="print-only">
+          <small>
+            {% if start_date and end_date %} {{ _('Period:') }} {{
+            start_date.strftime('%d-%m-%Y') }} - {{
+            end_date.strftime('%d-%m-%Y') }} {% elif start_date %} {{ _('From:') }} {{
+            start_date.strftime('%d-%m-%Y') }} {% elif end_date %} {{ _('Until:') }} {{
+            end_date.strftime('%d-%m-%Y') }} {% else %} {{ _('Entire period') }} {% endif
+            %}
+          </small>
+        </div>
+    </div>
+
+    {% if movements %}
+
+    <div class="table-responsive">
+      <table class="movement-table">
+        <thead>
+          <tr>
+            <th style="width: 55px">{{ _('No.') }}</th>
+
+            <th>{{ _('Movement No.') }}</th>
+
+            <th>{{ _('Date') }}</th>
+
+            <th>{{ _('Asset') }}</th>
+
+            <th>{{ _('Location') }}</th>
+
+            <th>{{ _('Department') }}</th>
+
+            <th>{{ _('PIC') }}</th>
+
+            <th>{{ _('Reason / Description') }}</th>
+
+            <th class="action-cell no-print">{{ _('Actions') }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for movement in movements %}
+
+          <tr class="page-break-avoid">
+            <!-- =================================================
+                     NO
+                     ================================================= -->
+
+            <td>{{ loop.index }}</td>
+
+            <!-- =================================================
+                     MOVEMENT NUMBER
+                     ================================================= -->
+
+            <td>
+              <div class="movement-number">
+                {{ movement.movement_no or '-' }}
+              </div>
+            </td>
+
+            <!-- =================================================
+                     DATE
+                     ================================================= -->
+
+            <td>
+              <div class="date-value">
+                {% if movement.movement_date %} {{
+                movement.movement_date.strftime('%d-%m-%Y') }} {% else %} - {%
+                endif %}
+              </div>
+            </td>
+
+            <!-- =================================================
+                     ASSET
+                     ================================================= -->
+
+            <td>
+              <div class="asset-tag">{{ movement.asset.asset_tag or '-' }}</div>
+
+              <div class="asset-name">
+                {{ movement.asset.asset_name or '-' }}
+              </div>
+            </td>
+
+            <!-- =================================================
+                     LOCATION
+                     ================================================= -->
+
+            <td class="flow-cell">
+              <div class="flow-row">
+                <span class="flow-from">
+                  {{ movement.from_location or '-' }}
+                </span>
+
+                <span class="flow-arrow"> → </span>
+
+                <span class="flow-to"> {{ movement.to_location or '-' }} </span>
+              </div>
+            </td>
+
+            <!-- =================================================
+                     DEPARTMENT
+                     ================================================= -->
+
+            <td class="flow-cell">
+              <div class="flow-row">
+                <span class="flow-from">
+                  {{ movement.from_department or '-' }}
+                </span>
+
+                <span class="flow-arrow"> → </span>
+
+                <span class="flow-to">
+                  {{ movement.to_department or '-' }}
+                </span>
+              </div>
+            </td>
+
+            <!-- =================================================
+                     PIC
+                     ================================================= -->
+
+            <td class="pic-cell">
+              <div class="flow-row">
+                <span class="pic-from"> {{ movement.from_pic or '-' }} </span>
+
+                <span class="flow-arrow"> → </span>
+
+                <span class="pic-to"> {{ movement.to_pic or '-' }} </span>
+              </div>
+            </td>
+
+            <!-- =================================================
+                     REASON / NOTES
+                     ================================================= -->
+
+            <td class="reason-cell">
+              <div class="reason-main">{{ movement.reason or '-' }}</div>
+
+              {% if movement.notes %}
+
+              <div class="notes-text">{{ movement.notes }}</div>
+
+              {% endif %}
+            </td>
+
+            <!-- =================================================
+                     ACTION
+                     ================================================= -->
+
+            <td class="action-cell no-print">
+              <a
+                href="{{ url_for(
+                        'main.asset_movement_detail',
+                        asset_id=movement.asset_id,
+                        movement_id=movement.id
+                    ) }}"
+                class="btn btn-sm btn-outline-primary"
+                title="{{ _('View Movement Detail') }}"
+              >
+                <i class="bi bi-eye"></i>
+                {{ _('Detail') }}
+              </a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+      <div class="empty-state-icon">
+        <i class="bi bi-arrow-left-right"></i>
+      </div>
+
+      <div class="empty-state-title">{{ _('No movement data') }}</div>
+
+      <div class="empty-state-text">
+        {{ _('No asset movement data found') }} {% if start_date or end_date %} {{ _('for the selected period.') }} {% else %} {{ _('in the database.') }} {% endif %}
+      </div>
+
+      <div class="mt-3 no-print">
+        <a
+          href="{{ url_for('main.asset_movements_report') }}"
+          class="btn btn-outline-secondary btn-sm"
+        >
+          <i class="bi bi-arrow-counterclockwise"></i>
+          {{ _('Reset Filter') }}
+        </a>
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <div class="report-footer">
+    {% if movements %} {{ _('Showing') }}
+    <strong>{{ filtered_movements }}</strong>
+    {{ _('of') }}
+    <strong>{{ total_movements }}</strong>
+    {{ _('total movements.') }} {% else %} {{ _('No movements displayed.') }} {% endif %}
+  </div>
+</div>
+
+{% endblock %}

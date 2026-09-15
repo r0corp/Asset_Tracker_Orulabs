@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Role Management') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-person-badge"></i>
+                </div>
+                <div>
+                    <h2 class="page-header-title">{{ _('Role Management') }}</h2>
+                    <p class="page-header-subtitle mb-0">{{ _('Manage roles and page-level permissions (Create/Read/Edit/Delete)') }}</p>
+                </div>
+            </div>
+            <div class="page-header-actions">
+                <a href="{{ url_for('main.add_role') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i>
+                    {{ _('Add Role') }}
+                </a>
+                <a href="{{ url_for('main.export_roles') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-file-earmark-excel me-1"></i>
+                    {{ _('Export') }}
+                </a>
+                <a href="{{ url_for('main.import_roles') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-upload me-1"></i>
+                    {{ _('Import') }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card overflow-hidden">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Role List') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ roles|length }} {{ _('roles found') }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>{{ _('Role Name') }}</th>
+                            <th>{{ _('Description') }}</th>
+                            <th>{{ _('User Count') }}</th>
+                            <th>{{ _('Type') }}</th>
+                            <th>{{ _('Actions') }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for role in roles %}
+                        <tr>
+                            <td><strong>{{ role.name }}</strong></td>
+                            <td>{{ role.description or '-' }}</td>
+                            <td>{{ user_counts.get(role.name, 0) }}</td>
+                            <td>
+                                {% if role.is_system %}
+                                <span class="badge bg-primary">{{ _('Built-in') }}</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ _('Custom') }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+
+                                <a href="{{ url_for('main.role_permissions', role_id=role.id) }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-shield-check"></i>
+                                    {{ _('Permissions') }}
+                                </a>
+
+                                {% if not role.is_system %}
+
+                                <a href="{{ url_for('main.edit_role', role_id=role.id) }}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <form method="POST" action="{{ url_for('main.delete_role', role_id=role.id) }}" style="display:inline;" onsubmit="return confirm('{{ _('Delete this role?') }}');">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">{{ _('No roles yet.') }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

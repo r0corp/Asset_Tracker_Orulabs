@@ -1,0 +1,799 @@
+{% extends "base.html" %} {% block title %} {{ _('Asset History') }} - {{ asset.asset_tag
+or '-' }} {% endblock %} {% block content %}
+
+<style>
+  .history-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .asset-summary {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .asset-summary-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 14px 20px;
+    font-weight: 700;
+  }
+
+  .asset-summary-body {
+    padding: 20px;
+  }
+
+  .asset-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .info-item {
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #ffffff;
+  }
+
+  .info-label {
+    font-size: 11px;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .info-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #212529;
+    word-break: break-word;
+  }
+
+  .current-status {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 17px 20px;
+    margin-top: 18px;
+  }
+
+  .current-status-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 10px;
+  }
+
+  .current-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .current-status-item {
+    font-size: 13px;
+  }
+
+  .current-status-label {
+    color: #6c757d;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .current-status-value {
+    font-weight: 700;
+    color: #212529;
+  }
+
+  .timeline-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .timeline-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .movement-count {
+    background: #e9ecef;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #495057;
+  }
+
+  .timeline-body {
+    padding: 30px 25px;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #dee2e6;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 30px;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #6c757d;
+    z-index: 2;
+  }
+
+  .timeline-item.latest .timeline-dot {
+    border-color: #198754;
+    background: #198754;
+  }
+
+  .movement-card {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .movement-card-header {
+    padding: 14px 17px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .movement-number {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .movement-date {
+    font-size: 13px;
+    color: #6c757d;
+  }
+
+  .latest-badge {
+    display: inline-block;
+    background: #198754;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 4px 9px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+
+  .movement-card-body {
+    padding: 18px;
+  }
+
+  .movement-flow {
+    display: grid;
+    grid-template-columns: 1fr 70px 1fr;
+    gap: 15px;
+    align-items: stretch;
+    margin-bottom: 18px;
+  }
+
+  .flow-box {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  .flow-box.from {
+    background: #fff8f8;
+  }
+
+  .flow-box.to {
+    background: #f4fbf7;
+  }
+
+  .flow-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .flow-main {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .flow-detail {
+    font-size: 12px;
+    color: #495057;
+    margin-top: 5px;
+  }
+
+  .flow-detail strong {
+    color: #212529;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #6c757d;
+  }
+
+  .movement-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .meta-box {
+    border: 1px solid #e9ecef;
+    border-radius: 9px;
+    padding: 12px 14px;
+  }
+
+  .meta-label {
+    font-size: 11px;
+    color: #6c757d;
+    margin-bottom: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    font-size: 13px;
+    color: #212529;
+  }
+
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .signature-box {
+    border: 1px solid #e9ecef;
+    border-radius: 9px;
+    padding: 12px 14px;
+  }
+
+  .signature-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .signature-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .signature-position {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 2px;
+  }
+
+  .movement-actions {
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .empty-history {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+  }
+
+  .empty-history-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+  }
+
+  .empty-history-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 5px;
+  }
+
+  .empty-history-text {
+    font-size: 13px;
+  }
+
+  .history-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .history-actions-right {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 992px) {
+    .asset-info {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .current-status-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .history-wrapper {
+      margin: 15px 10px 30px 10px;
+    }
+
+    .asset-info {
+      grid-template-columns: 1fr;
+    }
+
+    .movement-flow {
+      grid-template-columns: 1fr;
+    }
+
+    .flow-arrow {
+      transform: rotate(90deg);
+      height: 35px;
+    }
+
+    .movement-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .signature-row {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-body {
+      padding: 20px 12px;
+    }
+
+    .timeline-item {
+      padding-left: 42px;
+    }
+
+    .timeline::before {
+      left: 13px;
+    }
+
+    .timeline-dot {
+      left: 3px;
+    }
+  }
+
+  @media print {
+    body {
+      background: #ffffff !important;
+    }
+
+    .history-wrapper {
+      max-width: none;
+      margin: 0;
+    }
+
+    .history-actions,
+    .movement-actions,
+    nav,
+    footer,
+    .navbar,
+    .app-footer {
+      display: none !important;
+    }
+
+    .history-header,
+    .asset-summary,
+    .timeline-card,
+    .movement-card {
+      box-shadow: none !important;
+    }
+
+    .timeline-item {
+      break-inside: avoid;
+    }
+
+    .movement-card {
+      break-inside: avoid;
+    }
+  }
+</style>
+
+<div class="container-fluid py-4 history-wrapper">
+  <!-- =====================================================
+         HEADER
+         ====================================================== -->
+
+  <div class="page-header-card history-header">
+    <div class="page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon">
+          <i class="bi bi-clock-history"></i>
+        </div>
+
+        <div>
+          <h2 class="page-header-title">{{ _('Asset Journey History') }}</h2>
+
+          <p class="page-header-subtitle mb-0">
+            {{ _('Complete history of asset movement based on all movements recorded in the system.') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         ASSET SUMMARY
+         ====================================================== -->
+
+  <div class="asset-summary">
+    <div class="asset-summary-header">{{ _('Asset Information') }}</div>
+
+    <div class="asset-summary-body">
+      <div class="asset-info">
+        <div class="info-item">
+          <div class="info-label">{{ _('Asset Tag') }}</div>
+
+          <div class="info-value">{{ asset.asset_tag or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Asset Name') }}</div>
+
+          <div class="info-value">{{ asset.asset_name or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Category') }}</div>
+
+          <div class="info-value">{{ asset.category or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Brand') }}</div>
+
+          <div class="info-value">{{ asset.brand or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Model') }}</div>
+
+          <div class="info-value">{{ asset.model or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Serial Number') }}</div>
+
+          <div class="info-value">{{ asset.serial_number or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Status') }}</div>
+
+          <div class="info-value">{{ asset.status or '-' }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">{{ _('Total Movements') }}</div>
+
+          <div class="info-value">{{ movements|length }}</div>
+        </div>
+      </div>
+
+      <!-- CURRENT STATUS -->
+
+      <div class="current-status">
+        <div class="current-status-title">{{ _('CURRENT ASSET CONDITION') }}</div>
+
+        <div class="current-status-grid">
+          <div class="current-status-item">
+            <span class="current-status-label"> {{ _('Location') }} </span>
+
+            <span class="current-status-value">
+              {{ asset.location or '-' }}
+            </span>
+          </div>
+
+          <div class="current-status-item">
+            <span class="current-status-label"> {{ _('Department') }} </span>
+
+            <span class="current-status-value">
+              {{ asset.department or '-' }}
+            </span>
+          </div>
+
+          <div class="current-status-item">
+            <span class="current-status-label"> {{ _('PIC') }} </span>
+
+            <span class="current-status-value"> {{ asset.pic or '-' }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+         TIMELINE
+         ====================================================== -->
+
+  <div class="timeline-card">
+    <div class="timeline-header">
+      <span> {{ _('Movement Timeline') }} </span>
+
+      <span class="movement-count"> {{ movements|length }} {{ _('Movement') }} </span>
+    </div>
+
+    <div class="timeline-body">
+      {% if movements %}
+
+      <div class="timeline">
+        {% for movement in movements %}
+
+        <div class="timeline-item {% if loop.last %}latest{% endif %}">
+          <div class="timeline-dot"></div>
+
+          <div class="movement-card">
+            <!-- MOVEMENT HEADER -->
+
+            <div class="movement-card-header">
+              <div>
+                <span class="movement-number">
+                  {{ movement.movement_no or _('Movement #') ~ movement.id }}
+                </span>
+
+                {% if loop.last %}
+                <span class="latest-badge"> {{ _('LATEST CONDITION') }} </span>
+                {% endif %}
+              </div>
+
+              <div class="movement-date">
+                {% if movement.movement_date %} {{
+                movement.movement_date.strftime('%d-%m-%Y') }} {% else %} - {%
+                endif %}
+              </div>
+            </div>
+
+            <!-- MOVEMENT BODY -->
+
+            <div class="movement-card-body">
+              <!-- FLOW -->
+
+              <div class="movement-flow">
+                <div class="flow-box from">
+                  <div class="flow-title">{{ _('FROM') }}</div>
+
+                  <div class="flow-main">
+                    {{ movement.from_location or '-' }}
+                  </div>
+
+                  <div class="flow-detail">
+                    {{ _('Department') }}:
+                    <strong> {{ movement.from_department or '-' }} </strong>
+                  </div>
+
+                  <div class="flow-detail">
+                    {{ _('PIC') }}:
+                    <strong> {{ movement.from_pic or '-' }} </strong>
+                  </div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="flow-box to">
+                  <div class="flow-title">{{ _('TO') }}</div>
+
+                  <div class="flow-main">{{ movement.to_location or '-' }}</div>
+
+                  <div class="flow-detail">
+                    {{ _('Department') }}:
+                    <strong> {{ movement.to_department or '-' }} </strong>
+                  </div>
+
+                  <div class="flow-detail">
+                    {{ _('PIC') }}:
+                    <strong> {{ movement.to_pic or '-' }} </strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- META -->
+
+              <div class="movement-meta">
+                <div class="meta-box">
+                  <div class="meta-label">{{ _('Reason') }}</div>
+
+                  <div class="meta-value">{{ movement.reason or '-' }}</div>
+                </div>
+
+                <div class="meta-box">
+                  <div class="meta-label">{{ _('Notes') }}</div>
+
+                  <div class="meta-value">{{ movement.notes or '-' }}</div>
+                </div>
+              </div>
+
+              <!-- SIGNATURE -->
+
+              {% if movement.from_signer_name or movement.to_signer_name or
+              movement.from_signer_position or movement.to_signer_position %}
+
+              <div class="signature-row">
+                <div class="signature-box">
+                  <div class="signature-title">{{ _('Handed Over By') }}</div>
+
+                  <div class="signature-name">
+                    {{ movement.from_signer_name or '-' }}
+                  </div>
+
+                  <div class="signature-position">
+                    {{ movement.from_signer_position or '-' }}
+                  </div>
+                </div>
+
+                <div class="signature-box">
+                  <div class="signature-title">{{ _('Received By') }}</div>
+
+                  <div class="signature-name">
+                    {{ movement.to_signer_name or '-' }}
+                  </div>
+
+                  <div class="signature-position">
+                    {{ movement.to_signer_position or '-' }}
+                  </div>
+                </div>
+              </div>
+
+              {% endif %}
+
+              <!-- ACTIONS -->
+
+              <div class="movement-actions">
+                <a
+                  href="{{ url_for(
+                                                'main.asset_movement_detail',
+                                                asset_id=asset.id,
+                                                movement_id=movement.id
+                                            ) }}"
+                  class="btn btn-sm btn-outline-primary"
+                >
+                  {{ _('Detail') }}
+                </a>
+
+                <a
+                  href="{{ url_for(
+                                                'main.asset_movement_qr',
+                                                asset_id=asset.id,
+                                                movement_id=movement.id
+                                            ) }}"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  {{ _('QR') }}
+                </a>
+
+                <a
+                  href="{{ url_for(
+                                                'main.verify_asset_movement',
+                                                asset_id=asset.id,
+                                                movement_id=movement.id
+                                            ) }}"
+                  class="btn btn-sm btn-outline-success"
+                >
+                  {{ _('Verify') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+      {% else %}
+
+      <div class="empty-history">
+        <div class="empty-history-icon">📋</div>
+
+        <div class="empty-history-title">{{ _('No movement history yet') }}</div>
+
+        <div class="empty-history-text">
+          {{ _('This asset does not have any movement history yet.') }}
+        </div>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- =====================================================
+         PAGE ACTIONS
+         ====================================================== -->
+
+  <div class="history-actions">
+    <div>
+      <a
+        href="{{ url_for(
+                    'main.asset_detail',
+                    asset_id=asset.id
+                ) }}"
+        class="btn btn-secondary"
+      >
+        ← {{ _('Back to Asset') }}
+      </a>
+    </div>
+
+    <div class="history-actions-right">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        onclick="window.print()"
+      >
+        {{ _('Print History') }}
+      </button>
+
+      <a
+        href="{{ url_for(
+                    'main.add_asset_movement',
+                    asset_id=asset.id
+                ) }}"
+        class="btn btn-primary"
+      >
+        + {{ _('Add Movement') }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

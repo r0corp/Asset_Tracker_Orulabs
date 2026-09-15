@@ -1,0 +1,406 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Company Data') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Edit Company Data') }}</h3>
+                    <p class="page-header-subtitle mb-0">{{ _('Set the company identity used in documents and reports') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="row">
+
+
+            <!-- DATA PERUSAHAAN -->
+
+            <div class="col-lg-8">
+
+                <div class="card mb-4">
+
+                    <div class="card-header">
+
+                        <strong>
+
+                            <i class="bi bi-building"></i>
+
+                            {{ _('Company Information') }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="row g-3">
+
+
+                            <!-- NAMA -->
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">
+
+                                    {{ _('Company Name') }}
+                                    <span class="text-danger">*</span>
+
+                                </label>
+
+                                <input type="text" name="name" class="form-control" value="{{ company.name or '' }}"
+                                    placeholder="{{ _('PT Company Name') }}" required>
+
+                            </div>
+
+
+                            <!-- ALAMAT -->
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">
+
+                                    {{ _('Address') }}
+
+                                </label>
+
+                                <textarea name="address" class="form-control" rows="4"
+                                    placeholder="{{ _('Full company address') }}">{{ company.address or '' }}</textarea>
+
+                            </div>
+
+
+                            <!-- TELEPON -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    {{ _('Phone') }}
+
+                                </label>
+
+                                <input type="text" name="phone" class="form-control" value="{{ company.phone or '' }}"
+                                    placeholder="021-xxxxxxx">
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    {{ _('Email') }}
+
+                                </label>
+
+                                <input type="email" name="email" class="form-control" value="{{ company.email or '' }}"
+                                    placeholder="info@company.com">
+
+                            </div>
+
+
+                            <!-- WEBSITE -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    {{ _('Website') }}
+
+                                </label>
+
+                                <input type="text" name="website" class="form-control"
+                                    value="{{ company.website or '' }}" placeholder="https://www.company.com">
+
+                            </div>
+
+
+                            <!-- NPWP -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    {{ _('NPWP') }}
+
+                                </label>
+
+                                <input type="text" name="tax_number" class="form-control"
+                                    value="{{ company.tax_number or '' }}" placeholder="{{ _('NPWP Number') }}">
+
+                            </div>
+
+
+                            <!-- PREFIX -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    {{ _('Document Number Prefix') }}
+
+                                </label>
+
+                                <input type="text" name="document_prefix" class="form-control text-uppercase"
+                                    value="{{ company.document_prefix or 'MT' }}" maxlength="50" placeholder="MT">
+
+                                <div class="form-text">
+
+                                    {{ _('Example:') }}
+                                    <strong>MT</strong>
+                                    {{ _('produces a number like') }}
+                                    MT-20260809-0001.
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGO -->
+
+            <div class="col-lg-4">
+
+                <div class="card mb-4">
+
+                    <div class="card-header">
+
+                        <strong>
+
+                            <i class="bi bi-image"></i>
+
+                            {{ _('Company Logo') }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="card-body text-center">
+
+
+                        {% if company.logo %}
+
+                        <img id="logoPreview" src="{{ url_for(
+                                    'static',
+                                    filename='uploads/company/' ~ company.logo
+                                ) }}" alt="{{ company.name }}" class="logo-preview mb-3">
+
+                        {% else %}
+
+                        <div id="logoPlaceholder" class="logo-placeholder mb-3">
+
+                            <i class="bi bi-building"></i>
+
+                            <div>
+                                {{ _('No logo yet') }}
+                            </div>
+
+                        </div>
+
+                        <img id="logoPreview" src="" alt="{{ _('Logo Preview') }}" class="logo-preview mb-3 d-none">
+
+                        {% endif %}
+
+
+                        <div class="text-start">
+
+                            <label class="form-label">
+
+                                {{ _('Upload Logo') }}
+
+                            </label>
+
+                            <input type="file" name="logo" class="form-control" accept=".png,.jpg,.jpeg,.webp"
+                                onchange="previewLogo(this)">
+
+                            <div class="form-text">
+
+                                {{ _('Format:') }}
+                                PNG, JPG, JPEG, WEBP
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOMBOL -->
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit" class="btn btn-primary flex-grow-1">
+
+                        <i class="bi bi-save"></i>
+
+                        {{ _('Save') }}
+
+                    </button>
+
+
+                    <a href="{{ url_for('main.company') }}" class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        {{ _('Back') }}
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<style>
+    .logo-preview {
+
+        width: 220px;
+
+        height: 180px;
+
+        object-fit: contain;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        padding: 10px;
+
+        background: #ffffff;
+
+    }
+
+
+    .logo-placeholder {
+
+        width: 220px;
+
+        height: 180px;
+
+        margin: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border: 1px dashed #adb5bd;
+
+        border-radius: 10px;
+
+        color: #6c757d;
+
+    }
+
+
+    .logo-placeholder i {
+
+        font-size: 55px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    @media (max-width: 768px) {
+
+        .logo-preview,
+        .logo-placeholder {
+
+            width: 100%;
+
+            max-width: 220px;
+
+        }
+
+    }
+</style>
+
+
+<script>
+    function previewLogo(input) {
+
+        const preview =
+            document.getElementById(
+                "logoPreview"
+            );
+
+        const placeholder =
+            document.getElementById(
+                "logoPlaceholder"
+            );
+
+        if (
+            input.files &&
+            input.files[0]
+        ) {
+
+            const reader =
+                new FileReader();
+
+            reader.onload = function (event) {
+
+                preview.src =
+                    event.target.result;
+
+                preview.classList.remove(
+                    "d-none"
+                );
+
+                if (placeholder) {
+
+                    placeholder.classList.add(
+                        "d-none"
+                    );
+
+                }
+
+            };
+
+            reader.readAsDataURL(
+                input.files[0]
+            );
+
+        }
+
+    }
+</script>
+
+{% endblock %}

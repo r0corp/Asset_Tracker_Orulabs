@@ -1,0 +1,1087 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Select Assets for Label Printing') }} - Asset Tracker
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    /* ========================================================
+       PAGE
+       ======================================================== */
+
+    .label-page {
+        padding-top: 24px;
+        padding-bottom: 30px;
+    }
+
+    .card-body.p-0 .table-responsive {
+        padding: 0 20px;
+    }
+
+
+    /* ========================================================
+       SEARCH TOOLBAR
+       ======================================================== */
+
+    .label-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .label-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+        z-index: 1;
+    }
+
+    .label-toolbar {
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    .label-search {
+        max-width: 500px;
+    }
+
+    .label-result-info {
+        font-size: 13px;
+        color: #6c757d;
+    }
+
+
+    /* ========================================================
+       HIDDEN SEARCH ROW
+       ======================================================== */
+
+    .asset-row-hidden {
+        display: none !important;
+    }
+
+
+    /* ========================================================
+       TABLE
+       ======================================================== */
+
+    .label-table th {
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .label-table td {
+        font-size: 13px;
+        vertical-align: middle;
+    }
+
+    .label-table tbody tr {
+        transition: background-color .15s ease;
+    }
+
+
+    /* ========================================================
+       CHECKBOX
+       ======================================================== */
+
+    .label-check {
+        width: 17px;
+        height: 17px;
+        cursor: pointer;
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    .label-footer-text {
+        font-size: 13px;
+    }
+
+
+    /* ========================================================
+       MOBILE
+       ======================================================== */
+
+    @media (max-width: 768px) {
+
+        .label-toolbar {
+            padding: 12px 16px;
+        }
+
+        .label-search {
+            max-width: 100%;
+        }
+
+    }
+</style>
+
+
+<div class="container-fluid label-page">
+
+
+    <!-- ====================================================
+         HEADER
+         ==================================================== -->
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-printer"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Print Asset Label') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Select the assets whose labels you want to print.') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a href="{{ url_for('main.assets') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>
+                    {{ _('Back') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ====================================================
+         FLASH MESSAGE
+         ==================================================== -->
+
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+    {% if messages %}
+
+    {% for category, message in messages %}
+
+    <div class="alert alert-{{ category }} alert-dismissible fade show">
+
+        {{ message }}
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ====================================================
+         FORM
+         ==================================================== -->
+
+    <form method="GET" action="{{ url_for('main.print_asset_labels') }}" id="labelForm">
+
+
+        <!-- ====================================================
+             MAIN CARD
+             ==================================================== -->
+
+        <div class="card border-0 shadow-sm label-card">
+
+
+            <!-- ====================================================
+                 SEARCH TOOLBAR
+                 ==================================================== -->
+
+            <div class="label-toolbar">
+
+                <div class="row align-items-end g-3">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="col-lg-6 col-md-6">
+
+                        <label for="assetSearch" class="form-label fw-semibold mb-1">
+
+                            <i class="bi bi-search me-1"></i>
+
+                            {{ _('Search Asset') }}
+
+                        </label>
+
+
+                        <input type="text" id="assetSearch" class="form-control label-search"
+                            placeholder="{{ _('Asset Tag, name, brand, model, serial...') }}" autocomplete="off">
+
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div class="col-lg-6 col-md-6 text-md-end">
+
+                        <span class="label-result-info" id="resultInfo">
+
+                            {{ _('Showing') }}
+                            {{ assets|length }}
+                            {{ _('assets') }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================================
+                 CARD HEADER
+                 ==================================================== -->
+
+            <div class="card-header-accent">
+
+                <div class="card-header-accent-left">
+
+                    <div class="card-header-accent-icon">
+                        <i class="bi bi-card-checklist"></i>
+                    </div>
+
+                    <div>
+                        <div class="card-header-accent-title">
+                            {{ _('Asset List') }}
+                        </div>
+                        <div class="card-header-accent-subtitle">
+                            <span id="selectedCount">0 {{ _('selected') }}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-header-accent-actions">
+
+
+                    <!-- SELECT ALL -->
+
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="selectAll()">
+
+                        <i class="bi bi-check2-square me-1"></i>
+
+                        {{ _('Select All') }}
+
+                    </button>
+
+
+                    <!-- CLEAR ALL -->
+
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearAll()">
+
+                        <i class="bi bi-x-square me-1"></i>
+
+                        {{ _('Clear All') }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================================
+                 TABLE
+                 ==================================================== -->
+
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0 label-table">
+
+
+                        <!-- ====================================================
+                             TABLE HEADER
+                             ==================================================== -->
+
+                        <thead class="table-light">
+
+                            <tr>
+
+
+                                <!-- CHECK ALL -->
+
+                                <th style="width:50px;" class="text-center">
+
+                                    <input type="checkbox" class="form-check-input label-check" id="checkAll"
+                                        onchange="toggleAll(this)">
+
+                                </th>
+
+
+                                <th>
+                                    {{ _('Asset Tag') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Asset') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Brand / Model') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Serial Number') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Location') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Department') }}
+                                </th>
+
+
+                                <th>
+                                    {{ _('Status') }}
+                                </th>
+
+
+                            </tr>
+
+                        </thead>
+
+
+                        <!-- ====================================================
+                             TABLE BODY
+                             ==================================================== -->
+
+                        <tbody>
+
+
+                            {% for asset in assets %}
+
+                            <tr class="asset-label-row" data-search="
+                                    {{ asset.asset_tag or '' }}
+                                    {{ asset.asset_name or '' }}
+                                    {{ asset.brand or '' }}
+                                    {{ asset.model or '' }}
+                                    {{ asset.serial_number or '' }}
+                                    {{ asset.location or '' }}
+                                    {{ asset.department or '' }}
+                                    {{ asset.status or '' }}
+                                ">
+
+
+                                <!-- CHECKBOX -->
+
+                                <td class="text-center">
+
+                                    <input type="checkbox" name="ids" value="{{ asset.id }}"
+                                        class="form-check-input asset-check label-check" onchange="updateCount()">
+
+                                </td>
+
+
+                                <!-- ASSET TAG -->
+
+                                <td>
+
+                                    <strong>
+
+                                        {{ asset.asset_tag or "-" }}
+
+                                    </strong>
+
+                                </td>
+
+
+                                <!-- ASSET NAME -->
+
+                                <td>
+
+                                    {{ asset.asset_name or "-" }}
+
+                                </td>
+
+
+                                <!-- BRAND / MODEL -->
+
+                                <td>
+
+                                    {{ asset.brand or "-" }}
+
+                                    {% if asset.model %}
+
+                                    <br>
+
+                                    <small class="text-muted">
+
+                                        {{ asset.model }}
+
+                                    </small>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <!-- SERIAL NUMBER -->
+
+                                <td>
+
+                                    {{ asset.serial_number or "-" }}
+
+                                </td>
+
+
+                                <!-- LOCATION -->
+
+                                <td>
+
+                                    {{ asset.location or "-" }}
+
+                                </td>
+
+
+                                <!-- DEPARTMENT -->
+
+                                <td>
+
+                                    {{ asset.department or "-" }}
+
+                                </td>
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    {% if asset.status == "Active" %}
+
+                                    <span class="badge bg-success">
+
+                                        {{ _('Active') }}
+
+                                    </span>
+
+                                    {% elif asset.status == "Maintenance" %}
+
+                                    <span class="badge bg-warning text-dark">
+
+                                        {{ _('Maintenance') }}
+
+                                    </span>
+
+                                    {% elif asset.status == "Lost" %}
+
+                                    <span class="badge bg-danger">
+
+                                        {{ _('Lost') }}
+
+                                    </span>
+
+                                    {% elif asset.status == "Retired" %}
+
+                                    <span class="badge bg-secondary">
+
+                                        {{ _('Retired') }}
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-info">
+
+                                        {{ asset.status or "-" }}
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                            </tr>
+
+                            {% else %}
+
+                            <!-- ====================================================
+                                 EMPTY
+                                 ==================================================== -->
+
+                            <tr>
+
+                                <td colspan="8" class="text-center py-5 text-muted">
+
+                                    <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+
+                                    {{ _('No assets.') }}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+
+                            <!-- ====================================================
+                                 NO SEARCH RESULT
+                                 ==================================================== -->
+
+                            <tr id="noSearchResult" style="display:none;">
+
+                                <td colspan="8" class="text-center py-5 text-muted">
+
+                                    <i class="bi bi-search fs-2 d-block mb-2"></i>
+
+                                    {{ _('No matching assets found.') }}
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================================
+                 FOOTER
+                 ==================================================== -->
+
+            <div class="card-footer">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+
+                    <span class="text-muted label-footer-text">
+
+                        {{ _('Select assets then click') }}
+                        <strong>{{ _('Print Label') }}</strong>.
+
+                    </span>
+
+
+                    <button type="submit" class="btn btn-primary" id="printButton" disabled>
+
+                        <i class="bi bi-printer me-1"></i>
+
+                        {{ _('Print Label') }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+<script>
+    /* ============================================================
+   UPDATE SELECTED COUNT
+   ============================================================ */
+
+    function updateCount() {
+
+        const checkboxes =
+            document.querySelectorAll(
+                ".asset-check"
+            );
+
+
+        let count = 0;
+
+
+        checkboxes.forEach(
+            function (checkbox) {
+
+                if (checkbox.checked) {
+
+                    count++;
+
+                }
+
+            }
+        );
+
+
+        const selectedCount =
+            document.getElementById(
+                "selectedCount"
+            );
+
+
+        if (selectedCount) {
+
+            selectedCount.innerText =
+                count + " " + "{{ _('selected') }}";
+
+        }
+
+
+        const printButton =
+            document.getElementById(
+                "printButton"
+            );
+
+
+        if (printButton) {
+
+            printButton.disabled =
+                count === 0;
+
+        }
+
+
+        updateCheckAllState();
+
+    }
+
+
+    /* ============================================================
+       UPDATE CHECK ALL STATE
+       ============================================================ */
+
+    function updateCheckAllState() {
+
+        const visibleRows =
+            Array.from(
+                document.querySelectorAll(
+                    ".asset-label-row"
+                )
+            ).filter(
+                function (row) {
+
+                    return !row.classList.contains(
+                        "asset-row-hidden"
+                    );
+
+                }
+            );
+
+
+        const visibleCheckboxes =
+            visibleRows.map(
+                function (row) {
+
+                    return row.querySelector(
+                        ".asset-check"
+                    );
+
+                }
+            ).filter(
+                function (checkbox) {
+
+                    return checkbox !== null;
+
+                }
+            );
+
+
+        const checkedVisible =
+            visibleCheckboxes.filter(
+                function (checkbox) {
+
+                    return checkbox.checked;
+
+                }
+            );
+
+
+        const checkAll =
+            document.getElementById(
+                "checkAll"
+            );
+
+
+        if (!checkAll) {
+
+            return;
+
+        }
+
+
+        checkAll.checked =
+            visibleCheckboxes.length > 0 &&
+            checkedVisible.length ===
+            visibleCheckboxes.length;
+
+
+        checkAll.indeterminate =
+            checkedVisible.length > 0 &&
+            checkedVisible.length <
+            visibleCheckboxes.length;
+
+    }
+
+
+    /* ============================================================
+       TOGGLE ALL VISIBLE
+       ============================================================ */
+
+    function toggleAll(source) {
+
+        const rows =
+            document.querySelectorAll(
+                ".asset-label-row"
+            );
+
+
+        rows.forEach(
+            function (row) {
+
+                if (
+                    row.classList.contains(
+                        "asset-row-hidden"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const checkbox =
+                    row.querySelector(
+                        ".asset-check"
+                    );
+
+
+                if (checkbox) {
+
+                    checkbox.checked =
+                        source.checked;
+
+                }
+
+            }
+        );
+
+
+        updateCount();
+
+    }
+
+
+    /* ============================================================
+       SELECT ALL VISIBLE
+       ============================================================ */
+
+    function selectAll() {
+
+        const rows =
+            document.querySelectorAll(
+                ".asset-label-row"
+            );
+
+
+        rows.forEach(
+            function (row) {
+
+                if (
+                    row.classList.contains(
+                        "asset-row-hidden"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const checkbox =
+                    row.querySelector(
+                        ".asset-check"
+                    );
+
+
+                if (checkbox) {
+
+                    checkbox.checked = true;
+
+                }
+
+            }
+        );
+
+
+        updateCount();
+
+    }
+
+
+    /* ============================================================
+       CLEAR ALL
+       ============================================================ */
+
+    function clearAll() {
+
+        const checkboxes =
+            document.querySelectorAll(
+                ".asset-check"
+            );
+
+
+        checkboxes.forEach(
+            function (checkbox) {
+
+                checkbox.checked = false;
+
+            }
+        );
+
+
+        const checkAll =
+            document.getElementById(
+                "checkAll"
+            );
+
+
+        if (checkAll) {
+
+            checkAll.checked = false;
+
+            checkAll.indeterminate = false;
+
+        }
+
+
+        updateCount();
+
+    }
+
+
+    /* ============================================================
+       SEARCH ASSET
+       ============================================================ */
+
+    function searchAssets() {
+
+        const searchInput =
+            document.getElementById(
+                "assetSearch"
+            );
+
+
+        const resultInfo =
+            document.getElementById(
+                "resultInfo"
+            );
+
+
+        const noSearchResult =
+            document.getElementById(
+                "noSearchResult"
+            );
+
+
+        const rows =
+            document.querySelectorAll(
+                ".asset-label-row"
+            );
+
+
+        if (!searchInput) {
+
+            return;
+
+        }
+
+
+        const keyword =
+            searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+        let visibleCount = 0;
+
+
+        rows.forEach(
+            function (row) {
+
+                const searchText =
+                    (
+                        row.dataset.search ||
+                        ""
+                    )
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                const matched =
+                    keyword === "" ||
+                    searchText.includes(
+                        keyword
+                    );
+
+
+                if (matched) {
+
+                    row.classList.remove(
+                        "asset-row-hidden"
+                    );
+
+                    visibleCount++;
+
+                } else {
+
+                    row.classList.add(
+                        "asset-row-hidden"
+                    );
+
+                }
+
+            }
+        );
+
+
+        if (resultInfo) {
+
+            if (keyword === "") {
+
+                resultInfo.innerText =
+                    "{{ _('Showing') }} " +
+                    rows.length +
+                    " {{ _('assets') }}";
+
+            } else {
+
+                resultInfo.innerText =
+                    "{{ _('Showing') }} " +
+                    visibleCount +
+                    " {{ _('of') }} " +
+                    rows.length +
+                    " {{ _('assets') }}";
+
+            }
+
+        }
+
+
+        if (noSearchResult) {
+
+            noSearchResult.style.display =
+                visibleCount === 0 ?
+                "" :
+                "none";
+
+        }
+
+
+        updateCheckAllState();
+
+    }
+
+
+    /* ============================================================
+       SEARCH EVENT
+       ============================================================ */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const searchInput =
+                document.getElementById(
+                    "assetSearch"
+                );
+
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "input",
+                    searchAssets
+                );
+
+            }
+
+
+            updateCount();
+
+        }
+    );
+
+
+    /* ============================================================
+       FORM VALIDATION
+       ============================================================ */
+
+    document.getElementById(
+        "labelForm"
+    ).addEventListener(
+        "submit",
+        function (event) {
+
+            const selected =
+                document.querySelectorAll(
+                    ".asset-check:checked"
+                );
+
+
+            if (selected.length === 0) {
+
+                event.preventDefault();
+
+
+                alert(
+                    "{{ _('Please select at least one asset.') }}"
+                );
+
+
+                return false;
+
+            }
+
+        }
+    );
+</script>
+
+{% endblock %}

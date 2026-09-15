@@ -1,0 +1,433 @@
+{% extends "base.html" %} {% block title %} {{ _('Asset Movement Verification') }} - {{
+movement.movement_no or '-' }} {% endblock %} {% block content %}
+
+<style>
+  .verify-page {
+    max-width: 850px;
+    margin: 40px auto;
+  }
+
+  .verify-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .verify-body {
+    padding: 30px;
+  }
+
+  .verified-badge {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .verified-badge span {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 20px;
+
+    background: #d1e7dd;
+    color: #0f5132;
+
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .verify-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .verify-table th,
+  .verify-table td {
+    border: 1px solid #dee2e6;
+    padding: 11px 12px;
+    vertical-align: top;
+  }
+
+  .verify-table th {
+    width: 190px;
+    background: #f8f9fa;
+    font-weight: 600;
+  }
+
+  .movement-box {
+    display: grid;
+    grid-template-columns: 1fr 45px 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .movement-from,
+  .movement-to {
+    padding: 12px;
+
+    border: 1px solid #dee2e6;
+
+    border-radius: 6px;
+  }
+
+  .movement-from {
+    background: #f8f9fa;
+  }
+
+  .movement-to {
+    background: #d1e7dd;
+    border-color: #a3cfbb;
+  }
+
+  .movement-arrow {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .verify-actions {
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+  }
+
+  .security-note {
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #fff3cd;
+
+    border: 1px solid #ffecb5;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .verify-page {
+      margin: 15px;
+    }
+
+    .verify-body {
+      padding: 18px;
+    }
+
+    .movement-box {
+      grid-template-columns: 1fr;
+    }
+
+    .movement-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  @media print {
+    nav,
+    header,
+    footer,
+    .navbar,
+    .sidebar,
+    .verify-actions {
+      display: none !important;
+    }
+
+    body {
+      background: #ffffff !important;
+    }
+
+    .verify-page {
+      max-width: none;
+      margin: 0;
+    }
+
+    .verify-card {
+      border: none;
+      box-shadow: none;
+    }
+  }
+</style>
+
+<div class="verify-page container-fluid">
+  <!-- ====================================================
+           HEADER VERIFIKASI
+           ==================================================== -->
+
+  <div class="page-header-card">
+    <div class="page-header-row">
+      <div class="page-header-left">
+        <div class="page-header-icon">
+          <i class="bi bi-shield-check"></i>
+        </div>
+
+        <div>
+          <h3 class="page-header-title">{{ _('Asset Movement Verified') }}</h3>
+
+          <p class="page-header-subtitle mb-0">{{ _('Movement data found in the Asset Tracker system') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verify-card">
+    <!-- ====================================================
+             BODY
+             ==================================================== -->
+
+    <div class="verify-body">
+      <!-- ==================================================
+                 STATUS
+                 ================================================== -->
+
+      <div class="verified-badge">
+        <span>
+          <i class="bi bi-check-circle-fill"></i>
+
+          {{ _('VALID DATA') }}
+        </span>
+      </div>
+
+      <!-- ==================================================
+                 INFORMASI MUTASI
+                 ================================================== -->
+
+      <table class="verify-table">
+        <tr>
+          <th>{{ _('Movement No.') }}</th>
+
+          <td>
+            <strong> {{ movement.movement_no or '-' }} </strong>
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Movement Date') }}</th>
+
+          <td>
+            {% if movement.movement_date %} {{ movement.movement_date.strftime(
+            '%d-%m-%Y' ) }} {% else %} - {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Asset Tag') }}</th>
+
+          <td>
+            <strong> {{ asset.asset_tag or '-' }} </strong>
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Asset Name') }}</th>
+
+          <td>{{ asset.asset_name or '-' }}</td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Serial Number') }}</th>
+
+          <td>{{ asset.serial_number or '-' }}</td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Brand / Model') }}</th>
+
+          <td>
+            {{ asset.brand or '-' }} {% if asset.model %} / {{ asset.model }} {%
+            endif %}
+          </td>
+        </tr>
+
+        <!-- =================================================
+                     LOKASI
+                     ================================================= -->
+
+        <tr>
+          <th>{{ _('Location Change') }}</th>
+
+          <td>
+            <div class="movement-box">
+              <div class="movement-from">
+                <small class="text-muted"> {{ _('BEFORE') }} </small>
+
+                <br />
+
+                {{ movement.from_location or '-' }}
+              </div>
+
+              <div class="movement-arrow">→</div>
+
+              <div class="movement-to">
+                <small class="text-muted"> {{ _('AFTER') }} </small>
+
+                <br />
+
+                <strong> {{ movement.to_location or '-' }} </strong>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- =================================================
+                     DEPARTMENT
+                     ================================================= -->
+
+        <tr>
+          <th>{{ _('Department Change') }}</th>
+
+          <td>
+            <div class="movement-box">
+              <div class="movement-from">
+                <small class="text-muted"> {{ _('BEFORE') }} </small>
+
+                <br />
+
+                {{ movement.from_department or '-' }}
+              </div>
+
+              <div class="movement-arrow">→</div>
+
+              <div class="movement-to">
+                <small class="text-muted"> {{ _('AFTER') }} </small>
+
+                <br />
+
+                <strong> {{ movement.to_department or '-' }} </strong>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- =================================================
+                     PIC
+                     ================================================= -->
+
+        <tr>
+          <th>{{ _('PIC Change') }}</th>
+
+          <td>
+            <div class="movement-box">
+              <div class="movement-from">
+                <small class="text-muted"> {{ _('BEFORE') }} </small>
+
+                <br />
+
+                {{ movement.from_pic or '-' }}
+              </div>
+
+              <div class="movement-arrow">→</div>
+
+              <div class="movement-to">
+                <small class="text-muted"> {{ _('AFTER') }} </small>
+
+                <br />
+
+                <strong> {{ movement.to_pic or '-' }} </strong>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- =================================================
+                     ALASAN
+                     ================================================= -->
+
+        {% if movement.reason %}
+
+        <tr>
+          <th>{{ _('Movement Reason') }}</th>
+
+          <td>{{ movement.reason }}</td>
+        </tr>
+
+        {% endif %}
+
+        <!-- =================================================
+                     CATATAN
+                     ================================================= -->
+
+        {% if movement.notes %}
+
+        <tr>
+          <th>{{ _('Notes') }}</th>
+
+          <td>{{ movement.notes }}</td>
+        </tr>
+
+        {% endif %}
+      </table>
+
+      <!-- ==================================================
+                 SECURITY NOTE
+                 ================================================== -->
+
+      <div class="security-note">
+        <strong>
+          <i class="bi bi-info-circle"></i>
+          {{ _('Verification Information') }}
+        </strong>
+
+        <br />
+
+        {{ _('The data above is taken directly from the asset movement record stored in the Asset Tracker system.') }}
+
+        <br /><br />
+
+        {{ _('Use the movement number and Asset Tag as a reference if further verification is required.') }}
+      </div>
+
+      <!-- ==================================================
+                 ACTION
+                 ================================================== -->
+
+      <div class="verify-actions">
+        <a
+          href="{{ url_for(
+                        'main.asset_movement_detail',
+                        asset_id=asset.id,
+                        movement_id=movement.id
+                    ) }}"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-file-text"></i>
+
+          {{ _('View Movement Proof') }}
+        </a>
+
+        <a
+          href="{{ url_for(
+                        'main.asset_movement_qr',
+                        asset_id=asset.id,
+                        movement_id=movement.id
+                    ) }}"
+          class="btn btn-outline-secondary"
+        >
+          <i class="bi bi-qr-code"></i>
+
+          {{ _('View QR') }}
+        </a>
+
+        <a
+          href="{{ url_for(
+                        'main.asset_detail',
+                        asset_id=asset.id
+                    ) }}"
+          class="btn btn-secondary"
+        >
+          <i class="bi bi-box"></i>
+
+          {{ _('Asset Detail') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

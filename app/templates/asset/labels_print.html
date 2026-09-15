@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Print Asset Labels') }} - Asset Tracker
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- ============================================================
+         PRINT HEADER
+    ============================================================ -->
+
+    <div class="page-header-card d-print-none">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-tags"></i>
+                </div>
+
+                <div>
+                    <h3 class="page-header-title">
+                        {{ _('Print Asset Label') }}
+                    </h3>
+
+                    <div class="page-header-subtitle">
+                        {{ assets|length }} {{ _('assets') }} {{ _('selected for printing.') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a
+                    href="{{ url_for('main.asset_labels') }}"
+                    class="btn btn-secondary"
+                >
+                    <i class="bi bi-arrow-left"></i>
+                    {{ _('Back') }}
+                </a>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="window.print()"
+                >
+                    <i class="bi bi-printer"></i>
+                    {{ _('Print') }}
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================================
+         LABEL AREA
+    ============================================================ -->
+
+    <div class="label-container">
+
+        {% for asset in assets %}
+
+        <div class="asset-label">
+
+            <!-- QR CODE -->
+
+            <div class="label-qr">
+
+                {% set qr_filename = asset.asset_tag ~ ".png" %}
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='qrcodes/' ~ qr_filename
+                    ) }}"
+                    alt="{{ _('QR') }} {{ asset.asset_tag }}"
+                >
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="label-information">
+
+                <div class="label-company">
+                    ASSET TRACKER
+                </div>
+
+
+                <div class="label-title">
+                    {{ _('ASSET IDENTIFICATION') }}
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Asset Tag') }}
+                    </span>
+
+                    <span class="label-value asset-tag">
+                        {{ asset.asset_tag or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Asset') }}
+                    </span>
+
+                    <span class="label-value">
+                        {{ asset.asset_name or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Category') }}
+                    </span>
+
+                    <span class="label-value">
+                        {{ asset.category or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Brand') }}
+                    </span>
+
+                    <span class="label-value">
+                        {{ asset.brand or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Model') }}
+                    </span>
+
+                    <span class="label-value">
+                        {{ asset.model or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-row">
+
+                    <span class="label-key">
+                        {{ _('Serial') }}
+                    </span>
+
+                    <span class="label-value serial-number">
+                        {{ asset.serial_number or "-" }}
+                    </span>
+
+                </div>
+
+
+                <div class="label-footer">
+                    {{ _('PROPERTY OF COMPANY') }}
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================
+     STYLE
+============================================================ -->
+
+<style>
+
+    [data-bs-theme="light"] body {
+        background: #f5f6f8;
+    }
+
+
+    .label-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+
+    .asset-label {
+
+        width: 100mm;
+        min-height: 55mm;
+
+        background: #ffffff;
+
+        border: 1px solid #222;
+
+        border-radius: 6px;
+
+        padding: 8px;
+
+        display: flex;
+
+        gap: 10px;
+
+        box-sizing: border-box;
+
+        page-break-inside: avoid;
+
+        break-inside: avoid;
+
+    }
+
+
+    .label-qr {
+
+        width: 32mm;
+        min-width: 32mm;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    .label-qr img {
+
+        width: 30mm;
+        height: 30mm;
+
+        object-fit: contain;
+
+        display: block;
+
+    }
+
+
+    .label-information {
+
+        flex: 1;
+
+        min-width: 0;
+
+    }
+
+
+    .label-company {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        letter-spacing: 0.5px;
+
+        margin-bottom: 1px;
+
+    }
+
+
+    .label-title {
+
+        font-size: 8px;
+
+        color: #666;
+
+        font-weight: 600;
+
+        margin-bottom: 4px;
+
+        border-bottom: 1px solid #ddd;
+
+        padding-bottom: 3px;
+
+    }
+
+
+    .label-row {
+
+        display: flex;
+
+        gap: 5px;
+
+        font-size: 8px;
+
+        line-height: 1.35;
+
+        margin-bottom: 1px;
+
+    }
+
+
+    .label-key {
+
+        width: 18mm;
+
+        min-width: 18mm;
+
+        color: #666;
+
+        font-weight: 600;
+
+    }
+
+
+    .label-value {
+
+        flex: 1;
+
+        min-width: 0;
+
+        font-weight: 500;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+
+    }
+
+
+    .asset-tag {
+
+        font-weight: 800;
+
+        font-size: 10px;
+
+    }
+
+
+    .serial-number {
+
+        font-family: monospace;
+
+        font-size: 7px;
+
+    }
+
+
+    .label-footer {
+
+        margin-top: 3px;
+
+        padding-top: 3px;
+
+        border-top: 1px solid #ddd;
+
+        font-size: 6px;
+
+        color: #777;
+
+        letter-spacing: 0.5px;
+
+    }
+
+
+    @media print {
+
+        @page {
+
+            size: A4 portrait;
+
+            margin: 8mm;
+
+        }
+
+
+        html,
+        body {
+
+            background: #ffffff !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+        }
+
+
+        .navbar,
+        nav,
+        footer,
+        .app-footer,
+        .d-print-none {
+
+            display: none !important;
+
+        }
+
+
+        .container-fluid {
+
+            width: 100% !important;
+
+            max-width: none !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+        }
+
+
+        .label-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 5mm;
+
+        }
+
+
+        .asset-label {
+
+            width: 100mm;
+
+            min-height: 55mm;
+
+            border: 1px solid #000;
+
+            border-radius: 0;
+
+            padding: 5mm;
+
+            page-break-inside: avoid;
+
+            break-inside: avoid;
+
+        }
+
+
+        .label-qr {
+
+            width: 28mm;
+
+            min-width: 28mm;
+
+        }
+
+
+        .label-qr img {
+
+            width: 27mm;
+
+            height: 27mm;
+
+        }
+
+
+        .label-company {
+
+            font-size: 10px;
+
+        }
+
+
+        .label-title {
+
+            font-size: 7px;
+
+        }
+
+
+        .label-row {
+
+            font-size: 7px;
+
+        }
+
+
+        .asset-tag {
+
+            font-size: 9px;
+
+        }
+
+
+        .serial-number {
+
+            font-size: 6px;
+
+        }
+
+
+        .label-footer {
+
+            font-size: 5px;
+
+        }
+
+    }
+
+</style>
+
+
+<!-- ============================================================
+     AUTO PRINT
+============================================================ -->
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            // Tidak langsung mencetak.
+            // User menekan tombol Print agar bisa memilih printer
+            // dan ukuran kertas terlebih dahulu.
+
+        }
+    );
+
+</script>
+
+{% endblock %}
+

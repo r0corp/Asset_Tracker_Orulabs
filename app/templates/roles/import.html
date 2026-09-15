@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Import Permissions') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-upload"></i>
+                </div>
+                <div>
+                    <h2 class="page-header-title">{{ _('Import Roles & Permissions') }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-1"></i>
+                {{ _('Use the') }} <strong>{{ _('Export') }}</strong> {{ _('file from the Role Management page as a template. Roles whose names already exist will have their permissions updated (except built-in roles, whose names cannot be changed); roles with new names will be created automatically.') }}
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="mb-3">
+                    <label class="form-label">{{ _('Excel File (.xlsx)') }}</label>
+                    <input type="file" name="file" class="form-control" accept=".xlsx" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-upload me-1"></i>
+                    {{ _('Import') }}
+                </button>
+
+                <a href="{{ url_for('main.roles') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+
+                <a href="{{ url_for('main.export_roles') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-download me-1"></i>
+                    {{ _('Download Template (Export Now)') }}
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

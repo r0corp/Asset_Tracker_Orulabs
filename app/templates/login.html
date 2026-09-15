@@ -1,0 +1,849 @@
+{% extends "base.html" %}
+
+{% block title %}Login - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<style>
+    /* ============================================================
+       LOGIN - TECH BACKGROUND
+       ============================================================ */
+
+    /*
+       position:fixed + inset:0 pins this to the actual browser
+       viewport regardless of any parent container/padding/margin
+       and regardless of page scroll position, so the background
+       always covers the full screen edge-to-edge.
+    */
+    .login-tech-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+
+        width: 100vw;
+        height: 100vh;
+
+        background: radial-gradient(circle at 15% 15%, #16305e 0%, #0a1330 45%, #05070f 100%);
+    }
+
+    :root[data-bs-theme="dark"] .login-tech-bg {
+        background: radial-gradient(circle at 15% 15%, #3a1414 0%, #1a0a0a 45%, #05070f 100%);
+    }
+
+    .login-page-wrapper {
+        position: relative;
+
+        min-height: 100vh;
+        margin: -1rem -0.5rem;
+        padding: 1rem 0.5rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* animated circuit grid */
+    .login-tech-bg::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+
+        background-image:
+            linear-gradient(rgba(96, 165, 250, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(96, 165, 250, 0.12) 1px, transparent 1px);
+        background-size: 44px 44px;
+
+        -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+        mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+
+        animation: loginGridPan 40s linear infinite;
+    }
+
+    :root[data-bs-theme="dark"] .login-tech-bg::before {
+        background-image:
+            linear-gradient(rgba(248, 113, 113, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(248, 113, 113, 0.12) 1px, transparent 1px);
+    }
+
+    @keyframes loginGridPan {
+        from { background-position: 0 0, 0 0; }
+        to   { background-position: 220px 220px, 220px 220px; }
+    }
+
+    .login-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    .login-glow-1 {
+        width: 380px;
+        height: 380px;
+        top: -120px;
+        left: -100px;
+        background: #2563eb;
+        animation: loginFloat1 13s ease-in-out infinite;
+    }
+
+    .login-glow-2 {
+        width: 320px;
+        height: 320px;
+        bottom: -120px;
+        right: -80px;
+        background: #06b6d4;
+        animation: loginFloat2 15s ease-in-out infinite;
+    }
+
+    .login-glow-3 {
+        width: 260px;
+        height: 260px;
+        bottom: 12%;
+        left: 6%;
+        background: #7c3aed;
+        opacity: 0.3;
+        animation: loginFloat3 17s ease-in-out infinite;
+    }
+
+    :root[data-bs-theme="dark"] .login-glow-1 {
+        background: #ef4444;
+    }
+
+    :root[data-bs-theme="dark"] .login-glow-2 {
+        background: #f97316;
+    }
+
+    :root[data-bs-theme="dark"] .login-glow-3 {
+        background: #b91c1c;
+    }
+
+    @keyframes loginFloat1 {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(35px, 30px); }
+    }
+
+    @keyframes loginFloat2 {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(-30px, -25px); }
+    }
+
+    @keyframes loginFloat3 {
+        0%, 100% { transform: translate(0, 0); }
+        50%      { transform: translate(22px, -20px); }
+    }
+
+    .login-particle-canvas {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+    }
+
+    .login-content {
+        position: relative;
+        z-index: 1;
+
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .login-footer {
+        position: relative;
+        z-index: 1;
+
+        margin-top: 20px;
+
+        text-align: center;
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .login-tech-bg::before,
+        .login-glow-1,
+        .login-glow-2,
+        .login-glow-3 {
+            animation: none;
+        }
+    }
+
+    /* ============================================================
+       SPLIT CARD
+       ============================================================ */
+
+    .login-split-card {
+        display: flex;
+        /* Bootstrap's .card sets flex-direction:column by default -
+           override it explicitly, otherwise the panels stack instead
+           of sitting side by side. */
+        flex-direction: row;
+
+        border: 0;
+        border-radius: 22px;
+        overflow: hidden;
+
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+
+        min-height: 520px;
+    }
+
+    /* ------------------------------------------------------------
+       BRAND PANEL (kiri)
+       ------------------------------------------------------------ */
+
+    .login-brand-panel {
+        position: relative;
+        overflow: hidden;
+
+        flex: 0 0 42%;
+
+        padding: 48px 40px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        background: linear-gradient(160deg, #0d6efd 0%, #0a3fa3 100%);
+        color: #fff;
+    }
+
+    :root[data-bs-theme="dark"] .login-brand-panel {
+        background: linear-gradient(160deg, #ef4444 0%, #7f1d1d 100%);
+    }
+
+    .login-brand-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        pointer-events: none;
+    }
+
+    .login-brand-circle-1 {
+        width: 260px;
+        height: 260px;
+        bottom: -90px;
+        left: -70px;
+    }
+
+    .login-brand-circle-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 40px;
+        left: 120px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .login-brand-circle-3 {
+        width: 130px;
+        height: 130px;
+        top: -50px;
+        right: -40px;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .login-brand-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-brand-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        font-size: 26px;
+
+        margin-bottom: 28px;
+        overflow: hidden;
+    }
+
+    .login-brand-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .login-brand-title {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .login-brand-subtitle {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 22px;
+    }
+
+    .login-brand-desc {
+        font-size: 14px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 320px;
+    }
+
+    /* ------------------------------------------------------------
+       FORM PANEL (kanan)
+       ------------------------------------------------------------ */
+
+    .login-form-panel {
+        flex: 1 1 58%;
+
+        padding: 40px 44px;
+
+        background: #ffffff;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    :root[data-bs-theme="dark"] .login-form-panel {
+        background: #1b1e27;
+    }
+
+    .login-form-toolbar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+
+        margin-bottom: 24px;
+    }
+
+    .login-icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid var(--bs-border-color);
+        background: transparent;
+        color: var(--bs-body-color);
+
+        font-size: 15px;
+
+        transition: background 0.15s ease;
+    }
+
+    .login-icon-btn:hover {
+        background: var(--bs-tertiary-bg);
+    }
+
+    .login-lang-btn {
+        padding: 0 10px;
+        width: auto;
+        gap: 6px;
+    }
+
+    .login-form-body {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .login-form-title {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 6px;
+    }
+
+    .login-form-subtitle {
+        color: var(--bs-secondary-color);
+        font-size: 13.5px;
+        margin-bottom: 28px;
+    }
+
+    .login-input-group .input-group-text {
+        background: var(--bs-tertiary-bg);
+        border-right: 0;
+        color: var(--bs-secondary-color);
+    }
+
+    .login-input-group .form-control {
+        border-left: 0;
+    }
+
+    .login-input-group .form-control:focus {
+        border-color: var(--bs-border-color);
+        box-shadow: none;
+    }
+
+    .login-input-group:focus-within .input-group-text {
+        border-color: #86b7fe;
+    }
+
+    :root[data-bs-theme="dark"] .login-input-group:focus-within .input-group-text {
+        border-color: #ef4444;
+    }
+
+    .login-password-toggle {
+        border-left: 0;
+        color: var(--bs-secondary-color);
+    }
+
+    .login-form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 4px 0 20px;
+
+        font-size: 13.5px;
+    }
+
+    .login-submit-btn {
+        padding: 11px;
+        font-weight: 700;
+        border-radius: 10px;
+    }
+
+    .login-hint {
+        text-align: center;
+        font-size: 12.5px;
+        color: var(--bs-secondary-color);
+        margin-top: 22px;
+    }
+
+    .login-lang-row {
+        text-align: center;
+        margin-top: 18px;
+    }
+
+    /* Lebar sedang (tablet/laptop window kecil) - tetap sejajar
+       (side-by-side), cuma padding & ukuran teks dikecilkan supaya
+       tidak sesak. */
+    @media (max-width: 860px) {
+        .login-brand-panel {
+            flex-basis: 40%;
+            padding: 32px 24px;
+        }
+
+        .login-brand-logo {
+            width: 46px;
+            height: 46px;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .login-brand-title {
+            font-size: 24px;
+        }
+
+        .login-brand-desc {
+            font-size: 13px;
+            max-width: none;
+        }
+
+        .login-form-panel {
+            padding: 32px 28px;
+        }
+
+        .login-form-title {
+            font-size: 22px;
+        }
+    }
+
+    /* Hanya di lebar ponsel sungguhan baru ditumpuk vertikal. */
+    @media (max-width: 576px) {
+        .login-split-card {
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .login-brand-panel {
+            flex: 0 0 auto;
+            padding: 32px 28px;
+        }
+
+        .login-brand-desc {
+            max-width: none;
+        }
+
+        .login-form-panel {
+            padding: 32px 26px;
+        }
+    }
+</style>
+
+<div class="login-tech-bg" aria-hidden="true">
+
+    <canvas id="loginParticleCanvas" class="login-particle-canvas"></canvas>
+
+    <div class="login-glow login-glow-1"></div>
+    <div class="login-glow login-glow-2"></div>
+    <div class="login-glow login-glow-3"></div>
+
+</div>
+
+<div class="login-page-wrapper">
+
+    <div class="login-content">
+
+        <div class="card login-split-card">
+
+            <!-- ================================================
+                 BRAND PANEL
+                 ================================================ -->
+
+            <div class="login-brand-panel">
+
+                <div class="login-brand-circle login-brand-circle-1"></div>
+                <div class="login-brand-circle login-brand-circle-2"></div>
+                <div class="login-brand-circle login-brand-circle-3"></div>
+
+                <div class="login-brand-inner">
+
+                    <div class="login-brand-logo">
+                        {% if app_setting.logo_square %}
+                        <img
+                            src="{{ url_for('static', filename='uploads/branding/' ~ app_setting.logo_square) }}"
+                            alt="{{ app_setting.app_name }}"
+                        >
+                        {% else %}
+                        <i class="bi bi-box-seam"></i>
+                        {% endif %}
+                    </div>
+
+                    <div class="login-brand-title">{{ _('Welcome') }}</div>
+                    <div class="login-brand-subtitle">{{ app_setting.app_name }}</div>
+
+                    <p class="login-brand-desc">
+                        {% if app_setting.login_message %}
+                        {{ app_setting.login_message }}
+                        {% else %}
+                        {{ _('Manage and track your company assets in one integrated system.') }}
+                        {% endif %}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ================================================
+                 FORM PANEL
+                 ================================================ -->
+
+            <div class="login-form-panel">
+
+                <div class="login-form-toolbar">
+
+                    <button
+                        type="button"
+                        id="loginThemeToggle"
+                        class="login-icon-btn"
+                        aria-label="{{ _('Toggle color scheme') }}"
+                    >
+                        <i class="bi bi-sun-fill" data-login-theme-icon="light"></i>
+                        <i class="bi bi-moon-stars-fill d-none" data-login-theme-icon="dark"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button
+                            type="button"
+                            class="login-icon-btn login-lang-btn"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <span class="fi fi-{{ available_languages[current_language][1] }} rounded-1"></span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {% for code, (name, flag) in available_languages.items() %}
+                            <li>
+                                <a
+                                    href="{{ url_for('main.set_language', lang_code=code) }}"
+                                    class="dropdown-item d-flex align-items-center gap-2 {% if code == current_language %}active{% endif %}"
+                                >
+                                    <span class="fi fi-{{ flag }} rounded-1"></span> {{ name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="login-form-body">
+
+                    <div class="login-form-title">{{ _('Sign In') }}</div>
+                    <p class="login-form-subtitle">
+                        {{ _('Enter your credentials to access your account.') }}
+                    </p>
+
+                    <form method="POST" action="{{ url_for('main.login') }}">
+
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <input type="hidden" name="next" value="{{ next }}">
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">{{ _('Username') }}</label>
+                            <div class="input-group login-input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="username"
+                                    name="username"
+                                    autofocus
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="password" class="form-label">{{ _('Password') }}</label>
+                            <div class="input-group login-input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    required
+                                >
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary login-password-toggle"
+                                    id="loginTogglePassword"
+                                    aria-label="{{ _('Show password') }}"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="login-form-options">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                <label class="form-check-label" for="remember">{{ _('Remember me') }}</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 login-submit-btn">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>
+                            {{ _('Login') }}
+                        </button>
+
+                    </form>
+
+                    <p class="login-hint">
+                        {{ _('Forgot your password? Contact your administrator.') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="login-footer">
+            {% if app_setting.footer_text %}
+            {{ app_setting.footer_text }}
+            {% else %}
+            {{ app_setting.app_name }} &copy; {{ now().year }}
+            {% endif %}
+        </footer>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+    "use strict";
+
+    var canvas = document.getElementById("loginParticleCanvas");
+
+    if (!canvas || !canvas.getContext) {
+        return;
+    }
+
+    var ctx = canvas.getContext("2d");
+    var particles = [];
+    var particleCount = 70;
+    var maxLinkDistance = 130;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var animationId = null;
+
+    function resizeCanvas() {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+    }
+
+    function createParticles() {
+        particles = [];
+
+        for (var i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                r: Math.random() * 1.6 + 1.1
+            });
+        }
+    }
+
+    function currentAccentColor() {
+        var isDark = document.documentElement.getAttribute("data-bs-theme") === "dark";
+        return {
+            dot: isDark ? "rgba(252, 165, 165, 0.85)" : "rgba(147, 197, 253, 0.85)",
+            line: isDark ? "248, 113, 113" : "96, 165, 250"
+        };
+    }
+
+    function drawFrame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        var accent = currentAccentColor();
+
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+
+            if (!reduceMotion) {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = accent.dot;
+            ctx.fill();
+        }
+
+        for (var a = 0; a < particles.length; a++) {
+            for (var b = a + 1; b < particles.length; b++) {
+                var dx = particles[a].x - particles[b].x;
+                var dy = particles[a].y - particles[b].y;
+                var distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < maxLinkDistance) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[a].x, particles[a].y);
+                    ctx.lineTo(particles[b].x, particles[b].y);
+                    ctx.strokeStyle = "rgba(" + accent.line + ", " + ((1 - distance / maxLinkDistance) * 0.4) + ")";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function step() {
+        drawFrame();
+        animationId = window.requestAnimationFrame(step);
+    }
+
+    function start() {
+        resizeCanvas();
+        createParticles();
+
+        if (reduceMotion) {
+            drawFrame();
+        } else {
+            step();
+        }
+    }
+
+    window.addEventListener("resize", function () {
+        if (animationId) {
+            window.cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+
+        start();
+    });
+
+    start();
+})();
+
+(function () {
+    "use strict";
+
+    var STORAGE_KEY = "lte-theme";
+    var root = document.documentElement;
+    var toggleBtn = document.getElementById("loginThemeToggle");
+
+    if (!toggleBtn) {
+        return;
+    }
+
+    function syncIcon() {
+        var isDark = root.getAttribute("data-bs-theme") === "dark";
+
+        toggleBtn.querySelector('[data-login-theme-icon="light"]').classList.toggle("d-none", isDark);
+        toggleBtn.querySelector('[data-login-theme-icon="dark"]').classList.toggle("d-none", !isDark);
+    }
+
+    toggleBtn.addEventListener("click", function () {
+        var isDark = root.getAttribute("data-bs-theme") === "dark";
+        var next = isDark ? "light" : "dark";
+
+        root.setAttribute("data-bs-theme", next);
+        root.style.colorScheme = next;
+
+        try {
+            localStorage.setItem(STORAGE_KEY, next);
+        } catch (e) {}
+
+        syncIcon();
+    });
+
+    syncIcon();
+})();
+
+(function () {
+    "use strict";
+
+    var toggleBtn = document.getElementById("loginTogglePassword");
+    var passwordInput = document.getElementById("password");
+
+    if (!toggleBtn || !passwordInput) {
+        return;
+    }
+
+    toggleBtn.addEventListener("click", function () {
+        var isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+        toggleBtn.querySelector("i").className = isHidden ? "bi bi-eye-slash" : "bi bi-eye";
+    });
+})();
+</script>
+{% endblock %}

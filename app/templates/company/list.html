@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Company Data') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<style>
+    .company-identity-card {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .company-identity-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+    }
+
+    .company-logo-wrap {
+        width: 150px;
+        height: 150px;
+        margin: 8px auto 0;
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(13, 110, 253, 0.03) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .company-logo-wrap img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .company-logo-placeholder {
+        font-size: 4.5rem;
+        color: #adb5bd;
+    }
+
+    .company-name {
+        margin-top: 18px;
+        margin-bottom: 8px;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .company-prefix-badge {
+        display: inline-block;
+        padding: 5px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        background: linear-gradient(135deg, #0d6efd 0%, #0a4fb0 100%);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.28);
+    }
+
+    .company-identity-footer {
+        font-size: 12.5px;
+    }
+
+    .company-contact-table tr {
+        transition: background 0.15s ease;
+    }
+
+    .company-contact-table tr:hover {
+        background: rgba(13, 110, 253, 0.04);
+    }
+
+    .company-contact-table th {
+        font-weight: 600;
+        color: #495057;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        white-space: nowrap;
+    }
+
+    .company-contact-table td {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .company-contact-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: rgba(13, 110, 253, 0.1);
+        color: #0d6efd;
+        margin-right: 10px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Company Data') }}</h3>
+                    <p class="page-header-subtitle mb-0">{{ _('Company information used on document headers and asset movement receipts') }}</p>
+                </div>
+            </div>
+            <div class="page-header-actions">
+                <a href="{{ url_for('main.edit_company') }}" class="btn btn-primary">
+                    <i class="bi bi-pencil-square me-1"></i>
+                    {{ _('Edit Company Data') }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% if company %}
+
+    <div class="row">
+
+        <!-- ================================================
+             KARTU IDENTITAS (LOGO + NAMA)
+        ================================================ -->
+
+        <div class="col-md-4">
+
+            <div class="card overflow-hidden company-identity-card">
+
+                <div class="card-body text-center">
+
+                    <div class="company-logo-wrap">
+
+                        {% if company.logo %}
+
+                        <img
+                            src="{{ url_for('static', filename='uploads/company/' ~ company.logo) }}"
+                            alt="Logo {{ company.name }}"
+                        >
+
+                        {% else %}
+
+                        <i class="bi bi-building company-logo-placeholder"></i>
+
+                        {% endif %}
+
+                    </div>
+
+                    <h4 class="company-name">{{ company.name or '-' }}</h4>
+
+                    {% if company.document_prefix %}
+                    <span class="company-prefix-badge">{{ _('Prefix:') }} {{ company.document_prefix }}</span>
+                    {% endif %}
+
+                </div>
+
+                <div class="card-footer text-muted company-identity-footer">
+                    {{ _('This data is automatically used in the') }} <strong>{{ _('Asset Movement Receipt') }}</strong> {{ _('header and document numbering.') }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================================
+             KARTU DETAIL KONTAK
+        ================================================ -->
+
+        <div class="col-md-8">
+
+            <div class="card overflow-hidden">
+
+                <div class="card-header-accent">
+                    <div class="card-header-accent-left">
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                        <div class="card-header-accent-title">
+                            {{ _('Contact Information') }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-borderless mb-0 company-contact-table">
+                        <tbody>
+
+                            <tr>
+                                <th style="width: 180px;">
+                                    <span class="company-contact-icon"><i class="bi bi-geo-alt"></i></span>
+                                    {{ _('Address') }}
+                                </th>
+                                <td>{{ company.address or '-' }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <span class="company-contact-icon"><i class="bi bi-telephone"></i></span>
+                                    {{ _('Phone') }}
+                                </th>
+                                <td>{{ company.phone or '-' }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <span class="company-contact-icon"><i class="bi bi-envelope"></i></span>
+                                    {{ _('Email') }}
+                                </th>
+                                <td>{{ company.email or '-' }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <span class="company-contact-icon"><i class="bi bi-globe"></i></span>
+                                    {{ _('Website') }}
+                                </th>
+                                <td>
+                                    {% if company.website %}
+                                    <a href="{{ company.website }}" target="_blank" rel="noopener">{{ company.website }}</a>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <span class="company-contact-icon"><i class="bi bi-file-earmark-text"></i></span>
+                                    {{ _('NPWP') }}
+                                </th>
+                                <td>{{ company.tax_number or '-' }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-1"></i>
+        {{ _('Company data is not yet available.') }}
+        <a href="{{ url_for('main.edit_company') }}" class="alert-link">{{ _('Add company data') }}</a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

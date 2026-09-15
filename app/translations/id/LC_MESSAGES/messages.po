@@ -1,0 +1,3962 @@
+# Indonesian translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-15 10:59+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: id <LL@li.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: __init__.py:87
+msgid "The uploaded file is too large (maximum 5 MB)."
+msgstr "Ukuran file yang diunggah terlalu besar (maksimal 5 MB)."
+
+#: auth.py:26
+msgid "You do not have access to this page."
+msgstr "Anda tidak memiliki akses ke halaman ini."
+
+#: auth.py:90
+msgid "You do not have permission to perform this action."
+msgstr "Anda tidak memiliki izin untuk melakukan tindakan ini."
+
+#: blueprints/app_settings.py:79
+msgid "Logo format must be PNG, JPG, JPEG, WEBP, or SVG."
+msgstr "Format logo harus PNG, JPG, JPEG, WEBP, atau SVG."
+
+#: blueprints/app_settings.py:143
+msgid "Application name is required."
+msgstr "Nama aplikasi wajib diisi."
+
+#: blueprints/app_settings.py:219
+msgid "Application settings saved successfully."
+msgstr "Pengaturan aplikasi berhasil disimpan."
+
+#: blueprints/assets.py:402
+msgid "Excel file has not been selected."
+msgstr "File Excel belum dipilih."
+
+#: blueprints/assets.py:417
+msgid "File format must be .xlsx or .xlsm."
+msgstr "Format file harus .xlsx atau .xlsm."
+
+#: blueprints/assets.py:447
+msgid "Excel file is empty."
+msgstr "File Excel kosong."
+
+#: blueprints/assets.py:476
+#, python-format
+msgid "Required columns not found: %(columns)s"
+msgstr "Kolom wajib tidak ditemukan: %(columns)s"
+
+#: blueprints/assets.py:844
+msgid "Select at least one asset to print."
+msgstr "Pilih minimal satu asset untuk dicetak."
+
+#: blueprints/assets.py:872
+msgid "Selected assets are invalid."
+msgstr "Asset yang dipilih tidak valid."
+
+#: blueprints/assets.py:894 blueprints/assets.py:2112
+msgid "Selected assets were not found."
+msgstr "Asset yang dipilih tidak ditemukan."
+
+#: blueprints/assets.py:985
+msgid "Asset was successfully deleted."
+msgstr "Asset berhasil dihapus."
+
+#: blueprints/assets.py:1035
+msgid "Asset Tag is required."
+msgstr "Asset Tag wajib diisi."
+
+#: blueprints/assets.py:1054
+msgid "Asset name is required."
+msgstr "Nama asset wajib diisi."
+
+#: blueprints/assets.py:1077
+msgid "Asset Tag is already in use."
+msgstr "Asset Tag sudah digunakan."
+
+#: blueprints/assets.py:1132
+#, python-format
+msgid "Invalid asset photo: %(error)s"
+msgstr "Foto asset tidak valid: %(error)s"
+
+#: blueprints/assets.py:1153
+msgid "Asset photo failed to upload."
+msgstr "Foto asset gagal diunggah."
+
+#: blueprints/assets.py:1267
+msgid "Asset failed to save."
+msgstr "Asset gagal disimpan."
+
+#: blueprints/assets.py:1301
+msgid "Asset was successfully added."
+msgstr "Asset berhasil ditambahkan."
+
+#: blueprints/assets.py:1646
+msgid "Invalid purchase date format."
+msgstr "Format tanggal pembelian tidak valid."
+
+#: blueprints/assets.py:1686
+msgid "Invalid purchase price."
+msgstr "Harga pembelian tidak valid."
+
+#: blueprints/assets.py:1777
+msgid "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
+msgstr "Format foto tidak didukung. Gunakan JPG, JPEG, PNG, atau WEBP."
+
+#: blueprints/assets.py:1923
+msgid "Asset was successfully updated and warranty history was recorded."
+msgstr "Asset berhasil diperbarui dan histori garansi telah dicatat."
+
+#: blueprints/assets.py:1932
+msgid "Asset was successfully updated."
+msgstr "Asset berhasil diperbarui."
+
+#: blueprints/assets.py:1953
+msgid "Failed to update asset."
+msgstr "Asset gagal diperbarui."
+
+#: blueprints/assets.py:2034
+msgid "Select at least one asset to export to Excel."
+msgstr "Pilih minimal satu asset untuk diekspor ke Excel."
+
+#: blueprints/assets.py:2078
+msgid "Invalid asset ID."
+msgstr "ID asset tidak valid."
+
+#: blueprints/backup.py:286
+#, python-format
+msgid "Failed to create backup. Detail: %(error)s"
+msgstr "Gagal membuat backup. Detail: %(error)s"
+
+#: blueprints/backup.py:301
+#, python-format
+msgid "Backup created successfully: %(filename)s"
+msgstr "Backup berhasil dibuat: %(filename)s"
+
+#: blueprints/backup.py:323 blueprints/backup.py:412
+msgid "Backup file not found."
+msgstr "File backup tidak ditemukan."
+
+#: blueprints/backup.py:358
+msgid "Backup deleted successfully."
+msgstr "Backup berhasil dihapus."
+
+#: blueprints/backup.py:365
+msgid ""
+"The backup file is being used by another process. Please try again shortly."
+msgstr ""
+"File backup sedang digunakan oleh proses lain. Silakan coba lagi sebentar."
+
+#: blueprints/backup.py:394 blueprints/backup.py:486
+msgid "Type \"RESTORE\" (all uppercase) to confirm."
+msgstr "Ketik \"RESTORE\" (huruf besar semua) untuk konfirmasi."
+
+#: blueprints/backup.py:431 blueprints/backup.py:528
+#, python-format
+msgid "Restore failed: %(error)s"
+msgstr "Restore gagal: %(error)s"
+
+#: blueprints/backup.py:455 blueprints/backup.py:552
+msgid ""
+"Restore successful. You will be logged out automatically - please log in "
+"again. If the app behaves oddly afterward, restart it."
+msgstr ""
+"Restore berhasil. Anda akan logout otomatis - silakan login kembali. Jika "
+"aplikasi berjalan tidak normal setelahnya, restart aplikasi."
+
+#: blueprints/backup.py:499
+msgid "Please select a .zip backup file first."
+msgstr "Silakan pilih file backup .zip terlebih dahulu."
+
+#: blueprints/company.py:112
+msgid "Company name is required."
+msgstr "Nama perusahaan wajib diisi."
+
+#: blueprints/company.py:173
+msgid "Logo format must be PNG, JPG, JPEG, or WEBP."
+msgstr "Format logo harus PNG, JPG, JPEG, atau WEBP."
+
+#: blueprints/company.py:251
+msgid "Company data updated successfully."
+msgstr "Data perusahaan berhasil diperbarui."
+
+#: blueprints/helpers.py:427 templates/asset/add.html:956
+msgid "Photo format must be JPG, JPEG, PNG, or WEBP."
+msgstr "Format foto harus JPG, JPEG, PNG, atau WEBP."
+
+#: blueprints/login.py:70
+msgid "Incorrect username or password."
+msgstr "Username atau password salah."
+
+#: blueprints/login.py:87
+msgid "You have been logged out."
+msgstr "Anda telah logout."
+
+#: blueprints/master_data.py:57 blueprints/master_data.py:134
+msgid "Category name is required."
+msgstr "Nama kategori wajib diisi."
+
+#: blueprints/master_data.py:72 blueprints/master_data.py:151
+msgid "Category already exists."
+msgstr "Kategori sudah ada."
+
+#: blueprints/master_data.py:91
+msgid "Category added successfully."
+msgstr "Kategori berhasil ditambahkan."
+
+#: blueprints/master_data.py:168
+msgid "Category updated successfully."
+msgstr "Kategori berhasil diperbarui."
+
+#: blueprints/master_data.py:205
+msgid "Category deleted successfully."
+msgstr "Kategori berhasil dihapus."
+
+#: blueprints/master_data.py:260 blueprints/master_data.py:337
+msgid "Location name is required."
+msgstr "Nama lokasi wajib diisi."
+
+#: blueprints/master_data.py:275 blueprints/master_data.py:354
+msgid "Location already exists."
+msgstr "Lokasi sudah ada."
+
+#: blueprints/master_data.py:294
+msgid "Location added successfully."
+msgstr "Lokasi berhasil ditambahkan."
+
+#: blueprints/master_data.py:371
+msgid "Location updated successfully."
+msgstr "Lokasi berhasil diperbarui."
+
+#: blueprints/master_data.py:408
+msgid "Location deleted successfully."
+msgstr "Lokasi berhasil dihapus."
+
+#: blueprints/master_data.py:463 blueprints/master_data.py:540
+msgid "Department name is required."
+msgstr "Nama departemen wajib diisi."
+
+#: blueprints/master_data.py:478 blueprints/master_data.py:557
+msgid "Department already exists."
+msgstr "Departemen sudah ada."
+
+#: blueprints/master_data.py:497
+msgid "Department added successfully."
+msgstr "Departemen berhasil ditambahkan."
+
+#: blueprints/master_data.py:574
+msgid "Department updated successfully."
+msgstr "Departemen berhasil diperbarui."
+
+#: blueprints/master_data.py:611
+msgid "Department deleted successfully."
+msgstr "Departemen berhasil dihapus."
+
+#: blueprints/master_data.py:661 blueprints/master_data.py:747
+msgid "Vendor name is required."
+msgstr "Nama vendor wajib diisi."
+
+#: blueprints/master_data.py:676 blueprints/master_data.py:764
+msgid "Vendor already exists."
+msgstr "Vendor sudah ada."
+
+#: blueprints/master_data.py:709
+msgid "Vendor added successfully."
+msgstr "Vendor berhasil ditambahkan."
+
+#: blueprints/master_data.py:800
+msgid "Vendor updated successfully."
+msgstr "Vendor berhasil diperbarui."
+
+#: blueprints/master_data.py:837
+msgid "Vendor deleted successfully."
+msgstr "Vendor berhasil dihapus."
+
+#: blueprints/menus.py:114 blueprints/menus.py:225
+msgid "Menu label is required."
+msgstr "Label menu wajib diisi."
+
+#: blueprints/menus.py:154
+msgid "Menu added successfully."
+msgstr "Menu berhasil ditambahkan."
+
+#: blueprints/menus.py:262
+msgid "Menu updated successfully."
+msgstr "Menu berhasil diperbarui."
+
+#: blueprints/menus.py:299
+msgid "Menu deleted successfully."
+msgstr "Menu berhasil dihapus."
+
+#: blueprints/movements.py:1452 blueprints/movements.py:2132
+msgid "Movement date is required."
+msgstr "Tanggal mutasi wajib diisi."
+
+#: blueprints/movements.py:1604 blueprints/movements.py:2324
+msgid "Destination location is required."
+msgstr "Lokasi tujuan wajib diisi."
+
+#: blueprints/movements.py:1622 blueprints/movements.py:2346
+msgid "Destination department is required."
+msgstr "Departemen tujuan wajib diisi."
+
+#: blueprints/movements.py:1640 blueprints/movements.py:2368
+msgid "Destination PIC is required."
+msgstr "PIC tujuan wajib diisi."
+
+#: blueprints/movements.py:1664 blueprints/movements.py:2396
+msgid "Movement has no change in asset position."
+msgstr "Mutasi tidak memiliki perubahan posisi asset."
+
+#: blueprints/movements.py:1737
+msgid ""
+"Asset data is not in sync with the latest movement. Please check and correct"
+" the asset data before creating a new movement."
+msgstr ""
+"Data asset tidak sinkron dengan mutasi terakhir. Silakan periksa dan "
+"perbaiki data asset sebelum membuat mutasi baru."
+
+#: blueprints/movements.py:1889
+#, python-format
+msgid "Failed to save the movement. Detail: %(error)s"
+msgstr "Gagal menyimpan mutasi. Detail: %(error)s"
+
+#: blueprints/movements.py:1906
+#, python-format
+msgid "Asset movement saved successfully. Movement number: %(number)s"
+msgstr "Mutasi asset berhasil disimpan. Nomor mutasi: %(number)s"
+
+#: blueprints/movements.py:1981
+msgid "Movement not found."
+msgstr "Mutasi tidak ditemukan."
+
+#: blueprints/movements.py:1996
+msgid ""
+"This movement is not the latest movement for this asset. Only the latest "
+"movement can be corrected."
+msgstr ""
+"Mutasi ini bukan mutasi terakhir untuk asset ini. Hanya mutasi terakhir yang"
+" dapat dikoreksi."
+
+#: blueprints/movements.py:2162
+msgid "Movement date cannot be earlier than the previous movement."
+msgstr "Tanggal mutasi tidak boleh lebih awal dari mutasi sebelumnya."
+
+#: blueprints/movements.py:2279
+msgid ""
+"The movement's origin location could not be determined from the asset "
+"history."
+msgstr "Lokasi asal mutasi tidak dapat ditentukan dari histori asset."
+
+#: blueprints/movements.py:2300
+msgid ""
+"The movement's origin department could not be determined from the asset "
+"history."
+msgstr "Departemen asal mutasi tidak dapat ditentukan dari histori asset."
+
+#: blueprints/movements.py:2557
+#, python-format
+msgid "Movement %(number)s corrected successfully."
+msgstr "Mutasi %(number)s berhasil dikoreksi."
+
+#: blueprints/movements.py:2579
+#, python-format
+msgid ""
+"An error occurred while saving the movement correction. Detail: %(error)s"
+msgstr "Terjadi kesalahan saat menyimpan koreksi mutasi. Detail: %(error)s"
+
+#: blueprints/profile.py:45
+msgid "Full name is required."
+msgstr "Nama lengkap wajib diisi."
+
+#: blueprints/profile.py:56
+msgid "New password confirmation does not match."
+msgstr "Konfirmasi password baru tidak cocok."
+
+#: blueprints/profile.py:68 blueprints/users.py:85 blueprints/users.py:219
+#, python-format
+msgid "Password must be at least %(min_length)s characters."
+msgstr "Password minimal %(min_length)s karakter."
+
+#: blueprints/profile.py:99
+msgid "Profile updated successfully."
+msgstr "Profil berhasil diperbarui."
+
+#: blueprints/roles.py:91 blueprints/roles.py:184
+msgid "Role name is required."
+msgstr "Nama role wajib diisi."
+
+#: blueprints/roles.py:102 blueprints/roles.py:200
+msgid "Role name is already in use."
+msgstr "Nama role sudah digunakan."
+
+#: blueprints/roles.py:138
+msgid "Role created successfully. Set its permissions below."
+msgstr "Role berhasil dibuat. Atur izinnya di bawah ini."
+
+#: blueprints/roles.py:163
+msgid "Built-in roles cannot be renamed."
+msgstr "Role bawaan tidak dapat diganti nama."
+
+#: blueprints/roles.py:231
+msgid "Role updated successfully."
+msgstr "Role berhasil diperbarui."
+
+#: blueprints/roles.py:289
+msgid "Role permissions saved successfully."
+msgstr "Izin role berhasil disimpan."
+
+#: blueprints/roles.py:323
+msgid "Built-in roles cannot be deleted."
+msgstr "Role bawaan tidak dapat dihapus."
+
+#: blueprints/roles.py:339
+#, python-format
+msgid ""
+"This role is still used by %(count)s user(s). Move those users to another "
+"role before deleting it."
+msgstr ""
+"Role ini masih digunakan oleh %(count)s user. Pindahkan user tersebut ke "
+"role lain sebelum menghapusnya."
+
+#: blueprints/roles.py:362
+msgid "Role deleted successfully."
+msgstr "Role berhasil dihapus."
+
+#: blueprints/roles.py:479
+msgid "Please select the exported Excel file first."
+msgstr "Silakan pilih file Excel hasil ekspor terlebih dahulu."
+
+#: blueprints/roles.py:496
+msgid ""
+"The file could not be read. Make sure it is an .xlsx file exported from this"
+" page."
+msgstr ""
+"File tidak dapat dibaca. Pastikan file adalah .xlsx hasil ekspor dari "
+"halaman ini."
+
+#: blueprints/roles.py:523
+msgid ""
+"The file's column format is invalid. Use a file exported from this page as "
+"the template."
+msgstr ""
+"Format kolom file tidak valid. Gunakan file hasil ekspor dari halaman ini "
+"sebagai template."
+
+#: blueprints/roles.py:604
+#, python-format
+msgid ""
+"Import successful. %(role_count)s new role(s) created, permissions for "
+"%(permission_count)s object row(s) updated."
+msgstr ""
+"Impor berhasil. %(role_count)s role baru dibuat, izin untuk "
+"%(permission_count)s baris objek diperbarui."
+
+#: blueprints/users.py:74
+msgid "Username, full name, and password are required."
+msgstr "Username, nama lengkap, dan password wajib diisi."
+
+#: blueprints/users.py:97 blueprints/users.py:193
+msgid "Invalid role."
+msgstr "Role tidak valid."
+
+#: blueprints/users.py:108 blueprints/users.py:208
+msgid "Username is already in use."
+msgstr "Username sudah digunakan."
+
+#: blueprints/users.py:134
+msgid "User added successfully."
+msgstr "User berhasil ditambahkan."
+
+#: blueprints/users.py:182
+msgid "Username and full name are required."
+msgstr "Username dan nama lengkap wajib diisi."
+
+#: blueprints/users.py:247
+msgid "User updated successfully."
+msgstr "User berhasil diperbarui."
+
+#: blueprints/users.py:274
+msgid "You cannot delete your own account."
+msgstr "Anda tidak dapat menghapus akun Anda sendiri."
+
+#: blueprints/users.py:294
+msgid "User deleted successfully."
+msgstr "User berhasil dihapus."
+
+#: templates/base.html:625
+msgid "Toggle sidebar"
+msgstr "Buka/tutup sidebar"
+
+#: templates/base.html:638 templates/login.html:550
+msgid "Toggle color scheme"
+msgstr "Ganti skema warna"
+
+#: templates/base.html:649
+msgid "Light"
+msgstr "Terang"
+
+#: templates/base.html:657
+msgid "Dark"
+msgstr "Gelap"
+
+#: templates/base.html:665
+msgid "Auto"
+msgstr "Otomatis"
+
+#: templates/base.html:742
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/base.html:747
+msgid "Logout"
+msgstr "Keluar"
+
+#: templates/base.html:806
+msgid "Main menu"
+msgstr "Menu utama"
+
+#: templates/clear_cache.html:3
+msgid "Clear Cache"
+msgstr "Hapus Cache"
+
+#: templates/clear_cache.html:16
+msgid "Clear Browser Cache"
+msgstr "Bersihkan Cache Browser"
+
+#: templates/clear_cache.html:29
+msgid ""
+"If the app display feels \"stuck\" or is not showing the latest changes, try"
+" clearing the browser cache for this page."
+msgstr ""
+"Kalau tampilan aplikasi terasa \"nyangkut\" atau tidak menampilkan perubahan"
+" terbaru, coba bersihkan cache browser untuk halaman ini."
+
+#: templates/clear_cache.html:33
+msgid ""
+"This does not delete any data in the database, only temporary data stored in"
+" your browser. If you do not need to, you may ignore this."
+msgstr ""
+"Ini tidak menghapus data di database, cuma data sementara yang tersimpan di "
+"browser Anda. Kalau tidak diperlukan, boleh diabaikan saja."
+
+#: templates/clear_cache.html:38
+msgid "Clear Cache Now"
+msgstr "Bersihkan Cache Sekarang"
+
+#: templates/clear_cache.html:59
+msgid "Clearing..."
+msgstr "Membersihkan..."
+
+#: templates/clear_cache.html:71
+msgid "Cache cleared successfully. Reloading page..."
+msgstr "Cache berhasil dibersihkan. Memuat ulang halaman..."
+
+#: templates/clear_cache.html:79
+msgid "Failed to clear cache:"
+msgstr "Gagal membersihkan cache:"
+
+#: templates/dashboard.html:1 templates/dashboard.html:500
+#: templates/warranty/index.html:340
+msgid "Dashboard"
+msgstr "Dasbor"
+
+#: templates/dashboard.html:504
+msgid "Asset Tracker summary information"
+msgstr "Ringkasan informasi Asset Tracker"
+
+#: templates/asset/labels_select.html:274 templates/asset/list.html:4
+#: templates/asset/list.html:367 templates/dashboard.html:513
+#: templates/index.html:567
+msgid "Asset List"
+msgstr "Daftar Asset"
+
+#: templates/asset/movements_global.html:35 templates/dashboard.html:522
+msgid "Movement Report"
+msgstr "Laporan Mutasi"
+
+#: templates/dashboard.html:540 templates/index.html:602
+#: templates/index.html:2468 templates/index.html:2533
+#: templates/index.html:2644
+msgid "Total Assets"
+msgstr "Total Asset"
+
+#: templates/dashboard.html:560 templates/index.html:752
+msgid "Total Asset Value"
+msgstr "Total Nilai Asset"
+
+#: templates/dashboard.html:582
+msgid "Status Types"
+msgstr "Jenis Status"
+
+#: templates/dashboard.html:606
+msgid "Movements (12 Months)"
+msgstr "Mutasi (12 Bulan)"
+
+#: templates/dashboard.html:638 templates/index.html:972
+msgid "Assets by Status"
+msgstr "Asset Berdasarkan Status"
+
+#: templates/asset/add.html:762 templates/asset/detail.html:789
+#: templates/asset/edit.html:756 templates/asset/history.html:524
+#: templates/asset/labels_select.html:374 templates/asset/list.html:480
+#: templates/asset/list.html:720 templates/asset/movement_add.html:452
+#: templates/asset/movement_detail.html:951 templates/asset/movements.html:112
+#: templates/asset/movements.html:240
+#: templates/asset/movements_global.html:124
+#: templates/asset/movements_global.html:504 templates/dashboard.html:650
+#: templates/dashboard.html:1058 templates/index.html:1810
+#: templates/index.html:2034 templates/master/menu/list.html:97
+#: templates/master/user/list.html:96 templates/warranty/alert.html:456
+#: templates/warranty/index.html:503
+msgid "Status"
+msgstr "Status"
+
+#: templates/dashboard.html:652 templates/dashboard.html:743
+#: templates/dashboard.html:800 templates/dashboard.html:857
+msgid "Count"
+msgstr "Jumlah"
+
+#: templates/dashboard.html:710
+msgid "No status data yet."
+msgstr "Belum ada data status."
+
+#: templates/dashboard.html:729 templates/index.html:1001
+msgid "Assets by Category"
+msgstr "Asset Berdasarkan Kategori"
+
+#: templates/asset/add.html:373 templates/asset/detail.html:638
+#: templates/asset/edit.html:450 templates/asset/history.html:500
+#: templates/asset/labels_print.html:134 templates/asset/list.html:529
+#: templates/asset/list.html:685 templates/asset/movement_correct.html:314
+#: templates/asset/movement_detail.html:983 templates/dashboard.html:741
+#: templates/dashboard.html:1052 templates/index.html:906
+#: templates/index.html:2022
+msgid "Category"
+msgstr "Kategori"
+
+#: templates/dashboard.html:767
+msgid "No category data yet."
+msgstr "Belum ada data kategori."
+
+#: templates/dashboard.html:786 templates/index.html:1030
+msgid "Assets by Location"
+msgstr "Asset Berdasarkan Lokasi"
+
+#: templates/asset/add.html:573 templates/asset/detail.html:692
+#: templates/asset/detail.html:893 templates/asset/edit.html:543
+#: templates/asset/history.html:543 templates/asset/labels_select.html:364
+#: templates/asset/list.html:565 templates/asset/list.html:705
+#: templates/asset/movement_add.html:627
+#: templates/asset/movement_corrections.html:144
+#: templates/asset/movement_corrections.html:201
+#: templates/asset/movement_corrections.html:240
+#: templates/asset/movement_detail.html:1032
+#: templates/asset/movement_qr.html:242
+#: templates/asset/movement_report.html:696 templates/asset/movements.html:180
+#: templates/asset/movements.html:234
+#: templates/asset/movements_global.html:173
+#: templates/asset/movements_global.html:489 templates/dashboard.html:798
+#: templates/dashboard.html:1054 templates/index.html:917
+#: templates/index.html:2026
+msgid "Location"
+msgstr "Lokasi"
+
+#: templates/dashboard.html:824
+msgid "No location data yet."
+msgstr "Belum ada data lokasi."
+
+#: templates/dashboard.html:843 templates/index.html:1059
+msgid "Assets by Department"
+msgstr "Asset Berdasarkan Departemen"
+
+#: templates/asset/add.html:607 templates/asset/detail.html:705
+#: templates/asset/detail.html:895 templates/asset/edit.html:582
+#: templates/asset/history.html:551 templates/asset/history.html:623
+#: templates/asset/history.html:641 templates/asset/labels_select.html:369
+#: templates/asset/list.html:601 templates/asset/list.html:710
+#: templates/asset/movement_add.html:652
+#: templates/asset/movement_corrections.html:151
+#: templates/asset/movement_corrections.html:208
+#: templates/asset/movement_corrections.html:247
+#: templates/asset/movement_detail.html:1046
+#: templates/asset/movement_qr.html:256
+#: templates/asset/movement_report.html:698 templates/asset/movements.html:188
+#: templates/asset/movements.html:236
+#: templates/asset/movements_global.html:218
+#: templates/asset/movements_global.html:493 templates/dashboard.html:855
+#: templates/dashboard.html:1056 templates/index.html:928
+#: templates/index.html:2030 templates/master/department/list.html:89
+msgid "Department"
+msgstr "Departemen"
+
+#: templates/dashboard.html:881
+msgid "No department data yet."
+msgstr "Belum ada data departemen."
+
+#: templates/dashboard.html:902
+msgid "Asset Movements - Last 12 Months"
+msgstr "Mutasi Asset 12 Bulan Terakhir"
+
+#: templates/dashboard.html:929 templates/dashboard.html:937
+msgid "movements"
+msgstr "mutasi"
+
+#: templates/dashboard.html:955 templates/dashboard.html:1231
+msgid "No movement data yet."
+msgstr "Belum ada data mutasi."
+
+#: templates/asset/history.html:530 templates/asset/movement_report.html:551
+#: templates/asset/movements_global.html:329 templates/dashboard.html:966
+msgid "Total Movements"
+msgstr "Total Mutasi"
+
+#: templates/dashboard.html:970
+msgid "Entire movement history"
+msgstr "Seluruh histori mutasi"
+
+#: templates/dashboard.html:978
+msgid "Total Corrections"
+msgstr "Total Koreksi"
+
+#: templates/dashboard.html:982
+msgid "Entire movement correction history"
+msgstr "Seluruh histori koreksi mutasi"
+
+#: templates/dashboard.html:990
+msgid "Movements This Month"
+msgstr "Mutasi Bulan Ini"
+
+#: templates/dashboard.html:1002
+msgid "Corrections This Month"
+msgstr "Koreksi Bulan Ini"
+
+#: templates/dashboard.html:1006
+msgid "Corrections in the current month"
+msgstr "Koreksi pada bulan berjalan"
+
+#: templates/dashboard.html:1023 templates/index.html:1967
+msgid "Recent Assets"
+msgstr "Asset Terbaru"
+
+#: templates/asset/detail.html:875 templates/dashboard.html:1032
+#: templates/index.html:1983
+msgid "View All"
+msgstr "Lihat Semua"
+
+#: templates/asset/list.html:670 templates/asset/movement_report.html:688
+#: templates/asset/movements_global.html:473 templates/dashboard.html:1046
+#: templates/dashboard.html:1163 templates/master/category/list.html:102
+#: templates/master/department/list.html:88
+#: templates/master/location/list.html:93 templates/master/user/list.html:92
+#: templates/master/vendor/list.html:92 templates/warranty/alert.html:447
+#: templates/warranty/history.html:303
+msgid "No."
+msgstr "No"
+
+#: templates/asset/add.html:329 templates/asset/detail.html:612
+#: templates/asset/edit.html:414 templates/asset/history.html:488
+#: templates/asset/labels_print.html:108
+#: templates/asset/labels_select.html:344 templates/asset/list.html:675
+#: templates/asset/movement_add.html:401
+#: templates/asset/movement_correct.html:302
+#: templates/asset/movement_corrections.html:104
+#: templates/asset/movement_detail.html:971
+#: templates/asset/movement_qr.html:201
+#: templates/asset/movement_verify.html:220 templates/asset/movements.html:72
+#: templates/dashboard.html:1048 templates/index.html:2014
+msgid "Asset Tag"
+msgstr "Kode Asset"
+
+#: templates/asset/add.html:351 templates/asset/detail.html:625
+#: templates/asset/edit.html:432 templates/asset/history.html:494
+#: templates/asset/list.html:680 templates/asset/movement_add.html:418
+#: templates/asset/movement_correct.html:308
+#: templates/asset/movement_corrections.html:108
+#: templates/asset/movement_detail.html:977
+#: templates/asset/movement_qr.html:209
+#: templates/asset/movement_verify.html:228 templates/asset/movements.html:80
+#: templates/dashboard.html:1050
+msgid "Asset Name"
+msgstr "Nama Asset"
+
+#: templates/asset/add.html:771 templates/asset/detail.html:793
+#: templates/asset/edit.html:769 templates/asset/labels_select.html:492
+#: templates/asset/list.html:493 templates/asset/list.html:903
+#: templates/asset/movements.html:117 templates/dashboard.html:1090
+#: templates/index.html:2130 templates/master/menu/list.html:128
+#: templates/master/menu/list.html:186 templates/master/user/list.html:128
+#: templates/profile.html:39 templates/warranty/alert.html:277
+#: templates/warranty/alert.html:639 templates/warranty/index.html:376
+#: templates/warranty/index.html:609
+msgid "Active"
+msgstr "Aktif"
+
+#: templates/asset/add.html:778 templates/asset/detail.html:798
+#: templates/asset/edit.html:774 templates/asset/labels_select.html:500
+#: templates/asset/list.html:498 templates/asset/list.html:918
+#: templates/asset/movements.html:121 templates/dashboard.html:1094
+#: templates/index.html:702 templates/index.html:2141
+msgid "Maintenance"
+msgstr "Perbaikan"
+
+#: templates/asset/add.html:792 templates/asset/detail.html:809
+#: templates/asset/edit.html:784 templates/asset/labels_select.html:508
+#: templates/asset/list.html:508 templates/asset/list.html:946
+#: templates/dashboard.html:1098 templates/index.html:837
+#: templates/index.html:2161
+msgid "Lost"
+msgstr "Hilang"
+
+#: templates/asset/add.html:799 templates/asset/detail.html:813
+#: templates/asset/edit.html:789 templates/asset/labels_select.html:516
+#: templates/asset/list.html:513 templates/asset/list.html:960
+#: templates/dashboard.html:1102 templates/index.html:863
+#: templates/index.html:2171
+msgid "Retired"
+msgstr "Non-aktif"
+
+#: templates/dashboard.html:1122 templates/index.html:2238
+msgid "No assets yet."
+msgstr "Belum ada asset."
+
+#: templates/dashboard.html:1140
+msgid "Recent Asset Movements"
+msgstr "Mutasi Asset Terbaru"
+
+#: templates/dashboard.html:1149
+msgid "View Report"
+msgstr "Lihat Laporan"
+
+#: templates/asset/detail.html:891 templates/asset/movement_correct.html:337
+#: templates/asset/movement_corrections.html:133
+#: templates/asset/movement_detail.html:931
+#: templates/asset/movement_qr.html:221
+#: templates/asset/movement_report.html:690
+#: templates/asset/movement_verify.html:203 templates/dashboard.html:1165
+msgid "Movement No."
+msgstr "No. Mutasi"
+
+#: templates/asset/detail.html:889
+#: templates/asset/movement_corrections.html:222
+#: templates/asset/movement_corrections.html:261
+#: templates/asset/movement_report.html:692 templates/asset/movements.html:230
+#: templates/asset/movements_global.html:485 templates/dashboard.html:1167
+msgid "Date"
+msgstr "Tanggal"
+
+#: templates/asset/labels_print.html:121
+#: templates/asset/labels_select.html:349
+#: templates/asset/movement_report.html:694
+#: templates/asset/movements_global.html:481 templates/dashboard.html:1169
+#: templates/index.html:1551 templates/index.html:1798
+#: templates/index.html:2018 templates/warranty/alert.html:448
+#: templates/warranty/index.html:497
+msgid "Asset"
+msgstr "Asset"
+
+#: templates/asset/movements_global.html:88 templates/dashboard.html:1171
+msgid "From"
+msgstr "Dari"
+
+#: templates/dashboard.html:1173
+msgid "To"
+msgstr "Ke"
+
+#: templates/index.html:4 templates/index.html:552
+msgid "Dashboard Asset Management"
+msgstr "Dasbor Manajemen Asset"
+
+#: templates/index.html:556
+msgid "Company asset monitoring and management"
+msgstr "Monitoring dan pengelolaan aset perusahaan"
+
+#: templates/index.html:652
+msgid "Active Assets"
+msgstr "Asset Active"
+
+#: templates/asset/add.html:785 templates/asset/detail.html:804
+#: templates/asset/edit.html:779 templates/asset/list.html:503
+#: templates/asset/list.html:932 templates/asset/movements.html:125
+#: templates/index.html:811 templates/index.html:2151
+#: templates/master/menu/list.html:130 templates/master/menu/list.html:188
+#: templates/master/user/list.html:130 templates/profile.html:41
+msgid "Inactive"
+msgstr "Nonaktif"
+
+#: templates/index.html:889
+msgid "Master Data"
+msgstr "Data Master"
+
+#: templates/asset/add.html:710 templates/asset/detail.html:763
+#: templates/asset/edit.html:699 templates/index.html:939
+#: templates/master/vendor/list.html:93 templates/warranty/alert.html:451
+#: templates/warranty/index.html:498
+msgid "Vendor"
+msgstr "Vendor"
+
+#: templates/index.html:975
+msgid "Status distribution of all assets"
+msgstr "Distribusi status seluruh asset"
+
+#: templates/index.html:1004
+msgid "Number of assets by category"
+msgstr "Jumlah asset berdasarkan kategori"
+
+#: templates/index.html:1033
+msgid "Asset distribution by location"
+msgstr "Distribusi asset berdasarkan lokasi"
+
+#: templates/index.html:1062
+msgid "Asset distribution by department"
+msgstr "Distribusi asset berdasarkan departemen"
+
+#: templates/index.html:1104 templates/warranty/alert.html:343
+#: templates/warranty/index.html:427
+msgid "Active Warranty"
+msgstr "Garansi Aktif"
+
+#: templates/index.html:1157 templates/index.html:1497
+#: templates/warranty/notifications.html:544
+msgid "Warranty Expiring Soon"
+msgstr "Garansi Akan Habis"
+
+#: templates/index.html:1172
+msgid "Maximum 30 days"
+msgstr "Maksimal 30 hari"
+
+#: templates/index.html:1217 templates/index.html:1389
+#: templates/index.html:1748 templates/warranty/alert.html:339
+#: templates/warranty/notifications.html:289
+#: templates/warranty/notifications.html:370
+#: templates/warranty/notifications.html:657
+msgid "Warranty Expired"
+msgstr "Garansi Habis"
+
+#: templates/index.html:1270
+msgid "Unknown Warranty"
+msgstr "Garansi Tidak Diketahui"
+
+#: templates/index.html:1336 templates/warranty/history.html:173
+#: templates/warranty/index.html:321
+msgid "Warranty Alert"
+msgstr "Peringatan Garansi"
+
+#: templates/index.html:1340
+msgid "Warranty priorities that need attention"
+msgstr "Prioritas garansi yang membutuhkan perhatian"
+
+#: templates/index.html:1354
+msgid "View Alert"
+msgstr "Lihat Peringatan"
+
+#: templates/index.html:1368
+msgid "Warranty Notification Center"
+msgstr "Pusat Notifikasi Garansi"
+
+#: templates/index.html:1376
+msgid "Notification"
+msgstr "Notifikasi"
+
+#: templates/index.html:1403 templates/warranty/alert.html:250
+#: templates/warranty/alert.html:331
+msgid "Expiring in ≤ 7 Days"
+msgstr "Akan Habis ≤ 7 Hari"
+
+#: templates/index.html:1417 templates/warranty/alert.html:259
+#: templates/warranty/alert.html:335
+msgid "Expiring in 8–30 Days"
+msgstr "Akan Habis 8–30 Hari"
+
+#: templates/index.html:1435
+msgid "Click \"View Alert\" to see the list of assets that need immediate action."
+msgstr ""
+"Klik \"Lihat Peringatan\" untuk melihat daftar asset yang harus segera "
+"ditindaklanjuti."
+
+#: templates/index.html:1445 templates/warranty/alert.html:327
+msgid "All Warranties"
+msgstr "Semua Garansi"
+
+#: templates/index.html:1461
+msgid "Notification Center"
+msgstr "Pusat Notifikasi"
+
+#: templates/index.html:1501
+msgid "Warranty expiring within a maximum of 30 days"
+msgstr "Garansi yang akan berakhir dalam maksimal 30 hari"
+
+#: templates/index.html:1522 templates/index.html:1769
+msgid "View Warranty Alert Detail"
+msgstr "Lihat Detail Peringatan Garansi"
+
+#: templates/asset/add.html:744 templates/asset/detail.html:776
+#: templates/asset/edit.html:738 templates/index.html:1555
+#: templates/index.html:1802 templates/warranty/alert.html:453
+#: templates/warranty/index.html:499
+msgid "Warranty"
+msgstr "Garansi"
+
+#: templates/index.html:1559 templates/index.html:1806
+#: templates/warranty/index.html:501
+msgid "Expires"
+msgstr "Berakhir"
+
+#: templates/index.html:1563 templates/warranty/index.html:502
+msgid "Remaining"
+msgstr "Sisa"
+
+#: templates/index.html:1653 templates/warranty/index.html:580
+msgid "Today"
+msgstr "Hari ini"
+
+#: templates/index.html:1670 templates/warranty/alert.html:578
+#: templates/warranty/alert.html:584 templates/warranty/alert.html:590
+#: templates/warranty/index.html:586 templates/warranty/index.html:592
+msgid "days"
+msgstr "hari"
+
+#: templates/index.html:1712
+msgid "No warranty expiring within 30 days."
+msgstr "Tidak ada garansi yang akan habis dalam 30 hari."
+
+#: templates/index.html:1752
+msgid "Warranty that has already expired"
+msgstr "Garansi yang sudah berakhir"
+
+#: templates/index.html:1895 templates/warranty/alert.html:268
+#: templates/warranty/alert.html:614 templates/warranty/index.html:384
+#: templates/warranty/index.html:447 templates/warranty/index.html:623
+#: templates/warranty/notifications.html:715
+msgid "Expired"
+msgstr "Habis"
+
+#: templates/index.html:1928 templates/warranty/notifications.html:744
+msgid "No expired warranty."
+msgstr "Tidak ada garansi yang sudah habis."
+
+#: templates/index.html:1971
+msgid "10 most recently added assets"
+msgstr "10 asset terakhir ditambahkan"
+
+#: templates/asset/detail.html:901 templates/asset/list.html:725
+#: templates/asset/movement_report.html:704 templates/asset/movements.html:242
+#: templates/asset/movements_global.html:511 templates/audit/list.html:51
+#: templates/backup/list.html:66 templates/index.html:2038
+#: templates/master/category/list.html:114
+#: templates/master/department/list.html:91
+#: templates/master/location/list.html:96 templates/master/menu/list.html:98
+#: templates/master/user/list.html:97 templates/master/vendor/list.html:97
+#: templates/roles/list.html:73 templates/warranty/alert.html:457
+#: templates/warranty/index.html:504
+msgid "Actions"
+msgstr "Aksi"
+
+#: templates/asset/detail.html:818 templates/asset/list.html:974
+#: templates/index.html:2184 templates/index.html:2270
+msgid "No Status"
+msgstr "Tidak Ada Status"
+
+#: templates/asset/detail.html:1 templates/asset/detail.html:483
+#: templates/asset/movement_verify.html:426 templates/index.html:2207
+#: templates/warranty/history.html:187 templates/warranty/index.html:642
+msgid "Asset Detail"
+msgstr "Detail Asset"
+
+#: templates/index.html:2283
+msgid "No Category"
+msgstr "Tanpa Kategori"
+
+#: templates/index.html:2296
+msgid "No Location"
+msgstr "Tanpa Lokasi"
+
+#: templates/index.html:2309
+msgid "No Department"
+msgstr "Tanpa Departemen"
+
+#: templates/login.html:523
+msgid "Welcome"
+msgstr "Selamat Datang"
+
+#: templates/login.html:530
+msgid "Manage and track your company assets in one integrated system."
+msgstr ""
+"Kelola dan pantau aset perusahaan Anda dalam satu sistem terintegrasi."
+
+#: templates/login.html:584
+msgid "Sign In"
+msgstr "Masuk ke Akun"
+
+#: templates/login.html:586
+msgid "Enter your credentials to access your account."
+msgstr "Masukkan kredensial Anda untuk mengakses akun."
+
+#: templates/login.html:596 templates/master/user/add.html:42
+#: templates/master/user/edit.html:42 templates/master/user/list.html:93
+#: templates/profile.html:75
+msgid "Username"
+msgstr "Username"
+
+#: templates/login.html:611 templates/master/user/add.html:74
+msgid "Password"
+msgstr "Password"
+
+#: templates/login.html:625
+msgid "Show password"
+msgstr "Tampilkan password"
+
+#: templates/login.html:635
+msgid "Remember me"
+msgstr "Ingat saya"
+
+#: templates/login.html:641
+msgid "Login"
+msgstr "Masuk"
+
+#: templates/login.html:647
+msgid "Forgot your password? Contact your administrator."
+msgstr "Lupa password? Hubungi administrator Anda."
+
+#: templates/profile.html:3 templates/profile.html:16
+msgid "My Profile"
+msgstr "Profil Saya"
+
+#: templates/profile.html:48
+msgid "Joined"
+msgstr "Bergabung"
+
+#: templates/profile.html:65
+msgid "Edit Profile"
+msgstr "Edit Profil"
+
+#: templates/profile.html:77
+msgid "Username cannot be changed by yourself, contact the administrator."
+msgstr "Username tidak bisa diubah sendiri, hubungi administrator."
+
+#: templates/master/user/add.html:58 templates/master/user/edit.html:59
+#: templates/master/user/list.html:94 templates/profile.html:81
+msgid "Full Name"
+msgstr "Nama Lengkap"
+
+#: templates/master/user/edit.html:83 templates/profile.html:87
+msgid "Leave blank if you do not want to change your password."
+msgstr "Kosongkan bila tidak ingin mengganti password."
+
+#: templates/master/user/edit.html:76 templates/profile.html:92
+msgid "New Password"
+msgstr "Password Baru"
+
+#: templates/profile.html:97
+msgid "Confirm New Password"
+msgstr "Konfirmasi Password Baru"
+
+#: templates/asset/edit.html:853 templates/master/category/edit.html:84
+#: templates/master/department/edit.html:70
+#: templates/master/location/edit.html:84 templates/master/menu/edit.html:221
+#: templates/master/user/edit.html:140 templates/master/vendor/edit.html:140
+#: templates/profile.html:105
+msgid "Save Changes"
+msgstr "Simpan Perubahan"
+
+#: templates/asset/add.html:4 templates/asset/add.html:249
+#: templates/asset/list.html:402 templates/asset/list.html:1069
+msgid "Add Asset"
+msgstr "Tambah Asset"
+
+#: templates/asset/add.html:253
+msgid "Add a new asset to Asset Tracker"
+msgstr "Tambahkan asset baru ke dalam Asset Tracker"
+
+#: templates/asset/add.html:264 templates/asset/detail.html:498
+#: templates/asset/edit.html:239 templates/asset/import.html:40
+#: templates/asset/labels_print.html:44 templates/asset/labels_select.html:162
+#: templates/asset/movement_corrections.html:91
+#: templates/asset/movement_qr.html:343 templates/company/edit.html:273
+#: templates/master/category/add.html:31
+#: templates/master/category/edit.html:31
+#: templates/master/department/add.html:22
+#: templates/master/department/edit.html:22
+#: templates/master/location/add.html:31
+#: templates/master/location/edit.html:31 templates/roles/permissions.html:101
+msgid "Back"
+msgstr "Kembali"
+
+#: templates/asset/add.html:288 templates/asset/detail.html:600
+#: templates/asset/edit.html:400 templates/asset/history.html:483
+#: templates/asset/movement_corrections.html:99
+#: templates/asset/movements.html:60
+msgid "Asset Information"
+msgstr "Informasi Asset"
+
+#: templates/asset/add.html:314
+msgid "Main Information"
+msgstr "Informasi Utama"
+
+#: templates/asset/add.html:339
+msgid "Example: AST-001"
+msgstr "Contoh: AST-001"
+
+#: templates/asset/add.html:361
+msgid "Example: Dell Latitude Laptop"
+msgstr "Contoh: Laptop Dell Latitude"
+
+#: templates/asset/add.html:381
+msgid "-- Select Category --"
+msgstr "-- Pilih Kategori --"
+
+#: templates/asset/add.html:407 templates/asset/detail.html:651
+#: templates/asset/edit.html:489 templates/asset/history.html:506
+#: templates/asset/labels_print.html:147 templates/asset/list.html:690
+#: templates/asset/movements.html:88
+msgid "Brand"
+msgstr "Brand"
+
+#: templates/asset/add.html:412
+msgid "Example: Dell"
+msgstr "Contoh: Dell"
+
+#: templates/asset/add.html:425 templates/asset/detail.html:664
+#: templates/asset/edit.html:507 templates/asset/history.html:512
+#: templates/asset/labels_print.html:160 templates/asset/list.html:695
+#: templates/asset/movements.html:96
+msgid "Model"
+msgstr "Model"
+
+#: templates/asset/add.html:431
+msgid "Example: Latitude 5440"
+msgstr "Contoh: Latitude 5440"
+
+#: templates/asset/add.html:443 templates/asset/add.html:449
+#: templates/asset/detail.html:677 templates/asset/edit.html:525
+#: templates/asset/history.html:518 templates/asset/labels_select.html:359
+#: templates/asset/list.html:700 templates/asset/movement_add.html:435
+#: templates/asset/movement_correct.html:327
+#: templates/asset/movement_corrections.html:119
+#: templates/asset/movement_detail.html:996
+#: templates/asset/movement_qr.html:215
+#: templates/asset/movement_verify.html:234 templates/asset/movements.html:104
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#: templates/asset/add.html:461 templates/asset/detail.html:718
+#: templates/asset/detail.html:897 templates/asset/edit.html:621
+#: templates/asset/history.html:559 templates/asset/history.html:628
+#: templates/asset/history.html:646 templates/asset/list.html:715
+#: templates/asset/movement_add.html:677
+#: templates/asset/movement_corrections.html:215
+#: templates/asset/movement_corrections.html:254
+#: templates/asset/movement_detail.html:1060
+#: templates/asset/movement_qr.html:270
+#: templates/asset/movement_report.html:700 templates/asset/movements.html:196
+#: templates/asset/movements.html:238
+#: templates/asset/movements_global.html:263
+#: templates/asset/movements_global.html:497
+msgid "PIC"
+msgstr "PIC"
+
+#: templates/asset/add.html:466 templates/asset/movements_global.html:272
+msgid "PIC Name"
+msgstr "Nama PIC"
+
+#: templates/asset/add.html:489 templates/asset/detail.html:536
+#: templates/asset/edit.html:276
+msgid "Asset Photo"
+msgstr "Foto Asset"
+
+#: templates/asset/add.html:506
+msgid "Upload Asset Photo"
+msgstr "Upload Foto Asset"
+
+#: templates/asset/add.html:513
+msgid "Choose an asset photo from your computer."
+msgstr "Pilih foto asset dari komputer Anda."
+
+#: templates/asset/add.html:524
+msgid "Allowed formats: JPG, JPEG, PNG, WEBP"
+msgstr "Format yang diperbolehkan: JPG, JPEG, PNG, WEBP"
+
+#: templates/asset/add.html:533
+msgid "Asset Photo Preview"
+msgstr "Preview Foto Asset"
+
+#: templates/asset/add.html:558
+msgid "Location & Organization"
+msgstr "Lokasi & Organisasi"
+
+#: templates/asset/add.html:581 templates/asset/movement_add.html:755
+#: templates/asset/movement_correct.html:510
+msgid "-- Select Location --"
+msgstr "-- Pilih Lokasi --"
+
+#: templates/asset/add.html:615 templates/asset/movement_add.html:812
+#: templates/asset/movement_correct.html:542
+msgid "-- Select Department --"
+msgstr "-- Pilih Departemen --"
+
+#: templates/asset/add.html:651 templates/asset/edit.html:649
+msgid "Purchase Information"
+msgstr "Informasi Pembelian"
+
+#: templates/asset/add.html:666 templates/asset/detail.html:731
+#: templates/asset/edit.html:663 templates/warranty/alert.html:452
+#: templates/warranty/index.html:500
+msgid "Purchase Date"
+msgstr "Tanggal Pembelian"
+
+#: templates/asset/add.html:683 templates/asset/detail.html:747
+#: templates/asset/edit.html:681
+msgid "Purchase Price"
+msgstr "Harga Pembelian"
+
+#: templates/asset/add.html:718
+msgid "-- Select Vendor --"
+msgstr "-- Pilih Vendor --"
+
+#: templates/asset/add.html:750 templates/asset/edit.html:743
+msgid "Example: 3 Years"
+msgstr "Contoh: 3 Tahun"
+
+#: templates/asset/add.html:825 templates/asset/add.html:832
+#: templates/asset/detail.html:831 templates/asset/edit.html:817
+#: templates/audit/list.html:54 templates/master/category/add.html:68
+#: templates/master/category/edit.html:68
+#: templates/master/category/list.html:110
+#: templates/master/department/add.html:55
+#: templates/master/department/edit.html:55
+#: templates/master/department/list.html:90
+#: templates/master/location/add.html:68
+#: templates/master/location/edit.html:68
+#: templates/master/location/list.html:95 templates/master/vendor/add.html:119
+#: templates/master/vendor/edit.html:122 templates/roles/add.html:36
+#: templates/roles/edit.html:36 templates/roles/list.html:70
+msgid "Description"
+msgstr "Keterangan"
+
+#: templates/asset/add.html:838
+msgid "Enter notes or a description for this asset..."
+msgstr "Masukkan keterangan atau deskripsi asset..."
+
+#: templates/asset/add.html:855 templates/asset/edit.html:844
+#: templates/asset/movement_add.html:1210
+#: templates/asset/movement_correct.html:862 templates/backup/list.html:127
+#: templates/backup/restore_upload.html:50
+#: templates/master/category/add.html:92
+#: templates/master/category/edit.html:91
+#: templates/master/department/add.html:77
+#: templates/master/department/edit.html:77
+#: templates/master/location/add.html:91
+#: templates/master/location/edit.html:91 templates/master/menu/add.html:234
+#: templates/master/menu/edit.html:228 templates/master/user/add.html:121
+#: templates/master/user/edit.html:147 templates/master/vendor/add.html:144
+#: templates/master/vendor/edit.html:147 templates/roles/add.html:46
+#: templates/roles/edit.html:42 templates/roles/import.html:45
+msgid "Cancel"
+msgstr "Batal"
+
+#: templates/asset/add.html:864
+msgid "Save Asset"
+msgstr "Simpan Asset"
+
+#: templates/asset/add.html:982
+msgid "Maximum photo size is 5 MB."
+msgstr "Ukuran foto maksimal 5 MB."
+
+#: templates/asset/detail.html:510 templates/asset/edit.html:4
+#: templates/asset/edit.html:219
+msgid "Edit Asset"
+msgstr "Edit Asset"
+
+#: templates/asset/detail.html:558
+msgid "No asset photo yet"
+msgstr "Belum ada foto asset"
+
+#: templates/asset/detail.html:572
+msgid "Asset QR Code"
+msgstr "QR Code Asset"
+
+#: templates/asset/detail.html:581
+msgid "QR Code"
+msgstr "QR Code"
+
+#: templates/asset/detail.html:855 templates/asset/movements.html:2
+#: templates/asset/movements.html:23
+msgid "Asset Movement History"
+msgstr "Riwayat Mutasi Asset"
+
+#: templates/asset/detail.html:857
+msgid "Asset movement history"
+msgstr "Histori perpindahan asset"
+
+#: templates/asset/detail.html:867 templates/asset/history.html:793
+#: templates/asset/movements.html:45 templates/asset/movements.html:423
+msgid "Add Movement"
+msgstr "Tambah Mutasi"
+
+#: templates/asset/detail.html:899 templates/asset/history.html:656
+#: templates/asset/movement_corrections.html:228
+#: templates/asset/movement_corrections.html:267
+#: templates/warranty/history.html:330
+msgid "Reason"
+msgstr "Alasan"
+
+#: templates/asset/detail.html:974
+#: templates/asset/movement_corrections.html:79
+msgid "Movement Detail"
+msgstr "Detail Mutasi"
+
+#: templates/asset/detail.html:986 templates/asset/movement_qr.html:1
+#: templates/asset/movement_qr.html:166 templates/asset/movement_qr.html:187
+msgid "Movement QR"
+msgstr "QR Mutasi"
+
+#: templates/asset/detail.html:1004 templates/asset/history.html:749
+#: templates/asset/movements.html:409
+msgid "No movement history yet"
+msgstr "Belum ada riwayat mutasi"
+
+#: templates/asset/detail.html:1007 templates/asset/history.html:752
+#: templates/asset/movements.html:412
+msgid "This asset does not have any movement history yet."
+msgstr "Asset ini belum memiliki riwayat perpindahan."
+
+#: templates/asset/detail.html:1018
+msgid "Add First Movement"
+msgstr "Tambah Mutasi Pertama"
+
+#: templates/asset/edit.html:308 templates/asset/list.html:762
+msgid "No photo yet"
+msgstr "Belum ada foto"
+
+#: templates/asset/edit.html:328
+msgid "Format: JPG, JPEG, PNG, WEBP."
+msgstr "Format: JPG, JPEG, PNG, WEBP."
+
+#: templates/asset/edit.html:353
+msgid "Delete photo when saved"
+msgstr "Hapus foto saat disimpan"
+
+#: templates/asset/edit.html:368
+msgid "Check only if you want to delete the asset photo."
+msgstr "Centang hanya jika foto asset ingin dihapus."
+
+#: templates/asset/edit.html:458
+msgid "Select Category"
+msgstr "Pilih Kategori"
+
+#: templates/asset/edit.html:551
+msgid "Select Location"
+msgstr "Pilih Lokasi"
+
+#: templates/asset/edit.html:590
+msgid "Select Department"
+msgstr "Pilih Departemen"
+
+#: templates/asset/edit.html:707
+msgid "Select Vendor"
+msgstr "Pilih Vendor"
+
+#: templates/asset/edit.html:764
+msgid "Select Status"
+msgstr "Pilih Status"
+
+#: templates/asset/edit.html:823
+msgid "Enter the asset description..."
+msgstr "Masukkan deskripsi asset..."
+
+#: templates/asset/edit.html:930
+msgid "Unsupported photo format."
+msgstr "Format foto tidak didukung."
+
+#: templates/asset/history.html:1
+msgid "Asset History"
+msgstr "Riwayat Asset"
+
+#: templates/asset/history.html:468
+msgid "Asset Journey History"
+msgstr "Riwayat Perjalanan Asset"
+
+#: templates/asset/history.html:471
+msgid ""
+"Complete history of asset movement based on all movements recorded in the "
+"system."
+msgstr ""
+"Histori lengkap perpindahan asset berdasarkan seluruh mutasi yang tercatat "
+"di sistem."
+
+#: templates/asset/history.html:539
+msgid "CURRENT ASSET CONDITION"
+msgstr "KONDISI ASSET SAAT INI"
+
+#: templates/asset/history.html:574
+msgid "Movement Timeline"
+msgstr "Timeline Mutasi"
+
+#: templates/asset/history.html:576 templates/asset/movements.html:63
+#: templates/asset/movements.html:232
+#: templates/asset/movements_global.html:477
+msgid "Movement"
+msgstr "Mutasi"
+
+#: templates/asset/history.html:594
+msgid "Movement #"
+msgstr "Mutasi #"
+
+#: templates/asset/history.html:598
+msgid "LATEST CONDITION"
+msgstr "KONDISI TERAKHIR"
+
+#: templates/asset/history.html:616 templates/asset/movements.html:285
+#: templates/asset/movements.html:305 templates/asset/movements.html:327
+msgid "FROM"
+msgstr "DARI"
+
+#: templates/asset/history.html:636 templates/asset/movements.html:295
+#: templates/asset/movements.html:315 templates/asset/movements.html:335
+msgid "TO"
+msgstr "KE"
+
+#: templates/asset/history.html:662 templates/asset/movement_add.html:932
+#: templates/asset/movement_correct.html:599
+#: templates/asset/movement_corrections.html:232
+#: templates/asset/movement_corrections.html:271
+#: templates/asset/movement_detail.html:1097
+#: templates/asset/movement_verify.html:359
+#: templates/warranty/history.html:334
+msgid "Notes"
+msgstr "Catatan"
+
+#: templates/asset/history.html:675 templates/asset/movement_add.html:976
+msgid "Handed Over By"
+msgstr "Pihak yang Menyerahkan"
+
+#: templates/asset/history.html:687 templates/asset/movement_add.html:1086
+msgid "Received By"
+msgstr "Pihak yang Menerima"
+
+#: templates/asset/history.html:712 templates/asset/list.html:995
+#: templates/asset/movement_detail.html:774
+#: templates/asset/movement_report.html:829 templates/asset/movements.html:371
+#: templates/asset/movements_global.html:673
+msgid "Detail"
+msgstr "Detail"
+
+#: templates/asset/history.html:723 templates/asset/labels.html:1094
+#: templates/asset/labels.html:1106 templates/asset/labels_print.html:85
+#: templates/asset/movements_global.html:687
+msgid "QR"
+msgstr "QR"
+
+#: templates/asset/history.html:734 templates/asset/movement_detail.html:798
+#: templates/asset/movement_qr.html:325
+msgid "Verify"
+msgstr "Verifikasi"
+
+#: templates/asset/history.html:773 templates/asset/movements.html:37
+msgid "Back to Asset"
+msgstr "Kembali ke Asset"
+
+#: templates/asset/history.html:783
+msgid "Print History"
+msgstr "Print Riwayat"
+
+#: templates/asset/import.html:4 templates/asset/import.html:25
+#: templates/asset/import.html:103
+msgid "Import Asset"
+msgstr "Impor Asset"
+
+#: templates/asset/import.html:29
+msgid "Import multiple assets using Excel."
+msgstr "Impor banyak asset menggunakan Excel."
+
+#: templates/asset/import.html:65
+msgid "Upload Excel"
+msgstr "Unggah Excel"
+
+#: templates/asset/import.html:82
+msgid "Excel File"
+msgstr "File Excel"
+
+#: templates/asset/import.html:92
+msgid "Supported format:"
+msgstr "Format yang didukung:"
+
+#: templates/asset/import.html:94
+msgid "or"
+msgstr "atau"
+
+#: templates/asset/import.html:108
+msgid "Download Excel Template"
+msgstr "Unduh Template Excel"
+
+#: templates/asset/import.html:130
+msgid "Excel Format"
+msgstr "Format Excel"
+
+#: templates/asset/import.html:141
+msgid ""
+"The first row of the Excel file must contain the following column names:"
+msgstr "Baris pertama Excel harus berisi nama kolom berikut:"
+
+#: templates/asset/import.html:159 templates/asset/import.html:172
+msgid "Required"
+msgstr "Wajib"
+
+#: templates/asset/import.html:180 templates/asset/import.html:186
+#: templates/asset/import.html:192 templates/asset/import.html:198
+#: templates/asset/import.html:204 templates/asset/import.html:210
+#: templates/asset/import.html:216 templates/asset/import.html:222
+#: templates/asset/import.html:228 templates/asset/import.html:234
+#: templates/asset/import.html:240 templates/asset/import.html:246
+#: templates/asset/import.html:252
+msgid "Optional"
+msgstr "Opsional"
+
+#: templates/asset/import_result.html:4 templates/asset/import_result.html:25
+msgid "Asset Import Result"
+msgstr "Hasil Impor Asset"
+
+#: templates/asset/import_result.html:29
+msgid "Excel asset import summary"
+msgstr "Ringkasan hasil impor asset dari Excel"
+
+#: templates/asset/import_result.html:56
+msgid "Successful"
+msgstr "Berhasil"
+
+#: templates/asset/import_result.html:66
+msgid "assets added successfully"
+msgstr "asset berhasil ditambahkan"
+
+#: templates/asset/import_result.html:83
+msgid "Failed"
+msgstr "Gagal"
+
+#: templates/asset/import_result.html:93
+msgid "rows failed to process"
+msgstr "baris gagal diproses"
+
+#: templates/asset/import_result.html:109
+msgid "Error Details"
+msgstr "Detail Error"
+
+#: templates/asset/import_result.html:142
+msgid "Import Again"
+msgstr "Impor Lagi"
+
+#: templates/asset/import_result.html:154
+msgid "View Assets"
+msgstr "Lihat Asset"
+
+#: templates/asset/labels.html:4 templates/asset/labels.html:865
+msgid "Print QR / Label Asset"
+msgstr "Cetak QR / Label Asset"
+
+#: templates/asset/labels.html:870 templates/company/edit.html:244
+msgid "Format:"
+msgstr "Format:"
+
+#: templates/asset/labels.html:878
+msgid "— 5 columns × 8 rows — 40 labels / sheet."
+msgstr "— 5 kolom × 8 baris — 40 label / lembar."
+
+#: templates/asset/labels.html:884
+msgid "Each asset is printed as"
+msgstr "Setiap asset dicetak"
+
+#: templates/asset/labels.html:886
+msgid "5 labels"
+msgstr "5 label"
+
+#: templates/asset/labels.html:888
+msgid "for laptop, charger, box, bag, and accessories."
+msgstr "untuk laptop, charger, kardus, tas, dan aksesori."
+
+#: templates/asset/labels.html:920 templates/asset/labels.html:1168
+msgid "Select Asset"
+msgstr "Pilih Asset"
+
+#: templates/asset/labels.html:952 templates/asset/movement_report.html:539
+#: templates/warranty/history.html:160 templates/warranty/index.html:330
+msgid "Export Excel"
+msgstr "Ekspor Excel"
+
+#: templates/asset/labels.html:971 templates/asset/labels_print.html:54
+#: templates/asset/movement_report.html:527 templates/warranty/index.html:335
+msgid "Print"
+msgstr "Cetak"
+
+#: templates/asset/labels.html:1147
+msgid "No assets to print."
+msgstr "Tidak ada asset untuk dicetak."
+
+#: templates/asset/labels.html:1154
+msgid "Please select an asset first."
+msgstr "Silakan pilih asset terlebih dahulu."
+
+#: templates/asset/labels_print.html:4
+msgid "Print Asset Labels"
+msgstr "Cetak Label Asset"
+
+#: templates/asset/labels_print.html:27 templates/asset/labels_select.html:147
+msgid "Print Asset Label"
+msgstr "Cetak Label Asset"
+
+#: templates/asset/labels_print.html:31 templates/asset/labels_select.html:249
+#: templates/asset/labels_select.html:992
+#: templates/asset/labels_select.html:1001 templates/asset/list.html:1117
+#: templates/warranty/alert.html:422 templates/warranty/index.html:481
+msgid "assets"
+msgstr "asset"
+
+#: templates/asset/labels_print.html:31
+msgid "selected for printing."
+msgstr "dipilih untuk dicetak."
+
+#: templates/asset/labels_print.html:101
+msgid "ASSET IDENTIFICATION"
+msgstr "IDENTIFIKASI ASSET"
+
+#: templates/asset/labels_print.html:173
+msgid "Serial"
+msgstr "Serial"
+
+#: templates/asset/labels_print.html:184
+msgid "PROPERTY OF COMPANY"
+msgstr "MILIK PERUSAHAAN"
+
+#: templates/asset/labels_select.html:4
+msgid "Select Assets for Label Printing"
+msgstr "Pilih Asset untuk Print Label"
+
+#: templates/asset/labels_select.html:151
+msgid "Select the assets whose labels you want to print."
+msgstr "Pilih asset yang ingin dicetak labelnya."
+
+#: templates/asset/labels_select.html:230 templates/warranty/alert.html:309
+#: templates/warranty/index.html:357 templates/warranty/notifications.html:252
+msgid "Search Asset"
+msgstr "Cari Asset"
+
+#: templates/asset/labels_select.html:236
+msgid "Asset Tag, name, brand, model, serial..."
+msgstr "Asset Tag, nama, brand, model, serial..."
+
+#: templates/asset/labels_select.html:247
+#: templates/asset/labels_select.html:990
+#: templates/asset/labels_select.html:997 templates/asset/list.html:1105
+#: templates/asset/movement_report.html:871
+msgid "Showing"
+msgstr "Menampilkan"
+
+#: templates/asset/labels_select.html:277
+#: templates/asset/labels_select.html:659
+msgid "selected"
+msgstr "dipilih"
+
+#: templates/asset/labels_select.html:293
+msgid "Select All"
+msgstr "Pilih Semua"
+
+#: templates/asset/labels_select.html:304
+msgid "Clear All"
+msgstr "Batalkan Semua"
+
+#: templates/asset/labels_select.html:354
+#: templates/asset/movement_correct.html:318
+#: templates/asset/movement_corrections.html:112
+#: templates/asset/movement_detail.html:987
+#: templates/asset/movement_verify.html:240 templates/warranty/alert.html:450
+msgid "Brand / Model"
+msgstr "Brand / Model"
+
+#: templates/asset/labels_select.html:547
+msgid "No assets."
+msgstr "Tidak ada asset."
+
+#: templates/asset/labels_select.html:566
+msgid "No matching assets found."
+msgstr "Tidak ada asset yang sesuai dengan pencarian."
+
+#: templates/asset/labels_select.html:593
+msgid "Select assets then click"
+msgstr "Pilih asset kemudian klik"
+
+#: templates/asset/labels_select.html:594
+#: templates/asset/labels_select.html:603
+msgid "Print Label"
+msgstr "Cetak Label"
+
+#: templates/asset/labels_select.html:999 templates/asset/list.html:1111
+#: templates/asset/movement_report.html:873
+msgid "of"
+msgstr "dari"
+
+#: templates/asset/labels_select.html:1075
+msgid "Please select at least one asset."
+msgstr "Pilih minimal satu asset."
+
+#: templates/asset/list.html:371
+msgid "Manage and monitor all company assets"
+msgstr "Kelola dan monitor seluruh asset perusahaan"
+
+#: templates/asset/list.html:381 templates/asset/list.html:384
+#: templates/asset/list.html:1019
+msgid "Print QR / Label"
+msgstr "Cetak QR / Label"
+
+#: templates/asset/list.html:393 templates/roles/import.html:28
+#: templates/roles/list.html:27
+msgid "Export"
+msgstr "Ekspor"
+
+#: templates/asset/list.html:436 templates/asset/list.html:456
+#: templates/asset/movements_global.html:69
+msgid "Search"
+msgstr "Cari"
+
+#: templates/asset/list.html:452
+msgid "Asset tag, name, brand, serial..."
+msgstr "Asset tag, nama, brand, serial..."
+
+#: templates/asset/list.html:461 templates/asset/movement_report.html:858
+#: templates/asset/movements_global.html:296
+#: templates/asset/movements_global.html:799 templates/warranty/alert.html:365
+#: templates/warranty/notifications.html:318
+msgid "Reset Filter"
+msgstr "Reset Filter"
+
+#: templates/asset/list.html:463 templates/asset/movement_correct.html:873
+#: templates/asset/movement_report.html:642 templates/warranty/index.html:405
+msgid "Reset"
+msgstr "Reset"
+
+#: templates/asset/list.html:488 templates/asset/movements_global.html:134
+#: templates/warranty/index.html:373
+msgid "All Statuses"
+msgstr "Semua Status"
+
+#: templates/asset/list.html:537
+msgid "All Categories"
+msgstr "Semua Kategori"
+
+#: templates/asset/list.html:573 templates/asset/movements_global.html:183
+msgid "All Locations"
+msgstr "Semua Lokasi"
+
+#: templates/asset/list.html:609 templates/asset/movements_global.html:228
+msgid "All Departments"
+msgstr "Semua Departemen"
+
+#: templates/asset/list.html:665
+msgid "Photo"
+msgstr "Foto"
+
+#: templates/asset/list.html:1007 templates/master/category/list.html:147
+#: templates/master/department/list.html:122
+#: templates/master/location/list.html:128 templates/master/menu/list.html:140
+#: templates/master/menu/list.html:198 templates/master/user/list.html:140
+#: templates/master/vendor/list.html:136
+msgid "Edit"
+msgstr "Edit"
+
+#: templates/asset/list.html:1053
+msgid "No assets found."
+msgstr "Tidak ada asset ditemukan."
+
+#: templates/asset/list.html:1060
+msgid "Try changing your search term or filters."
+msgstr "Coba ubah kata pencarian atau filter Anda."
+
+#: templates/asset/list.html:1126
+msgid "Search:"
+msgstr "Pencarian:"
+
+#: templates/asset/list.html:1143
+msgid "Asset page navigation"
+msgstr "Navigasi halaman asset"
+
+#: templates/asset/list.html:1149 templates/asset/movements_global.html:746
+#: templates/audit/list.html:100
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: templates/asset/list.html:1171 templates/asset/movements_global.html:768
+#: templates/audit/list.html:114
+msgid "Next"
+msgstr "Berikutnya"
+
+#: templates/asset/movement_add.html:4 templates/asset/movement_add.html:359
+msgid "Add Asset Movement"
+msgstr "Tambah Mutasi Asset"
+
+#: templates/asset/movement_add.html:365
+msgid "Record asset movement and changes in location, department, and PIC."
+msgstr "Catat perpindahan asset dan perubahan lokasi, departemen, serta PIC."
+
+#: templates/asset/movement_add.html:388
+msgid "Asset to be moved"
+msgstr "Asset yang akan dimutasi"
+
+#: templates/asset/movement_add.html:494
+#: templates/asset/movement_correct.html:377
+#: templates/asset/movement_corrections.html:128
+msgid "Movement Information"
+msgstr "Informasi Mutasi"
+
+#: templates/asset/movement_add.html:515
+#: templates/asset/movement_correct.html:384
+#: templates/asset/movement_corrections.html:137
+#: templates/asset/movement_detail.html:935
+#: templates/asset/movement_qr.html:229
+#: templates/asset/movement_verify.html:211
+msgid "Movement Date"
+msgstr "Tanggal Mutasi"
+
+#: templates/asset/movement_add.html:550
+#: templates/asset/movement_correct.html:586
+#: templates/asset/movement_detail.html:1089
+#: templates/asset/movement_verify.html:345
+msgid "Movement Reason"
+msgstr "Alasan Mutasi"
+
+#: templates/asset/movement_add.html:567
+msgid "Example: Employee rotation"
+msgstr "Contoh: Rotasi karyawan"
+
+#: templates/asset/movement_add.html:592
+msgid "Asset Change"
+msgstr "Perubahan Asset"
+
+#: templates/asset/movement_add.html:614
+msgid "CURRENT CONDITION"
+msgstr "KONDISI SAAT INI"
+
+#: templates/asset/movement_add.html:722
+msgid "NEW CONDITION"
+msgstr "KONDISI BARU"
+
+#: templates/asset/movement_add.html:738
+#: templates/asset/movement_correct.html:500
+msgid "Destination Location"
+msgstr "Lokasi Tujuan"
+
+#: templates/asset/movement_add.html:795
+#: templates/asset/movement_correct.html:532
+msgid "Destination Department"
+msgstr "Departemen Tujuan"
+
+#: templates/asset/movement_add.html:852
+msgid "New PIC"
+msgstr "PIC Baru"
+
+#: templates/asset/movement_add.html:873
+msgid "New PIC name"
+msgstr "Nama PIC baru"
+
+#: templates/asset/movement_add.html:893
+msgid "Current condition"
+msgstr "Kondisi saat ini"
+
+#: templates/asset/movement_add.html:895
+msgid "is automatically taken from the asset data. You only need to specify"
+msgstr "diambil otomatis dari data asset. Anda hanya perlu menentukan"
+
+#: templates/asset/movement_add.html:896
+msgid "the destination condition"
+msgstr "kondisi tujuan"
+
+#: templates/asset/movement_add.html:918
+msgid "Movement Notes"
+msgstr "Catatan Mutasi"
+
+#: templates/asset/movement_add.html:942
+msgid "Add notes if needed..."
+msgstr "Tambahkan catatan jika diperlukan..."
+
+#: templates/asset/movement_add.html:960
+msgid "Signatory Information"
+msgstr "Informasi Penandatangan"
+
+#: templates/asset/movement_add.html:990
+#: templates/asset/movement_add.html:1100
+#: templates/asset/movement_correct.html:634
+#: templates/asset/movement_correct.html:744
+msgid "Name"
+msgstr "Nama"
+
+#: templates/asset/movement_add.html:1007
+msgid "Name of the person handing over"
+msgstr "Nama penyerah"
+
+#: templates/asset/movement_add.html:1022
+#: templates/asset/movement_add.html:1132
+#: templates/asset/movement_correct.html:647
+#: templates/asset/movement_correct.html:757
+#: templates/asset/movement_detail.html:1136
+#: templates/asset/movement_detail.html:1171
+msgid "Position"
+msgstr "Jabatan"
+
+#: templates/asset/movement_add.html:1039
+msgid "Position of the person handing over"
+msgstr "Jabatan penyerah"
+
+#: templates/asset/movement_add.html:1054
+#: templates/asset/movement_add.html:1164
+#: templates/asset/movement_correct.html:620
+msgid "Signature"
+msgstr "Tanda Tangan"
+
+#: templates/asset/movement_add.html:1070
+#: templates/asset/movement_add.html:1180
+msgid "Signature URL / data"
+msgstr "URL / data tanda tangan"
+
+#: templates/asset/movement_add.html:1117
+msgid "Name of the recipient"
+msgstr "Nama penerima"
+
+#: templates/asset/movement_add.html:1149
+msgid "Position of the recipient"
+msgstr "Jabatan penerima"
+
+#: templates/asset/movement_add.html:1222
+msgid "Save Movement"
+msgstr "Simpan Mutasi"
+
+#: templates/asset/movement_correct.html:1
+#: templates/asset/movement_corrections.html:85
+#: templates/asset/movement_detail.html:810
+msgid "Correct Movement"
+msgstr "Koreksi Mutasi"
+
+#: templates/asset/movement_correct.html:261
+msgid "Correct Asset Movement"
+msgstr "Koreksi Mutasi Asset"
+
+#: templates/asset/movement_correct.html:264
+msgid "Fix the movement data"
+msgstr "Perbaiki data mutasi"
+
+#: templates/asset/movement_correct.html:266
+msgid "without creating a new movement number."
+msgstr "tanpa membuat nomor mutasi baru."
+
+#: templates/asset/movement_correct.html:280
+msgid "Attention"
+msgstr "Perhatian"
+
+#: templates/asset/movement_correct.html:283
+msgid "Correction is only allowed for the"
+msgstr "Koreksi hanya diperbolehkan untuk"
+
+#: templates/asset/movement_correct.html:284
+msgid "most recent movement"
+msgstr "mutasi terakhir"
+
+#: templates/asset/movement_correct.html:285
+msgid ""
+"of this asset. If the old signature is still correct, you can keep it. If "
+"the person handing over or receiving has changed, use the"
+msgstr ""
+"dari asset ini. Jika tanda tangan lama masih benar, Anda dapat "
+"mempertahankannya. Jika pihak yang menyerahkan atau menerima berubah, "
+"gunakan tombol"
+
+#: templates/asset/movement_correct.html:286
+msgid "Re-sign button"
+msgstr "tombol Tanda Tangan Ulang"
+
+#: templates/asset/movement_correct.html:296
+#: templates/asset/movement_detail.html:966
+msgid "Asset Identity"
+msgstr "Identitas Asset"
+
+#: templates/asset/movement_correct.html:331
+#: templates/asset/movement_detail.html:1000
+msgid "Asset Status"
+msgstr "Status Asset"
+
+#: templates/asset/movement_correct.html:343
+#: templates/asset/movement_detail.html:944 templates/backup/list.html:65
+msgid "Created"
+msgstr "Dibuat"
+
+#: templates/asset/movement_correct.html:412
+msgid "Movement Details"
+msgstr "Detail Perpindahan"
+
+#: templates/asset/movement_correct.html:425
+#: templates/asset/movement_detail.html:1021
+#: templates/asset/movement_verify.html:258
+#: templates/asset/movement_verify.html:288
+#: templates/asset/movement_verify.html:318
+msgid "BEFORE"
+msgstr "SEBELUM"
+
+#: templates/asset/movement_correct.html:430
+msgid "Origin Location"
+msgstr "Lokasi Asal"
+
+#: templates/asset/movement_correct.html:444
+msgid ""
+"The origin location is determined automatically from the movement history "
+"and cannot be changed."
+msgstr ""
+"Lokasi asal ditentukan otomatis dari histori mutasi dan tidak dapat diubah."
+
+#: templates/asset/movement_correct.html:450
+msgid "Origin Department"
+msgstr "Departemen Asal"
+
+#: templates/asset/movement_correct.html:464
+msgid ""
+"The origin department is determined automatically from the movement history "
+"and cannot be changed."
+msgstr ""
+"Departemen asal ditentukan otomatis dari histori mutasi dan tidak dapat "
+"diubah."
+
+#: templates/asset/movement_correct.html:469
+msgid "Origin PIC"
+msgstr "PIC Asal"
+
+#: templates/asset/movement_correct.html:481
+msgid ""
+"The origin PIC is determined automatically from the movement history and "
+"cannot be changed."
+msgstr ""
+"PIC asal ditentukan otomatis dari histori mutasi dan tidak dapat diubah."
+
+#: templates/asset/movement_correct.html:495
+#: templates/asset/movement_detail.html:1025
+#: templates/asset/movement_verify.html:268
+#: templates/asset/movement_verify.html:298
+#: templates/asset/movement_verify.html:328
+msgid "AFTER"
+msgstr "SESUDAH"
+
+#: templates/asset/movement_correct.html:558
+msgid "Destination PIC"
+msgstr "PIC Tujuan"
+
+#: templates/asset/movement_correct.html:581
+#: templates/asset/movement_corrections.html:181
+msgid "Reason & Notes"
+msgstr "Alasan & Catatan"
+
+#: templates/asset/movement_correct.html:594
+msgid "Enter the movement reason"
+msgstr "Masukkan alasan mutasi"
+
+#: templates/asset/movement_correct.html:605
+msgid "Enter additional notes"
+msgstr "Masukkan catatan tambahan"
+
+#: templates/asset/movement_correct.html:631
+#: templates/asset/movement_detail.html:1133
+msgid "HANDED OVER BY"
+msgstr "PIHAK YANG MENYERAHKAN"
+
+#: templates/asset/movement_correct.html:663
+#: templates/asset/movement_correct.html:773
+msgid "Saved signature"
+msgstr "Tanda tangan yang tersimpan"
+
+#: templates/asset/movement_correct.html:668
+msgid "Signature of the person handing over"
+msgstr "Tanda tangan penyerah"
+
+#: templates/asset/movement_correct.html:677
+#: templates/asset/movement_correct.html:787
+msgid "Use Old Signature"
+msgstr "Gunakan Tanda Tangan Lama"
+
+#: templates/asset/movement_correct.html:693
+#: templates/asset/movement_correct.html:800
+msgid "Sign here using a mouse, touchpad, or touchscreen"
+msgstr "Tanda tangan di sini menggunakan mouse, touchpad atau layar sentuh"
+
+#: templates/asset/movement_correct.html:711
+#: templates/asset/movement_correct.html:818 templates/audit/list.html:70
+#: templates/master/category/list.html:163
+#: templates/master/department/list.html:138
+#: templates/master/location/list.html:144 templates/master/menu/list.html:156
+#: templates/master/menu/list.html:214 templates/master/user/list.html:158
+#: templates/master/vendor/list.html:152
+msgid "Delete"
+msgstr "Hapus"
+
+#: templates/asset/movement_correct.html:720
+#: templates/asset/movement_correct.html:827
+msgid "Keep Old"
+msgstr "Pertahankan Lama"
+
+#: templates/asset/movement_correct.html:725
+#: templates/asset/movement_correct.html:832
+msgid "The old signature is being used."
+msgstr "Tanda tangan lama digunakan."
+
+#: templates/asset/movement_correct.html:726
+#: templates/asset/movement_correct.html:833
+msgid "No signature yet."
+msgstr "Belum ada tanda tangan."
+
+#: templates/asset/movement_correct.html:730
+#: templates/asset/movement_correct.html:837
+msgid "Use a mouse/touchpad to draw. Click Delete to create a new signature."
+msgstr ""
+"Gunakan mouse/touchpad untuk menggambar. Klik Hapus untuk membuat tanda "
+"tangan baru."
+
+#: templates/asset/movement_correct.html:741
+#: templates/asset/movement_detail.html:1168
+msgid "RECEIVED BY"
+msgstr "PIHAK YANG MENERIMA"
+
+#: templates/asset/movement_correct.html:778
+msgid "Signature of the recipient"
+msgstr "Tanda tangan penerima"
+
+#: templates/asset/movement_correct.html:878
+msgid "Save Correction"
+msgstr "Simpan Koreksi"
+
+#: templates/asset/movement_correct.html:1169
+msgid "A new signature is being drawn."
+msgstr "Tanda tangan baru sedang dibuat."
+
+#: templates/asset/movement_correct.html:1271
+msgid "New signature ready to be saved."
+msgstr "Tanda tangan baru siap disimpan."
+
+#: templates/asset/movement_correct.html:1326
+msgid "Signature deleted."
+msgstr "Tanda tangan dihapus."
+
+#: templates/asset/movement_correct.html:1353
+msgid "There is no old signature."
+msgstr "Tidak ada tanda tangan lama."
+
+#: templates/asset/movement_correct.html:1400
+msgid "The old signature will be kept."
+msgstr "Tanda tangan lama akan dipertahankan."
+
+#: templates/asset/movement_correct.html:1486
+msgid "Reset all correction data to the original state?"
+msgstr "Kembalikan seluruh data koreksi ke kondisi awal?"
+
+#: templates/asset/movement_corrections.html:1
+#: templates/asset/movement_corrections.html:69
+msgid "Movement Correction History"
+msgstr "Riwayat Koreksi Mutasi"
+
+#: templates/asset/movement_corrections.html:70
+msgid "History of asset movement data changes"
+msgstr "Riwayat perubahan data mutasi asset"
+
+#: templates/asset/movement_corrections.html:165
+#: templates/asset/movement_detail.html:823
+msgid "Correction History"
+msgstr "Riwayat Koreksi"
+
+#: templates/asset/movement_corrections.html:166
+#: templates/asset/movements_global.html:702
+msgid "Corrections"
+msgstr "Koreksi"
+
+#: templates/asset/movement_corrections.html:178
+msgid "Correction Time"
+msgstr "Waktu Koreksi"
+
+#: templates/asset/movement_corrections.html:179
+msgid "Data Before"
+msgstr "Data Sebelum"
+
+#: templates/asset/movement_corrections.html:180
+msgid "Data After"
+msgstr "Data Sesudah"
+
+#: templates/asset/movement_corrections.html:282
+msgid "No correction reason."
+msgstr "Tidak ada alasan koreksi."
+
+#: templates/asset/movement_corrections.html:295
+msgid "No Correction History Yet"
+msgstr "Belum Ada Riwayat Koreksi"
+
+#: templates/asset/movement_corrections.html:296
+msgid "This movement has never been corrected."
+msgstr "Mutasi ini belum pernah dikoreksi."
+
+#: templates/asset/movement_corrections.html:301
+msgid "Create Correction"
+msgstr "Buat Koreksi"
+
+#: templates/asset/movement_detail.html:1
+msgid "Asset Movement Proof"
+msgstr "Bukti Mutasi Asset"
+
+#: templates/asset/movement_detail.html:762
+msgid "Back to History"
+msgstr "Kembali ke Riwayat"
+
+#: templates/asset/movement_detail.html:788
+msgid "Verification QR"
+msgstr "QR Verifikasi"
+
+#: templates/asset/movement_detail.html:833
+msgid "Print A4"
+msgstr "Cetak A4"
+
+#: templates/asset/movement_detail.html:853
+msgid "Movement Verification QR"
+msgstr "QR Verifikasi Mutasi"
+
+#: templates/asset/movement_detail.html:856
+msgid "Scan to verify"
+msgstr "Scan untuk verifikasi"
+
+#: templates/asset/movement_detail.html:872
+msgid "Logo"
+msgstr "Logo"
+
+#: templates/asset/movement_detail.html:880
+msgid "COMPANY NAME"
+msgstr "NAMA PERUSAHAAN"
+
+#: templates/asset/movement_detail.html:892
+msgid "Tel."
+msgstr "Telp."
+
+#: templates/asset/movement_detail.html:900 templates/company/edit.html:109
+#: templates/company/list.html:218 templates/master/vendor/add.html:89
+#: templates/master/vendor/edit.html:91 templates/master/vendor/list.html:96
+msgid "Email"
+msgstr "Email"
+
+#: templates/asset/movement_detail.html:913
+msgid "ASSET MOVEMENT PROOF"
+msgstr "BUKTI MUTASI ASSET"
+
+#: templates/asset/movement_detail.html:926
+msgid "Document Information"
+msgstr "Informasi Dokumen"
+
+#: templates/asset/movement_detail.html:954
+msgid "COMPLETED"
+msgstr "SELESAI"
+
+#: templates/asset/movement_detail.html:1013
+msgid "Asset Transfer Detail"
+msgstr "Detail Perpindahan Asset"
+
+#: templates/asset/movement_detail.html:1019
+msgid "DESCRIPTION"
+msgstr "KETERANGAN"
+
+#: templates/asset/movement_detail.html:1083
+msgid "Movement Description"
+msgstr "Keterangan Mutasi"
+
+#: templates/asset/movement_detail.html:1115
+msgid ""
+"By signing this document, the parties declare that the asset listed in this "
+"document has been handed over and received in accordance with the movement "
+"information recorded in the Asset Tracker system."
+msgstr ""
+"Dengan ditandatanganinya dokumen ini, para pihak menyatakan bahwa asset "
+"sebagaimana tercantum dalam dokumen ini telah diserahkan dan diterima sesuai"
+" dengan informasi mutasi yang tercatat pada sistem Asset Tracker."
+
+#: templates/asset/movement_detail.html:1125
+msgid "Approval / Handover"
+msgstr "Persetujuan / Serah Terima"
+
+#: templates/asset/movement_detail.html:1144
+msgid "Signature of the handing-over party"
+msgstr "Tanda tangan penyerah"
+
+#: templates/asset/movement_detail.html:1149
+#: templates/asset/movement_detail.html:1184
+msgid "No signature"
+msgstr "Tidak ada tanda tangan"
+
+#: templates/asset/movement_detail.html:1156
+#: templates/asset/movement_detail.html:1191
+msgid "Signed"
+msgstr "Ditandatangani"
+
+#: templates/asset/movement_detail.html:1179
+msgid "Signature of the receiving party"
+msgstr "Tanda tangan penerima"
+
+#: templates/asset/movement_detail.html:1213
+msgid "Asset Movement Document"
+msgstr "Dokumen Mutasi Asset"
+
+#: templates/asset/movement_detail.html:1220
+msgid "Verification"
+msgstr "Verifikasi"
+
+#: templates/asset/movement_qr.html:169
+msgid "QR code to access the movement document"
+msgstr "QR Code untuk mengakses dokumen mutasi asset"
+
+#: templates/asset/movement_qr.html:192
+msgid ""
+"Scan the QR code using your smartphone camera to open the movement "
+"information."
+msgstr ""
+"Scan QR Code menggunakan kamera smartphone untuk membuka informasi mutasi "
+"asset."
+
+#: templates/asset/movement_qr.html:238
+msgid "Transfer"
+msgstr "Perpindahan"
+
+#: templates/asset/movement_qr.html:291
+msgid "Document URL"
+msgstr "URL Dokumen"
+
+#: templates/asset/movement_qr.html:312
+#: templates/asset/movement_verify.html:401
+msgid "View Movement Proof"
+msgstr "Lihat Bukti Mutasi"
+
+#: templates/asset/movement_qr.html:331
+msgid "Print QR"
+msgstr "Cetak QR"
+
+#: templates/asset/movement_report.html:1
+#: templates/asset/movement_report.html:508
+msgid "Asset Movement Report"
+msgstr "Laporan Mutasi Asset"
+
+#: templates/asset/movement_report.html:511
+msgid "Asset movement history by movement date."
+msgstr "Riwayat perpindahan asset berdasarkan tanggal mutasi."
+
+#: templates/asset/movement_report.html:515
+msgid "Printed from the Asset Tracker system."
+msgstr "Dicetak dari sistem Asset Tracker."
+
+#: templates/asset/movement_report.html:557
+msgid "Filtered Results"
+msgstr "Hasil Filter"
+
+#: templates/asset/movement_report.html:563
+msgid "Most Common Destination Location"
+msgstr "Lokasi Tujuan Terbanyak"
+
+#: templates/asset/movement_report.html:569
+msgid "Most Common Destination Department"
+msgstr "Departemen Tujuan Terbanyak"
+
+#: templates/asset/movement_report.html:585
+msgid "Report Filter"
+msgstr "Filter Laporan"
+
+#: templates/asset/movement_report.html:593
+msgid "Start Date"
+msgstr "Tanggal Mulai"
+
+#: templates/asset/movement_report.html:605 templates/warranty/alert.html:454
+msgid "End Date"
+msgstr "Tanggal Akhir"
+
+#: templates/asset/movement_report.html:618
+#: templates/asset/movement_report.html:622
+msgid "Showing movements from"
+msgstr "Menampilkan mutasi dari"
+
+#: templates/asset/movement_report.html:620
+msgid "to"
+msgstr "sampai"
+
+#: templates/asset/movement_report.html:624
+msgid "Showing movements until"
+msgstr "Menampilkan mutasi sampai"
+
+#: templates/asset/movement_report.html:626
+msgid "Showing all movements."
+msgstr "Menampilkan seluruh mutasi."
+
+#: templates/asset/movement_report.html:634
+msgid "Apply Filter"
+msgstr "Terapkan Filter"
+
+#: templates/asset/movement_report.html:662
+msgid "Asset Movement Data"
+msgstr "Data Mutasi Asset"
+
+#: templates/asset/movement_report.html:665
+msgid "movements shown"
+msgstr "mutasi ditampilkan"
+
+#: templates/asset/movement_report.html:672
+msgid "Period:"
+msgstr "Periode:"
+
+#: templates/asset/movement_report.html:674
+msgid "From:"
+msgstr "Mulai:"
+
+#: templates/asset/movement_report.html:675
+msgid "Until:"
+msgstr "Sampai:"
+
+#: templates/asset/movement_report.html:676
+msgid "Entire period"
+msgstr "Seluruh periode"
+
+#: templates/asset/movement_report.html:702
+msgid "Reason / Description"
+msgstr "Alasan / Keterangan"
+
+#: templates/asset/movement_report.html:826
+msgid "View Movement Detail"
+msgstr "Lihat Detail Mutasi"
+
+#: templates/asset/movement_report.html:846
+msgid "No movement data"
+msgstr "Tidak ada data mutasi"
+
+#: templates/asset/movement_report.html:849
+msgid "No asset movement data found"
+msgstr "Tidak ditemukan data mutasi asset"
+
+#: templates/asset/movement_report.html:849
+msgid "for the selected period."
+msgstr "pada periode yang dipilih."
+
+#: templates/asset/movement_report.html:849
+msgid "in the database."
+msgstr "pada database."
+
+#: templates/asset/movement_report.html:875
+msgid "total movements."
+msgstr "total mutasi."
+
+#: templates/asset/movement_report.html:875
+msgid "No movements displayed."
+msgstr "Tidak ada mutasi yang ditampilkan."
+
+#: templates/asset/movement_verify.html:1
+msgid "Asset Movement Verification"
+msgstr "Verifikasi Mutasi Asset"
+
+#: templates/asset/movement_verify.html:171
+msgid "Asset Movement Verified"
+msgstr "Mutasi Asset Terverifikasi"
+
+#: templates/asset/movement_verify.html:173
+msgid "Movement data found in the Asset Tracker system"
+msgstr "Data mutasi ditemukan di sistem Asset Tracker"
+
+#: templates/asset/movement_verify.html:193
+msgid "VALID DATA"
+msgstr "DATA VALID"
+
+#: templates/asset/movement_verify.html:253
+msgid "Location Change"
+msgstr "Perpindahan Lokasi"
+
+#: templates/asset/movement_verify.html:283
+msgid "Department Change"
+msgstr "Perubahan Departemen"
+
+#: templates/asset/movement_verify.html:313
+msgid "PIC Change"
+msgstr "Perpindahan PIC"
+
+#: templates/asset/movement_verify.html:374
+msgid "Verification Information"
+msgstr "Informasi Verifikasi"
+
+#: templates/asset/movement_verify.html:379
+msgid ""
+"The data above is taken directly from the asset movement record stored in "
+"the Asset Tracker system."
+msgstr ""
+"Data di atas diambil langsung dari catatan mutasi asset yang tersimpan pada "
+"sistem Asset Tracker."
+
+#: templates/asset/movement_verify.html:383
+msgid ""
+"Use the movement number and Asset Tag as a reference if further verification"
+" is required."
+msgstr ""
+"Gunakan nomor mutasi dan Asset Tag sebagai referensi apabila diperlukan "
+"pemeriksaan lebih lanjut."
+
+#: templates/asset/movement_verify.html:414
+msgid "View QR"
+msgstr "Lihat QR"
+
+#: templates/asset/movements.html:140
+msgid "Current Location"
+msgstr "Lokasi Saat Ini"
+
+#: templates/asset/movements.html:148
+msgid "Current Department"
+msgstr "Departemen Saat Ini"
+
+#: templates/asset/movements.html:156
+msgid "Current PIC"
+msgstr "PIC Saat Ini"
+
+#: templates/asset/movements.html:172
+msgid "Current Asset Condition"
+msgstr "Kondisi Asset Saat Ini"
+
+#: templates/asset/movements.html:214
+msgid "Movement History"
+msgstr "Riwayat Mutasi"
+
+#: templates/asset/movements.html:217
+msgid "movement"
+msgstr "mutasi"
+
+#: templates/asset/movements.html:347
+#: templates/asset/movements_global.html:142
+#: templates/asset/movements_global.html:146
+#: templates/asset/movements_global.html:646
+msgid "CURRENT"
+msgstr "SAAT INI"
+
+#: templates/asset/movements.html:351
+#: templates/asset/movements_global.html:156
+#: templates/asset/movements_global.html:160
+#: templates/asset/movements_global.html:652
+msgid "HISTORY"
+msgstr "RIWAYAT"
+
+#: templates/asset/movements.html:385
+#: templates/asset/movements_global.html:719
+msgid "Correct"
+msgstr "Koreksi"
+
+#: templates/asset/movements_global.html:3
+#: templates/asset/movements_global.html:22
+msgid "Global Movement"
+msgstr "Mutasi Global"
+
+#: templates/asset/movements_global.html:24
+msgid "All asset movement history"
+msgstr "Seluruh histori mutasi asset"
+
+#: templates/asset/movements_global.html:51
+msgid "Filter Movement"
+msgstr "Filter Mutasi"
+
+#: templates/asset/movements_global.html:78
+msgid "Movement No / Asset Tag / Asset Name / PIC"
+msgstr "No. Mutasi / Kode Asset / Nama Asset / PIC"
+
+#: templates/asset/movements_global.html:106
+msgid "Until"
+msgstr "Sampai"
+
+#: templates/asset/movements_global.html:290 templates/warranty/alert.html:361
+#: templates/warranty/notifications.html:311
+msgid "Filter"
+msgstr "Filter"
+
+#: templates/asset/movements_global.html:358
+msgid "Current"
+msgstr "Saat Ini"
+
+#: templates/asset/movements_global.html:399
+msgid "History"
+msgstr "Riwayat"
+
+#: templates/asset/movements_global.html:445
+msgid "Movement Data"
+msgstr "Data Mutasi"
+
+#: templates/asset/movements_global.html:449
+msgid "data"
+msgstr "data"
+
+#: templates/asset/movements_global.html:740
+msgid "Movement page navigation"
+msgstr "Navigasi halaman mutasi"
+
+#: templates/asset/movements_global.html:787
+msgid "No movements found"
+msgstr "Tidak ada mutasi ditemukan"
+
+#: templates/asset/movements_global.html:791
+msgid "No data matches the filter."
+msgstr "Tidak ada data yang sesuai dengan filter."
+
+#: templates/audit/list.html:3 templates/audit/list.html:16
+msgid "Audit Log"
+msgstr "Log Aktivitas"
+
+#: templates/audit/list.html:17
+msgid "History of who added/changed/deleted data"
+msgstr "Riwayat siapa menambah/mengubah/menghapus data"
+
+#: templates/audit/list.html:32
+msgid "Activity List"
+msgstr "Daftar Aktivitas"
+
+#: templates/audit/list.html:35
+msgid "entries found"
+msgstr "entri ditemukan"
+
+#: templates/audit/list.html:49
+msgid "Time"
+msgstr "Waktu"
+
+#: templates/audit/list.html:50
+msgid "User"
+msgstr "Pengguna"
+
+#: templates/audit/list.html:52
+msgid "Data Type"
+msgstr "Tipe Data"
+
+#: templates/audit/list.html:53
+msgid "Data"
+msgstr "Data"
+
+#: templates/audit/list.html:66
+msgid "Add"
+msgstr "Tambah"
+
+#: templates/audit/list.html:68
+msgid "Update"
+msgstr "Ubah"
+
+#: templates/audit/list.html:82
+msgid "No activity recorded yet."
+msgstr "Belum ada aktivitas tercatat."
+
+#: templates/audit/list.html:95
+msgid "Audit log page navigation"
+msgstr "Navigasi halaman audit log"
+
+#: templates/backup/list.html:3 templates/backup/list.html:16
+msgid "Backup Database"
+msgstr "Pencadangan"
+
+#: templates/backup/list.html:17
+msgid ""
+"Back up the database and photo files (assets, company logo) into a single "
+".zip file"
+msgstr ""
+"Backup file database dan foto (asset, logo perusahaan) jadi satu file .zip"
+
+#: templates/backup/list.html:32
+msgid "Backup List"
+msgstr "Daftar Backup"
+
+#: templates/backup/list.html:40 templates/backup/restore_upload.html:3
+#: templates/backup/restore_upload.html:16
+msgid "Restore from Uploaded File"
+msgstr "Restore dari File Upload"
+
+#: templates/backup/list.html:47
+msgid "Create New Backup"
+msgstr "Buat Backup Baru"
+
+#: templates/backup/list.html:63
+msgid "File Name"
+msgstr "Nama File"
+
+#: templates/backup/list.html:64
+msgid "Size"
+msgstr "Ukuran"
+
+#: templates/backup/list.html:81
+msgid "Download"
+msgstr "Unduh"
+
+#: templates/backup/list.html:86
+msgid "Restore"
+msgstr "Restore"
+
+#: templates/backup/list.html:89
+msgid "Delete this backup file?"
+msgstr "Hapus file backup ini?"
+
+#: templates/backup/list.html:106
+msgid "Restore Database"
+msgstr "Restore Database"
+
+#: templates/backup/list.html:113 templates/backup/restore_upload.html:28
+msgid "This will"
+msgstr "Ini akan"
+
+#: templates/backup/list.html:113 templates/backup/restore_upload.html:28
+msgid "OVERWRITE"
+msgstr "MENIMPA"
+
+#: templates/backup/list.html:113
+msgid "all data currently in use with the contents of backup"
+msgstr "seluruh data yang sedang berjalan sekarang dengan isi backup"
+
+#: templates/backup/list.html:114
+msgid "All changes made after that date will be lost."
+msgstr "Semua perubahan setelah tanggal itu akan hilang."
+
+#: templates/backup/list.html:118
+msgid ""
+"The current state will automatically be backed up first before being "
+"overwritten, so it can still be restored if you choose incorrectly."
+msgstr ""
+"Kondisi sekarang akan otomatis di-backup dulu sebelum ditimpa, jadi masih "
+"bisa dikembalikan kalau salah pilih."
+
+#: templates/backup/list.html:121 templates/backup/restore_upload.html:41
+#: templates/roles/list.html:72
+msgid "Type"
+msgstr "Tipe"
+
+#: templates/backup/list.html:121
+msgid "to confirm:"
+msgstr "untuk konfirmasi:"
+
+#: templates/backup/list.html:128
+msgid "Yes, Overwrite Database Now"
+msgstr "Ya, Timpa Database Sekarang"
+
+#: templates/backup/list.html:142
+msgid "No backups yet. Click \"Create New Backup\" above."
+msgstr "Belum ada backup. Klik \"Buat Backup Baru\" di atas."
+
+#: templates/backup/list.html:157
+msgid "Backups are stored in the"
+msgstr "Backup tersimpan di folder"
+
+#: templates/backup/list.html:157
+msgid ""
+"folder on the server. It is recommended to periodically download and store "
+"copies elsewhere (Google Drive, USB drive, etc)."
+msgstr ""
+"di server. Sebaiknya unduh dan simpan salinannya di tempat lain (Google "
+"Drive, flashdisk, dsb) secara berkala."
+
+#: templates/backup/restore_upload.html:28
+msgid ""
+"the entire database and photos currently in use with the contents of the "
+"backup file you upload. The current state will automatically be backed up "
+"first before being overwritten."
+msgstr ""
+"seluruh database dan foto yang sedang berjalan sekarang dengan isi file "
+"backup yang Anda upload. Kondisi sekarang akan otomatis di-backup dulu "
+"sebelum ditimpa."
+
+#: templates/backup/restore_upload.html:36
+msgid "Backup File (.zip)"
+msgstr "File Backup (.zip)"
+
+#: templates/backup/restore_upload.html:41
+msgid "to confirm"
+msgstr "untuk konfirmasi"
+
+#: templates/backup/restore_upload.html:47
+msgid "Overwrite Database Now"
+msgstr "Timpa Database Sekarang"
+
+#: templates/company/edit.html:3 templates/company/edit.html:16
+#: templates/company/list.html:122
+msgid "Edit Company Data"
+msgstr "Edit Data Perusahaan"
+
+#: templates/company/edit.html:17
+msgid "Set the company identity used in documents and reports"
+msgstr "Atur identitas perusahaan yang digunakan pada dokumen dan laporan"
+
+#: templates/company/edit.html:42
+msgid "Company Information"
+msgstr "Informasi Perusahaan"
+
+#: templates/company/edit.html:60
+msgid "Company Name"
+msgstr "Nama Perusahaan"
+
+#: templates/company/edit.html:66
+msgid "PT Company Name"
+msgstr "PT Nama Perusahaan"
+
+#: templates/company/edit.html:77 templates/company/list.html:202
+#: templates/master/vendor/add.html:104 templates/master/vendor/edit.html:107
+msgid "Address"
+msgstr "Alamat"
+
+#: templates/company/edit.html:82
+msgid "Full company address"
+msgstr "Alamat lengkap perusahaan"
+
+#: templates/company/edit.html:93 templates/company/list.html:210
+#: templates/master/vendor/add.html:74 templates/master/vendor/edit.html:75
+#: templates/master/vendor/list.html:95
+msgid "Phone"
+msgstr "Telepon"
+
+#: templates/company/edit.html:125 templates/company/list.html:226
+msgid "Website"
+msgstr "Website"
+
+#: templates/company/edit.html:141 templates/company/list.html:240
+msgid "NPWP"
+msgstr "NPWP"
+
+#: templates/company/edit.html:146
+msgid "NPWP Number"
+msgstr "Nomor NPWP"
+
+#: templates/company/edit.html:157
+msgid "Document Number Prefix"
+msgstr "Prefix Nomor Dokumen"
+
+#: templates/company/edit.html:166
+msgid "Example:"
+msgstr "Contoh:"
+
+#: templates/company/edit.html:168
+msgid "produces a number like"
+msgstr "menghasilkan nomor seperti"
+
+#: templates/company/edit.html:197
+msgid "Company Logo"
+msgstr "Logo Perusahaan"
+
+#: templates/company/edit.html:221
+msgid "No logo yet"
+msgstr "Belum ada logo"
+
+#: templates/company/edit.html:226
+msgid "Logo Preview"
+msgstr "Preview Logo"
+
+#: templates/company/edit.html:235
+msgid "Upload Logo"
+msgstr "Unggah Logo"
+
+#: templates/company/edit.html:264 templates/master/category/add.html:85
+#: templates/master/department/add.html:70
+#: templates/master/location/add.html:84 templates/roles/edit.html:40
+msgid "Save"
+msgstr "Simpan"
+
+#: templates/company/list.html:3 templates/company/list.html:115
+msgid "Company Data"
+msgstr "Data Perusahaan"
+
+#: templates/company/list.html:116
+msgid ""
+"Company information used on document headers and asset movement receipts"
+msgstr ""
+"Informasi perusahaan yang digunakan pada kop dokumen dan bukti mutasi asset"
+
+#: templates/company/list.html:162
+msgid "Prefix:"
+msgstr "Prefix:"
+
+#: templates/company/list.html:168
+msgid "This data is automatically used in the"
+msgstr "Data ini otomatis dipakai di kop"
+
+#: templates/company/list.html:168
+msgid "Asset Movement Receipt"
+msgstr "Bukti Mutasi Asset"
+
+#: templates/company/list.html:168
+msgid "header and document numbering."
+msgstr "dan penomoran dokumen."
+
+#: templates/company/list.html:189
+msgid "Contact Information"
+msgstr "Informasi Kontak"
+
+#: templates/company/list.html:260
+msgid "Company data is not yet available."
+msgstr "Data perusahaan belum tersedia."
+
+#: templates/company/list.html:261
+msgid "Add company data"
+msgstr "Tambahkan data perusahaan"
+
+#: templates/master/category/add.html:3 templates/master/category/add.html:21
+#: templates/master/category/list.html:40
+msgid "Add Category"
+msgstr "Tambah Kategori"
+
+#: templates/master/category/add.html:51
+#: templates/master/category/edit.html:51
+#: templates/master/category/list.html:106
+msgid "Category Name"
+msgstr "Nama Kategori"
+
+#: templates/master/category/add.html:58
+msgid "Example: Laptop"
+msgstr "Contoh: Laptop"
+
+#: templates/master/category/add.html:75
+msgid "Category description..."
+msgstr "Keterangan kategori..."
+
+#: templates/master/category/edit.html:3
+#: templates/master/category/edit.html:21
+msgid "Edit Category"
+msgstr "Edit Kategori"
+
+#: templates/master/category/list.html:3
+msgid "Categories"
+msgstr "Kategori"
+
+#: templates/master/category/list.html:22
+msgid "Category Master"
+msgstr "Master Kategori"
+
+#: templates/master/category/list.html:26
+msgid "Manage asset categories"
+msgstr "Kelola kategori asset"
+
+#: templates/master/category/list.html:79
+msgid "Category List"
+msgstr "Daftar Kategori"
+
+#: templates/master/category/list.html:83
+msgid "categories found"
+msgstr "kategori ditemukan"
+
+#: templates/master/category/list.html:154
+msgid "Delete this category?"
+msgstr "Hapus kategori ini?"
+
+#: templates/master/category/list.html:180
+msgid "No categories yet."
+msgstr "Belum ada kategori."
+
+#: templates/master/department/add.html:3
+#: templates/master/department/add.html:16
+#: templates/master/department/list.html:36
+msgid "Add Department"
+msgstr "Tambah Departemen"
+
+#: templates/master/department/add.html:39
+#: templates/master/department/edit.html:39
+msgid "Department Name"
+msgstr "Nama Departemen"
+
+#: templates/master/department/add.html:46
+msgid "Example: IT"
+msgstr "Contoh: IT"
+
+#: templates/master/department/edit.html:3
+#: templates/master/department/edit.html:16
+msgid "Edit Department"
+msgstr "Edit Departemen"
+
+#: templates/master/department/list.html:3
+msgid "Departments"
+msgstr "Departemen"
+
+#: templates/master/department/list.html:20
+msgid "Department Master"
+msgstr "Master Departemen"
+
+#: templates/master/department/list.html:23
+msgid "Manage asset user departments"
+msgstr "Kelola departemen pengguna asset"
+
+#: templates/master/department/list.html:69
+msgid "Department List"
+msgstr "Daftar Departemen"
+
+#: templates/master/department/list.html:73
+msgid "departments found"
+msgstr "departemen ditemukan"
+
+#: templates/master/department/list.html:129
+msgid "Delete this department?"
+msgstr "Hapus departemen ini?"
+
+#: templates/master/department/list.html:155
+msgid "No departments yet."
+msgstr "Belum ada departemen."
+
+#: templates/master/location/add.html:3 templates/master/location/add.html:21
+#: templates/master/location/list.html:38
+msgid "Add Location"
+msgstr "Tambah Lokasi"
+
+#: templates/master/location/add.html:51
+#: templates/master/location/edit.html:51
+#: templates/master/location/list.html:94
+msgid "Location Name"
+msgstr "Nama Lokasi"
+
+#: templates/master/location/add.html:58
+msgid "Example: Office"
+msgstr "Contoh: Office"
+
+#: templates/master/location/edit.html:3
+#: templates/master/location/edit.html:21
+msgid "Edit Location"
+msgstr "Edit Lokasi"
+
+#: templates/master/location/list.html:3
+msgid "Locations"
+msgstr "Lokasi"
+
+#: templates/master/location/list.html:21
+msgid "Location Master"
+msgstr "Master Lokasi"
+
+#: templates/master/location/list.html:24
+msgid "Manage asset locations"
+msgstr "Kelola lokasi asset"
+
+#: templates/master/location/list.html:73
+msgid "Location List"
+msgstr "Daftar Lokasi"
+
+#: templates/master/location/list.html:77
+msgid "locations found"
+msgstr "lokasi ditemukan"
+
+#: templates/master/location/list.html:135
+msgid "Delete this location?"
+msgstr "Hapus lokasi ini?"
+
+#: templates/master/location/list.html:161
+msgid "No locations yet."
+msgstr "Belum ada lokasi."
+
+#: templates/master/menu/add.html:3 templates/master/menu/add.html:20
+#: templates/master/menu/list.html:36
+msgid "Add Menu Item"
+msgstr "Tambah Menu"
+
+#: templates/master/menu/add.html:42 templates/master/menu/edit.html:42
+#: templates/master/menu/list.html:92
+msgid "Label"
+msgstr "Label"
+
+#: templates/master/menu/add.html:49
+msgid "Example: Stock Report"
+msgstr "Contoh: Laporan Stok"
+
+#: templates/master/menu/add.html:53 templates/master/menu/edit.html:53
+msgid "Can be left blank if this menu item will be a divider."
+msgstr "Boleh dikosongkan kalau menu ini dijadikan garis pemisah."
+
+#: templates/master/menu/add.html:62 templates/master/menu/edit.html:62
+#: templates/master/menu/list.html:93
+msgid "URL"
+msgstr "URL"
+
+#: templates/master/menu/add.html:69
+msgid "Example: /assets or leave blank if this is a dropdown group"
+msgstr "Contoh: /assets atau kosongkan jika ini grup submenu"
+
+#: templates/master/menu/add.html:73 templates/master/menu/edit.html:73
+msgid "Leave blank if this menu item is only a dropdown group (has submenus)."
+msgstr "Kosongkan jika menu ini hanya jadi grup submenu."
+
+#: templates/master/menu/add.html:82 templates/master/menu/edit.html:82
+msgid "Icon (Bootstrap Icons)"
+msgstr "Ikon (Bootstrap Icons)"
+
+#: templates/master/menu/add.html:89 templates/master/menu/edit.html:90
+msgid "Example: bi-box-seam"
+msgstr "Contoh: bi-box-seam"
+
+#: templates/master/menu/add.html:93
+msgid "See the list of icon names at"
+msgstr "Lihat daftar nama icon di"
+
+#: templates/master/menu/add.html:105 templates/master/menu/edit.html:99
+msgid "Parent Menu"
+msgstr "Induk Menu (Parent)"
+
+#: templates/master/menu/add.html:112 templates/master/menu/edit.html:107
+msgid "None (top-level menu)"
+msgstr "Tidak ada (menu utama)"
+
+#: templates/master/menu/add.html:120
+msgid "Select a parent menu if this is a submenu (dropdown)."
+msgstr "Pilih menu utama jika ini submenu."
+
+#: templates/master/menu/add.html:129 templates/master/menu/edit.html:123
+#: templates/master/menu/list.html:95
+msgid "Order"
+msgstr "Urutan"
+
+#: templates/master/menu/add.html:140
+msgid "Smaller numbers appear first."
+msgstr "Angka lebih kecil tampil lebih dulu."
+
+#: templates/master/menu/add.html:149 templates/master/menu/edit.html:139
+msgid "Visible For Roles"
+msgstr "Terlihat Untuk Role"
+
+#: templates/master/menu/add.html:172 templates/master/menu/edit.html:165
+msgid "Leave all unchecked if this menu item should be visible to all roles."
+msgstr "Kosongkan semua jika menu ini boleh dilihat semua role."
+
+#: templates/master/menu/add.html:192 templates/master/menu/edit.html:185
+msgid "Active Menu"
+msgstr "Menu Aktif"
+
+#: templates/master/menu/add.html:213 templates/master/menu/edit.html:207
+msgid "Make this a divider (not a link)"
+msgstr "Jadikan garis pemisah (bukan link)"
+
+#: templates/master/menu/add.html:227
+msgid "Save Menu"
+msgstr "Simpan Menu"
+
+#: templates/master/menu/edit.html:3 templates/master/menu/edit.html:20
+msgid "Edit Menu Item"
+msgstr "Edit Menu"
+
+#: templates/master/menu/list.html:3 templates/master/menu/list.html:20
+msgid "Menu Management"
+msgstr "Manajemen Menu"
+
+#: templates/master/menu/list.html:23
+msgid "Manage the navigation menu shown in the navbar"
+msgstr "Atur menu navigasi yang tampil di navbar"
+
+#: templates/master/menu/list.html:71
+msgid "Menu List"
+msgstr "Daftar Menu"
+
+#: templates/master/menu/list.html:75
+msgid "menu items found"
+msgstr "menu ditemukan"
+
+#: templates/master/menu/list.html:94
+msgid "Icon"
+msgstr "Ikon"
+
+#: templates/master/menu/list.html:96 templates/master/user/add.html:90
+#: templates/master/user/edit.html:92 templates/master/user/list.html:95
+msgid "Role"
+msgstr "Role"
+
+#: templates/master/menu/list.html:112
+msgid "Dropdown"
+msgstr "Submenu"
+
+#: templates/master/menu/list.html:124 templates/master/menu/list.html:182
+msgid "All Roles"
+msgstr "Semua Role"
+
+#: templates/master/menu/list.html:147
+msgid "Delete this menu? Its submenus will also be deleted."
+msgstr "Hapus menu ini? Submenu di dalamnya juga akan terhapus."
+
+#: templates/master/menu/list.html:205
+msgid "Delete this menu?"
+msgstr "Hapus menu ini?"
+
+#: templates/master/menu/list.html:233
+msgid "No menu items yet."
+msgstr "Belum ada menu."
+
+#: templates/master/user/add.html:3 templates/master/user/add.html:20
+#: templates/master/user/list.html:36
+msgid "Add User"
+msgstr "Tambah User"
+
+#: templates/master/user/add.html:114
+msgid "Save User"
+msgstr "Simpan User"
+
+#: templates/master/user/edit.html:3 templates/master/user/edit.html:20
+msgid "Edit User"
+msgstr "Edit User"
+
+#: templates/master/user/edit.html:126
+msgid "Active Account"
+msgstr "Akun Aktif"
+
+#: templates/master/user/list.html:3 templates/master/user/list.html:20
+msgid "User Management"
+msgstr "Manajemen User"
+
+#: templates/master/user/list.html:23
+msgid "Manage user accounts and access rights"
+msgstr "Kelola akun dan hak akses pengguna"
+
+#: templates/master/user/list.html:71
+msgid "User List"
+msgstr "Daftar Pengguna"
+
+#: templates/master/user/list.html:75
+msgid "users found"
+msgstr "pengguna ditemukan"
+
+#: templates/master/user/list.html:149
+msgid "Delete this user?"
+msgstr "Hapus user ini?"
+
+#: templates/master/user/list.html:177
+msgid "No users yet."
+msgstr "Belum ada user."
+
+#: templates/master/vendor/add.html:3 templates/master/vendor/add.html:20
+#: templates/master/vendor/list.html:36
+msgid "Add Vendor"
+msgstr "Tambah Vendor"
+
+#: templates/master/vendor/add.html:42 templates/master/vendor/edit.html:42
+msgid "Vendor Name"
+msgstr "Nama Vendor"
+
+#: templates/master/vendor/add.html:49
+msgid "Company/vendor name"
+msgstr "Nama perusahaan/vendor"
+
+#: templates/master/vendor/add.html:59 templates/master/vendor/edit.html:59
+#: templates/master/vendor/list.html:94
+msgid "Contact Person"
+msgstr "Kontak Person"
+
+#: templates/master/vendor/add.html:137
+msgid "Save Vendor"
+msgstr "Simpan Vendor"
+
+#: templates/master/vendor/edit.html:3 templates/master/vendor/edit.html:20
+msgid "Edit Vendor"
+msgstr "Edit Vendor"
+
+#: templates/master/vendor/list.html:3
+msgid "Vendors"
+msgstr "Vendor"
+
+#: templates/master/vendor/list.html:20
+msgid "Vendor Master"
+msgstr "Master Vendor"
+
+#: templates/master/vendor/list.html:23
+msgid "Manage asset suppliers and vendors"
+msgstr "Kelola supplier dan vendor asset"
+
+#: templates/master/vendor/list.html:71
+msgid "Vendor List"
+msgstr "Daftar Vendor"
+
+#: templates/master/vendor/list.html:75
+msgid "vendors found"
+msgstr "vendor ditemukan"
+
+#: templates/master/vendor/list.html:143
+msgid "Delete this vendor?"
+msgstr "Hapus vendor ini?"
+
+#: templates/master/vendor/list.html:169
+msgid "No vendors yet."
+msgstr "Belum ada vendor."
+
+#: templates/roles/add.html:3 templates/roles/add.html:16
+#: templates/roles/list.html:23
+msgid "Add Role"
+msgstr "Tambah Role"
+
+#: templates/roles/add.html:31 templates/roles/edit.html:31
+#: templates/roles/list.html:69
+msgid "Role Name"
+msgstr "Nama Role"
+
+#: templates/roles/add.html:32
+msgid "Example: Warehouse Staff"
+msgstr "Contoh: Staff Gudang"
+
+#: templates/roles/add.html:42
+msgid ""
+"After the role is created, you will be directed to the page to set its "
+"permissions (Create/Read/Edit/Delete per page). New roles have no access by "
+"default."
+msgstr ""
+"Setelah role dibuat, Anda akan diarahkan ke halaman untuk mengatur hak "
+"aksesnya (Create/Read/Edit/Delete per halaman). Role baru defaultnya belum "
+"punya akses apapun."
+
+#: templates/roles/add.html:45
+msgid "Save & Set Permissions"
+msgstr "Simpan & Atur Hak Akses"
+
+#: templates/roles/edit.html:3 templates/roles/edit.html:16
+msgid "Edit Role"
+msgstr "Edit Role"
+
+#: templates/roles/edit.html:41
+msgid "Set Permissions"
+msgstr "Atur Hak Akses"
+
+#: templates/roles/import.html:3
+msgid "Import Permissions"
+msgstr "Impor Hak Akses"
+
+#: templates/roles/import.html:16
+msgid "Import Roles & Permissions"
+msgstr "Impor Role & Hak Akses"
+
+#: templates/roles/import.html:28
+msgid "Use the"
+msgstr "Gunakan"
+
+#: templates/roles/import.html:28
+msgid ""
+"file from the Role Management page as a template. Roles whose names already "
+"exist will have their permissions updated (except built-in roles, whose "
+"names cannot be changed); roles with new names will be created "
+"automatically."
+msgstr ""
+"file dari halaman Manajemen Role sebagai template. Role yang namanya sudah "
+"ada akan diperbarui hak aksesnya (kecuali role bawaan namanya tidak diubah);"
+" role dengan nama baru akan otomatis dibuat."
+
+#: templates/roles/import.html:36
+msgid "Excel File (.xlsx)"
+msgstr "File Excel (.xlsx)"
+
+#: templates/roles/import.html:42 templates/roles/list.html:31
+msgid "Import"
+msgstr "Impor"
+
+#: templates/roles/import.html:49
+msgid "Download Template (Export Now)"
+msgstr "Unduh Template (Ekspor Sekarang)"
+
+#: templates/roles/list.html:3 templates/roles/list.html:16
+msgid "Role Management"
+msgstr "Manajemen Role"
+
+#: templates/roles/list.html:17
+msgid "Manage roles and page-level permissions (Create/Read/Edit/Delete)"
+msgstr "Atur role dan hak akses (Create/Read/Edit/Delete) per halaman"
+
+#: templates/roles/list.html:49
+msgid "Role List"
+msgstr "Daftar Role"
+
+#: templates/roles/list.html:53
+msgid "roles found"
+msgstr "role ditemukan"
+
+#: templates/roles/list.html:71
+msgid "User Count"
+msgstr "Jumlah User"
+
+#: templates/roles/list.html:86 templates/roles/permissions.html:19
+msgid "Built-in"
+msgstr "Bawaan"
+
+#: templates/roles/list.html:88
+msgid "Custom"
+msgstr "Kustom"
+
+#: templates/roles/list.html:95 templates/roles/permissions.html:3
+msgid "Permissions"
+msgstr "Hak Akses"
+
+#: templates/roles/list.html:104
+msgid "Delete this role?"
+msgstr "Hapus role ini?"
+
+#: templates/roles/list.html:117
+msgid "No roles yet."
+msgstr "Belum ada role."
+
+#: templates/roles/permissions.html:17
+msgid "Permissions:"
+msgstr "Hak Akses:"
+
+#: templates/roles/permissions.html:31
+msgid "The role"
+msgstr "Role"
+
+#: templates/roles/permissions.html:31
+msgid ""
+"always has full access to all pages (superuser), regardless of the settings "
+"below. This matrix is for display/reference only."
+msgstr ""
+"selalu punya akses penuh ke semua halaman (superuser), terlepas dari "
+"pengaturan di bawah ini. Matrix ini cuma untuk tampilan/referensi."
+
+#: templates/roles/permissions.html:38
+msgid "Permission Matrix per Page"
+msgstr "Matrix Hak Akses per Halaman"
+
+#: templates/roles/permissions.html:53
+msgid "Object"
+msgstr "Objek"
+
+#: templates/roles/permissions.html:58
+msgid "all"
+msgstr "semua"
+
+#: templates/roles/permissions.html:59
+msgid "clear"
+msgstr "kosongkan"
+
+#: templates/roles/permissions.html:99
+msgid "Save Permissions"
+msgstr "Simpan Hak Akses"
+
+#: templates/settings/general.html:3 templates/settings/general.html:16
+msgid "Application Settings"
+msgstr "Pengaturan Aplikasi"
+
+#: templates/settings/general.html:17
+msgid "Application name, logo, footer, and login page"
+msgstr "Nama aplikasi, logo, footer, dan halaman login"
+
+#: templates/settings/general.html:44
+msgid "Application Identity"
+msgstr "Identitas Aplikasi"
+
+#: templates/settings/general.html:52
+msgid "Application Name"
+msgstr "Nama Aplikasi"
+
+#: templates/settings/general.html:54
+msgid "Appears in the sidebar, browser tab, and login page."
+msgstr "Muncul di sidebar, tab browser, dan halaman login."
+
+#: templates/settings/general.html:58
+msgid "Footer Text"
+msgstr "Teks Footer"
+
+#: templates/settings/general.html:59
+msgid "Example: PT Tradecorp Indonesia © 2026"
+msgstr "Contoh: PT Tradecorp Indonesia © 2026"
+
+#: templates/settings/general.html:60
+msgid "Leave blank to use the default:"
+msgstr "Kosongkan untuk pakai default:"
+
+#: templates/settings/general.html:64
+msgid "Login Page Message"
+msgstr "Pesan di Halaman Login"
+
+#: templates/settings/general.html:65
+msgid "Example: Internal Asset Management System"
+msgstr "Contoh: Sistem Manajemen Asset Internal"
+
+#: templates/settings/general.html:66
+msgid ""
+"Small text below the application name on the login page. May be left blank."
+msgstr ""
+"Teks kecil di bawah nama aplikasi pada halaman login. Boleh dikosongkan."
+
+#: templates/settings/general.html:81
+msgid "Sidebar Brand Display"
+msgstr "Tampilan Identitas Sidebar"
+
+#: templates/settings/general.html:88
+msgid "Choose how the app identity appears next to the sidebar menu."
+msgstr ""
+"Pilih bagaimana identitas aplikasi ditampilkan di sebelah menu sidebar."
+
+#: templates/settings/general.html:92
+msgid "Logo only"
+msgstr "Hanya Logo"
+
+#: templates/settings/general.html:97
+msgid "Application name only"
+msgstr "Hanya Nama Aplikasi"
+
+#: templates/settings/general.html:102
+msgid "Logo and application name"
+msgstr "Logo dan Nama Aplikasi"
+
+#: templates/settings/general.html:105
+msgid ""
+"If no wide logo has been uploaded yet, the sidebar falls back to the "
+"application name regardless of this setting."
+msgstr ""
+"Jika logo lebar belum diunggah, sidebar akan otomatis menampilkan nama "
+"aplikasi terlepas dari pengaturan ini."
+
+#: templates/settings/general.html:113
+msgid "Save Settings"
+msgstr "Simpan Pengaturan"
+
+#: templates/settings/general.html:132
+msgid "Wide Logo (Sidebar)"
+msgstr "Logo Panjang (Sidebar)"
+
+#: templates/settings/general.html:142
+msgid "Wide logo"
+msgstr "Logo panjang"
+
+#: templates/settings/general.html:144
+msgid "No wide logo yet"
+msgstr "Belum ada logo panjang"
+
+#: templates/settings/general.html:155
+msgid "Remove wide logo (use default icon)"
+msgstr "Hapus logo panjang (pakai ikon default)"
+
+#: templates/settings/general.html:159
+msgid ""
+"Recommended: wide (horizontal) shape, transparent background, height around "
+"40-60px."
+msgstr ""
+"Disarankan: bentuk melebar (horizontal), latar transparan, tinggi sekitar "
+"40-60px."
+
+#: templates/settings/general.html:173
+msgid "Square Logo (Login & Favicon)"
+msgstr "Logo Kotak (Login & Favicon)"
+
+#: templates/settings/general.html:183
+msgid "Square logo"
+msgstr "Logo kotak"
+
+#: templates/settings/general.html:185
+msgid "No square logo yet"
+msgstr "Belum ada logo kotak"
+
+#: templates/settings/general.html:196
+msgid "Remove square logo (use default icon)"
+msgstr "Hapus logo kotak (pakai ikon default)"
+
+#: templates/settings/general.html:200
+msgid "Recommended: 1:1 (square) ratio, also used as the browser tab favicon."
+msgstr ""
+"Disarankan: rasio 1:1 (persegi), dipakai juga sebagai favicon tab browser."
+
+#: templates/warranty/alert.html:3 templates/warranty/alert.html:209
+msgid "Warranty Alert Detail"
+msgstr "Detail Peringatan Garansi"
+
+#: templates/warranty/alert.html:213
+msgid "Warranty status monitoring for all assets"
+msgstr "Monitoring status garansi seluruh asset"
+
+#: templates/warranty/alert.html:221 templates/warranty/index.html:3
+#: templates/warranty/index.html:308 templates/warranty/notifications.html:224
+msgid "Warranty Management"
+msgstr "Manajemen Garansi"
+
+#: templates/warranty/alert.html:226
+msgid "Alert"
+msgstr "Peringatan"
+
+#: templates/warranty/alert.html:241
+msgid "Total Warranty"
+msgstr "Total Garansi"
+
+#: templates/warranty/alert.html:286 templates/warranty/alert.html:347
+#: templates/warranty/alert.html:646 templates/warranty/index.html:630
+msgid "Incomplete"
+msgstr "Tidak Lengkap"
+
+#: templates/warranty/alert.html:313 templates/warranty/index.html:361
+msgid "Asset tag, name, brand, model, serial number, vendor..."
+msgstr "Asset tag, nama, brand, model, serial number, vendor..."
+
+#: templates/warranty/alert.html:321 templates/warranty/index.html:368
+msgid "Warranty Status"
+msgstr "Status Garansi"
+
+#: templates/warranty/alert.html:396 templates/warranty/index.html:478
+msgid "Warranty List"
+msgstr "Daftar Garansi"
+
+#: templates/warranty/alert.html:402
+msgid "Showing warranty expiring within ≤ 7 days."
+msgstr "Menampilkan garansi yang akan habis dalam ≤ 7 hari."
+
+#: templates/warranty/alert.html:405
+msgid "Showing warranty expiring within 8–30 days."
+msgstr "Menampilkan garansi yang akan habis dalam 8–30 hari."
+
+#: templates/warranty/alert.html:408
+msgid "Showing warranty that has already expired."
+msgstr "Menampilkan garansi yang sudah habis."
+
+#: templates/warranty/alert.html:411
+msgid "Showing warranty that is still active."
+msgstr "Menampilkan garansi yang masih aktif."
+
+#: templates/warranty/alert.html:414
+msgid "Showing warranty with incomplete data."
+msgstr "Menampilkan garansi dengan data yang belum lengkap."
+
+#: templates/warranty/alert.html:417
+msgid "Showing all warranty data."
+msgstr "Menampilkan seluruh data garansi."
+
+#: templates/warranty/alert.html:449
+msgid "Tag"
+msgstr "Tag"
+
+#: templates/warranty/alert.html:455
+msgid "Days Left"
+msgstr "Sisa Hari"
+
+#: templates/warranty/alert.html:488
+msgid "SN:"
+msgstr "SN:"
+
+#: templates/warranty/alert.html:572 templates/warranty/index.html:574
+msgid "days ago"
+msgstr "hari lalu"
+
+#: templates/warranty/alert.html:623
+msgid "≤ 7 Days"
+msgstr "≤ 7 Hari"
+
+#: templates/warranty/alert.html:630
+msgid "8–30 Days"
+msgstr "8–30 Hari"
+
+#: templates/warranty/alert.html:663
+msgid "View Asset Detail"
+msgstr "Lihat Detail Asset"
+
+#: templates/warranty/alert.html:673
+msgid "Edit Asset / Update Warranty"
+msgstr "Edit Asset / Ubah Garansi"
+
+#: templates/warranty/alert.html:682 templates/warranty/history.html:4
+#: templates/warranty/history.html:138 templates/warranty/history.html:268
+msgid "Warranty History"
+msgstr "Riwayat Garansi"
+
+#: templates/warranty/alert.html:707 templates/warranty/index.html:665
+msgid "No warranty data"
+msgstr "Tidak ada data garansi"
+
+#: templates/warranty/alert.html:711 templates/warranty/index.html:669
+msgid "No assets found matching the selected filter."
+msgstr "Tidak ditemukan asset yang sesuai dengan filter yang dipilih."
+
+#: templates/warranty/history.html:142
+msgid "Asset warranty change history"
+msgstr "Riwayat perubahan garansi asset"
+
+#: templates/warranty/history.html:213
+msgid "Asset Tag:"
+msgstr "Kode Asset:"
+
+#: templates/warranty/history.html:221
+msgid "Brand:"
+msgstr "Brand:"
+
+#: templates/warranty/history.html:229
+msgid "Model:"
+msgstr "Model:"
+
+#: templates/warranty/history.html:239
+msgid "Serial:"
+msgstr "Serial:"
+
+#: templates/warranty/history.html:273
+msgid "changes recorded"
+msgstr "riwayat perubahan tercatat"
+
+#: templates/warranty/history.html:282
+msgid "Current Warranty:"
+msgstr "Garansi Saat Ini:"
+
+#: templates/warranty/history.html:307
+msgid "Change Date"
+msgstr "Tanggal Perubahan"
+
+#: templates/warranty/history.html:311
+msgid "Old Warranty"
+msgstr "Garansi Lama"
+
+#: templates/warranty/history.html:315
+msgid "Old End Date"
+msgstr "Berakhir Lama"
+
+#: templates/warranty/history.html:322
+msgid "New Warranty"
+msgstr "Garansi Baru"
+
+#: templates/warranty/history.html:326
+msgid "New End Date"
+msgstr "Berakhir Baru"
+
+#: templates/warranty/history.html:507
+msgid "No warranty history yet"
+msgstr "Belum ada riwayat garansi"
+
+#: templates/warranty/history.html:513
+msgid "Changes to this asset's warranty will be recorded automatically here."
+msgstr "Perubahan garansi pada asset ini akan tercatat otomatis di sini."
+
+#: templates/warranty/index.html:312
+msgid "Monitoring the warranty period for all assets."
+msgstr "Monitoring masa garansi seluruh asset."
+
+#: templates/warranty/index.html:380 templates/warranty/index.html:616
+msgid "Expiring"
+msgstr "Akan Habis"
+
+#: templates/warranty/index.html:388 templates/warranty/index.html:457
+#: templates/warranty/notifications.html:293
+msgid "Incomplete Data"
+msgstr "Data Tidak Lengkap"
+
+#: templates/warranty/index.html:401
+msgid "Apply"
+msgstr "Terapkan"
+
+#: templates/warranty/index.html:437
+msgid "Expiring within 30 Days"
+msgstr "Akan Habis ≤ 30 Hari"
+
+#: templates/warranty/index.html:481
+msgid "found"
+msgstr "ditemukan"
+
+#: templates/warranty/notifications.html:4
+#: templates/warranty/notifications.html:194
+msgid "Warranty Notifications"
+msgstr "Notifikasi Garansi"
+
+#: templates/warranty/notifications.html:198
+msgid "Center for monitoring warranties that need attention"
+msgstr "Pusat monitoring garansi yang membutuhkan perhatian"
+
+#: templates/warranty/notifications.html:214
+msgid "Warranty Detail"
+msgstr "Detail Garansi"
+
+#: templates/warranty/notifications.html:257
+msgid "Asset tag, name, brand, model, serial, vendor, location..."
+msgstr "Asset Tag, nama, brand, model, serial, vendor, lokasi..."
+
+#: templates/warranty/notifications.html:270
+msgid "Notification Status"
+msgstr "Status Notifikasi"
+
+#: templates/warranty/notifications.html:277
+msgid "All Notifications"
+msgstr "Semua Notifikasi"
+
+#: templates/warranty/notifications.html:281
+#: templates/warranty/notifications.html:344
+msgid "Critical ≤ 7 Days"
+msgstr "Kritis ≤ 7 Hari"
+
+#: templates/warranty/notifications.html:285
+#: templates/warranty/notifications.html:357
+msgid "Warning 8–30 Days"
+msgstr "Peringatan 8–30 Hari"
+
+#: templates/warranty/notifications.html:383
+msgid "Total Alerts"
+msgstr "Total Peringatan"
+
+#: templates/warranty/notifications.html:412
+msgid "Warranty Expiring Immediately"
+msgstr "Garansi Segera Habis"
+
+#: templates/warranty/notifications.html:416
+msgid "Warranty remaining a maximum of 7 days"
+msgstr "Garansi tersisa maksimal 7 hari"
+
+#: templates/warranty/notifications.html:449
+#: templates/warranty/notifications.html:581
+#: templates/warranty/notifications.html:694
+msgid "Tag:"
+msgstr "Tag:"
+
+#: templates/warranty/notifications.html:479
+msgid "Expires today"
+msgstr "Habis hari ini"
+
+#: templates/warranty/notifications.html:483
+msgid "1 day left"
+msgstr "1 hari lagi"
+
+#: templates/warranty/notifications.html:487
+#: templates/warranty/notifications.html:602
+msgid "days left"
+msgstr "hari lagi"
+
+#: templates/warranty/notifications.html:497
+#: templates/warranty/notifications.html:610
+#: templates/warranty/notifications.html:723
+msgid "Update Warranty"
+msgstr "Ubah Garansi"
+
+#: templates/warranty/notifications.html:518
+msgid "No critical warranties."
+msgstr "Tidak ada garansi yang kritis."
+
+#: templates/warranty/notifications.html:548
+msgid "Warranty remaining 8 to 30 days"
+msgstr "Garansi tersisa 8 sampai 30 hari"
+
+#: templates/warranty/notifications.html:588
+msgid "Vendor:"
+msgstr "Vendor:"
+
+#: templates/warranty/notifications.html:631
+msgid "No warranties in the warning period."
+msgstr "Tidak ada garansi dalam periode peringatan."
+
+#: templates/warranty/notifications.html:661
+msgid "Warranty that has passed its end date"
+msgstr "Garansi yang sudah melewati tanggal berakhir"
+
+#: templates/warranty/notifications.html:701
+msgid "Expires:"
+msgstr "Berakhir:"
+
+#: templates/warranty/notifications.html:760
+msgid "Last checked:"
+msgstr "Pemeriksaan terakhir:"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+#~ msgid "All Vendors"
+#~ msgstr "Semua Vendor"
+
+#~ msgid "Laporan Mutasi"
+#~ msgstr "Laporan Mutasi"
+
+#~ msgid "Kategori"
+#~ msgstr "Kategori"
+
+#~ msgid "Lokasi"
+#~ msgstr "Lokasi"
+
+#~ msgid "Departemen"
+#~ msgstr "Departemen"
+
+#~ msgid "Hapus Cache"
+#~ msgstr "Hapus Cache"
+
+#~ msgid "Role Akses"
+#~ msgstr "Role Akses"
+
+#~ msgid "Pengaturan Aplikasi"
+#~ msgstr "Pengaturan Aplikasi"
+
+#~ msgid "Pemisah"
+#~ msgstr "Pemisah"

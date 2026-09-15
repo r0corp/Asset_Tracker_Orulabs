@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Departments') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Department Master') }}</h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Manage asset user departments') }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a
+                    href="{{ url_for('main.add_department') }}"
+                    class="btn btn-primary"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    {{ _('Add Department') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+    <div class="card shadow-sm overflow-hidden">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Department List') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ departments|length }} {{ _('departments found') }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+                        <th>{{ _('No.') }}</th>
+                        <th>{{ _('Department') }}</th>
+                        <th>{{ _('Description') }}</th>
+                        <th>{{ _('Actions') }}</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for department in departments %}
+
+                    <tr>
+
+                        <td>
+                            {{ loop.index }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ department.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ department.description or "-" }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('main.edit_department', department_id=department.id) }}"
+                                class="btn btn-sm btn-warning"
+                            >
+                                {{ _('Edit') }}
+                            </a>
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('main.delete_department', department_id=department.id) }}"
+                                style="display:inline;"
+                                onsubmit="return confirm('{{ _('Delete this department?') }}');"
+                            >
+
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-sm btn-danger"
+                                >
+                                    {{ _('Delete') }}
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="text-center text-muted"
+                        >
+                            {{ _('No departments yet.') }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

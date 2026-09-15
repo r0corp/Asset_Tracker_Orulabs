@@ -1,0 +1,350 @@
+{% extends "base.html" %} {% block title %} {{ _('Movement QR') }} - {{
+movement.movement_no or '-' }} {% endblock %} {% block content %}
+
+<style>
+  .movement-qr-page {
+    max-width: 900px;
+    margin: 30px auto;
+  }
+
+  .qr-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .qr-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #dee2e6;
+    background: #f8f9fa;
+  }
+
+  .qr-header h4 {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .qr-header small {
+    color: #6c757d;
+  }
+
+  .qr-body {
+    padding: 30px;
+  }
+
+  .qr-image-box {
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 20px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+
+    background: #ffffff;
+  }
+
+  .qr-image-box img {
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
+  }
+
+  .qr-caption {
+    text-align: center;
+    font-size: 13px;
+    color: #6c757d;
+  }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+  }
+
+  .info-table th,
+  .info-table td {
+    border: 1px solid #dee2e6;
+    padding: 10px 12px;
+    vertical-align: top;
+  }
+
+  .info-table th {
+    width: 180px;
+    background: #f8f9fa;
+    font-weight: 600;
+  }
+
+  .movement-arrow {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px 0;
+  }
+
+  .verification-box {
+    margin-top: 25px;
+    padding: 15px;
+
+    border: 1px solid #cfe2ff;
+    background: #e7f1ff;
+
+    border-radius: 6px;
+  }
+
+  .verification-box strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .verification-url {
+    word-break: break-all;
+    font-size: 12px;
+    color: #495057;
+  }
+
+  .qr-actions {
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+  @media print {
+    nav,
+    header,
+    footer,
+    .navbar,
+    .sidebar,
+    .screen-actions {
+      display: none !important;
+    }
+
+    body {
+      background: #ffffff !important;
+    }
+
+    .movement-qr-page {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
+    .qr-card {
+      border: none;
+      box-shadow: none;
+    }
+
+    .qr-header {
+      border: none;
+      background: #ffffff;
+    }
+
+    .qr-actions,
+    .verification-box {
+      display: none !important;
+    }
+  }
+</style>
+
+<div class="movement-qr-page">
+  <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+  <div class="qr-card">
+    <div class="qr-header">
+      <h4>
+        <i class="bi bi-qr-code"></i>
+        {{ _('Movement QR') }}
+      </h4>
+
+      <small> {{ _('QR code to access the movement document') }} </small>
+    </div>
+
+    <!-- ====================================================
+             BODY
+             ==================================================== -->
+
+    <div class="qr-body">
+      <!-- ==================================================
+                 QR CODE
+                 ================================================== -->
+
+      <div class="qr-image-box">
+        <img
+          src="{{ url_for(
+                        'static',
+                        filename='qrcodes/' ~ qr_filename
+                    ) }}"
+          alt="{{ _('Movement QR') }}"
+        />
+      </div>
+
+      <div class="qr-caption">
+        {{ _('Scan the QR code using your smartphone camera to open the movement information.') }}
+      </div>
+
+      <!-- ==================================================
+                 INFORMASI ASSET
+                 ================================================== -->
+
+      <table class="info-table">
+        <tr>
+          <th>{{ _('Asset Tag') }}</th>
+
+          <td>
+            <strong> {{ asset.asset_tag or '-' }} </strong>
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Asset Name') }}</th>
+
+          <td>{{ asset.asset_name or '-' }}</td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Serial Number') }}</th>
+
+          <td>{{ asset.serial_number or '-' }}</td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Movement No.') }}</th>
+
+          <td>
+            <strong> {{ movement.movement_no or '-' }} </strong>
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Movement Date') }}</th>
+
+          <td>
+            {% if movement.movement_date %} {{ movement.movement_date.strftime(
+            '%d-%m-%Y' ) }} {% else %} - {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ _('Transfer') }}</th>
+
+          <td>
+            <div>
+              <small class="text-muted"> {{ _('Location') }} </small>
+
+              <br />
+
+              {{ movement.from_location or '-' }}
+
+              <div class="movement-arrow">↓</div>
+
+              <strong> {{ movement.to_location or '-' }} </strong>
+            </div>
+
+            <hr />
+
+            <div>
+              <small class="text-muted"> {{ _('Department') }} </small>
+
+              <br />
+
+              {{ movement.from_department or '-' }}
+
+              <div class="movement-arrow">↓</div>
+
+              <strong> {{ movement.to_department or '-' }} </strong>
+            </div>
+
+            <hr />
+
+            <div>
+              <small class="text-muted"> {{ _('PIC') }} </small>
+
+              <br />
+
+              {{ movement.from_pic or '-' }}
+
+              <div class="movement-arrow">↓</div>
+
+              <strong> {{ movement.to_pic or '-' }} </strong>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- ==================================================
+                 URL
+                 ================================================== -->
+
+      <div class="verification-box">
+        <strong>
+          <i class="bi bi-link-45deg"></i>
+          {{ _('Document URL') }}
+        </strong>
+
+        <div class="verification-url">{{ verification_url }}</div>
+      </div>
+
+      <!-- ==================================================
+                 ACTION
+                 ================================================== -->
+
+      <div class="qr-actions">
+        <a
+          href="{{ url_for(
+                        'main.asset_movement_detail',
+                        asset_id=asset.id,
+                        movement_id=movement.id
+                    ) }}"
+          class="btn btn-outline-primary"
+        >
+          <i class="bi bi-file-text"></i>
+
+          {{ _('View Movement Proof') }}
+        </a>
+
+        <a
+          href="{{ url_for(
+                        'main.verify_asset_movement',
+                        asset_id=asset.id,
+                        movement_id=movement.id
+                    ) }}"
+          class="btn btn-outline-success"
+        >
+          <i class="bi bi-shield-check"></i>
+
+          {{ _('Verify') }}
+        </a>
+
+        <button type="button" onclick="window.print()" class="btn btn-primary">
+          <i class="bi bi-printer"></i>
+
+          {{ _('Print QR') }}
+        </button>
+
+        <a
+          href="{{ url_for(
+                        'main.asset_movements',
+                        asset_id=asset.id
+                    ) }}"
+          class="btn btn-secondary"
+        >
+          <i class="bi bi-arrow-left"></i>
+
+          {{ _('Back') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

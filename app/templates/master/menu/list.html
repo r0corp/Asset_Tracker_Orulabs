@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Menu Management') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Menu Management') }}</h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Manage the navigation menu shown in the navbar') }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a
+                    href="{{ url_for('main.add_menu') }}"
+                    class="btn btn-primary"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    {{ _('Add Menu Item') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+
+    <div class="card shadow-sm overflow-hidden">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Menu List') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ top_items|length }} {{ _('menu items found') }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>{{ _('Label') }}</th>
+                            <th>{{ _('URL') }}</th>
+                            <th>{{ _('Icon') }}</th>
+                            <th>{{ _('Order') }}</th>
+                            <th>{{ _('Role') }}</th>
+                            <th>{{ _('Status') }}</th>
+                            <th>{{ _('Actions') }}</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for top in top_items %}
+
+                        <tr>
+
+                            <td>
+                                <strong>{{ top.label }}</strong>
+                                {% if top.children %}
+                                <span class="badge bg-info ms-1">{{ _('Dropdown') }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td>{{ top.url or "-" }}</td>
+
+                            <td>
+                                {% if top.icon %}<i class="bi {{ top.icon }}"></i> {{ top.icon }}{% else %}-{% endif %}
+                            </td>
+
+                            <td>{{ top.order }}</td>
+
+                            <td>{{ top.roles or _('All Roles') }}</td>
+
+                            <td>
+                                {% if top.is_active %}
+                                <span class="badge bg-success">{{ _('Active') }}</span>
+                                {% else %}
+                                <span class="badge bg-danger">{{ _('Inactive') }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('main.edit_menu', menu_id=top.id) }}"
+                                    class="btn btn-sm btn-warning"
+                                >
+                                    {{ _('Edit') }}
+                                </a>
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('main.delete_menu', menu_id=top.id) }}"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('{{ _('Delete this menu? Its submenus will also be deleted.') }}');"
+                                >
+
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-danger"
+                                    >
+                                        {{ _('Delete') }}
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% for child in top.children %}
+
+                        <tr>
+
+                            <td class="ps-4">
+                                <i class="bi bi-arrow-return-right text-muted me-1"></i>
+                                {{ child.label }}
+                            </td>
+
+                            <td>{{ child.url or "-" }}</td>
+
+                            <td>
+                                {% if child.icon %}<i class="bi {{ child.icon }}"></i> {{ child.icon }}{% else %}-{% endif %}
+                            </td>
+
+                            <td>{{ child.order }}</td>
+
+                            <td>{{ child.roles or _('All Roles') }}</td>
+
+                            <td>
+                                {% if child.is_active %}
+                                <span class="badge bg-success">{{ _('Active') }}</span>
+                                {% else %}
+                                <span class="badge bg-danger">{{ _('Inactive') }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('main.edit_menu', menu_id=child.id) }}"
+                                    class="btn btn-sm btn-warning"
+                                >
+                                    {{ _('Edit') }}
+                                </a>
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('main.delete_menu', menu_id=child.id) }}"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('{{ _('Delete this menu?') }}');"
+                                >
+
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-danger"
+                                    >
+                                        {{ _('Delete') }}
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="text-center text-muted"
+                            >
+                                {{ _('No menu items yet.') }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

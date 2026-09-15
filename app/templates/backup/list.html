@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Backup Database') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-cloud-arrow-down"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Backup Database') }}</h3>
+                    <p class="page-header-subtitle mb-0">{{ _('Back up the database and photo files (assets, company logo) into a single .zip file') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card overflow-hidden">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-archive"></i>
+                </div>
+                <div class="card-header-accent-title">
+                    {{ _('Backup List') }}
+                </div>
+            </div>
+
+            <div class="card-header-accent-actions">
+
+                <a href="{{ url_for('main.backup_restore_upload') }}" class="btn btn-outline-warning">
+                    <i class="bi bi-upload me-1"></i>
+                    {{ _('Restore from Uploaded File') }}
+                </a>
+
+                <form method="POST" action="{{ url_for('main.backup_create') }}" style="display:inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-cloud-arrow-down me-1"></i>
+                        {{ _('Create New Backup') }}
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>{{ _('File Name') }}</th>
+                            <th>{{ _('Size') }}</th>
+                            <th>{{ _('Created') }}</th>
+                            <th>{{ _('Actions') }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for file in files %}
+                        <tr>
+                            <td><i class="bi bi-file-earmark-zip me-1"></i>{{ file.name }}</td>
+                            <td>{{ file.size_mb }} MB</td>
+                            <td>{{ file.created_at.strftime('%d-%m-%Y %H:%M') }}</td>
+                            <td>
+
+                                <a href="{{ url_for('main.backup_download', filename=file.name) }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-download"></i>
+                                    {{ _('Download') }}
+                                </a>
+
+                                <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#restoreModal{{ loop.index }}">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
+                                    {{ _('Restore') }}
+                                </button>
+
+                                <form method="POST" action="{{ url_for('main.backup_delete', filename=file.name) }}" style="display:inline;" onsubmit="return confirm('{{ _('Delete this backup file?') }}');">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+
+                                <!-- MODAL KONFIRMASI RESTORE -->
+                                <div class="modal fade" id="restoreModal{{ loop.index }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <form method="POST" action="{{ url_for('main.backup_restore', filename=file.name) }}">
+
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"><i class="bi bi-exclamation-triangle text-danger me-1"></i> {{ _('Restore Database') }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="alert alert-danger">
+                                                        {{ _('This will') }} <strong>{{ _('OVERWRITE') }}</strong> {{ _('all data currently in use with the contents of backup') }} <code>{{ file.name }}</code> ({{ file.created_at.strftime('%d-%m-%Y %H:%M') }}).
+                                                        {{ _('All changes made after that date will be lost.') }}
+                                                    </div>
+
+                                                    <p class="small text-muted">
+                                                        {{ _('The current state will automatically be backed up first before being overwritten, so it can still be restored if you choose incorrectly.') }}
+                                                    </p>
+
+                                                    <label class="form-label">{{ _('Type') }} <strong>RESTORE</strong> {{ _('to confirm:') }}</label>
+                                                    <input type="text" name="confirm_text" class="form-control" autocomplete="off" required>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+                                                    <button type="submit" class="btn btn-danger">{{ _('Yes, Overwrite Database Now') }}</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                {{ _('No backups yet. Click "Create New Backup" above.') }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+            <i class="bi bi-info-circle me-1"></i>
+            {{ _('Backups are stored in the') }} <code>backups/</code> {{ _('folder on the server. It is recommended to periodically download and store copies elsewhere (Google Drive, USB drive, etc).') }}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Vendor') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Edit Vendor') }}</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Vendor Name') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            value="{{ vendor.name }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Contact Person') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="contact_person"
+                            class="form-control"
+                            value="{{ vendor.contact_person or '' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Phone') }}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            value="{{ vendor.phone or '' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Email') }}
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            value="{{ vendor.email or '' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Address') }}
+                        </label>
+
+                        <textarea
+                            name="address"
+                            class="form-control"
+                            rows="3"
+                        >{{ vendor.address or '' }}</textarea>
+
+                    </div>
+
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label">
+                            {{ _('Description') }}
+                        </label>
+
+                        <textarea
+                            name="description"
+                            class="form-control"
+                            rows="3"
+                        >{{ vendor.description or '' }}</textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    {{ _('Save Changes') }}
+                </button>
+
+                <a
+                    href="{{ url_for('main.vendors') }}"
+                    class="btn btn-secondary"
+                >
+                    {{ _('Cancel') }}
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

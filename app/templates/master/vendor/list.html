@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Vendors') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+
+                <div>
+                    <h2 class="page-header-title">{{ _('Vendor Master') }}</h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Manage asset suppliers and vendors') }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a
+                    href="{{ url_for('main.add_vendor') }}"
+                    class="btn btn-primary"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    {{ _('Add Vendor') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% for category, message in messages %}
+
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+
+    <div class="card shadow-sm overflow-hidden">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Vendor List') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ vendors|length }} {{ _('vendors found') }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                        <tr>
+                            <th>{{ _('No.') }}</th>
+                            <th>{{ _('Vendor') }}</th>
+                            <th>{{ _('Contact Person') }}</th>
+                            <th>{{ _('Phone') }}</th>
+                            <th>{{ _('Email') }}</th>
+                            <th>{{ _('Actions') }}</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for vendor in vendors %}
+
+                        <tr>
+
+                            <td>
+                                {{ loop.index }}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    {{ vendor.name }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ vendor.contact_person or "-" }}
+                            </td>
+
+                            <td>
+                                {{ vendor.phone or "-" }}
+                            </td>
+
+                            <td>
+                                {{ vendor.email or "-" }}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('main.edit_vendor', vendor_id=vendor.id) }}"
+                                    class="btn btn-sm btn-warning"
+                                >
+                                    {{ _('Edit') }}
+                                </a>
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('main.delete_vendor', vendor_id=vendor.id) }}"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('{{ _('Delete this vendor?') }}');"
+                                >
+
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-danger"
+                                    >
+                                        {{ _('Delete') }}
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="text-center text-muted"
+                            >
+                                {{ _('No vendors yet.') }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

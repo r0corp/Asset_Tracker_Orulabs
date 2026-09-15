@@ -1,0 +1,1185 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Print QR / Label Asset') }} - Asset Tracker
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    /* ============================================================
+   TOM & JERRY NO. 108
+   ============================================================
+
+   UKURAN LABEL : 38 x 18 MM
+
+   FORMAT       : 5 KOLOM x 8 BARIS
+
+   TOTAL        : 40 LABEL / LEMBAR
+
+   1 ASSET      : 5 LABEL
+
+   DESAIN FINAL:
+
+   ┌──────────────────────────────────────┐
+   │ PT TRADECORP INDONESIA        ┌────┐ │
+   │ AST-007                       │    │ │
+   │ Laptop Acer                   │ QR │ │
+   │ S/N: ABC123456                │    │ │
+   └──────────────────────────────────────┘
+
+   KIRI  : INFORMASI ASSET
+   KANAN : QR CODE
+
+   LOGO : TIDAK DIGUNAKAN
+
+   ============================================================ */
+
+
+    /* ============================================================
+   PAGE
+   ============================================================ */
+
+    .label-page {
+
+        padding: 24px;
+
+    }
+
+
+    /* ============================================================
+   PREVIEW CONTAINER
+   ============================================================ */
+
+    .label-sheet-preview {
+
+        background: #f1f3f5;
+
+        padding: 20px;
+
+        border-radius: 10px;
+
+    }
+
+
+    /* ============================================================
+   LABEL GRID
+
+   TOM & JERRY NO. 108
+
+   5 KOLOM x 8 BARIS
+
+   40 LABEL / LEMBAR
+   ============================================================ */
+
+    .label-grid {
+
+        display: grid;
+
+        grid-template-columns:
+
+            repeat(5,
+                38mm);
+
+        grid-template-rows:
+
+            repeat(8,
+                18mm);
+
+        column-gap: 3mm;
+
+        row-gap: 3mm;
+
+        justify-content: center;
+
+        align-content: start;
+
+    }
+
+
+    /* ============================================================
+   INDIVIDUAL LABEL
+
+   38 x 18 MM
+   ============================================================ */
+
+    .asset-label {
+
+        width: 38mm;
+
+        height: 18mm;
+
+        box-sizing: border-box;
+
+        background: #ffffff;
+
+        border: 1px solid #6c757d;
+
+        border-radius: 2mm;
+
+        padding: 1.2mm;
+
+        display: grid;
+
+        /*
+       KIRI  = INFORMASI
+       KANAN = QR
+    */
+
+        grid-template-columns:
+
+            1fr 10.5mm;
+
+        column-gap: 1.2mm;
+
+        align-items: center;
+
+        overflow: hidden;
+
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+
+    }
+
+
+    /* ============================================================
+   INFORMATION AREA
+
+   POSISI KIRI
+   ============================================================ */
+
+    .asset-label-info {
+
+        min-width: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        overflow: hidden;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: flex-start;
+
+    }
+
+
+    /* ============================================================
+   COMPANY NAME
+
+   BARIS 1
+   ============================================================ */
+
+    .asset-label-company {
+
+        width: 100%;
+
+        font-family:
+
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        font-size: 5.2pt;
+
+        font-weight: 700;
+
+        line-height: 1;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0;
+
+        margin-bottom: 0.8mm;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: clip;
+
+    }
+
+
+    /* ============================================================
+   ASSET TAG
+
+   BARIS 2
+   ============================================================ */
+
+    .asset-label-tag {
+
+        width: 100%;
+
+        font-family:
+
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        font-size: 6.5pt;
+
+        font-weight: 800;
+
+        line-height: 1;
+
+        margin-bottom: 0.8mm;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    /* ============================================================
+   ASSET NAME / MODEL
+
+   BARIS 3
+   ============================================================ */
+
+    .asset-label-name {
+
+        width: 100%;
+
+        font-family:
+
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        font-size: 5.2pt;
+
+        font-weight: 600;
+
+        line-height: 1.05;
+
+        margin-bottom: 0.7mm;
+
+        max-height: 5.5mm;
+
+        overflow: hidden;
+
+        display: -webkit-box;
+
+        -webkit-line-clamp: 2;
+
+        -webkit-box-orient: vertical;
+
+    }
+
+
+    /* ============================================================
+   SERIAL NUMBER
+
+   BARIS 4
+   ============================================================ */
+
+    .asset-label-serial {
+
+        width: 100%;
+
+        font-family:
+
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        font-size: 4.8pt;
+
+        font-weight: 500;
+
+        line-height: 1;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    /* ============================================================
+   QR AREA
+
+   POSISI KANAN
+   ============================================================ */
+
+    .asset-label-qr-wrapper {
+
+        width: 10.5mm;
+
+        height: 15mm;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+
+    }
+
+
+    /* ============================================================
+   QR CODE
+
+   10.5 x 10.5 MM
+   ============================================================ */
+
+    .asset-label-qr {
+
+        width: 10.5mm;
+
+        height: 10.5mm;
+
+        min-width: 10.5mm;
+
+        min-height: 10.5mm;
+
+        max-width: 10.5mm;
+
+        max-height: 10.5mm;
+
+        object-fit: contain;
+
+        display: block;
+
+    }
+
+
+    /* ============================================================
+   QR FALLBACK
+   ============================================================ */
+
+    .asset-label-qr-empty {
+
+        width: 10mm;
+
+        height: 10mm;
+
+        box-sizing: border-box;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        font-family:
+
+            Arial,
+            Helvetica,
+            sans-serif;
+
+        font-size: 4pt;
+
+        color: #777777;
+
+        border: 0.2mm dashed #aaaaaa;
+
+    }
+
+
+    /* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+    .label-empty {
+
+        text-align: center;
+
+        padding: 60px 20px;
+
+        color: #6c757d;
+
+    }
+
+
+    /* ============================================================
+   SCREEN RESPONSIVE
+   ============================================================ */
+
+    @media (max-width: 1200px) {
+
+        .label-grid {
+
+            grid-template-columns:
+
+                repeat(3,
+                    38mm);
+
+            grid-template-rows: auto;
+
+        }
+
+    }
+
+
+    @media (max-width: 850px) {
+
+        .label-grid {
+
+            grid-template-columns:
+
+                repeat(2,
+                    38mm);
+
+            grid-template-rows: auto;
+
+        }
+
+    }
+
+
+    @media (max-width: 550px) {
+
+        .label-grid {
+
+            grid-template-columns:
+
+                38mm;
+
+            grid-template-rows: auto;
+
+        }
+
+    }
+
+
+    /* ============================================================
+   PRINT
+   ============================================================ */
+
+    @media print {
+
+
+        /* --------------------------------------------------------
+       A4
+       -------------------------------------------------------- */
+
+        @page {
+
+            size: A4 portrait;
+
+            margin: 0;
+
+        }
+
+
+        html,
+        body {
+
+            width: 210mm;
+
+            height: 297mm;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+            background: #ffffff !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       HIDE SCREEN ELEMENTS
+       -------------------------------------------------------- */
+
+        .no-print,
+        .navbar,
+        nav,
+        footer,
+        .app-footer {
+
+            display: none !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       MAIN PAGE
+       -------------------------------------------------------- */
+
+        .label-page {
+
+            width: 210mm !important;
+
+            height: 297mm !important;
+
+            min-height: 297mm !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       LABEL SHEET PREVIEW
+       -------------------------------------------------------- */
+
+        .label-sheet-preview {
+
+            width: 210mm !important;
+
+            height: 297mm !important;
+
+            min-height: 297mm !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+
+            background: #ffffff !important;
+
+            border-radius: 0 !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       LABEL GRID
+
+       TOM & JERRY NO. 108
+
+       5 KOLOM x 8 BARIS
+
+       40 LABEL
+       -------------------------------------------------------- */
+
+        .label-grid {
+
+            width: 210mm !important;
+
+            height: 297mm !important;
+
+            display: grid !important;
+
+            grid-template-columns:
+
+                repeat(5,
+                    38mm) !important;
+
+            grid-template-rows:
+
+                repeat(8,
+                    18mm) !important;
+
+            /*
+           POSISI ANTAR LABEL
+        */
+
+            column-gap: 2.5mm !important;
+
+            row-gap: 0mm !important;
+
+            justify-content: center !important;
+
+            align-content: start !important;
+
+            margin: 0 !important;
+
+            padding-top: 5mm !important;
+
+            padding-left: 0 !important;
+
+            padding-right: 0 !important;
+
+            padding-bottom: 0 !important;
+
+            box-sizing: border-box !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       LABEL FISIK
+       -------------------------------------------------------- */
+
+        .asset-label {
+
+            width: 38mm !important;
+
+            height: 18mm !important;
+
+            min-width: 38mm !important;
+
+            max-width: 38mm !important;
+
+            min-height: 18mm !important;
+
+            max-height: 18mm !important;
+
+            box-sizing: border-box !important;
+
+            background: #ffffff !important;
+
+            border: 0.25mm solid #555 !important;
+
+            border-radius: 1.2mm !important;
+
+            padding: 1.2mm !important;
+
+            /*
+           KIRI  = INFO
+           KANAN = QR
+        */
+
+            display: grid !important;
+
+            grid-template-columns:
+
+                1fr 10.5mm !important;
+
+            column-gap: 1.2mm !important;
+
+            align-items: center !important;
+
+            overflow: hidden !important;
+
+            break-inside: avoid !important;
+
+            page-break-inside: avoid !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       INFORMATION AREA
+       -------------------------------------------------------- */
+
+        .asset-label-info {
+
+            min-width: 0 !important;
+
+            width: 100% !important;
+
+            height: 100% !important;
+
+            overflow: hidden !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            justify-content: center !important;
+
+            align-items: flex-start !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       COMPANY
+       -------------------------------------------------------- */
+
+        .asset-label-company {
+
+            width: 100% !important;
+
+            font-size: 5.2pt !important;
+
+            font-weight: 700 !important;
+
+            line-height: 1 !important;
+
+            margin-bottom: 0.8mm !important;
+
+            white-space: nowrap !important;
+
+            overflow: hidden !important;
+
+            text-overflow: clip !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       ASSET TAG
+       -------------------------------------------------------- */
+
+        .asset-label-tag {
+
+            width: 100% !important;
+
+            font-size: 6.5pt !important;
+
+            font-weight: 800 !important;
+
+            line-height: 1 !important;
+
+            margin-bottom: 0.8mm !important;
+
+            white-space: nowrap !important;
+
+            overflow: hidden !important;
+
+            text-overflow: ellipsis !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       ASSET NAME
+       -------------------------------------------------------- */
+
+        .asset-label-name {
+
+            width: 100% !important;
+
+            font-size: 5.2pt !important;
+
+            font-weight: 600 !important;
+
+            line-height: 1.05 !important;
+
+            margin-bottom: 0.7mm !important;
+
+            max-height: 5.5mm !important;
+
+            overflow: hidden !important;
+
+            display: -webkit-box !important;
+
+            -webkit-line-clamp: 2 !important;
+
+            -webkit-box-orient: vertical !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       SERIAL NUMBER
+       -------------------------------------------------------- */
+
+        .asset-label-serial {
+
+            width: 100% !important;
+
+            font-size: 4.8pt !important;
+
+            font-weight: 500 !important;
+
+            line-height: 1 !important;
+
+            white-space: nowrap !important;
+
+            overflow: hidden !important;
+
+            text-overflow: ellipsis !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       QR WRAPPER
+       -------------------------------------------------------- */
+
+        .asset-label-qr-wrapper {
+
+            width: 10.5mm !important;
+
+            height: 15mm !important;
+
+            display: flex !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            overflow: hidden !important;
+
+        }
+
+
+        /* --------------------------------------------------------
+       QR CODE
+       -------------------------------------------------------- */
+
+        .asset-label-qr {
+
+            width: 10.5mm !important;
+
+            height: 10.5mm !important;
+
+            min-width: 10.5mm !important;
+
+            min-height: 10.5mm !important;
+
+            max-width: 10.5mm !important;
+
+            max-height: 10.5mm !important;
+
+            object-fit: contain !important;
+
+            display: block !important;
+
+        }
+
+    }
+</style>
+
+
+<div class="container-fluid label-page">
+
+
+    <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+    <div class="page-header-card no-print">
+
+
+        <div class="page-header-row">
+
+
+            <!-- =================================================
+                 TITLE
+                 ================================================= -->
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-qr-code"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Print QR / Label Asset') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+
+                        {{ _('Format:') }}
+
+                        <strong>
+                            Tom &amp; Jerry No. 108
+                        </strong>
+
+                        — 38 × 18 mm
+
+                        {{ _('— 5 columns × 8 rows — 40 labels / sheet.') }}
+
+                        <br>
+
+                        <span class="text-muted">
+
+                            {{ _('Each asset is printed as') }}
+
+                            <strong>{{ _('5 labels') }}</strong>
+
+                            {{ _('for laptop, charger, box, bag, and accessories.') }}
+
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTION BUTTONS
+                 ================================================= -->
+
+            <div class="page-header-actions">
+
+
+                <!-- =================================================
+                     PILIH ASSET
+                     ================================================= -->
+
+                <a href="{{ url_for(
+                        'main.asset_labels'
+                    ) }}" class="
+                        btn
+                        btn-outline-secondary
+                    ">
+
+                    <i class="bi bi-arrow-left me-1"></i>
+
+                    {{ _('Select Asset') }}
+
+                </a>
+
+
+                <!-- =================================================
+                     EXPORT EXCEL
+                     ================================================= -->
+
+                <form method="POST" action="{{ url_for(
+                        'main.export_asset_labels_excel'
+                    ) }}" class="d-inline">
+
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+                    {% for asset in assets %}
+
+
+                    <input type="hidden" name="ids" value="{{ asset.id }}">
+
+
+                    {% endfor %}
+
+
+                    <button type="submit" class="
+                            btn
+                            btn-success
+                        ">
+
+                        <i class="bi bi-file-earmark-excel me-1"></i>
+
+                        {{ _('Export Excel') }}
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- =================================================
+                     CETAK BROWSER
+                     ================================================= -->
+
+                <button type="button" class="
+                        btn
+                        btn-primary
+                    " onclick="window.print()">
+
+                    <i class="bi bi-printer me-1"></i>
+
+                    {{ _('Print') }}
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ========================================================
+         LABEL SHEET
+         ======================================================== -->
+
+    <div class="label-sheet-preview">
+
+
+        {% if assets %}
+
+
+        <div class="label-grid">
+
+
+            <!-- ==================================================
+                 SETIAP ASSET DICETAK 5 KALI
+                 ================================================== -->
+
+            {% for asset in assets %}
+
+
+            {% for copy in range(5) %}
+
+
+            <!-- ==========================================
+                         SINGLE LABEL
+                         ========================================== -->
+
+            <div class="asset-label">
+
+
+                <!-- ======================================
+                             INFORMATION
+                             POSISI KIRI
+                             ====================================== -->
+
+                <div class="asset-label-info">
+
+
+                    <!-- ==================================
+                                 NAMA PERUSAHAAN
+                                 ================================== -->
+
+                    <div class="asset-label-company" title="PT TRADECORP INDONESIA">
+
+                        PT TRADECORP INDONESIA
+
+                    </div>
+
+
+                    <!-- ==================================
+                                 ASSET TAG
+                                 ================================== -->
+
+                    <div class="asset-label-tag" title="{{ asset.asset_tag or '-' }}">
+
+                        {{ asset.asset_tag or "-" }}
+
+                    </div>
+
+
+                    <!-- ==================================
+                                 ASSET NAME / MODEL
+                                 ================================== -->
+
+                    <div class="asset-label-name" title="{{ asset.asset_name or '-' }}">
+
+                        {{ asset.asset_name or "-" }}
+
+                    </div>
+
+
+                    <!-- ==================================
+                                 SERIAL NUMBER
+                                 ================================== -->
+
+                    <div class="asset-label-serial" title="{{ asset.serial_number or '-' }}">
+
+                        S/N:
+
+                        {{ asset.serial_number or "-" }}
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ======================================
+                             QR CODE
+                             POSISI KANAN
+                             ====================================== -->
+
+                <div class="asset-label-qr-wrapper">
+
+
+                    {% set qr_filename =
+                                (
+                                    asset.asset_tag
+                                    or ''
+                                )
+                                ~ '.png'
+                            %}
+
+
+                    <img src="{{ url_for(
+                                    'static',
+                                    filename=
+                                        'qrcodes/'
+                                        ~ qr_filename
+                                ) }}" alt="{{ _('QR') }} {{ asset.asset_tag }}" class="asset-label-qr" onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                ">
+
+
+                    <!-- ==================================
+                                 FALLBACK JIKA QR TIDAK ADA
+                                 ================================== -->
+
+                    <div class="asset-label-qr-empty" style="display:none;">
+
+                        {{ _('QR') }}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ====================================================
+             EMPTY STATE
+             ==================================================== -->
+
+        <div class="label-empty">
+
+
+            <i class="
+                bi
+                bi-qr-code
+                fs-1
+                d-block
+                mb-3
+            "></i>
+
+
+            <h5>
+
+                {{ _('No assets to print.') }}
+
+            </h5>
+
+
+            <p>
+
+                {{ _('Please select an asset first.') }}
+
+            </p>
+
+
+            <a href="{{ url_for(
+                    'main.asset_labels'
+                ) }}" class="
+                    btn
+                    btn-primary
+                ">
+
+                <i class="bi bi-arrow-left me-1"></i>
+
+                {{ _('Select Asset') }}
+
+            </a>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

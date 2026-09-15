@@ -1,0 +1,2700 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Dashboard Asset Management') }}
+{% endblock %}
+
+
+{% block content %}
+
+
+<style>
+    /* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+    .dashboard-page {
+        width: 100%;
+    }
+
+
+    /* ============================================================
+   CARD
+   ============================================================ */
+
+    .dashboard-card {
+        border: 0;
+        border-radius: 14px;
+        background: #ffffff;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+    }
+
+
+    .dashboard-card-header {
+        padding: 18px 20px;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .dashboard-card-title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+
+    .dashboard-card-subtitle {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 3px;
+    }
+
+
+    /* ============================================================
+   KPI
+   ============================================================ */
+
+    .kpi-card {
+        position: relative;
+        height: 100%;
+        border: 0;
+        border-radius: 14px;
+        background: #ffffff;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+    }
+
+    .kpi-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0a4fb0 0%, #0d6efd 35%, #6ea8fe 50%, #0d6efd 65%, #0a4fb0 100%);
+    }
+
+
+    .kpi-body {
+        padding: 20px;
+    }
+
+
+    .kpi-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+
+    .kpi-value {
+        font-size: 28px;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+
+
+    .kpi-icon {
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 13px;
+
+        font-size: 22px;
+    }
+
+    /* Badge gradient solid, senada dengan card-header-accent-icon,
+       menggantikan lingkaran tint pudar (bg-*-opacity-10). */
+    .kpi-icon.bg-primary,
+    .kpi-icon.bg-success,
+    .kpi-icon.bg-warning,
+    .kpi-icon.bg-danger,
+    .kpi-icon.bg-secondary {
+        color: #fff !important;
+    }
+
+    .kpi-icon.bg-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a4fb0 100%) !important;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.28);
+    }
+
+    .kpi-icon.bg-success {
+        background: linear-gradient(135deg, #22c55e 0%, #15803d 100%) !important;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.28);
+    }
+
+    .kpi-icon.bg-warning {
+        background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%) !important;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.28);
+    }
+
+    .kpi-icon.bg-danger {
+        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.28);
+    }
+
+    .kpi-icon.bg-secondary {
+        background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important;
+        box-shadow: 0 4px 12px rgba(108, 117, 125, 0.28);
+    }
+
+    .card-body.p-0 .table-responsive {
+        padding: 0 20px;
+    }
+
+    /* Icon di kiri, label+value di kanan (gaya "DarkPan") - cukup
+       balik arah flex-nya, tidak perlu ubah markup tiap card. */
+    .kpi-body > .d-flex {
+        flex-direction: row-reverse;
+    }
+
+    /* Override warna dark-mode untuk halaman ini ada di file
+       terpusat: app/static/css/theme-dark.css (section 3). */
+
+    /* ============================================================
+   CHART
+   ============================================================ */
+
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 330px;
+    }
+
+
+    .chart-container-small {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
+
+
+    /* ============================================================
+   TABLE
+   ============================================================ */
+
+    .dashboard-table th {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #6c757d;
+        white-space: nowrap;
+    }
+
+
+    .dashboard-table td {
+        font-size: 13px;
+        vertical-align: middle;
+    }
+
+
+    /* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+    .empty-dashboard {
+        min-height: 250px;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        color: #6c757d;
+    }
+
+
+    .empty-dashboard i {
+        font-size: 42px;
+        margin-bottom: 10px;
+        color: #adb5bd;
+    }
+
+
+    /* ============================================================
+   WARRANTY
+   ============================================================ */
+
+    .warranty-table th {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #6c757d;
+        white-space: nowrap;
+    }
+
+
+    .warranty-table td {
+        font-size: 13px;
+        vertical-align: middle;
+    }
+
+
+    /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+    @media (max-width: 768px) {
+
+        .kpi-value {
+            font-size: 23px;
+        }
+
+
+        .chart-container {
+            height: 280px;
+        }
+
+
+        .chart-container-small {
+            height: 260px;
+        }
+
+    }
+
+    /* ============================================================
+   DASHBOARD COMPACT GRID
+   4 CHART SEJAJAR + 2 REPORT WARRANTY SEJAJAR
+   ============================================================ */
+
+    @media (min-width: 1200px) {
+
+        .dashboard-page .chart-section-single>[class*="col-xl-"] {
+            min-width: 0;
+        }
+
+        .dashboard-page .chart-section-single .dashboard-card {
+            min-height: 365px;
+        }
+
+        .dashboard-page .chart-section-single .chart-container {
+            height: 235px;
+        }
+
+        .dashboard-page .warranty-single-column .dashboard-card {
+            min-height: 320px;
+        }
+    }
+
+    @media (max-width: 1199.98px) {
+
+        .dashboard-page .chart-section-single .chart-container {
+            height: 260px;
+        }
+
+    }
+
+    @media (max-width: 767.98px) {
+
+        .dashboard-page .chart-section-single .chart-container {
+            height: 250px;
+        }
+
+    }
+
+
+    /* ============================================================
+   4 CHART ASSET SEJAJAR
+   ============================================================ */
+
+    .chart-assets-row {
+        width: 100%;
+    }
+
+    .chart-assets-row>[class*="col-"] {
+        min-width: 0;
+    }
+
+    .chart-assets-row .dashboard-card {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .chart-assets-row .chart-compact {
+        height: 230px;
+    }
+
+    @media (min-width: 1200px) {
+        .chart-assets-row {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .chart-assets-row>.col-xl-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .chart-assets-row .chart-compact {
+            height: 225px;
+        }
+
+        .chart-assets-row .dashboard-card-header {
+            min-height: 70px;
+        }
+
+        .chart-assets-row .dashboard-card-title {
+            font-size: 14px;
+        }
+
+        .chart-assets-row .dashboard-card-subtitle {
+            font-size: 11px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199.98px) {
+        .chart-assets-row .chart-compact {
+            height: 250px;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .chart-assets-row .chart-compact {
+            height: 240px;
+        }
+    }
+
+
+    /* ============================================================
+   WARRANTY REPORT — 2 KOLOM SEJAJAR FULL WIDTH
+   ============================================================ */
+
+    .warranty-reports-row {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .warranty-reports-row>.col-xl-6 {
+        min-width: 0;
+    }
+
+    .warranty-reports-row .dashboard-card {
+        width: 100%;
+        min-height: 320px;
+    }
+
+    @media (min-width: 1200px) {
+        .warranty-reports-row {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .warranty-reports-row>.col-xl-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+
+    @media (max-width: 1199.98px) {
+        .warranty-reports-row>.col-lg-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+
+        .warranty-reports-row>.col-md-6,
+        .warranty-reports-row>.col-lg-6,
+        .warranty-reports-row>.col-xl-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    /* ============================================================
+       ASSET AREA — PRECISION ALIGNMENT
+       Shared 4-column grid for KPI tambahan, charts, and warranty KPI.
+       Chart HTML/data are NOT modified.
+       ============================================================ */
+
+    .asset-precision-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        column-gap: 16px !important;
+        row-gap: 16px !important;
+        width: 100% !important;
+        margin: 0 0 16px 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .asset-precision-grid>* {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .asset-precision-grid .dashboard-card,
+    .asset-precision-grid .kpi-card {
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Keep chart cards equal height in their row. */
+    .asset-precision-grid .dashboard-card.h-100 {
+        height: 100% !important;
+    }
+
+    @media (max-width: 1100px) and (min-width: 768px) {
+        .asset-precision-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .asset-precision-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
+
+
+    /* ============================================================
+       WARRANTY ALERT — SAFE ADDITION
+       ============================================================ */
+    .warranty-alert-safe {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
+        overflow: hidden;
+        margin: 0 0 16px 0;
+    }
+
+    .warranty-alert-safe .wa-item {
+        min-height: 88px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-right: 1px solid #eef0f3;
+    }
+
+    .warranty-alert-safe .wa-label {
+        color: #64748b;
+        font-size: 10px;
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: .25px;
+    }
+
+    .warranty-alert-safe .wa-number {
+        margin-top: 5px;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .warranty-alert-safe .wa-icon {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 11px;
+        font-size: 18px;
+    }
+
+    .warranty-alert-safe .wa-footer {
+        padding: 10px 16px;
+        border-top: 1px solid #eef0f3;
+        background: #fafafa;
+        color: #64748b;
+        font-size: 11px;
+    }
+
+    @media (max-width: 767.98px) {
+        .warranty-alert-safe .wa-item {
+            border-right: 0;
+            border-bottom: 1px solid #eef0f3;
+        }
+    }
+</style>
+
+<div class="container-fluid py-4 dashboard-page">
+
+
+    <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-speedometer2"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Dashboard Asset Management') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Company asset monitoring and management') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a href="{{ url_for('main.assets') }}" class="btn btn-primary">
+                    <i class="bi bi-box-seam me-1"></i>
+                    {{ _('Asset List') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         KPI UTAMA
+         ======================================================== -->
+
+    <div class="row g-4 mb-4">
+
+
+        <!-- TOTAL ASSET -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Total Assets') }}
+                            </div>
+
+                            <div class="kpi-value">
+
+                                {{ total_assets or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-primary
+                                bg-opacity-10
+                                text-primary
+                            ">
+
+                            <i class="bi bi-box-seam"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Active Assets') }}
+                            </div>
+
+                            <div class="kpi-value text-success">
+
+                                {{ active_assets or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-success
+                                bg-opacity-10
+                                text-success
+                            ">
+
+                            <i class="bi bi-check-circle"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAINTENANCE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Maintenance') }}
+                            </div>
+
+                            <div class="kpi-value text-warning">
+
+                                {{ maintenance_assets or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-warning
+                                bg-opacity-10
+                                text-warning
+                            ">
+
+                            <i class="bi bi-tools"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TOTAL VALUE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Total Asset Value') }}
+                            </div>
+
+                            <div class="
+                                    kpi-value
+                                    text-primary
+                                " style="font-size: 21px;">
+
+                                Rp
+                                {{
+                                    "{:,.0f}".format(
+                                        total_value or 0
+                                    ).replace(",", ".")
+                                }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-primary
+                                bg-opacity-10
+                                text-primary
+                            ">
+
+                            <i class="bi bi-cash-stack"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         KPI TAMBAHAN
+         ======================================================== -->
+
+    <div class="asset-precision-grid">
+
+
+        <!-- INACTIVE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="kpi-label">
+                        {{ _('Inactive') }}
+                    </div>
+
+                    <div class="kpi-value text-secondary">
+
+                        {{ inactive_assets or 0 }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOST -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="kpi-label">
+                        {{ _('Lost') }}
+                    </div>
+
+                    <div class="kpi-value text-danger">
+
+                        {{ lost_assets or 0 }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RETIRED -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="kpi-label">
+                        {{ _('Retired') }}
+                    </div>
+
+                    <div class="kpi-value text-dark">
+
+                        {{ retired_assets or 0 }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MASTER DATA -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="kpi-label mb-2">
+                        {{ _('Master Data') }}
+                    </div>
+
+
+                    <div class="
+                            d-flex
+                            flex-wrap
+                            gap-3
+                            small
+                        ">
+
+                        <span>
+
+                            <strong>
+                                {{ total_categories or 0 }}
+                            </strong>
+
+                            {{ _('Category') }}
+
+                        </span>
+
+
+                        <span>
+
+                            <strong>
+                                {{ total_locations or 0 }}
+                            </strong>
+
+                            {{ _('Location') }}
+
+                        </span>
+
+
+                        <span>
+
+                            <strong>
+                                {{ total_departments or 0 }}
+                            </strong>
+
+                            {{ _('Department') }}
+
+                        </span>
+
+
+                        <span>
+
+                            <strong>
+                                {{ total_vendors or 0 }}
+                            </strong>
+
+                            {{ _('Vendor') }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         CHART ASSET — 4 CHART SEJAJAR
+         ======================================================== -->
+
+    <div class="asset-precision-grid">
+
+        <!-- STATUS -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card h-100">
+
+                <div class="card-header-accent">
+                    <div class="card-header-accent-left">
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-pie-chart-fill"></i>
+                        </div>
+                        <div>
+                            <div class="card-header-accent-title">
+                                {{ _('Assets by Status') }}
+                            </div>
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Status distribution of all assets') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container chart-compact">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card h-100">
+
+                <div class="card-header-accent">
+                    <div class="card-header-accent-left">
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-tags-fill"></i>
+                        </div>
+                        <div>
+                            <div class="card-header-accent-title">
+                                {{ _('Assets by Category') }}
+                            </div>
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Number of assets by category') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container chart-compact">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card h-100">
+
+                <div class="card-header-accent">
+                    <div class="card-header-accent-left">
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <div class="card-header-accent-title">
+                                {{ _('Assets by Location') }}
+                            </div>
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Asset distribution by location') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container chart-compact">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DEPARTMENT -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card h-100">
+
+                <div class="card-header-accent">
+                    <div class="card-header-accent-left">
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-building-fill"></i>
+                        </div>
+                        <div>
+                            <div class="card-header-accent-title">
+                                {{ _('Assets by Department') }}
+                            </div>
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Asset distribution by department') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container chart-compact">
+                        <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+                  WARRANTY SUMMARY
+         ======================================================== -->
+
+    <div class="asset-precision-grid">
+
+
+        <!-- ACTIVE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Active Warranty') }}
+                            </div>
+
+                            <div class="
+                                    kpi-value
+                                    text-success
+                                ">
+
+                                {{ warranty_active_count or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-success
+                                bg-opacity-10
+                                text-success
+                            ">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- EXPIRING -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Warranty Expiring Soon') }}
+                            </div>
+
+                            <div class="
+                                    kpi-value
+                                    text-warning
+                                ">
+
+                                {{ warranty_expiring_count or 0 }}
+
+                            </div>
+
+
+                            <small class="text-muted">
+
+                                {{ _('Maximum 30 days') }}
+
+                            </small>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-warning
+                                bg-opacity-10
+                                text-warning
+                            ">
+
+                            <i class="bi bi-clock-history"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- EXPIRED -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Warranty Expired') }}
+                            </div>
+
+                            <div class="
+                                    kpi-value
+                                    text-danger
+                                ">
+
+                                {{ warranty_expired_count or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-danger
+                                bg-opacity-10
+                                text-danger
+                            ">
+
+                            <i class="bi bi-shield-x"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- UNKNOWN -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="kpi-card">
+
+                <div class="kpi-body">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                        ">
+
+                        <div>
+
+                            <div class="kpi-label">
+                                {{ _('Unknown Warranty') }}
+                            </div>
+
+                            <div class="
+                                    kpi-value
+                                    text-secondary
+                                ">
+
+                                {{ warranty_unknown_count or 0 }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="
+                                kpi-icon
+                                bg-secondary
+                                bg-opacity-10
+                                text-secondary
+                            ">
+
+                            <i class="bi bi-question-circle"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+    WARRANTY ALERT
+    ======================================================== -->
+
+    {% set warranty_alert_urgent = namespace(value=0) %}
+    {% set warranty_alert_normal = namespace(value=0) %}
+
+    {% for item in (warranty_expiring or []) %}
+    {% if item.days_left is defined and item.days_left is not none %}
+    {% if item.days_left <= 7 %}
+    {% set warranty_alert_urgent.value = warranty_alert_urgent.value + 1 %}
+    {% elif item.days_left <= 30 %}
+    {% set warranty_alert_normal.value = warranty_alert_normal.value + 1 %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    <div class="warranty-alert-safe">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-bell-fill"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Warranty Alert') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ _('Warranty priorities that need attention') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-header-accent-actions">
+
+                <!-- WARRANTY ALERT DETAIL -->
+                <a href="{{ url_for('main.warranty_management') }}" class="
+                        btn
+                        btn-sm
+                        btn-outline-primary
+                    ">
+                    {{ _('View Alert') }}
+
+                    <i class="
+                            bi
+                            bi-arrow-right
+                            ms-1
+                        "></i>
+                </a>
+
+                <!-- WARRANTY NOTIFICATION CENTER -->
+                <a href="{{ url_for('main.warranty_notifications') }}" class="
+                    btn
+                    btn-sm
+                    btn-outline-danger
+                " title="{{ _('Warranty Notification Center') }}">
+
+                    <i class="
+                        bi
+                        bi-bell-fill
+                        me-1
+                    "></i>
+
+                    {{ _('Notification') }}
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="row g-0">
+
+            <div class="col-lg-4">
+                <div class="wa-item">
+                    <div>
+                        <div class="wa-label">{{ _('Warranty Expired') }}</div>
+                        <div class="wa-number text-danger">
+                            {{ warranty_expired_count or 0 }}
+                        </div>
+                    </div>
+                    <div class="wa-icon bg-danger bg-opacity-10 text-danger">
+                        <i class="bi bi-shield-x"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="wa-item">
+                    <div>
+                        <div class="wa-label">{{ _('Expiring in ≤ 7 Days') }}</div>
+                        <div class="wa-number text-warning">
+                            {{ warranty_alert_urgent.value }}
+                        </div>
+                    </div>
+                    <div class="wa-icon bg-warning bg-opacity-10 text-warning">
+                        <i class="bi bi-exclamation-octagon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="wa-item">
+                    <div>
+                        <div class="wa-label">{{ _('Expiring in 8–30 Days') }}</div>
+                        <div class="wa-number text-warning">
+                            {{ warranty_alert_normal.value }}
+                        </div>
+                    </div>
+                    <div class="wa-icon bg-warning bg-opacity-10 text-warning">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wa-footer">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <span>
+                    <i class="bi bi-info-circle me-1"></i>
+                    {{ _('Click "View Alert" to see the list of assets that need immediate action.') }}
+                </span>
+
+                <div class="d-flex gap-2 flex-wrap">
+
+                    <a href="{{ url_for('main.warranty_management') }}" class="
+                            btn
+                            btn-sm
+                            btn-outline-secondary
+                        ">
+                        {{ _('All Warranties') }}
+                    </a>
+
+
+                    <a href="{{ url_for('main.warranty_notifications') }}" class="
+                            btn
+                            btn-sm
+                            btn-outline-danger
+                        ">
+
+                        <i class="
+                                bi
+                                bi-bell-fill
+                                me-1
+                            "></i>
+
+                        {{ _('Notification Center') }}
+
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================================================
+         WARRANTY DETAIL
+         ======================================================== -->
+
+    <div class="row g-3 mb-4 warranty-reports-row">
+
+
+        <!-- WARRANTY AKAN HABIS -->
+
+        <div class="col-xl-6 col-lg-6 col-md-6">
+
+            <div class="dashboard-card h-100">
+
+
+                <div class="card-header-accent">
+
+                    <div class="card-header-accent-left">
+
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-exclamation-circle"></i>
+                        </div>
+
+                        <div>
+
+                            <div class="card-header-accent-title">
+                                {{ _('Warranty Expiring Soon') }}
+                            </div>
+
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Warranty expiring within a maximum of 30 days') }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-header-accent-actions">
+
+                        <span class="
+                                badge
+                                bg-warning
+                                text-dark
+                            ">
+
+                            {{ warranty_expiring_count or 0 }}
+
+                        </span>
+
+                        <a href="/warranty/detail" class="btn btn-sm btn-outline-warning"
+                            title="{{ _('View Warranty Alert Detail') }}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body p-0">
+
+
+                    {% if warranty_expiring %}
+
+
+                    <div class="table-responsive">
+
+                        <table class="
+                                table
+                                table-hover
+                                warranty-table
+                                mb-0
+                            ">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th class="ps-4">
+                                        {{ _('Asset') }}
+                                    </th>
+
+                                    <th>
+                                        {{ _('Warranty') }}
+                                    </th>
+
+                                    <th>
+                                        {{ _('Expires') }}
+                                    </th>
+
+                                    <th class="text-end pe-4">
+                                        {{ _('Remaining') }}
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                {% for item in warranty_expiring %}
+
+
+                                <tr>
+
+
+                                    <td class="ps-4">
+
+                                        <a href="{{ url_for(
+                                                'main.asset_detail',
+                                                asset_id=item.asset.id
+                                            ) }}" class="
+                                                fw-semibold
+                                                text-decoration-none
+                                            ">
+
+                                            {{ item.asset.asset_tag }}
+
+                                        </a>
+
+
+                                        <div class="
+                                                small
+                                                text-muted
+                                            ">
+
+                                            {{
+                                                item.asset.asset_name
+                                            }}
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{
+                                            item.asset.warranty
+                                            or "-"
+                                        }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if item.end_date %}
+
+                                        {{
+                                                item.end_date.strftime(
+                                                    "%d-%m-%Y"
+                                                )
+                                            }}
+
+                                        {% else %}
+
+                                        -
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td class="
+                                            text-end
+                                            pe-4
+                                        ">
+
+                                        {% if item.days_left is not none %}
+
+
+                                        {% if item.days_left <= 0 %}
+
+                                        <span class="
+                                                        badge
+                                                        bg-danger
+                                                    ">
+
+                                            {{ _('Today') }}
+
+                                        </span>
+
+
+                                        {% else %}
+
+                                        <span class="
+                                                        badge
+                                                        bg-warning
+                                                        text-dark
+                                                    ">
+
+                                            {{
+                                                        item.days_left
+                                                    }}
+
+                                            {{ _('days') }}
+
+                                        </span>
+
+                                        {% endif %}
+
+
+                                        {% else %}
+
+                                        -
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+
+                                {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    {% else %}
+
+
+                    <div class="empty-dashboard">
+
+                        <i class="
+                                bi
+                                bi-shield-check
+                                text-success
+                            "></i>
+
+
+                        <div class="fw-semibold">
+
+                            {{ _('No warranty expiring within 30 days.') }}
+
+                        </div>
+
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WARRANTY EXPIRED -->
+
+        <div class="col-xl-6 col-lg-6 col-md-6">
+
+            <div class="dashboard-card h-100">
+
+
+                <div class="card-header-accent">
+
+                    <div class="card-header-accent-left">
+
+                        <div class="card-header-accent-icon">
+                            <i class="bi bi-shield-x"></i>
+                        </div>
+
+                        <div>
+
+                            <div class="card-header-accent-title">
+                                {{ _('Warranty Expired') }}
+                            </div>
+
+                            <div class="card-header-accent-subtitle">
+                                {{ _('Warranty that has already expired') }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-header-accent-actions">
+
+                        <span class="badge bg-danger">
+
+                            {{ warranty_expired_count or 0 }}
+
+                        </span>
+
+                        <a href="/warranty/detail" class="btn btn-sm btn-outline-danger"
+                            title="{{ _('View Warranty Alert Detail') }}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body p-0">
+
+
+                    {% if warranty_expired %}
+
+
+                    <div class="table-responsive">
+
+                        <table class="
+                                table
+                                table-hover
+                                warranty-table
+                                mb-0
+                            ">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th class="ps-4">
+                                        {{ _('Asset') }}
+                                    </th>
+
+                                    <th>
+                                        {{ _('Warranty') }}
+                                    </th>
+
+                                    <th>
+                                        {{ _('Expires') }}
+                                    </th>
+
+                                    <th class="text-end pe-4">
+                                        {{ _('Status') }}
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                {% for item in warranty_expired %}
+
+
+                                <tr>
+
+
+                                    <td class="ps-4">
+
+                                        <a href="{{ url_for(
+                                                'main.asset_detail',
+                                                asset_id=item.asset.id
+                                            ) }}" class="
+                                                fw-semibold
+                                                text-decoration-none
+                                            ">
+
+                                            {{ item.asset.asset_tag }}
+
+                                        </a>
+
+
+                                        <div class="
+                                                small
+                                                text-muted
+                                            ">
+
+                                            {{
+                                                item.asset.asset_name
+                                            }}
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{
+                                            item.asset.warranty
+                                            or "-"
+                                        }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if item.end_date %}
+
+                                        {{
+                                                item.end_date.strftime(
+                                                    "%d-%m-%Y"
+                                                )
+                                            }}
+
+                                        {% else %}
+
+                                        -
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td class="
+                                            text-end
+                                            pe-4
+                                        ">
+
+                                        <span class="
+                                                badge
+                                                bg-danger
+                                            ">
+
+                                            {{ _('Expired') }}
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    {% else %}
+
+
+                    <div class="empty-dashboard">
+
+                        <i class="
+                                bi
+                                bi-shield-check
+                                text-success
+                            "></i>
+
+
+                        <div class="fw-semibold">
+
+                            {{ _('No expired warranty.') }}
+
+                        </div>
+
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ========================================================
+         ASSET TERBARU
+         ======================================================== -->
+
+    <div class="dashboard-card mb-4">
+
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div>
+
+                    <div class="card-header-accent-title">
+                        {{ _('Recent Assets') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ _('10 most recently added assets') }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-header-accent-actions">
+
+                <a href="{{ url_for('main.assets') }}" class="btn btn-sm btn-outline-primary">
+
+                    {{ _('View All') }}
+
+                    <i class="bi bi-arrow-right ms-1"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body p-0">
+
+
+            {% if recent_assets %}
+
+
+            <div class="table-responsive">
+
+                <table class="
+                        table
+                        table-hover
+                        dashboard-table
+                        mb-0
+                    ">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th class="ps-4">
+                                {{ _('Asset Tag') }}
+                            </th>
+
+                            <th>
+                                {{ _('Asset') }}
+                            </th>
+
+                            <th>
+                                {{ _('Category') }}
+                            </th>
+
+                            <th>
+                                {{ _('Location') }}
+                            </th>
+
+                            <th>
+                                {{ _('Department') }}
+                            </th>
+
+                            <th>
+                                {{ _('Status') }}
+                            </th>
+
+                            <th class="text-end pe-4">
+                                {{ _('Actions') }}
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        {% for asset in recent_assets %}
+
+
+                        <tr>
+
+
+                            <td class="ps-4">
+
+                                <a href="{{ url_for(
+                                        'main.asset_detail',
+                                        asset_id=asset.id
+                                    ) }}" class="
+                                        fw-bold
+                                        text-decoration-none
+                                    ">
+
+                                    {{ asset.asset_tag }}
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="fw-semibold">
+
+                                    {{ asset.asset_name }}
+
+                                </div>
+
+
+                                {% if asset.brand or asset.model %}
+
+                                <small class="text-muted">
+
+                                    {{ asset.brand or "" }}
+
+                                    {% if asset.brand and asset.model %}
+                                    -
+                                    {% endif %}
+
+                                    {{ asset.model or "" }}
+
+                                </small>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {{ asset.category or "-" }}
+
+                            </td>
+
+
+                            <td>
+
+                                {{ asset.location or "-" }}
+
+                            </td>
+
+
+                            <td>
+
+                                {{ asset.department or "-" }}
+
+                            </td>
+
+
+                            <td>
+
+
+                                {% if asset.status == "Active" %}
+
+                                <span class="
+                                            badge
+                                            bg-success
+                                        ">
+                                    {{ _('Active') }}
+                                </span>
+
+
+                                {% elif asset.status == "Maintenance" %}
+
+                                <span class="
+                                            badge
+                                            bg-warning
+                                            text-dark
+                                        ">
+                                    {{ _('Maintenance') }}
+                                </span>
+
+
+                                {% elif asset.status == "Inactive" %}
+
+                                <span class="
+                                            badge
+                                            bg-secondary
+                                        ">
+                                    {{ _('Inactive') }}
+                                </span>
+
+
+                                {% elif asset.status == "Lost" %}
+
+                                <span class="
+                                            badge
+                                            bg-danger
+                                        ">
+                                    {{ _('Lost') }}
+                                </span>
+
+
+                                {% elif asset.status == "Retired" %}
+
+                                <span class="
+                                            badge
+                                            bg-dark
+                                        ">
+                                    {{ _('Retired') }}
+                                </span>
+
+
+                                {% else %}
+
+                                <span class="
+                                            badge
+                                            bg-secondary
+                                        ">
+
+                                    {{
+                                            asset.status
+                                            or _('No Status')
+                                        }}
+
+                                </span>
+
+                                {% endif %}
+
+
+                            </td>
+
+
+                            <td class="
+                                    text-end
+                                    pe-4
+                                ">
+
+                                <a href="{{ url_for(
+                                        'main.asset_detail',
+                                        asset_id=asset.id
+                                    ) }}" class="
+                                        btn
+                                        btn-sm
+                                        btn-outline-primary
+                                    " title="{{ _('Asset Detail') }}">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </a>
+
+                            </td>
+
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+
+            <div class="empty-dashboard">
+
+                <i class="bi bi-box-seam"></i>
+
+                <div class="fw-semibold">
+
+                    {{ _('No assets yet.') }}
+
+                </div>
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================
+     DATA CHART
+
+     Data chart disimpan sebagai elemen HTML.
+     Tidak menggunakan JSON/Jinja di dalam JavaScript.
+     ============================================================ -->
+
+<div id="dashboardChartStore" style="display:none;">
+
+    <!-- STATUS -->
+    <div id="statusChartData">
+
+        {% for item in status_summary | default([]) %}
+
+        <span class="chart-data-item" data-status="{{ item.status or _('No Status') }}"
+            data-count="{{ item.count or 0 }}"></span>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- CATEGORY -->
+    <div id="categoryChartData">
+
+        {% for item in category_summary | default([]) %}
+
+        <span class="chart-data-item" data-category="{{ item.category or _('No Category') }}"
+            data-count="{{ item.count or 0 }}"></span>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- LOCATION -->
+    <div id="locationChartData">
+
+        {% for item in location_summary | default([]) %}
+
+        <span class="chart-data-item" data-location="{{ item.location or _('No Location') }}"
+            data-count="{{ item.count or 0 }}"></span>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- DEPARTMENT -->
+    <div id="departmentChartData">
+
+        {% for item in department_summary | default([]) %}
+
+        <span class="chart-data-item" data-department="{{ item.department or _('No Department') }}"
+            data-count="{{ item.count or 0 }}"></span>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================
+     CHART.JS
+     ============================================================ -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        console.log("Dashboard Chart: initializing...");
+
+        function readItems(containerId, labelAttribute) {
+            const container = document.getElementById(containerId);
+
+            if (!container) {
+                console.error("Container chart tidak ditemukan:", containerId);
+                return {
+                    labels: [],
+                    values: []
+                };
+            }
+
+            const elements = container.querySelectorAll(".chart-data-item");
+            const labels = [];
+            const values = [];
+
+            elements.forEach(function (element) {
+                labels.push(element.getAttribute(labelAttribute) || "-");
+                values.push(Number(element.getAttribute("data-count") || 0));
+            });
+
+            return {
+                labels,
+                values
+            };
+        }
+
+        const statusData = readItems("statusChartData", "data-status");
+        const categoryData = readItems("categoryChartData", "data-category");
+        const locationData = readItems("locationChartData", "data-location");
+        const departmentData = readItems("departmentChartData", "data-department");
+
+        if (typeof Chart === "undefined") {
+            console.error("Chart.js tidak berhasil dimuat.");
+            return;
+        }
+
+        const isDarkTheme = document.documentElement.getAttribute("data-bs-theme") === "dark";
+
+        Chart.defaults.font.family =
+            "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+        Chart.defaults.font.size = 12;
+        Chart.defaults.color = isDarkTheme ? "#9aa0ac" : "#6b7280";
+
+        const palette = [
+            "#2563eb",
+            "#10b981",
+            "#f59e0b",
+            "#ef4444",
+            "#8b5cf6",
+            "#06b6d4",
+            "#f97316",
+            "#64748b"
+        ];
+
+        const gridColor = isDarkTheme ? "rgba(255, 255, 255, 0.08)" : "rgba(148, 163, 184, 0.16)";
+
+        const commonTooltip = {
+            backgroundColor: "#111827",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            padding: 10,
+            cornerRadius: 8,
+            displayColors: true
+        };
+
+        /* =========================================================
+           STATUS - DOUGHNUT
+           ========================================================= */
+
+        const statusCanvas = document.getElementById("statusChart");
+
+        if (statusCanvas && statusData.values.length > 0) {
+
+            const statusColors = statusData.labels.map(function (label, index) {
+                const value = String(label).toLowerCase();
+
+                if (value.includes("active")) return "#16a34a";
+                if (value.includes("maintenance")) return "#f59e0b";
+                if (value.includes("inactive")) return "#64748b";
+                if (value.includes("lost")) return "#dc2626";
+                if (value.includes("retired")) return "#374151";
+
+                return palette[index % palette.length];
+            });
+
+            new Chart(statusCanvas, {
+                type: "doughnut",
+
+                data: {
+                    labels: statusData.labels,
+
+                    datasets: [{
+                        data: statusData.values,
+                        backgroundColor: statusColors,
+                        borderColor: "#ffffff",
+                        borderWidth: 3,
+                        hoverOffset: 6
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    cutout: "66%",
+
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: "circle",
+                                padding: 16,
+                                boxWidth: 8
+                            }
+                        },
+
+                        tooltip: commonTooltip
+                    }
+                }
+            });
+        }
+
+        /* =========================================================
+           CATEGORY - HORIZONTAL BAR
+           ========================================================= */
+
+        const categoryCanvas = document.getElementById("categoryChart");
+
+        if (categoryCanvas && categoryData.values.length > 0) {
+
+            new Chart(categoryCanvas, {
+                type: "bar",
+
+                data: {
+                    labels: categoryData.labels,
+
+                    datasets: [{
+                        label: "{{ _('Total Assets') }}",
+                        data: categoryData.values,
+                        backgroundColor: "#2563eb",
+                        borderRadius: 7,
+                        borderSkipped: false,
+                        barThickness: 22,
+                        maxBarThickness: 26
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    indexAxis: "y",
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+
+                        tooltip: commonTooltip
+                    },
+
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                color: gridColor
+                            },
+
+                            ticks: {
+                                precision: 0
+                            }
+                        },
+
+                        y: {
+                            grid: {
+                                display: false
+                            },
+
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        /* =========================================================
+           LOCATION - VERTICAL BAR
+           ========================================================= */
+
+        const locationCanvas = document.getElementById("locationChart");
+
+        if (locationCanvas && locationData.values.length > 0) {
+
+            new Chart(locationCanvas, {
+                type: "bar",
+
+                data: {
+                    labels: locationData.labels,
+
+                    datasets: [{
+                        label: "{{ _('Total Assets') }}",
+                        data: locationData.values,
+                        backgroundColor: "#10b981",
+                        borderRadius: 8,
+                        borderSkipped: false,
+                        maxBarThickness: 48
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+
+                        tooltip: commonTooltip
+                    },
+
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+
+                            ticks: {
+                                autoSkip: false,
+                                maxRotation: 35,
+                                minRotation: 0
+                            }
+                        },
+
+                        y: {
+                            beginAtZero: true,
+
+                            grid: {
+                                color: gridColor
+                            },
+
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        /* =========================================================
+           DEPARTMENT
+           - <= 6 department : DOUGHNUT
+           - > 6 department  : HORIZONTAL BAR
+           ========================================================= */
+
+        const departmentCanvas = document.getElementById("departmentChart");
+
+        if (departmentCanvas && departmentData.values.length > 0) {
+
+            if (departmentData.values.length <= 6) {
+
+                new Chart(departmentCanvas, {
+                    type: "doughnut",
+
+                    data: {
+                        labels: departmentData.labels,
+
+                        datasets: [{
+                            data: departmentData.values,
+                            backgroundColor: departmentData.labels.map(function (_, index) {
+                                return palette[index % palette.length];
+                            }),
+                            borderColor: "#ffffff",
+                            borderWidth: 3,
+                            hoverOffset: 6
+                        }]
+                    },
+
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        cutout: "58%",
+
+                        plugins: {
+                            legend: {
+                                position: "bottom",
+
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: "circle",
+                                    padding: 14,
+                                    boxWidth: 8
+                                }
+                            },
+
+                            tooltip: commonTooltip
+                        }
+                    }
+                });
+
+            } else {
+
+                new Chart(departmentCanvas, {
+                    type: "bar",
+
+                    data: {
+                        labels: departmentData.labels,
+
+                        datasets: [{
+                            label: "{{ _('Total Assets') }}",
+                            data: departmentData.values,
+                            backgroundColor: "#8b5cf6",
+                            borderRadius: 7,
+                            borderSkipped: false,
+                            barThickness: 22,
+                            maxBarThickness: 26
+                        }]
+                    },
+
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        indexAxis: "y",
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+
+                            tooltip: commonTooltip
+                        },
+
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+
+                                grid: {
+                                    color: gridColor
+                                },
+
+                                ticks: {
+                                    precision: 0
+                                }
+                            },
+
+                            y: {
+                                grid: {
+                                    display: false
+                                },
+
+                                ticks: {
+                                    autoSkip: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        console.log("Dashboard Chart: selesai.");
+    });
+</script>
+
+{% endblock %}

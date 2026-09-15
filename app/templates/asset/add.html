@@ -1,0 +1,1028 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Add Asset') }} - {{ app_setting.app_name }}
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    /* ============================================================
+   ADD ASSET
+   ============================================================ */
+
+    .asset-form-page {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+
+    /* ============================================================
+   CARD
+   ============================================================ */
+
+    .asset-form-card {
+        border: 0;
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 2px 10px rgba(0, 0, 0, 0.07);
+
+        overflow: hidden;
+    }
+
+
+    .asset-form-card .card-header {
+        background: #ffffff;
+
+        border-bottom: 1px solid #eeeeee;
+
+        padding: 18px 20px;
+    }
+
+
+    .asset-form-card .card-body {
+        padding: 25px;
+    }
+
+
+    /* ============================================================
+   SECTION
+   ============================================================ */
+
+    .form-section {
+        margin-bottom: 30px;
+    }
+
+
+    .form-section:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .form-section-title {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        margin-bottom: 18px;
+
+        padding-bottom: 10px;
+
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    /* ============================================================
+   LABEL
+   ============================================================ */
+
+    .form-label {
+        font-weight: 600;
+
+        font-size: 13px;
+    }
+
+
+    .required-mark {
+        color: #dc3545;
+    }
+
+
+    /* ============================================================
+   PHOTO UPLOAD
+   ============================================================ */
+
+    .photo-upload-box {
+        border: 2px dashed #ced4da;
+
+        border-radius: 12px;
+
+        padding: 25px;
+
+        text-align: center;
+
+        background: #f8f9fa;
+
+        transition:
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+
+    .photo-upload-box:hover {
+        border-color: #0d6efd;
+
+        background: #f1f6ff;
+    }
+
+
+    .photo-upload-icon {
+        font-size: 42px;
+
+        color: #6c757d;
+
+        margin-bottom: 8px;
+    }
+
+
+    .photo-upload-help {
+        font-size: 12px;
+
+        color: #6c757d;
+
+        margin-top: 8px;
+    }
+
+
+    .photo-preview-wrapper {
+        display: none;
+
+        margin-top: 20px;
+
+        text-align: center;
+    }
+
+
+    .photo-preview {
+        width: 220px;
+
+        height: 165px;
+
+        object-fit: cover;
+
+        border-radius: 10px;
+
+        border: 1px solid #dee2e6;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .photo-preview-name {
+        margin-top: 8px;
+
+        font-size: 12px;
+
+        color: #6c757d;
+    }
+
+
+    /* ============================================================
+   FOOTER
+   ============================================================ */
+
+    .form-actions {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding-top: 20px;
+
+        margin-top: 25px;
+
+        border-top: 1px solid #eeeeee;
+    }
+
+
+    /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+    @media (max-width: 768px) {
+
+        .asset-form-card .card-body {
+            padding: 18px;
+        }
+
+
+        .form-actions {
+            flex-direction: column-reverse;
+
+            align-items: stretch;
+        }
+
+
+        .form-actions .btn {
+            width: 100%;
+        }
+
+    }
+</style>
+
+
+<div class="container-fluid py-4 asset-form-page">
+
+
+    <!-- ========================================================
+         HEADER
+         ======================================================== -->
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+
+                <div>
+
+                    <h3 class="page-header-title">
+                        {{ _('Add Asset') }}
+                    </h3>
+
+                    <div class="page-header-subtitle">
+                        {{ _('Add a new asset to Asset Tracker') }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a href="{{ url_for('main.assets') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>
+                    {{ _('Back') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         FORM
+         ======================================================== -->
+
+    <div class="card asset-form-card">
+
+
+        <div class="card-header">
+
+            <strong>
+
+                <i class="bi bi-box-seam me-1"></i>
+
+                {{ _('Asset Information') }}
+
+            </strong>
+
+        </div>
+
+
+        <div class="card-body">
+
+
+            <form method="POST" enctype="multipart/form-data" id="assetForm">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+                <!-- ==================================================
+                     INFORMASI UTAMA
+                     ================================================== -->
+
+                <div class="form-section">
+
+
+                    <div class="form-section-title">
+
+                        <i class="bi bi-info-circle"></i>
+
+                        {{ _('Main Information') }}
+
+                    </div>
+
+
+
+                    <div class="row g-3">
+
+
+                        <!-- ASSET TAG -->
+
+                        <div class="col-md-6">
+
+                            <label for="asset_tag" class="form-label">
+
+                                {{ _('Asset Tag') }}
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="asset_tag" name="asset_tag"
+                                placeholder="{{ _('Example: AST-001') }}" maxlength="30" required autocomplete="off">
+
+                        </div>
+
+
+
+                        <!-- ASSET NAME -->
+
+                        <div class="col-md-6">
+
+                            <label for="asset_name" class="form-label">
+
+                                {{ _('Asset Name') }}
+
+                                <span class="required-mark">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="asset_name" name="asset_name"
+                                placeholder="{{ _('Example: Dell Latitude Laptop') }}" maxlength="100" required>
+
+                        </div>
+
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="col-md-4">
+
+                            <label for="category" class="form-label">
+
+                                {{ _('Category') }}
+
+                            </label>
+
+
+                            <select class="form-select" id="category" name="category">
+
+                                <option value="">
+                                    {{ _('-- Select Category --') }}
+                                </option>
+
+
+                                {% for category in categories %}
+
+                                <option value="{{ category.name }}">
+
+                                    {{ category.name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- BRAND -->
+
+                        <div class="col-md-4">
+
+                            <label for="brand" class="form-label">
+
+                                {{ _('Brand') }}
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="brand" name="brand" placeholder="{{ _('Example: Dell') }}"
+                                maxlength="50">
+
+                        </div>
+
+
+
+                        <!-- MODEL -->
+
+                        <div class="col-md-4">
+
+                            <label for="model" class="form-label">
+
+                                {{ _('Model') }}
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="model" name="model"
+                                placeholder="{{ _('Example: Latitude 5440') }}" maxlength="100">
+
+                        </div>
+
+
+
+                        <!-- SERIAL NUMBER -->
+
+                        <div class="col-md-6">
+
+                            <label for="serial_number" class="form-label">
+
+                                {{ _('Serial Number') }}
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="serial_number" name="serial_number"
+                                placeholder="{{ _('Serial Number') }}" maxlength="100">
+
+                        </div>
+
+
+
+                        <!-- PIC -->
+
+                        <div class="col-md-6">
+
+                            <label for="pic" class="form-label">
+
+                                {{ _('PIC') }}
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="pic" name="pic" placeholder="{{ _('PIC Name') }}"
+                                maxlength="100">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     FOTO ASSET
+                     ================================================== -->
+
+                <div class="form-section">
+
+
+                    <div class="form-section-title">
+
+                        <i class="bi bi-camera"></i>
+
+                        {{ _('Asset Photo') }}
+
+                    </div>
+
+
+                    <div class="photo-upload-box">
+
+
+                        <div class="photo-upload-icon">
+
+                            <i class="bi bi-image"></i>
+
+                        </div>
+
+
+                        <div class="fw-semibold mb-2">
+
+                            {{ _('Upload Asset Photo') }}
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            {{ _('Choose an asset photo from your computer.') }}
+
+                        </div>
+
+
+                        <input type="file" class="form-control" id="photo" name="photo"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+
+
+                        <div class="photo-upload-help">
+
+                            {{ _('Allowed formats: JPG, JPEG, PNG, WEBP') }}
+
+                        </div>
+
+
+                        <!-- PREVIEW -->
+
+                        <div class="photo-preview-wrapper" id="photoPreviewWrapper">
+
+                            <img src="" alt="{{ _('Asset Photo Preview') }}" class="photo-preview" id="photoPreview">
+
+
+                            <div class="photo-preview-name" id="photoPreviewName"></div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     LOKASI & ORGANISASI
+                     ================================================== -->
+
+                <div class="form-section">
+
+
+                    <div class="form-section-title">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        {{ _('Location & Organization') }}
+
+                    </div>
+
+
+
+                    <div class="row g-3">
+
+
+                        <!-- LOCATION -->
+
+                        <div class="col-md-6">
+
+                            <label for="location" class="form-label">
+
+                                {{ _('Location') }}
+
+                            </label>
+
+
+                            <select class="form-select" id="location" name="location">
+
+                                <option value="">
+                                    {{ _('-- Select Location --') }}
+                                </option>
+
+
+                                {% for location in locations %}
+
+                                <option value="{{ location.name }}">
+
+                                    {{ location.name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- DEPARTMENT -->
+
+                        <div class="col-md-6">
+
+                            <label for="department" class="form-label">
+
+                                {{ _('Department') }}
+
+                            </label>
+
+
+                            <select class="form-select" id="department" name="department">
+
+                                <option value="">
+                                    {{ _('-- Select Department --') }}
+                                </option>
+
+
+                                {% for department in departments %}
+
+                                <option value="{{ department.name }}">
+
+                                    {{ department.name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     PEMBELIAN
+                     ================================================== -->
+
+                <div class="form-section">
+
+
+                    <div class="form-section-title">
+
+                        <i class="bi bi-receipt"></i>
+
+                        {{ _('Purchase Information') }}
+
+                    </div>
+
+
+
+                    <div class="row g-3">
+
+
+                        <!-- PURCHASE DATE -->
+
+                        <div class="col-md-4">
+
+                            <label for="purchase_date" class="form-label">
+
+                                {{ _('Purchase Date') }}
+
+                            </label>
+
+
+                            <input type="date" class="form-control" id="purchase_date" name="purchase_date">
+
+                        </div>
+
+
+
+                        <!-- PURCHASE PRICE -->
+
+                        <div class="col-md-4">
+
+                            <label for="purchase_price" class="form-label">
+
+                                {{ _('Purchase Price') }}
+
+                            </label>
+
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    Rp
+                                </span>
+
+
+                                <input type="number" class="form-control" id="purchase_price" name="purchase_price"
+                                    placeholder="0" min="0" step="0.01">
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- VENDOR -->
+
+                        <div class="col-md-4">
+
+                            <label for="vendor" class="form-label">
+
+                                {{ _('Vendor') }}
+
+                            </label>
+
+
+                            <select class="form-select" id="vendor" name="vendor">
+
+                                <option value="">
+                                    {{ _('-- Select Vendor --') }}
+                                </option>
+
+
+                                {% for vendor in vendors %}
+
+                                <option value="{{ vendor.name }}">
+
+                                    {{ vendor.name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- WARRANTY -->
+
+                        <div class="col-md-6">
+
+                            <label for="warranty" class="form-label">
+
+                                {{ _('Warranty') }}
+
+                            </label>
+
+
+                            <input type="text" class="form-control" id="warranty" name="warranty"
+                                placeholder="{{ _('Example: 3 Years') }}" maxlength="100">
+
+                        </div>
+
+
+
+                        <!-- STATUS -->
+
+                        <div class="col-md-6">
+
+                            <label for="status" class="form-label">
+
+                                {{ _('Status') }}
+
+                            </label>
+
+
+                            <select class="form-select" id="status" name="status">
+
+                                <option value="Active" selected>
+
+                                    {{ _('Active') }}
+
+                                </option>
+
+
+                                <option value="Maintenance">
+
+                                    {{ _('Maintenance') }}
+
+                                </option>
+
+
+                                <option value="Inactive">
+
+                                    {{ _('Inactive') }}
+
+                                </option>
+
+
+                                <option value="Lost">
+
+                                    {{ _('Lost') }}
+
+                                </option>
+
+
+                                <option value="Retired">
+
+                                    {{ _('Retired') }}
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     DESKRIPSI
+                     ================================================== -->
+
+                <div class="form-section">
+
+
+                    <div class="form-section-title">
+
+                        <i class="bi bi-card-text"></i>
+
+                        {{ _('Description') }}
+
+                    </div>
+
+
+                    <label for="description" class="form-label">
+
+                        {{ _('Description') }}
+
+                    </label>
+
+
+                    <textarea class="form-control" id="description" name="description" rows="5"
+                        placeholder="{{ _('Enter notes or a description for this asset...') }}"></textarea>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     ACTION
+                     ================================================== -->
+
+                <div class="form-actions">
+
+
+                    <a href="{{ url_for('main.assets') }}" class="btn btn-outline-secondary">
+
+                        <i class="bi bi-x-lg me-1"></i>
+
+                        {{ _('Cancel') }}
+
+                    </a>
+
+
+                    <button type="submit" class="btn btn-primary" id="submitButton">
+
+                        <i class="bi bi-save me-1"></i>
+
+                        {{ _('Save Asset') }}
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ============================================================
+     PHOTO PREVIEW
+     ============================================================ -->
+
+<script>
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const photoInput =
+                document.getElementById("photo");
+
+            const previewWrapper =
+                document.getElementById(
+                    "photoPreviewWrapper"
+                );
+
+            const preview =
+                document.getElementById(
+                    "photoPreview"
+                );
+
+            const previewName =
+                document.getElementById(
+                    "photoPreviewName"
+                );
+
+
+            if (!photoInput) {
+                return;
+            }
+
+
+            photoInput.addEventListener(
+                "change",
+                function () {
+
+                    const file =
+                        this.files &&
+                        this.files[0];
+
+
+                    if (!file) {
+
+                        previewWrapper.style.display =
+                            "none";
+
+                        preview.removeAttribute(
+                            "src"
+                        );
+
+                        previewName.textContent =
+                            "";
+
+                        return;
+                    }
+
+
+                    const allowedTypes = [
+                        "image/jpeg",
+                        "image/png",
+                        "image/webp"
+                    ];
+
+
+                    if (
+                        !allowedTypes.includes(
+                            file.type
+                        )
+                    ) {
+
+                        alert(
+                            "{{ _('Photo format must be JPG, JPEG, PNG, or WEBP.') }}"
+                        );
+
+
+                        this.value = "";
+
+
+                        previewWrapper.style.display =
+                            "none";
+
+
+                        return;
+                    }
+
+
+                    /*
+                     * Batasi ukuran maksimal 5 MB.
+                     */
+
+                    const maxSize =
+                        5 * 1024 * 1024;
+
+
+                    if (file.size > maxSize) {
+
+                        alert(
+                            "{{ _('Maximum photo size is 5 MB.') }}"
+                        );
+
+
+                        this.value = "";
+
+
+                        previewWrapper.style.display =
+                            "none";
+
+
+                        return;
+                    }
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function (event) {
+
+                            preview.src =
+                                event.target.result;
+
+
+                            previewName.textContent =
+                                file.name;
+
+
+                            previewWrapper.style.display =
+                                "block";
+
+                        };
+
+
+                    reader.readAsDataURL(file);
+
+                }
+            );
+
+        }
+    );
+</script>
+
+
+{% endblock %}

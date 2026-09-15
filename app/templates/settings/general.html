@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Application Settings') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-gear"></i>
+                </div>
+                <div>
+                    <h2 class="page-header-title">{{ _('Application Settings') }}</h2>
+                    <p class="page-header-subtitle mb-0">{{ _('Application name, logo, footer, and login page') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="row">
+
+            <!-- ================================================
+                 IDENTITAS APLIKASI
+            ================================================ -->
+
+            <div class="col-lg-7">
+
+                <div class="card mb-4 overflow-hidden">
+
+                    <div class="card-header-accent">
+                        <div class="card-header-accent-left">
+                            <div class="card-header-accent-icon">
+                                <i class="bi bi-app"></i>
+                            </div>
+                            <div class="card-header-accent-title">
+                                {{ _('Application Identity') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Application Name') }} <span class="text-danger">*</span></label>
+                            <input type="text" name="app_name" class="form-control" value="{{ setting.app_name }}" required>
+                            <div class="form-text">{{ _('Appears in the sidebar, browser tab, and login page.') }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">{{ _('Footer Text') }}</label>
+                            <input type="text" name="footer_text" class="form-control" value="{{ setting.footer_text or '' }}" placeholder="{{ _('Example: PT Tradecorp Indonesia © 2026') }}">
+                            <div class="form-text">{{ _('Leave blank to use the default:') }} "{{ setting.app_name }} © {{ now().year }}".</div>
+                        </div>
+
+                        <div class="mb-0">
+                            <label class="form-label">{{ _('Login Page Message') }}</label>
+                            <input type="text" name="login_message" class="form-control" value="{{ setting.login_message or '' }}" placeholder="{{ _('Example: Internal Asset Management System') }}">
+                            <div class="form-text">{{ _('Small text below the application name on the login page. May be left blank.') }}</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card mb-4 overflow-hidden">
+
+                    <div class="card-header-accent">
+                        <div class="card-header-accent-left">
+                            <div class="card-header-accent-icon">
+                                <i class="bi bi-layout-sidebar"></i>
+                            </div>
+                            <div class="card-header-accent-title">
+                                {{ _('Sidebar Brand Display') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="form-text mb-2">{{ _('Choose how the app identity appears next to the sidebar menu.') }}</div>
+
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="brand_display_mode" value="logo_only" id="brandLogoOnly" {% if setting.brand_display_mode=='logo_only' or not setting.brand_display_mode %}checked{% endif %}>
+                            <label class="form-check-label" for="brandLogoOnly">{{ _('Logo only') }}</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="brand_display_mode" value="name_only" id="brandNameOnly" {% if setting.brand_display_mode=='name_only' %}checked{% endif %}>
+                            <label class="form-check-label" for="brandNameOnly">{{ _('Application name only') }}</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="brand_display_mode" value="logo_and_name" id="brandLogoAndName" {% if setting.brand_display_mode=='logo_and_name' %}checked{% endif %}>
+                            <label class="form-check-label" for="brandLogoAndName">{{ _('Logo and application name') }}</label>
+                        </div>
+
+                        <div class="form-text mt-2">{{ _('If no wide logo has been uploaded yet, the sidebar falls back to the application name regardless of this setting.') }}</div>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i>
+                    {{ _('Save Settings') }}
+                </button>
+
+            </div>
+
+            <!-- ================================================
+                 LOGO
+            ================================================ -->
+
+            <div class="col-lg-5">
+
+                <div class="card mb-4 overflow-hidden">
+
+                    <div class="card-header-accent">
+                        <div class="card-header-accent-left">
+                            <div class="card-header-accent-icon">
+                                <i class="bi bi-image"></i>
+                            </div>
+                            <div class="card-header-accent-title">
+                                {{ _('Wide Logo (Sidebar)') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center">
+
+                        <div class="mb-3 p-3 border rounded d-flex align-items-center justify-content-center" style="min-height: 80px; background: #212529;">
+
+                            {% if setting.logo_wide %}
+                            <img id="previewLogoWide" src="{{ url_for('static', filename='uploads/branding/' ~ setting.logo_wide) }}" alt="{{ _('Wide logo') }}" style="max-height: 50px; max-width: 100%;">
+                            {% else %}
+                            <span id="previewLogoWideEmpty" class="text-muted">{{ _('No wide logo yet') }}</span>
+                            <img id="previewLogoWide" src="" alt="" style="max-height: 50px; max-width: 100%; display:none;">
+                            {% endif %}
+
+                        </div>
+
+                        <input type="file" name="logo_wide" class="form-control mb-2" accept=".png,.jpg,.jpeg,.webp,.svg" onchange="previewLogo(this, 'previewLogoWide', 'previewLogoWideEmpty')">
+
+                        {% if setting.logo_wide %}
+                        <div class="form-check text-start">
+                            <input type="checkbox" class="form-check-input" name="remove_logo_wide" value="1" id="removeLogoWide">
+                            <label class="form-check-label" for="removeLogoWide">{{ _('Remove wide logo (use default icon)') }}</label>
+                        </div>
+                        {% endif %}
+
+                        <div class="form-text text-start">{{ _('Recommended: wide (horizontal) shape, transparent background, height around 40-60px.') }}</div>
+
+                    </div>
+
+                </div>
+
+                <div class="card overflow-hidden">
+
+                    <div class="card-header-accent">
+                        <div class="card-header-accent-left">
+                            <div class="card-header-accent-icon">
+                                <i class="bi bi-image"></i>
+                            </div>
+                            <div class="card-header-accent-title">
+                                {{ _('Square Logo (Login & Favicon)') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center">
+
+                        <div class="mb-3 p-3 border rounded d-flex align-items-center justify-content-center" style="min-height: 80px; background: #212529;">
+
+                            {% if setting.logo_square %}
+                            <img id="previewLogoSquare" src="{{ url_for('static', filename='uploads/branding/' ~ setting.logo_square) }}" alt="{{ _('Square logo') }}" style="max-height: 60px; max-width: 100%;">
+                            {% else %}
+                            <span id="previewLogoSquareEmpty" class="text-muted">{{ _('No square logo yet') }}</span>
+                            <img id="previewLogoSquare" src="" alt="" style="max-height: 60px; max-width: 100%; display:none;">
+                            {% endif %}
+
+                        </div>
+
+                        <input type="file" name="logo_square" class="form-control mb-2" accept=".png,.jpg,.jpeg,.webp,.svg" onchange="previewLogo(this, 'previewLogoSquare', 'previewLogoSquareEmpty')">
+
+                        {% if setting.logo_square %}
+                        <div class="form-check text-start">
+                            <input type="checkbox" class="form-check-input" name="remove_logo_square" value="1" id="removeLogoSquare">
+                            <label class="form-check-label" for="removeLogoSquare">{{ _('Remove square logo (use default icon)') }}</label>
+                        </div>
+                        {% endif %}
+
+                        <div class="form-text text-start">{{ _('Recommended: 1:1 (square) ratio, also used as the browser tab favicon.') }}</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function previewLogo(input, imgId, emptyId) {
+
+    if (!input.files || !input.files[0]) {
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+
+        const img = document.getElementById(imgId);
+        const empty = document.getElementById(emptyId);
+
+        img.src = event.target.result;
+        img.style.display = "inline-block";
+
+        if (empty) {
+            empty.style.display = "none";
+        }
+
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+</script>
+{% endblock %}

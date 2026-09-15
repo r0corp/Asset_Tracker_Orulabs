@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Add Role') }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-person-plus"></i>
+                </div>
+                <div>
+                    <h2 class="page-header-title">{{ _('Add Role') }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <div class="mb-3">
+                    <label class="form-label">{{ _('Role Name') }}</label>
+                    <input type="text" name="name" class="form-control" placeholder="{{ _('Example: Warehouse Staff') }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{ _('Description') }}</label>
+                    <textarea name="description" class="form-control" rows="2"></textarea>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-1"></i>
+                    {{ _('After the role is created, you will be directed to the page to set its permissions (Create/Read/Edit/Delete per page). New roles have no access by default.') }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">{{ _('Save & Set Permissions') }}</button>
+                <a href="{{ url_for('main.roles') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

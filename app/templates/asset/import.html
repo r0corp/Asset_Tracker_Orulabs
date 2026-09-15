@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Import Asset') }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <div class="page-header-card">
+
+        <div class="page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Import Asset') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Import multiple assets using Excel.') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <a href="{{ url_for('main.assets') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    {{ _('Back') }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+
+        <!-- UPLOAD -->
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white card-header-color card-header-primary">
+
+                    <h5 class="mb-0">
+
+                        <i class="bi bi-file-earmark-excel"></i>
+
+                        {{ _('Upload Excel') }}
+
+                    </h5>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                {{ _('Excel File') }}
+
+                            </label>
+
+
+                            <input type="file" name="file" class="form-control" accept=".xlsx,.xlsm" required>
+
+
+                            <div class="form-text">
+
+                                {{ _('Supported format:') }}
+                                <strong>.xlsx</strong>
+                                {{ _('or') }}
+                                <strong>.xlsm</strong>
+
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-upload"></i>
+                            {{ _('Import Asset') }}
+                        </button>
+
+                        <a href="{{ url_for('main.download_import_template') }}" class="btn btn-outline-success ms-2">
+                            <i class="bi bi-file-earmark-excel"></i>
+                            {{ _('Download Excel Template') }}
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMAT -->
+
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white card-header-color card-header-primary">
+
+                    <h5 class="mb-0">
+
+                        {{ _('Excel Format') }}
+
+                    </h5>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <p>
+
+                        {{ _('The first row of the Excel file must contain the following column names:') }}
+
+                    </p>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-sm table-bordered">
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Asset Tag</strong>
+                                    </td>
+
+                                    <td>
+                                        {{ _('Required') }}
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Asset Name</strong>
+                                    </td>
+
+                                    <td>
+                                        {{ _('Required') }}
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td>Category</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Brand</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Model</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Serial Number</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Location</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Department</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>PIC</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Vendor</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Warranty</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Purchase Date</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Purchase Price</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Status</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Description</td>
+                                    <td>{{ _('Optional') }}</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

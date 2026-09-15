@@ -1,0 +1,767 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Warranty Notifications') }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .notification-page {
+        padding: 24px 0 30px;
+    }
+
+    .notification-summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+
+    .notification-summary-card {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 17px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .notification-summary-label {
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .notification-summary-value {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .notification-section {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .notification-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .notification-item {
+        padding: 14px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .notification-item:last-child {
+        border-bottom: 0;
+    }
+
+    .notification-item:hover {
+        background: #fafafa;
+    }
+
+    .notification-asset-name {
+        font-weight: 600;
+    }
+
+    .notification-meta {
+        color: #6c757d;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .notification-days {
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .notification-days-danger {
+        color: #dc3545;
+    }
+
+    .notification-days-warning {
+        color: #b58105;
+    }
+
+    .notification-days-expired {
+        color: #6c757d;
+    }
+
+    .notification-empty {
+        padding: 28px 20px;
+        text-align: center;
+        color: #6c757d;
+    }
+
+    .notification-empty i {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: 992px) {
+
+        .notification-summary {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+    }
+
+    @media (max-width: 576px) {
+
+        .notification-summary {
+            grid-template-columns: 1fr;
+        }
+
+        .notification-item {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+    }
+
+    .notification-filter {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .notification-filter-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 6px;
+    }
+
+    .notification-filter .form-control,
+    .notification-filter .form-select {
+        min-height: 40px;
+    }
+
+    .notification-filter-actions {
+        display: flex;
+        align-items: end;
+        gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+
+        .notification-filter-actions {
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .notification-filter-actions .btn {
+            flex: 1;
+        }
+
+    }
+</style>
+
+
+<div class="container-fluid notification-page">
+
+    <!-- ====================================================
+         HEADER
+         ==================================================== -->
+
+    <div class="notification-header page-header-card">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-bell-fill"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Warranty Notifications') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Center for monitoring warranties that need attention') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="d-flex gap-2 page-header-actions">
+
+                <a href="{{ url_for(
+                        'main.warranty_alert_detail'
+                    ) }}" class="btn btn-outline-primary">
+
+                    <i class="bi bi-list-check me-1"></i>
+
+                    {{ _('Warranty Detail') }}
+
+                </a>
+
+                <a href="{{ url_for(
+                        'main.warranty_management'
+                    ) }}" class="btn btn-outline-secondary">
+
+                    <i class="bi bi-shield-check me-1"></i>
+
+                    {{ _('Warranty Management') }}
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ====================================================
+         FILTER & SEARCH
+         ==================================================== -->
+
+    <div class="notification-filter">
+
+        <form method="GET" action="{{ url_for('main.warranty_notifications') }}">
+
+            <div class="row g-3 align-items-end">
+
+                <!-- SEARCH -->
+
+                <div class="col-lg-6 col-md-5">
+
+                    <div class="notification-filter-label">
+
+                        <i class="bi bi-search me-1"></i>
+
+                        {{ _('Search Asset') }}
+
+                    </div>
+
+                    <input type="text" name="search" value="{{ search or '' }}" class="form-control"
+                        placeholder="{{ _('Asset tag, name, brand, model, serial, vendor, location...') }}">
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="col-lg-4 col-md-4">
+
+                    <div class="notification-filter-label">
+
+                        <i class="bi bi-funnel me-1"></i>
+
+                        {{ _('Notification Status') }}
+
+                    </div>
+
+                    <select name="status" class="form-select">
+
+                        <option value="all" {% if selected_status == "all" %} selected {% endif %}>
+                            {{ _('All Notifications') }}
+                        </option>
+
+                        <option value="urgent" {% if selected_status == "urgent" %} selected {% endif %}>
+                            {{ _('Critical ≤ 7 Days') }}
+                        </option>
+
+                        <option value="warning" {% if selected_status == "warning" %} selected {% endif %}>
+                            {{ _('Warning 8–30 Days') }}
+                        </option>
+
+                        <option value="expired" {% if selected_status == "expired" %} selected {% endif %}>
+                            {{ _('Warranty Expired') }}
+                        </option>
+
+                        <option value="unknown" {% if selected_status == "unknown" %} selected {% endif %}>
+                            {{ _('Incomplete Data') }}
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div class="col-lg-2 col-md-3">
+
+                    <div class="notification-filter-actions">
+
+                        <button type="submit" class="btn btn-primary">
+
+                            <i class="bi bi-search me-1"></i>
+
+                            {{ _('Filter') }}
+
+                        </button>
+
+
+                        <a href="{{ url_for(
+                                'main.warranty_notifications'
+                            ) }}" class="btn btn-outline-secondary" title="{{ _('Reset Filter') }}">
+
+                            <i class="bi bi-arrow-counterclockwise"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- ====================================================
+         SUMMARY
+         ==================================================== -->
+
+    <div class="notification-summary">
+
+
+        <div class="notification-summary-card">
+
+            <div class="notification-summary-label">
+                {{ _('Critical ≤ 7 Days') }}
+            </div>
+
+            <div class="notification-summary-value text-danger">
+                {{ urgent_count or 0 }}
+            </div>
+
+        </div>
+
+
+        <div class="notification-summary-card">
+
+            <div class="notification-summary-label">
+                {{ _('Warning 8–30 Days') }}
+            </div>
+
+            <div class="notification-summary-value" style="color:#b58105;">
+                {{ warning_count or 0 }}
+            </div>
+
+        </div>
+
+
+        <div class="notification-summary-card">
+
+            <div class="notification-summary-label">
+                {{ _('Warranty Expired') }}
+            </div>
+
+            <div class="notification-summary-value text-secondary">
+                {{ expired_count or 0 }}
+            </div>
+
+        </div>
+
+
+        <div class="notification-summary-card">
+
+            <div class="notification-summary-label">
+                {{ _('Total Alerts') }}
+            </div>
+
+            <div class="notification-summary-value text-primary">
+                {{ total_alerts or 0 }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ====================================================
+         URGENT
+         ==================================================== -->
+
+    <div class="notification-section">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Warranty Expiring Immediately') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ _('Warranty remaining a maximum of 7 days') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-header-accent-actions">
+                <span class="badge bg-danger">
+                    {{ urgent_count or 0 }}
+                </span>
+            </div>
+
+        </div>
+
+
+        {% if urgent %}
+
+        <ul class="notification-list">
+
+            {% for item in urgent %}
+
+            <li class="notification-item">
+
+                <div>
+
+                    <div class="notification-asset-name">
+
+                        {{ item.asset.asset_name or "-" }}
+
+                    </div>
+
+                    <div class="notification-meta">
+
+                        {{ _('Tag:') }}
+                        {{ item.asset.asset_tag or "-" }}
+
+                        {% if item.asset.brand %}
+
+                        &nbsp; • &nbsp;
+
+                        {{ item.asset.brand }}
+
+                        {% endif %}
+
+                        {% if item.asset.model %}
+
+                        &nbsp; • &nbsp;
+
+                        {{ item.asset.model }}
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <span class="notification-days notification-days-danger">
+
+                        {% if item.days_left == 0 %}
+
+                        {{ _('Expires today') }}
+
+                        {% elif item.days_left == 1 %}
+
+                        {{ _('1 day left') }}
+
+                        {% else %}
+
+                        {{ item.days_left }} {{ _('days left') }}
+
+                        {% endif %}
+
+                    </span>
+
+
+                    <a href="{{ url_for(
+                            'main.edit_asset',
+                            asset_id=item.asset.id
+                        ) }}" class="btn btn-sm btn-outline-warning" title="{{ _('Update Warranty') }}">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                </div>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <div class="notification-empty">
+
+            <i class="bi bi-check-circle text-success"></i>
+
+            <div class="fw-bold">
+                {{ _('No critical warranties.') }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ====================================================
+         WARNING
+         ==================================================== -->
+
+    <div class="notification-section">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-clock-fill"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Warranty Expiring Soon') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ _('Warranty remaining 8 to 30 days') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-header-accent-actions">
+                <span class="badge" style="background:#b58105;">
+                    {{ warning_count or 0 }}
+                </span>
+            </div>
+
+        </div>
+
+
+        {% if warning %}
+
+        <ul class="notification-list">
+
+            {% for item in warning %}
+
+            <li class="notification-item">
+
+                <div>
+
+                    <div class="notification-asset-name">
+
+                        {{ item.asset.asset_name or "-" }}
+
+                    </div>
+
+                    <div class="notification-meta">
+
+                        {{ _('Tag:') }}
+                        {{ item.asset.asset_tag or "-" }}
+
+                        {% if item.asset.vendor %}
+
+                        &nbsp; • &nbsp;
+
+                        {{ _('Vendor:') }}
+                        {{ item.asset.vendor }}
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <span class="notification-days notification-days-warning">
+
+                        {{ item.days_left }} {{ _('days left') }}
+
+                    </span>
+
+
+                    <a href="{{ url_for(
+                            'main.edit_asset',
+                            asset_id=item.asset.id
+                        ) }}" class="btn btn-sm btn-outline-warning" title="{{ _('Update Warranty') }}">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                </div>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <div class="notification-empty">
+
+            <i class="bi bi-check-circle text-success"></i>
+
+            <div class="fw-bold">
+                {{ _('No warranties in the warning period.') }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ====================================================
+         EXPIRED
+         ==================================================== -->
+
+    <div class="notification-section">
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-x-circle-fill"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Warranty Expired') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ _('Warranty that has passed its end date') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-header-accent-actions">
+                <span class="badge bg-secondary">
+                    {{ expired_count or 0 }}
+                </span>
+            </div>
+
+        </div>
+
+
+        {% if expired %}
+
+        <ul class="notification-list">
+
+            {% for item in expired %}
+
+            <li class="notification-item">
+
+                <div>
+
+                    <div class="notification-asset-name">
+
+                        {{ item.asset.asset_name or "-" }}
+
+                    </div>
+
+                    <div class="notification-meta">
+
+                        {{ _('Tag:') }}
+                        {{ item.asset.asset_tag or "-" }}
+
+                        {% if item.end_date %}
+
+                        &nbsp; • &nbsp;
+
+                        {{ _('Expires:') }}
+                        {{ item.end_date.strftime("%d-%m-%Y") }}
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <span class="notification-days notification-days-expired">
+
+                        {{ _('Expired') }}
+
+                    </span>
+
+
+                    <a href="{{ url_for(
+                            'main.edit_asset',
+                            asset_id=item.asset.id
+                        ) }}" class="btn btn-sm btn-outline-secondary" title="{{ _('Update Warranty') }}">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                </div>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <div class="notification-empty">
+
+            <i class="bi bi-check-circle text-success"></i>
+
+            <div class="fw-bold">
+                {{ _('No expired warranty.') }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ====================================================
+         FOOTER INFO
+         ==================================================== -->
+
+    <div class="text-muted small text-end">
+
+        {{ _('Last checked:') }}
+        {{ today.strftime("%d-%m-%Y") }}
+
+    </div>
+
+</div>
+
+{% endblock %}

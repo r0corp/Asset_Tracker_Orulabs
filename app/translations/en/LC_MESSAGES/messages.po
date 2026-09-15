@@ -1,0 +1,3967 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-15 10:59+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: __init__.py:87
+msgid "The uploaded file is too large (maximum 5 MB)."
+msgstr "The uploaded file is too large (maximum 5 MB)."
+
+#: auth.py:26
+msgid "You do not have access to this page."
+msgstr "You do not have access to this page."
+
+#: auth.py:90
+msgid "You do not have permission to perform this action."
+msgstr "You do not have permission to perform this action."
+
+#: blueprints/app_settings.py:79
+msgid "Logo format must be PNG, JPG, JPEG, WEBP, or SVG."
+msgstr "Logo format must be PNG, JPG, JPEG, WEBP, or SVG."
+
+#: blueprints/app_settings.py:143
+msgid "Application name is required."
+msgstr "Application name is required."
+
+#: blueprints/app_settings.py:219
+msgid "Application settings saved successfully."
+msgstr "Application settings saved successfully."
+
+#: blueprints/assets.py:402
+msgid "Excel file has not been selected."
+msgstr "Excel file has not been selected."
+
+#: blueprints/assets.py:417
+msgid "File format must be .xlsx or .xlsm."
+msgstr "File format must be .xlsx or .xlsm."
+
+#: blueprints/assets.py:447
+msgid "Excel file is empty."
+msgstr "Excel file is empty."
+
+#: blueprints/assets.py:476
+#, python-format
+msgid "Required columns not found: %(columns)s"
+msgstr "Required columns not found: %(columns)s"
+
+#: blueprints/assets.py:844
+msgid "Select at least one asset to print."
+msgstr "Select at least one asset to print."
+
+#: blueprints/assets.py:872
+msgid "Selected assets are invalid."
+msgstr "Selected assets are invalid."
+
+#: blueprints/assets.py:894 blueprints/assets.py:2112
+msgid "Selected assets were not found."
+msgstr "Selected assets were not found."
+
+#: blueprints/assets.py:985
+msgid "Asset was successfully deleted."
+msgstr "Asset was successfully deleted."
+
+#: blueprints/assets.py:1035
+msgid "Asset Tag is required."
+msgstr "Asset Tag is required."
+
+#: blueprints/assets.py:1054
+msgid "Asset name is required."
+msgstr "Asset name is required."
+
+#: blueprints/assets.py:1077
+msgid "Asset Tag is already in use."
+msgstr "Asset Tag is already in use."
+
+#: blueprints/assets.py:1132
+#, python-format
+msgid "Invalid asset photo: %(error)s"
+msgstr "Invalid asset photo: %(error)s"
+
+#: blueprints/assets.py:1153
+msgid "Asset photo failed to upload."
+msgstr "Asset photo failed to upload."
+
+#: blueprints/assets.py:1267
+msgid "Asset failed to save."
+msgstr "Asset failed to save."
+
+#: blueprints/assets.py:1301
+msgid "Asset was successfully added."
+msgstr "Asset was successfully added."
+
+#: blueprints/assets.py:1646
+msgid "Invalid purchase date format."
+msgstr "Invalid purchase date format."
+
+#: blueprints/assets.py:1686
+msgid "Invalid purchase price."
+msgstr "Invalid purchase price."
+
+#: blueprints/assets.py:1777
+msgid "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
+msgstr "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
+
+#: blueprints/assets.py:1923
+msgid "Asset was successfully updated and warranty history was recorded."
+msgstr "Asset was successfully updated and warranty history was recorded."
+
+#: blueprints/assets.py:1932
+msgid "Asset was successfully updated."
+msgstr "Asset was successfully updated."
+
+#: blueprints/assets.py:1953
+msgid "Failed to update asset."
+msgstr "Failed to update asset."
+
+#: blueprints/assets.py:2034
+msgid "Select at least one asset to export to Excel."
+msgstr "Select at least one asset to export to Excel."
+
+#: blueprints/assets.py:2078
+msgid "Invalid asset ID."
+msgstr "Invalid asset ID."
+
+#: blueprints/backup.py:286
+#, python-format
+msgid "Failed to create backup. Detail: %(error)s"
+msgstr "Failed to create backup. Detail: %(error)s"
+
+#: blueprints/backup.py:301
+#, python-format
+msgid "Backup created successfully: %(filename)s"
+msgstr "Backup created successfully: %(filename)s"
+
+#: blueprints/backup.py:323 blueprints/backup.py:412
+msgid "Backup file not found."
+msgstr "Backup file not found."
+
+#: blueprints/backup.py:358
+msgid "Backup deleted successfully."
+msgstr "Backup deleted successfully."
+
+#: blueprints/backup.py:365
+msgid ""
+"The backup file is being used by another process. Please try again shortly."
+msgstr ""
+"The backup file is being used by another process. Please try again shortly."
+
+#: blueprints/backup.py:394 blueprints/backup.py:486
+msgid "Type \"RESTORE\" (all uppercase) to confirm."
+msgstr "Type \"RESTORE\" (all uppercase) to confirm."
+
+#: blueprints/backup.py:431 blueprints/backup.py:528
+#, python-format
+msgid "Restore failed: %(error)s"
+msgstr "Restore failed: %(error)s"
+
+#: blueprints/backup.py:455 blueprints/backup.py:552
+msgid ""
+"Restore successful. You will be logged out automatically - please log in "
+"again. If the app behaves oddly afterward, restart it."
+msgstr ""
+"Restore successful. You will be logged out automatically - please log in "
+"again. If the app behaves oddly afterward, restart it."
+
+#: blueprints/backup.py:499
+msgid "Please select a .zip backup file first."
+msgstr "Please select a .zip backup file first."
+
+#: blueprints/company.py:112
+msgid "Company name is required."
+msgstr "Company name is required."
+
+#: blueprints/company.py:173
+msgid "Logo format must be PNG, JPG, JPEG, or WEBP."
+msgstr "Logo format must be PNG, JPG, JPEG, or WEBP."
+
+#: blueprints/company.py:251
+msgid "Company data updated successfully."
+msgstr "Company data updated successfully."
+
+#: blueprints/helpers.py:427 templates/asset/add.html:956
+msgid "Photo format must be JPG, JPEG, PNG, or WEBP."
+msgstr "Photo format must be JPG, JPEG, PNG, or WEBP."
+
+#: blueprints/login.py:70
+msgid "Incorrect username or password."
+msgstr "Incorrect username or password."
+
+#: blueprints/login.py:87
+msgid "You have been logged out."
+msgstr "You have been logged out."
+
+#: blueprints/master_data.py:57 blueprints/master_data.py:134
+msgid "Category name is required."
+msgstr "Category name is required."
+
+#: blueprints/master_data.py:72 blueprints/master_data.py:151
+msgid "Category already exists."
+msgstr "Category already exists."
+
+#: blueprints/master_data.py:91
+msgid "Category added successfully."
+msgstr "Category added successfully."
+
+#: blueprints/master_data.py:168
+msgid "Category updated successfully."
+msgstr "Category updated successfully."
+
+#: blueprints/master_data.py:205
+msgid "Category deleted successfully."
+msgstr "Category deleted successfully."
+
+#: blueprints/master_data.py:260 blueprints/master_data.py:337
+msgid "Location name is required."
+msgstr "Location name is required."
+
+#: blueprints/master_data.py:275 blueprints/master_data.py:354
+msgid "Location already exists."
+msgstr "Location already exists."
+
+#: blueprints/master_data.py:294
+msgid "Location added successfully."
+msgstr "Location added successfully."
+
+#: blueprints/master_data.py:371
+msgid "Location updated successfully."
+msgstr "Location updated successfully."
+
+#: blueprints/master_data.py:408
+msgid "Location deleted successfully."
+msgstr "Location deleted successfully."
+
+#: blueprints/master_data.py:463 blueprints/master_data.py:540
+msgid "Department name is required."
+msgstr "Department name is required."
+
+#: blueprints/master_data.py:478 blueprints/master_data.py:557
+msgid "Department already exists."
+msgstr "Department already exists."
+
+#: blueprints/master_data.py:497
+msgid "Department added successfully."
+msgstr "Department added successfully."
+
+#: blueprints/master_data.py:574
+msgid "Department updated successfully."
+msgstr "Department updated successfully."
+
+#: blueprints/master_data.py:611
+msgid "Department deleted successfully."
+msgstr "Department deleted successfully."
+
+#: blueprints/master_data.py:661 blueprints/master_data.py:747
+msgid "Vendor name is required."
+msgstr "Vendor name is required."
+
+#: blueprints/master_data.py:676 blueprints/master_data.py:764
+msgid "Vendor already exists."
+msgstr "Vendor already exists."
+
+#: blueprints/master_data.py:709
+msgid "Vendor added successfully."
+msgstr "Vendor added successfully."
+
+#: blueprints/master_data.py:800
+msgid "Vendor updated successfully."
+msgstr "Vendor updated successfully."
+
+#: blueprints/master_data.py:837
+msgid "Vendor deleted successfully."
+msgstr "Vendor deleted successfully."
+
+#: blueprints/menus.py:114 blueprints/menus.py:225
+msgid "Menu label is required."
+msgstr "Menu label is required."
+
+#: blueprints/menus.py:154
+msgid "Menu added successfully."
+msgstr "Menu added successfully."
+
+#: blueprints/menus.py:262
+msgid "Menu updated successfully."
+msgstr "Menu updated successfully."
+
+#: blueprints/menus.py:299
+msgid "Menu deleted successfully."
+msgstr "Menu deleted successfully."
+
+#: blueprints/movements.py:1452 blueprints/movements.py:2132
+msgid "Movement date is required."
+msgstr "Movement date is required."
+
+#: blueprints/movements.py:1604 blueprints/movements.py:2324
+msgid "Destination location is required."
+msgstr "Destination location is required."
+
+#: blueprints/movements.py:1622 blueprints/movements.py:2346
+msgid "Destination department is required."
+msgstr "Destination department is required."
+
+#: blueprints/movements.py:1640 blueprints/movements.py:2368
+msgid "Destination PIC is required."
+msgstr "Destination PIC is required."
+
+#: blueprints/movements.py:1664 blueprints/movements.py:2396
+msgid "Movement has no change in asset position."
+msgstr "Movement has no change in asset position."
+
+#: blueprints/movements.py:1737
+msgid ""
+"Asset data is not in sync with the latest movement. Please check and correct"
+" the asset data before creating a new movement."
+msgstr ""
+"Asset data is not in sync with the latest movement. Please check and correct"
+" the asset data before creating a new movement."
+
+#: blueprints/movements.py:1889
+#, python-format
+msgid "Failed to save the movement. Detail: %(error)s"
+msgstr "Failed to save the movement. Detail: %(error)s"
+
+#: blueprints/movements.py:1906
+#, python-format
+msgid "Asset movement saved successfully. Movement number: %(number)s"
+msgstr "Asset movement saved successfully. Movement number: %(number)s"
+
+#: blueprints/movements.py:1981
+msgid "Movement not found."
+msgstr "Movement not found."
+
+#: blueprints/movements.py:1996
+msgid ""
+"This movement is not the latest movement for this asset. Only the latest "
+"movement can be corrected."
+msgstr ""
+"This movement is not the latest movement for this asset. Only the latest "
+"movement can be corrected."
+
+#: blueprints/movements.py:2162
+msgid "Movement date cannot be earlier than the previous movement."
+msgstr "Movement date cannot be earlier than the previous movement."
+
+#: blueprints/movements.py:2279
+msgid ""
+"The movement's origin location could not be determined from the asset "
+"history."
+msgstr ""
+"The movement's origin location could not be determined from the asset "
+"history."
+
+#: blueprints/movements.py:2300
+msgid ""
+"The movement's origin department could not be determined from the asset "
+"history."
+msgstr ""
+"The movement's origin department could not be determined from the asset "
+"history."
+
+#: blueprints/movements.py:2557
+#, python-format
+msgid "Movement %(number)s corrected successfully."
+msgstr "Movement %(number)s corrected successfully."
+
+#: blueprints/movements.py:2579
+#, python-format
+msgid ""
+"An error occurred while saving the movement correction. Detail: %(error)s"
+msgstr ""
+"An error occurred while saving the movement correction. Detail: %(error)s"
+
+#: blueprints/profile.py:45
+msgid "Full name is required."
+msgstr "Full name is required."
+
+#: blueprints/profile.py:56
+msgid "New password confirmation does not match."
+msgstr "New password confirmation does not match."
+
+#: blueprints/profile.py:68 blueprints/users.py:85 blueprints/users.py:219
+#, python-format
+msgid "Password must be at least %(min_length)s characters."
+msgstr "Password must be at least %(min_length)s characters."
+
+#: blueprints/profile.py:99
+msgid "Profile updated successfully."
+msgstr "Profile updated successfully."
+
+#: blueprints/roles.py:91 blueprints/roles.py:184
+msgid "Role name is required."
+msgstr "Role name is required."
+
+#: blueprints/roles.py:102 blueprints/roles.py:200
+msgid "Role name is already in use."
+msgstr "Role name is already in use."
+
+#: blueprints/roles.py:138
+msgid "Role created successfully. Set its permissions below."
+msgstr "Role created successfully. Set its permissions below."
+
+#: blueprints/roles.py:163
+msgid "Built-in roles cannot be renamed."
+msgstr "Built-in roles cannot be renamed."
+
+#: blueprints/roles.py:231
+msgid "Role updated successfully."
+msgstr "Role updated successfully."
+
+#: blueprints/roles.py:289
+msgid "Role permissions saved successfully."
+msgstr "Role permissions saved successfully."
+
+#: blueprints/roles.py:323
+msgid "Built-in roles cannot be deleted."
+msgstr "Built-in roles cannot be deleted."
+
+#: blueprints/roles.py:339
+#, python-format
+msgid ""
+"This role is still used by %(count)s user(s). Move those users to another "
+"role before deleting it."
+msgstr ""
+"This role is still used by %(count)s user(s). Move those users to another "
+"role before deleting it."
+
+#: blueprints/roles.py:362
+msgid "Role deleted successfully."
+msgstr "Role deleted successfully."
+
+#: blueprints/roles.py:479
+msgid "Please select the exported Excel file first."
+msgstr "Please select the exported Excel file first."
+
+#: blueprints/roles.py:496
+msgid ""
+"The file could not be read. Make sure it is an .xlsx file exported from this"
+" page."
+msgstr ""
+"The file could not be read. Make sure it is an .xlsx file exported from this"
+" page."
+
+#: blueprints/roles.py:523
+msgid ""
+"The file's column format is invalid. Use a file exported from this page as "
+"the template."
+msgstr ""
+"The file's column format is invalid. Use a file exported from this page as "
+"the template."
+
+#: blueprints/roles.py:604
+#, python-format
+msgid ""
+"Import successful. %(role_count)s new role(s) created, permissions for "
+"%(permission_count)s object row(s) updated."
+msgstr ""
+"Import successful. %(role_count)s new role(s) created, permissions for "
+"%(permission_count)s object row(s) updated."
+
+#: blueprints/users.py:74
+msgid "Username, full name, and password are required."
+msgstr "Username, full name, and password are required."
+
+#: blueprints/users.py:97 blueprints/users.py:193
+msgid "Invalid role."
+msgstr "Invalid role."
+
+#: blueprints/users.py:108 blueprints/users.py:208
+msgid "Username is already in use."
+msgstr "Username is already in use."
+
+#: blueprints/users.py:134
+msgid "User added successfully."
+msgstr "User added successfully."
+
+#: blueprints/users.py:182
+msgid "Username and full name are required."
+msgstr "Username and full name are required."
+
+#: blueprints/users.py:247
+msgid "User updated successfully."
+msgstr "User updated successfully."
+
+#: blueprints/users.py:274
+msgid "You cannot delete your own account."
+msgstr "You cannot delete your own account."
+
+#: blueprints/users.py:294
+msgid "User deleted successfully."
+msgstr "User deleted successfully."
+
+#: templates/base.html:625
+msgid "Toggle sidebar"
+msgstr "Toggle sidebar"
+
+#: templates/base.html:638 templates/login.html:550
+msgid "Toggle color scheme"
+msgstr "Toggle color scheme"
+
+#: templates/base.html:649
+msgid "Light"
+msgstr "Light"
+
+#: templates/base.html:657
+msgid "Dark"
+msgstr "Dark"
+
+#: templates/base.html:665
+msgid "Auto"
+msgstr "Auto"
+
+#: templates/base.html:742
+msgid "Profile"
+msgstr "Profile"
+
+#: templates/base.html:747
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/base.html:806
+msgid "Main menu"
+msgstr "Main menu"
+
+#: templates/clear_cache.html:3
+msgid "Clear Cache"
+msgstr "Clear Cache"
+
+#: templates/clear_cache.html:16
+msgid "Clear Browser Cache"
+msgstr "Clear Browser Cache"
+
+#: templates/clear_cache.html:29
+msgid ""
+"If the app display feels \"stuck\" or is not showing the latest changes, try"
+" clearing the browser cache for this page."
+msgstr ""
+"If the app display feels \"stuck\" or is not showing the latest changes, try"
+" clearing the browser cache for this page."
+
+#: templates/clear_cache.html:33
+msgid ""
+"This does not delete any data in the database, only temporary data stored in"
+" your browser. If you do not need to, you may ignore this."
+msgstr ""
+"This does not delete any data in the database, only temporary data stored in"
+" your browser. If you do not need to, you may ignore this."
+
+#: templates/clear_cache.html:38
+msgid "Clear Cache Now"
+msgstr "Clear Cache Now"
+
+#: templates/clear_cache.html:59
+msgid "Clearing..."
+msgstr "Clearing..."
+
+#: templates/clear_cache.html:71
+msgid "Cache cleared successfully. Reloading page..."
+msgstr "Cache cleared successfully. Reloading page..."
+
+#: templates/clear_cache.html:79
+msgid "Failed to clear cache:"
+msgstr "Failed to clear cache:"
+
+#: templates/dashboard.html:1 templates/dashboard.html:500
+#: templates/warranty/index.html:340
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/dashboard.html:504
+msgid "Asset Tracker summary information"
+msgstr "Asset Tracker summary information"
+
+#: templates/asset/labels_select.html:274 templates/asset/list.html:4
+#: templates/asset/list.html:367 templates/dashboard.html:513
+#: templates/index.html:567
+msgid "Asset List"
+msgstr "Asset List"
+
+#: templates/asset/movements_global.html:35 templates/dashboard.html:522
+msgid "Movement Report"
+msgstr "Movement Report"
+
+#: templates/dashboard.html:540 templates/index.html:602
+#: templates/index.html:2468 templates/index.html:2533
+#: templates/index.html:2644
+msgid "Total Assets"
+msgstr "Total Assets"
+
+#: templates/dashboard.html:560 templates/index.html:752
+msgid "Total Asset Value"
+msgstr "Total Asset Value"
+
+#: templates/dashboard.html:582
+msgid "Status Types"
+msgstr "Status Types"
+
+#: templates/dashboard.html:606
+msgid "Movements (12 Months)"
+msgstr "Movements (12 Months)"
+
+#: templates/dashboard.html:638 templates/index.html:972
+msgid "Assets by Status"
+msgstr "Assets by Status"
+
+#: templates/asset/add.html:762 templates/asset/detail.html:789
+#: templates/asset/edit.html:756 templates/asset/history.html:524
+#: templates/asset/labels_select.html:374 templates/asset/list.html:480
+#: templates/asset/list.html:720 templates/asset/movement_add.html:452
+#: templates/asset/movement_detail.html:951 templates/asset/movements.html:112
+#: templates/asset/movements.html:240
+#: templates/asset/movements_global.html:124
+#: templates/asset/movements_global.html:504 templates/dashboard.html:650
+#: templates/dashboard.html:1058 templates/index.html:1810
+#: templates/index.html:2034 templates/master/menu/list.html:97
+#: templates/master/user/list.html:96 templates/warranty/alert.html:456
+#: templates/warranty/index.html:503
+msgid "Status"
+msgstr "Status"
+
+#: templates/dashboard.html:652 templates/dashboard.html:743
+#: templates/dashboard.html:800 templates/dashboard.html:857
+msgid "Count"
+msgstr "Count"
+
+#: templates/dashboard.html:710
+msgid "No status data yet."
+msgstr "No status data yet."
+
+#: templates/dashboard.html:729 templates/index.html:1001
+msgid "Assets by Category"
+msgstr "Assets by Category"
+
+#: templates/asset/add.html:373 templates/asset/detail.html:638
+#: templates/asset/edit.html:450 templates/asset/history.html:500
+#: templates/asset/labels_print.html:134 templates/asset/list.html:529
+#: templates/asset/list.html:685 templates/asset/movement_correct.html:314
+#: templates/asset/movement_detail.html:983 templates/dashboard.html:741
+#: templates/dashboard.html:1052 templates/index.html:906
+#: templates/index.html:2022
+msgid "Category"
+msgstr "Category"
+
+#: templates/dashboard.html:767
+msgid "No category data yet."
+msgstr "No category data yet."
+
+#: templates/dashboard.html:786 templates/index.html:1030
+msgid "Assets by Location"
+msgstr "Assets by Location"
+
+#: templates/asset/add.html:573 templates/asset/detail.html:692
+#: templates/asset/detail.html:893 templates/asset/edit.html:543
+#: templates/asset/history.html:543 templates/asset/labels_select.html:364
+#: templates/asset/list.html:565 templates/asset/list.html:705
+#: templates/asset/movement_add.html:627
+#: templates/asset/movement_corrections.html:144
+#: templates/asset/movement_corrections.html:201
+#: templates/asset/movement_corrections.html:240
+#: templates/asset/movement_detail.html:1032
+#: templates/asset/movement_qr.html:242
+#: templates/asset/movement_report.html:696 templates/asset/movements.html:180
+#: templates/asset/movements.html:234
+#: templates/asset/movements_global.html:173
+#: templates/asset/movements_global.html:489 templates/dashboard.html:798
+#: templates/dashboard.html:1054 templates/index.html:917
+#: templates/index.html:2026
+msgid "Location"
+msgstr "Location"
+
+#: templates/dashboard.html:824
+msgid "No location data yet."
+msgstr "No location data yet."
+
+#: templates/dashboard.html:843 templates/index.html:1059
+msgid "Assets by Department"
+msgstr "Assets by Department"
+
+#: templates/asset/add.html:607 templates/asset/detail.html:705
+#: templates/asset/detail.html:895 templates/asset/edit.html:582
+#: templates/asset/history.html:551 templates/asset/history.html:623
+#: templates/asset/history.html:641 templates/asset/labels_select.html:369
+#: templates/asset/list.html:601 templates/asset/list.html:710
+#: templates/asset/movement_add.html:652
+#: templates/asset/movement_corrections.html:151
+#: templates/asset/movement_corrections.html:208
+#: templates/asset/movement_corrections.html:247
+#: templates/asset/movement_detail.html:1046
+#: templates/asset/movement_qr.html:256
+#: templates/asset/movement_report.html:698 templates/asset/movements.html:188
+#: templates/asset/movements.html:236
+#: templates/asset/movements_global.html:218
+#: templates/asset/movements_global.html:493 templates/dashboard.html:855
+#: templates/dashboard.html:1056 templates/index.html:928
+#: templates/index.html:2030 templates/master/department/list.html:89
+msgid "Department"
+msgstr "Department"
+
+#: templates/dashboard.html:881
+msgid "No department data yet."
+msgstr "No department data yet."
+
+#: templates/dashboard.html:902
+msgid "Asset Movements - Last 12 Months"
+msgstr "Asset Movements - Last 12 Months"
+
+#: templates/dashboard.html:929 templates/dashboard.html:937
+msgid "movements"
+msgstr "movements"
+
+#: templates/dashboard.html:955 templates/dashboard.html:1231
+msgid "No movement data yet."
+msgstr "No movement data yet."
+
+#: templates/asset/history.html:530 templates/asset/movement_report.html:551
+#: templates/asset/movements_global.html:329 templates/dashboard.html:966
+msgid "Total Movements"
+msgstr "Total Movements"
+
+#: templates/dashboard.html:970
+msgid "Entire movement history"
+msgstr "Entire movement history"
+
+#: templates/dashboard.html:978
+msgid "Total Corrections"
+msgstr "Total Corrections"
+
+#: templates/dashboard.html:982
+msgid "Entire movement correction history"
+msgstr "Entire movement correction history"
+
+#: templates/dashboard.html:990
+msgid "Movements This Month"
+msgstr "Movements This Month"
+
+#: templates/dashboard.html:1002
+msgid "Corrections This Month"
+msgstr "Corrections This Month"
+
+#: templates/dashboard.html:1006
+msgid "Corrections in the current month"
+msgstr "Corrections in the current month"
+
+#: templates/dashboard.html:1023 templates/index.html:1967
+msgid "Recent Assets"
+msgstr "Recent Assets"
+
+#: templates/asset/detail.html:875 templates/dashboard.html:1032
+#: templates/index.html:1983
+msgid "View All"
+msgstr "View All"
+
+#: templates/asset/list.html:670 templates/asset/movement_report.html:688
+#: templates/asset/movements_global.html:473 templates/dashboard.html:1046
+#: templates/dashboard.html:1163 templates/master/category/list.html:102
+#: templates/master/department/list.html:88
+#: templates/master/location/list.html:93 templates/master/user/list.html:92
+#: templates/master/vendor/list.html:92 templates/warranty/alert.html:447
+#: templates/warranty/history.html:303
+msgid "No."
+msgstr "No."
+
+#: templates/asset/add.html:329 templates/asset/detail.html:612
+#: templates/asset/edit.html:414 templates/asset/history.html:488
+#: templates/asset/labels_print.html:108
+#: templates/asset/labels_select.html:344 templates/asset/list.html:675
+#: templates/asset/movement_add.html:401
+#: templates/asset/movement_correct.html:302
+#: templates/asset/movement_corrections.html:104
+#: templates/asset/movement_detail.html:971
+#: templates/asset/movement_qr.html:201
+#: templates/asset/movement_verify.html:220 templates/asset/movements.html:72
+#: templates/dashboard.html:1048 templates/index.html:2014
+msgid "Asset Tag"
+msgstr "Asset Tag"
+
+#: templates/asset/add.html:351 templates/asset/detail.html:625
+#: templates/asset/edit.html:432 templates/asset/history.html:494
+#: templates/asset/list.html:680 templates/asset/movement_add.html:418
+#: templates/asset/movement_correct.html:308
+#: templates/asset/movement_corrections.html:108
+#: templates/asset/movement_detail.html:977
+#: templates/asset/movement_qr.html:209
+#: templates/asset/movement_verify.html:228 templates/asset/movements.html:80
+#: templates/dashboard.html:1050
+msgid "Asset Name"
+msgstr "Asset Name"
+
+#: templates/asset/add.html:771 templates/asset/detail.html:793
+#: templates/asset/edit.html:769 templates/asset/labels_select.html:492
+#: templates/asset/list.html:493 templates/asset/list.html:903
+#: templates/asset/movements.html:117 templates/dashboard.html:1090
+#: templates/index.html:2130 templates/master/menu/list.html:128
+#: templates/master/menu/list.html:186 templates/master/user/list.html:128
+#: templates/profile.html:39 templates/warranty/alert.html:277
+#: templates/warranty/alert.html:639 templates/warranty/index.html:376
+#: templates/warranty/index.html:609
+msgid "Active"
+msgstr "Active"
+
+#: templates/asset/add.html:778 templates/asset/detail.html:798
+#: templates/asset/edit.html:774 templates/asset/labels_select.html:500
+#: templates/asset/list.html:498 templates/asset/list.html:918
+#: templates/asset/movements.html:121 templates/dashboard.html:1094
+#: templates/index.html:702 templates/index.html:2141
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: templates/asset/add.html:792 templates/asset/detail.html:809
+#: templates/asset/edit.html:784 templates/asset/labels_select.html:508
+#: templates/asset/list.html:508 templates/asset/list.html:946
+#: templates/dashboard.html:1098 templates/index.html:837
+#: templates/index.html:2161
+msgid "Lost"
+msgstr "Lost"
+
+#: templates/asset/add.html:799 templates/asset/detail.html:813
+#: templates/asset/edit.html:789 templates/asset/labels_select.html:516
+#: templates/asset/list.html:513 templates/asset/list.html:960
+#: templates/dashboard.html:1102 templates/index.html:863
+#: templates/index.html:2171
+msgid "Retired"
+msgstr "Retired"
+
+#: templates/dashboard.html:1122 templates/index.html:2238
+msgid "No assets yet."
+msgstr "No assets yet."
+
+#: templates/dashboard.html:1140
+msgid "Recent Asset Movements"
+msgstr "Recent Asset Movements"
+
+#: templates/dashboard.html:1149
+msgid "View Report"
+msgstr "View Report"
+
+#: templates/asset/detail.html:891 templates/asset/movement_correct.html:337
+#: templates/asset/movement_corrections.html:133
+#: templates/asset/movement_detail.html:931
+#: templates/asset/movement_qr.html:221
+#: templates/asset/movement_report.html:690
+#: templates/asset/movement_verify.html:203 templates/dashboard.html:1165
+msgid "Movement No."
+msgstr "Movement No."
+
+#: templates/asset/detail.html:889
+#: templates/asset/movement_corrections.html:222
+#: templates/asset/movement_corrections.html:261
+#: templates/asset/movement_report.html:692 templates/asset/movements.html:230
+#: templates/asset/movements_global.html:485 templates/dashboard.html:1167
+msgid "Date"
+msgstr "Date"
+
+#: templates/asset/labels_print.html:121
+#: templates/asset/labels_select.html:349
+#: templates/asset/movement_report.html:694
+#: templates/asset/movements_global.html:481 templates/dashboard.html:1169
+#: templates/index.html:1551 templates/index.html:1798
+#: templates/index.html:2018 templates/warranty/alert.html:448
+#: templates/warranty/index.html:497
+msgid "Asset"
+msgstr "Asset"
+
+#: templates/asset/movements_global.html:88 templates/dashboard.html:1171
+msgid "From"
+msgstr "From"
+
+#: templates/dashboard.html:1173
+msgid "To"
+msgstr "To"
+
+#: templates/index.html:4 templates/index.html:552
+msgid "Dashboard Asset Management"
+msgstr "Dashboard Asset Management"
+
+#: templates/index.html:556
+msgid "Company asset monitoring and management"
+msgstr "Company asset monitoring and management"
+
+#: templates/index.html:652
+msgid "Active Assets"
+msgstr "Active Assets"
+
+#: templates/asset/add.html:785 templates/asset/detail.html:804
+#: templates/asset/edit.html:779 templates/asset/list.html:503
+#: templates/asset/list.html:932 templates/asset/movements.html:125
+#: templates/index.html:811 templates/index.html:2151
+#: templates/master/menu/list.html:130 templates/master/menu/list.html:188
+#: templates/master/user/list.html:130 templates/profile.html:41
+msgid "Inactive"
+msgstr "Inactive"
+
+#: templates/index.html:889
+msgid "Master Data"
+msgstr "Master Data"
+
+#: templates/asset/add.html:710 templates/asset/detail.html:763
+#: templates/asset/edit.html:699 templates/index.html:939
+#: templates/master/vendor/list.html:93 templates/warranty/alert.html:451
+#: templates/warranty/index.html:498
+msgid "Vendor"
+msgstr "Vendor"
+
+#: templates/index.html:975
+msgid "Status distribution of all assets"
+msgstr "Status distribution of all assets"
+
+#: templates/index.html:1004
+msgid "Number of assets by category"
+msgstr "Number of assets by category"
+
+#: templates/index.html:1033
+msgid "Asset distribution by location"
+msgstr "Asset distribution by location"
+
+#: templates/index.html:1062
+msgid "Asset distribution by department"
+msgstr "Asset distribution by department"
+
+#: templates/index.html:1104 templates/warranty/alert.html:343
+#: templates/warranty/index.html:427
+msgid "Active Warranty"
+msgstr "Active Warranty"
+
+#: templates/index.html:1157 templates/index.html:1497
+#: templates/warranty/notifications.html:544
+msgid "Warranty Expiring Soon"
+msgstr "Warranty Expiring Soon"
+
+#: templates/index.html:1172
+msgid "Maximum 30 days"
+msgstr "Maximum 30 days"
+
+#: templates/index.html:1217 templates/index.html:1389
+#: templates/index.html:1748 templates/warranty/alert.html:339
+#: templates/warranty/notifications.html:289
+#: templates/warranty/notifications.html:370
+#: templates/warranty/notifications.html:657
+msgid "Warranty Expired"
+msgstr "Warranty Expired"
+
+#: templates/index.html:1270
+msgid "Unknown Warranty"
+msgstr "Unknown Warranty"
+
+#: templates/index.html:1336 templates/warranty/history.html:173
+#: templates/warranty/index.html:321
+msgid "Warranty Alert"
+msgstr "Warranty Alert"
+
+#: templates/index.html:1340
+msgid "Warranty priorities that need attention"
+msgstr "Warranty priorities that need attention"
+
+#: templates/index.html:1354
+msgid "View Alert"
+msgstr "View Alert"
+
+#: templates/index.html:1368
+msgid "Warranty Notification Center"
+msgstr "Warranty Notification Center"
+
+#: templates/index.html:1376
+msgid "Notification"
+msgstr "Notification"
+
+#: templates/index.html:1403 templates/warranty/alert.html:250
+#: templates/warranty/alert.html:331
+msgid "Expiring in ≤ 7 Days"
+msgstr "Expiring in ≤ 7 Days"
+
+#: templates/index.html:1417 templates/warranty/alert.html:259
+#: templates/warranty/alert.html:335
+msgid "Expiring in 8–30 Days"
+msgstr "Expiring in 8–30 Days"
+
+#: templates/index.html:1435
+msgid "Click \"View Alert\" to see the list of assets that need immediate action."
+msgstr ""
+"Click \"View Alert\" to see the list of assets that need immediate action."
+
+#: templates/index.html:1445 templates/warranty/alert.html:327
+msgid "All Warranties"
+msgstr "All Warranties"
+
+#: templates/index.html:1461
+msgid "Notification Center"
+msgstr "Notification Center"
+
+#: templates/index.html:1501
+msgid "Warranty expiring within a maximum of 30 days"
+msgstr "Warranty expiring within a maximum of 30 days"
+
+#: templates/index.html:1522 templates/index.html:1769
+msgid "View Warranty Alert Detail"
+msgstr "View Warranty Alert Detail"
+
+#: templates/asset/add.html:744 templates/asset/detail.html:776
+#: templates/asset/edit.html:738 templates/index.html:1555
+#: templates/index.html:1802 templates/warranty/alert.html:453
+#: templates/warranty/index.html:499
+msgid "Warranty"
+msgstr "Warranty"
+
+#: templates/index.html:1559 templates/index.html:1806
+#: templates/warranty/index.html:501
+msgid "Expires"
+msgstr "Expires"
+
+#: templates/index.html:1563 templates/warranty/index.html:502
+msgid "Remaining"
+msgstr "Remaining"
+
+#: templates/index.html:1653 templates/warranty/index.html:580
+msgid "Today"
+msgstr "Today"
+
+#: templates/index.html:1670 templates/warranty/alert.html:578
+#: templates/warranty/alert.html:584 templates/warranty/alert.html:590
+#: templates/warranty/index.html:586 templates/warranty/index.html:592
+msgid "days"
+msgstr "days"
+
+#: templates/index.html:1712
+msgid "No warranty expiring within 30 days."
+msgstr "No warranty expiring within 30 days."
+
+#: templates/index.html:1752
+msgid "Warranty that has already expired"
+msgstr "Warranty that has already expired"
+
+#: templates/index.html:1895 templates/warranty/alert.html:268
+#: templates/warranty/alert.html:614 templates/warranty/index.html:384
+#: templates/warranty/index.html:447 templates/warranty/index.html:623
+#: templates/warranty/notifications.html:715
+msgid "Expired"
+msgstr "Expired"
+
+#: templates/index.html:1928 templates/warranty/notifications.html:744
+msgid "No expired warranty."
+msgstr "No expired warranty."
+
+#: templates/index.html:1971
+msgid "10 most recently added assets"
+msgstr "10 most recently added assets"
+
+#: templates/asset/detail.html:901 templates/asset/list.html:725
+#: templates/asset/movement_report.html:704 templates/asset/movements.html:242
+#: templates/asset/movements_global.html:511 templates/audit/list.html:51
+#: templates/backup/list.html:66 templates/index.html:2038
+#: templates/master/category/list.html:114
+#: templates/master/department/list.html:91
+#: templates/master/location/list.html:96 templates/master/menu/list.html:98
+#: templates/master/user/list.html:97 templates/master/vendor/list.html:97
+#: templates/roles/list.html:73 templates/warranty/alert.html:457
+#: templates/warranty/index.html:504
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/asset/detail.html:818 templates/asset/list.html:974
+#: templates/index.html:2184 templates/index.html:2270
+msgid "No Status"
+msgstr "No Status"
+
+#: templates/asset/detail.html:1 templates/asset/detail.html:483
+#: templates/asset/movement_verify.html:426 templates/index.html:2207
+#: templates/warranty/history.html:187 templates/warranty/index.html:642
+msgid "Asset Detail"
+msgstr "Asset Detail"
+
+#: templates/index.html:2283
+msgid "No Category"
+msgstr "No Category"
+
+#: templates/index.html:2296
+msgid "No Location"
+msgstr "No Location"
+
+#: templates/index.html:2309
+msgid "No Department"
+msgstr "No Department"
+
+#: templates/login.html:523
+msgid "Welcome"
+msgstr "Welcome"
+
+#: templates/login.html:530
+msgid "Manage and track your company assets in one integrated system."
+msgstr "Manage and track your company assets in one integrated system."
+
+#: templates/login.html:584
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/login.html:586
+msgid "Enter your credentials to access your account."
+msgstr "Enter your credentials to access your account."
+
+#: templates/login.html:596 templates/master/user/add.html:42
+#: templates/master/user/edit.html:42 templates/master/user/list.html:93
+#: templates/profile.html:75
+msgid "Username"
+msgstr "Username"
+
+#: templates/login.html:611 templates/master/user/add.html:74
+msgid "Password"
+msgstr "Password"
+
+#: templates/login.html:625
+msgid "Show password"
+msgstr "Show password"
+
+#: templates/login.html:635
+msgid "Remember me"
+msgstr "Remember me"
+
+#: templates/login.html:641
+msgid "Login"
+msgstr "Login"
+
+#: templates/login.html:647
+msgid "Forgot your password? Contact your administrator."
+msgstr "Forgot your password? Contact your administrator."
+
+#: templates/profile.html:3 templates/profile.html:16
+msgid "My Profile"
+msgstr "My Profile"
+
+#: templates/profile.html:48
+msgid "Joined"
+msgstr "Joined"
+
+#: templates/profile.html:65
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+#: templates/profile.html:77
+msgid "Username cannot be changed by yourself, contact the administrator."
+msgstr "Username cannot be changed by yourself, contact the administrator."
+
+#: templates/master/user/add.html:58 templates/master/user/edit.html:59
+#: templates/master/user/list.html:94 templates/profile.html:81
+msgid "Full Name"
+msgstr "Full Name"
+
+#: templates/master/user/edit.html:83 templates/profile.html:87
+msgid "Leave blank if you do not want to change your password."
+msgstr "Leave blank if you do not want to change your password."
+
+#: templates/master/user/edit.html:76 templates/profile.html:92
+msgid "New Password"
+msgstr "New Password"
+
+#: templates/profile.html:97
+msgid "Confirm New Password"
+msgstr "Confirm New Password"
+
+#: templates/asset/edit.html:853 templates/master/category/edit.html:84
+#: templates/master/department/edit.html:70
+#: templates/master/location/edit.html:84 templates/master/menu/edit.html:221
+#: templates/master/user/edit.html:140 templates/master/vendor/edit.html:140
+#: templates/profile.html:105
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: templates/asset/add.html:4 templates/asset/add.html:249
+#: templates/asset/list.html:402 templates/asset/list.html:1069
+msgid "Add Asset"
+msgstr "Add Asset"
+
+#: templates/asset/add.html:253
+msgid "Add a new asset to Asset Tracker"
+msgstr "Add a new asset to Asset Tracker"
+
+#: templates/asset/add.html:264 templates/asset/detail.html:498
+#: templates/asset/edit.html:239 templates/asset/import.html:40
+#: templates/asset/labels_print.html:44 templates/asset/labels_select.html:162
+#: templates/asset/movement_corrections.html:91
+#: templates/asset/movement_qr.html:343 templates/company/edit.html:273
+#: templates/master/category/add.html:31
+#: templates/master/category/edit.html:31
+#: templates/master/department/add.html:22
+#: templates/master/department/edit.html:22
+#: templates/master/location/add.html:31
+#: templates/master/location/edit.html:31 templates/roles/permissions.html:101
+msgid "Back"
+msgstr "Back"
+
+#: templates/asset/add.html:288 templates/asset/detail.html:600
+#: templates/asset/edit.html:400 templates/asset/history.html:483
+#: templates/asset/movement_corrections.html:99
+#: templates/asset/movements.html:60
+msgid "Asset Information"
+msgstr "Asset Information"
+
+#: templates/asset/add.html:314
+msgid "Main Information"
+msgstr "Main Information"
+
+#: templates/asset/add.html:339
+msgid "Example: AST-001"
+msgstr "Example: AST-001"
+
+#: templates/asset/add.html:361
+msgid "Example: Dell Latitude Laptop"
+msgstr "Example: Dell Latitude Laptop"
+
+#: templates/asset/add.html:381
+msgid "-- Select Category --"
+msgstr "-- Select Category --"
+
+#: templates/asset/add.html:407 templates/asset/detail.html:651
+#: templates/asset/edit.html:489 templates/asset/history.html:506
+#: templates/asset/labels_print.html:147 templates/asset/list.html:690
+#: templates/asset/movements.html:88
+msgid "Brand"
+msgstr "Brand"
+
+#: templates/asset/add.html:412
+msgid "Example: Dell"
+msgstr "Example: Dell"
+
+#: templates/asset/add.html:425 templates/asset/detail.html:664
+#: templates/asset/edit.html:507 templates/asset/history.html:512
+#: templates/asset/labels_print.html:160 templates/asset/list.html:695
+#: templates/asset/movements.html:96
+msgid "Model"
+msgstr "Model"
+
+#: templates/asset/add.html:431
+msgid "Example: Latitude 5440"
+msgstr "Example: Latitude 5440"
+
+#: templates/asset/add.html:443 templates/asset/add.html:449
+#: templates/asset/detail.html:677 templates/asset/edit.html:525
+#: templates/asset/history.html:518 templates/asset/labels_select.html:359
+#: templates/asset/list.html:700 templates/asset/movement_add.html:435
+#: templates/asset/movement_correct.html:327
+#: templates/asset/movement_corrections.html:119
+#: templates/asset/movement_detail.html:996
+#: templates/asset/movement_qr.html:215
+#: templates/asset/movement_verify.html:234 templates/asset/movements.html:104
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#: templates/asset/add.html:461 templates/asset/detail.html:718
+#: templates/asset/detail.html:897 templates/asset/edit.html:621
+#: templates/asset/history.html:559 templates/asset/history.html:628
+#: templates/asset/history.html:646 templates/asset/list.html:715
+#: templates/asset/movement_add.html:677
+#: templates/asset/movement_corrections.html:215
+#: templates/asset/movement_corrections.html:254
+#: templates/asset/movement_detail.html:1060
+#: templates/asset/movement_qr.html:270
+#: templates/asset/movement_report.html:700 templates/asset/movements.html:196
+#: templates/asset/movements.html:238
+#: templates/asset/movements_global.html:263
+#: templates/asset/movements_global.html:497
+msgid "PIC"
+msgstr "PIC"
+
+#: templates/asset/add.html:466 templates/asset/movements_global.html:272
+msgid "PIC Name"
+msgstr "PIC Name"
+
+#: templates/asset/add.html:489 templates/asset/detail.html:536
+#: templates/asset/edit.html:276
+msgid "Asset Photo"
+msgstr "Asset Photo"
+
+#: templates/asset/add.html:506
+msgid "Upload Asset Photo"
+msgstr "Upload Asset Photo"
+
+#: templates/asset/add.html:513
+msgid "Choose an asset photo from your computer."
+msgstr "Choose an asset photo from your computer."
+
+#: templates/asset/add.html:524
+msgid "Allowed formats: JPG, JPEG, PNG, WEBP"
+msgstr "Allowed formats: JPG, JPEG, PNG, WEBP"
+
+#: templates/asset/add.html:533
+msgid "Asset Photo Preview"
+msgstr "Asset Photo Preview"
+
+#: templates/asset/add.html:558
+msgid "Location & Organization"
+msgstr "Location & Organization"
+
+#: templates/asset/add.html:581 templates/asset/movement_add.html:755
+#: templates/asset/movement_correct.html:510
+msgid "-- Select Location --"
+msgstr "-- Select Location --"
+
+#: templates/asset/add.html:615 templates/asset/movement_add.html:812
+#: templates/asset/movement_correct.html:542
+msgid "-- Select Department --"
+msgstr "-- Select Department --"
+
+#: templates/asset/add.html:651 templates/asset/edit.html:649
+msgid "Purchase Information"
+msgstr "Purchase Information"
+
+#: templates/asset/add.html:666 templates/asset/detail.html:731
+#: templates/asset/edit.html:663 templates/warranty/alert.html:452
+#: templates/warranty/index.html:500
+msgid "Purchase Date"
+msgstr "Purchase Date"
+
+#: templates/asset/add.html:683 templates/asset/detail.html:747
+#: templates/asset/edit.html:681
+msgid "Purchase Price"
+msgstr "Purchase Price"
+
+#: templates/asset/add.html:718
+msgid "-- Select Vendor --"
+msgstr "-- Select Vendor --"
+
+#: templates/asset/add.html:750 templates/asset/edit.html:743
+msgid "Example: 3 Years"
+msgstr "Example: 3 Years"
+
+#: templates/asset/add.html:825 templates/asset/add.html:832
+#: templates/asset/detail.html:831 templates/asset/edit.html:817
+#: templates/audit/list.html:54 templates/master/category/add.html:68
+#: templates/master/category/edit.html:68
+#: templates/master/category/list.html:110
+#: templates/master/department/add.html:55
+#: templates/master/department/edit.html:55
+#: templates/master/department/list.html:90
+#: templates/master/location/add.html:68
+#: templates/master/location/edit.html:68
+#: templates/master/location/list.html:95 templates/master/vendor/add.html:119
+#: templates/master/vendor/edit.html:122 templates/roles/add.html:36
+#: templates/roles/edit.html:36 templates/roles/list.html:70
+msgid "Description"
+msgstr "Description"
+
+#: templates/asset/add.html:838
+msgid "Enter notes or a description for this asset..."
+msgstr "Enter notes or a description for this asset..."
+
+#: templates/asset/add.html:855 templates/asset/edit.html:844
+#: templates/asset/movement_add.html:1210
+#: templates/asset/movement_correct.html:862 templates/backup/list.html:127
+#: templates/backup/restore_upload.html:50
+#: templates/master/category/add.html:92
+#: templates/master/category/edit.html:91
+#: templates/master/department/add.html:77
+#: templates/master/department/edit.html:77
+#: templates/master/location/add.html:91
+#: templates/master/location/edit.html:91 templates/master/menu/add.html:234
+#: templates/master/menu/edit.html:228 templates/master/user/add.html:121
+#: templates/master/user/edit.html:147 templates/master/vendor/add.html:144
+#: templates/master/vendor/edit.html:147 templates/roles/add.html:46
+#: templates/roles/edit.html:42 templates/roles/import.html:45
+msgid "Cancel"
+msgstr "Cancel"
+
+#: templates/asset/add.html:864
+msgid "Save Asset"
+msgstr "Save Asset"
+
+#: templates/asset/add.html:982
+msgid "Maximum photo size is 5 MB."
+msgstr "Maximum photo size is 5 MB."
+
+#: templates/asset/detail.html:510 templates/asset/edit.html:4
+#: templates/asset/edit.html:219
+msgid "Edit Asset"
+msgstr "Edit Asset"
+
+#: templates/asset/detail.html:558
+msgid "No asset photo yet"
+msgstr "No asset photo yet"
+
+#: templates/asset/detail.html:572
+msgid "Asset QR Code"
+msgstr "Asset QR Code"
+
+#: templates/asset/detail.html:581
+msgid "QR Code"
+msgstr "QR Code"
+
+#: templates/asset/detail.html:855 templates/asset/movements.html:2
+#: templates/asset/movements.html:23
+msgid "Asset Movement History"
+msgstr "Asset Movement History"
+
+#: templates/asset/detail.html:857
+msgid "Asset movement history"
+msgstr "Asset movement history"
+
+#: templates/asset/detail.html:867 templates/asset/history.html:793
+#: templates/asset/movements.html:45 templates/asset/movements.html:423
+msgid "Add Movement"
+msgstr "Add Movement"
+
+#: templates/asset/detail.html:899 templates/asset/history.html:656
+#: templates/asset/movement_corrections.html:228
+#: templates/asset/movement_corrections.html:267
+#: templates/warranty/history.html:330
+msgid "Reason"
+msgstr "Reason"
+
+#: templates/asset/detail.html:974
+#: templates/asset/movement_corrections.html:79
+msgid "Movement Detail"
+msgstr "Movement Detail"
+
+#: templates/asset/detail.html:986 templates/asset/movement_qr.html:1
+#: templates/asset/movement_qr.html:166 templates/asset/movement_qr.html:187
+msgid "Movement QR"
+msgstr "Movement QR"
+
+#: templates/asset/detail.html:1004 templates/asset/history.html:749
+#: templates/asset/movements.html:409
+msgid "No movement history yet"
+msgstr "No movement history yet"
+
+#: templates/asset/detail.html:1007 templates/asset/history.html:752
+#: templates/asset/movements.html:412
+msgid "This asset does not have any movement history yet."
+msgstr "This asset does not have any movement history yet."
+
+#: templates/asset/detail.html:1018
+msgid "Add First Movement"
+msgstr "Add First Movement"
+
+#: templates/asset/edit.html:308 templates/asset/list.html:762
+msgid "No photo yet"
+msgstr "No photo yet"
+
+#: templates/asset/edit.html:328
+msgid "Format: JPG, JPEG, PNG, WEBP."
+msgstr "Format: JPG, JPEG, PNG, WEBP."
+
+#: templates/asset/edit.html:353
+msgid "Delete photo when saved"
+msgstr "Delete photo when saved"
+
+#: templates/asset/edit.html:368
+msgid "Check only if you want to delete the asset photo."
+msgstr "Check only if you want to delete the asset photo."
+
+#: templates/asset/edit.html:458
+msgid "Select Category"
+msgstr "Select Category"
+
+#: templates/asset/edit.html:551
+msgid "Select Location"
+msgstr "Select Location"
+
+#: templates/asset/edit.html:590
+msgid "Select Department"
+msgstr "Select Department"
+
+#: templates/asset/edit.html:707
+msgid "Select Vendor"
+msgstr "Select Vendor"
+
+#: templates/asset/edit.html:764
+msgid "Select Status"
+msgstr "Select Status"
+
+#: templates/asset/edit.html:823
+msgid "Enter the asset description..."
+msgstr "Enter the asset description..."
+
+#: templates/asset/edit.html:930
+msgid "Unsupported photo format."
+msgstr "Unsupported photo format."
+
+#: templates/asset/history.html:1
+msgid "Asset History"
+msgstr "Asset History"
+
+#: templates/asset/history.html:468
+msgid "Asset Journey History"
+msgstr "Asset Journey History"
+
+#: templates/asset/history.html:471
+msgid ""
+"Complete history of asset movement based on all movements recorded in the "
+"system."
+msgstr ""
+"Complete history of asset movement based on all movements recorded in the "
+"system."
+
+#: templates/asset/history.html:539
+msgid "CURRENT ASSET CONDITION"
+msgstr "CURRENT ASSET CONDITION"
+
+#: templates/asset/history.html:574
+msgid "Movement Timeline"
+msgstr "Movement Timeline"
+
+#: templates/asset/history.html:576 templates/asset/movements.html:63
+#: templates/asset/movements.html:232
+#: templates/asset/movements_global.html:477
+msgid "Movement"
+msgstr "Movement"
+
+#: templates/asset/history.html:594
+msgid "Movement #"
+msgstr "Movement #"
+
+#: templates/asset/history.html:598
+msgid "LATEST CONDITION"
+msgstr "LATEST CONDITION"
+
+#: templates/asset/history.html:616 templates/asset/movements.html:285
+#: templates/asset/movements.html:305 templates/asset/movements.html:327
+msgid "FROM"
+msgstr "FROM"
+
+#: templates/asset/history.html:636 templates/asset/movements.html:295
+#: templates/asset/movements.html:315 templates/asset/movements.html:335
+msgid "TO"
+msgstr "TO"
+
+#: templates/asset/history.html:662 templates/asset/movement_add.html:932
+#: templates/asset/movement_correct.html:599
+#: templates/asset/movement_corrections.html:232
+#: templates/asset/movement_corrections.html:271
+#: templates/asset/movement_detail.html:1097
+#: templates/asset/movement_verify.html:359
+#: templates/warranty/history.html:334
+msgid "Notes"
+msgstr "Notes"
+
+#: templates/asset/history.html:675 templates/asset/movement_add.html:976
+msgid "Handed Over By"
+msgstr "Handed Over By"
+
+#: templates/asset/history.html:687 templates/asset/movement_add.html:1086
+msgid "Received By"
+msgstr "Received By"
+
+#: templates/asset/history.html:712 templates/asset/list.html:995
+#: templates/asset/movement_detail.html:774
+#: templates/asset/movement_report.html:829 templates/asset/movements.html:371
+#: templates/asset/movements_global.html:673
+msgid "Detail"
+msgstr "Detail"
+
+#: templates/asset/history.html:723 templates/asset/labels.html:1094
+#: templates/asset/labels.html:1106 templates/asset/labels_print.html:85
+#: templates/asset/movements_global.html:687
+msgid "QR"
+msgstr "QR"
+
+#: templates/asset/history.html:734 templates/asset/movement_detail.html:798
+#: templates/asset/movement_qr.html:325
+msgid "Verify"
+msgstr "Verify"
+
+#: templates/asset/history.html:773 templates/asset/movements.html:37
+msgid "Back to Asset"
+msgstr "Back to Asset"
+
+#: templates/asset/history.html:783
+msgid "Print History"
+msgstr "Print History"
+
+#: templates/asset/import.html:4 templates/asset/import.html:25
+#: templates/asset/import.html:103
+msgid "Import Asset"
+msgstr "Import Asset"
+
+#: templates/asset/import.html:29
+msgid "Import multiple assets using Excel."
+msgstr "Import multiple assets using Excel."
+
+#: templates/asset/import.html:65
+msgid "Upload Excel"
+msgstr "Upload Excel"
+
+#: templates/asset/import.html:82
+msgid "Excel File"
+msgstr "Excel File"
+
+#: templates/asset/import.html:92
+msgid "Supported format:"
+msgstr "Supported format:"
+
+#: templates/asset/import.html:94
+msgid "or"
+msgstr "or"
+
+#: templates/asset/import.html:108
+msgid "Download Excel Template"
+msgstr "Download Excel Template"
+
+#: templates/asset/import.html:130
+msgid "Excel Format"
+msgstr "Excel Format"
+
+#: templates/asset/import.html:141
+msgid ""
+"The first row of the Excel file must contain the following column names:"
+msgstr ""
+"The first row of the Excel file must contain the following column names:"
+
+#: templates/asset/import.html:159 templates/asset/import.html:172
+msgid "Required"
+msgstr "Required"
+
+#: templates/asset/import.html:180 templates/asset/import.html:186
+#: templates/asset/import.html:192 templates/asset/import.html:198
+#: templates/asset/import.html:204 templates/asset/import.html:210
+#: templates/asset/import.html:216 templates/asset/import.html:222
+#: templates/asset/import.html:228 templates/asset/import.html:234
+#: templates/asset/import.html:240 templates/asset/import.html:246
+#: templates/asset/import.html:252
+msgid "Optional"
+msgstr "Optional"
+
+#: templates/asset/import_result.html:4 templates/asset/import_result.html:25
+msgid "Asset Import Result"
+msgstr "Asset Import Result"
+
+#: templates/asset/import_result.html:29
+msgid "Excel asset import summary"
+msgstr "Excel asset import summary"
+
+#: templates/asset/import_result.html:56
+msgid "Successful"
+msgstr "Successful"
+
+#: templates/asset/import_result.html:66
+msgid "assets added successfully"
+msgstr "assets added successfully"
+
+#: templates/asset/import_result.html:83
+msgid "Failed"
+msgstr "Failed"
+
+#: templates/asset/import_result.html:93
+msgid "rows failed to process"
+msgstr "rows failed to process"
+
+#: templates/asset/import_result.html:109
+msgid "Error Details"
+msgstr "Error Details"
+
+#: templates/asset/import_result.html:142
+msgid "Import Again"
+msgstr "Import Again"
+
+#: templates/asset/import_result.html:154
+msgid "View Assets"
+msgstr "View Assets"
+
+#: templates/asset/labels.html:4 templates/asset/labels.html:865
+msgid "Print QR / Label Asset"
+msgstr "Print QR / Label Asset"
+
+#: templates/asset/labels.html:870 templates/company/edit.html:244
+msgid "Format:"
+msgstr "Format:"
+
+#: templates/asset/labels.html:878
+msgid "— 5 columns × 8 rows — 40 labels / sheet."
+msgstr "— 5 columns × 8 rows — 40 labels / sheet."
+
+#: templates/asset/labels.html:884
+msgid "Each asset is printed as"
+msgstr "Each asset is printed as"
+
+#: templates/asset/labels.html:886
+msgid "5 labels"
+msgstr "5 labels"
+
+#: templates/asset/labels.html:888
+msgid "for laptop, charger, box, bag, and accessories."
+msgstr "for laptop, charger, box, bag, and accessories."
+
+#: templates/asset/labels.html:920 templates/asset/labels.html:1168
+msgid "Select Asset"
+msgstr "Select Asset"
+
+#: templates/asset/labels.html:952 templates/asset/movement_report.html:539
+#: templates/warranty/history.html:160 templates/warranty/index.html:330
+msgid "Export Excel"
+msgstr "Export Excel"
+
+#: templates/asset/labels.html:971 templates/asset/labels_print.html:54
+#: templates/asset/movement_report.html:527 templates/warranty/index.html:335
+msgid "Print"
+msgstr "Print"
+
+#: templates/asset/labels.html:1147
+msgid "No assets to print."
+msgstr "No assets to print."
+
+#: templates/asset/labels.html:1154
+msgid "Please select an asset first."
+msgstr "Please select an asset first."
+
+#: templates/asset/labels_print.html:4
+msgid "Print Asset Labels"
+msgstr "Print Asset Labels"
+
+#: templates/asset/labels_print.html:27 templates/asset/labels_select.html:147
+msgid "Print Asset Label"
+msgstr "Print Asset Label"
+
+#: templates/asset/labels_print.html:31 templates/asset/labels_select.html:249
+#: templates/asset/labels_select.html:992
+#: templates/asset/labels_select.html:1001 templates/asset/list.html:1117
+#: templates/warranty/alert.html:422 templates/warranty/index.html:481
+msgid "assets"
+msgstr "assets"
+
+#: templates/asset/labels_print.html:31
+msgid "selected for printing."
+msgstr "selected for printing."
+
+#: templates/asset/labels_print.html:101
+msgid "ASSET IDENTIFICATION"
+msgstr "ASSET IDENTIFICATION"
+
+#: templates/asset/labels_print.html:173
+msgid "Serial"
+msgstr "Serial"
+
+#: templates/asset/labels_print.html:184
+msgid "PROPERTY OF COMPANY"
+msgstr "PROPERTY OF COMPANY"
+
+#: templates/asset/labels_select.html:4
+msgid "Select Assets for Label Printing"
+msgstr "Select Assets for Label Printing"
+
+#: templates/asset/labels_select.html:151
+msgid "Select the assets whose labels you want to print."
+msgstr "Select the assets whose labels you want to print."
+
+#: templates/asset/labels_select.html:230 templates/warranty/alert.html:309
+#: templates/warranty/index.html:357 templates/warranty/notifications.html:252
+msgid "Search Asset"
+msgstr "Search Asset"
+
+#: templates/asset/labels_select.html:236
+msgid "Asset Tag, name, brand, model, serial..."
+msgstr "Asset Tag, name, brand, model, serial..."
+
+#: templates/asset/labels_select.html:247
+#: templates/asset/labels_select.html:990
+#: templates/asset/labels_select.html:997 templates/asset/list.html:1105
+#: templates/asset/movement_report.html:871
+msgid "Showing"
+msgstr "Showing"
+
+#: templates/asset/labels_select.html:277
+#: templates/asset/labels_select.html:659
+msgid "selected"
+msgstr "selected"
+
+#: templates/asset/labels_select.html:293
+msgid "Select All"
+msgstr "Select All"
+
+#: templates/asset/labels_select.html:304
+msgid "Clear All"
+msgstr "Clear All"
+
+#: templates/asset/labels_select.html:354
+#: templates/asset/movement_correct.html:318
+#: templates/asset/movement_corrections.html:112
+#: templates/asset/movement_detail.html:987
+#: templates/asset/movement_verify.html:240 templates/warranty/alert.html:450
+msgid "Brand / Model"
+msgstr "Brand / Model"
+
+#: templates/asset/labels_select.html:547
+msgid "No assets."
+msgstr "No assets."
+
+#: templates/asset/labels_select.html:566
+msgid "No matching assets found."
+msgstr "No matching assets found."
+
+#: templates/asset/labels_select.html:593
+msgid "Select assets then click"
+msgstr "Select assets then click"
+
+#: templates/asset/labels_select.html:594
+#: templates/asset/labels_select.html:603
+msgid "Print Label"
+msgstr "Print Label"
+
+#: templates/asset/labels_select.html:999 templates/asset/list.html:1111
+#: templates/asset/movement_report.html:873
+msgid "of"
+msgstr "of"
+
+#: templates/asset/labels_select.html:1075
+msgid "Please select at least one asset."
+msgstr "Please select at least one asset."
+
+#: templates/asset/list.html:371
+msgid "Manage and monitor all company assets"
+msgstr "Manage and monitor all company assets"
+
+#: templates/asset/list.html:381 templates/asset/list.html:384
+#: templates/asset/list.html:1019
+msgid "Print QR / Label"
+msgstr "Print QR / Label"
+
+#: templates/asset/list.html:393 templates/roles/import.html:28
+#: templates/roles/list.html:27
+msgid "Export"
+msgstr "Export"
+
+#: templates/asset/list.html:436 templates/asset/list.html:456
+#: templates/asset/movements_global.html:69
+msgid "Search"
+msgstr "Search"
+
+#: templates/asset/list.html:452
+msgid "Asset tag, name, brand, serial..."
+msgstr "Asset tag, name, brand, serial..."
+
+#: templates/asset/list.html:461 templates/asset/movement_report.html:858
+#: templates/asset/movements_global.html:296
+#: templates/asset/movements_global.html:799 templates/warranty/alert.html:365
+#: templates/warranty/notifications.html:318
+msgid "Reset Filter"
+msgstr "Reset Filter"
+
+#: templates/asset/list.html:463 templates/asset/movement_correct.html:873
+#: templates/asset/movement_report.html:642 templates/warranty/index.html:405
+msgid "Reset"
+msgstr "Reset"
+
+#: templates/asset/list.html:488 templates/asset/movements_global.html:134
+#: templates/warranty/index.html:373
+msgid "All Statuses"
+msgstr "All Statuses"
+
+#: templates/asset/list.html:537
+msgid "All Categories"
+msgstr "All Categories"
+
+#: templates/asset/list.html:573 templates/asset/movements_global.html:183
+msgid "All Locations"
+msgstr "All Locations"
+
+#: templates/asset/list.html:609 templates/asset/movements_global.html:228
+msgid "All Departments"
+msgstr "All Departments"
+
+#: templates/asset/list.html:665
+msgid "Photo"
+msgstr "Photo"
+
+#: templates/asset/list.html:1007 templates/master/category/list.html:147
+#: templates/master/department/list.html:122
+#: templates/master/location/list.html:128 templates/master/menu/list.html:140
+#: templates/master/menu/list.html:198 templates/master/user/list.html:140
+#: templates/master/vendor/list.html:136
+msgid "Edit"
+msgstr "Edit"
+
+#: templates/asset/list.html:1053
+msgid "No assets found."
+msgstr "No assets found."
+
+#: templates/asset/list.html:1060
+msgid "Try changing your search term or filters."
+msgstr "Try changing your search term or filters."
+
+#: templates/asset/list.html:1126
+msgid "Search:"
+msgstr "Search:"
+
+#: templates/asset/list.html:1143
+msgid "Asset page navigation"
+msgstr "Asset page navigation"
+
+#: templates/asset/list.html:1149 templates/asset/movements_global.html:746
+#: templates/audit/list.html:100
+msgid "Previous"
+msgstr "Previous"
+
+#: templates/asset/list.html:1171 templates/asset/movements_global.html:768
+#: templates/audit/list.html:114
+msgid "Next"
+msgstr "Next"
+
+#: templates/asset/movement_add.html:4 templates/asset/movement_add.html:359
+msgid "Add Asset Movement"
+msgstr "Add Asset Movement"
+
+#: templates/asset/movement_add.html:365
+msgid "Record asset movement and changes in location, department, and PIC."
+msgstr "Record asset movement and changes in location, department, and PIC."
+
+#: templates/asset/movement_add.html:388
+msgid "Asset to be moved"
+msgstr "Asset to be moved"
+
+#: templates/asset/movement_add.html:494
+#: templates/asset/movement_correct.html:377
+#: templates/asset/movement_corrections.html:128
+msgid "Movement Information"
+msgstr "Movement Information"
+
+#: templates/asset/movement_add.html:515
+#: templates/asset/movement_correct.html:384
+#: templates/asset/movement_corrections.html:137
+#: templates/asset/movement_detail.html:935
+#: templates/asset/movement_qr.html:229
+#: templates/asset/movement_verify.html:211
+msgid "Movement Date"
+msgstr "Movement Date"
+
+#: templates/asset/movement_add.html:550
+#: templates/asset/movement_correct.html:586
+#: templates/asset/movement_detail.html:1089
+#: templates/asset/movement_verify.html:345
+msgid "Movement Reason"
+msgstr "Movement Reason"
+
+#: templates/asset/movement_add.html:567
+msgid "Example: Employee rotation"
+msgstr "Example: Employee rotation"
+
+#: templates/asset/movement_add.html:592
+msgid "Asset Change"
+msgstr "Asset Change"
+
+#: templates/asset/movement_add.html:614
+msgid "CURRENT CONDITION"
+msgstr "CURRENT CONDITION"
+
+#: templates/asset/movement_add.html:722
+msgid "NEW CONDITION"
+msgstr "NEW CONDITION"
+
+#: templates/asset/movement_add.html:738
+#: templates/asset/movement_correct.html:500
+msgid "Destination Location"
+msgstr "Destination Location"
+
+#: templates/asset/movement_add.html:795
+#: templates/asset/movement_correct.html:532
+msgid "Destination Department"
+msgstr "Destination Department"
+
+#: templates/asset/movement_add.html:852
+msgid "New PIC"
+msgstr "New PIC"
+
+#: templates/asset/movement_add.html:873
+msgid "New PIC name"
+msgstr "New PIC name"
+
+#: templates/asset/movement_add.html:893
+msgid "Current condition"
+msgstr "Current condition"
+
+#: templates/asset/movement_add.html:895
+msgid "is automatically taken from the asset data. You only need to specify"
+msgstr "is automatically taken from the asset data. You only need to specify"
+
+#: templates/asset/movement_add.html:896
+msgid "the destination condition"
+msgstr "the destination condition"
+
+#: templates/asset/movement_add.html:918
+msgid "Movement Notes"
+msgstr "Movement Notes"
+
+#: templates/asset/movement_add.html:942
+msgid "Add notes if needed..."
+msgstr "Add notes if needed..."
+
+#: templates/asset/movement_add.html:960
+msgid "Signatory Information"
+msgstr "Signatory Information"
+
+#: templates/asset/movement_add.html:990
+#: templates/asset/movement_add.html:1100
+#: templates/asset/movement_correct.html:634
+#: templates/asset/movement_correct.html:744
+msgid "Name"
+msgstr "Name"
+
+#: templates/asset/movement_add.html:1007
+msgid "Name of the person handing over"
+msgstr "Name of the person handing over"
+
+#: templates/asset/movement_add.html:1022
+#: templates/asset/movement_add.html:1132
+#: templates/asset/movement_correct.html:647
+#: templates/asset/movement_correct.html:757
+#: templates/asset/movement_detail.html:1136
+#: templates/asset/movement_detail.html:1171
+msgid "Position"
+msgstr "Position"
+
+#: templates/asset/movement_add.html:1039
+msgid "Position of the person handing over"
+msgstr "Position of the person handing over"
+
+#: templates/asset/movement_add.html:1054
+#: templates/asset/movement_add.html:1164
+#: templates/asset/movement_correct.html:620
+msgid "Signature"
+msgstr "Signature"
+
+#: templates/asset/movement_add.html:1070
+#: templates/asset/movement_add.html:1180
+msgid "Signature URL / data"
+msgstr "Signature URL / data"
+
+#: templates/asset/movement_add.html:1117
+msgid "Name of the recipient"
+msgstr "Name of the recipient"
+
+#: templates/asset/movement_add.html:1149
+msgid "Position of the recipient"
+msgstr "Position of the recipient"
+
+#: templates/asset/movement_add.html:1222
+msgid "Save Movement"
+msgstr "Save Movement"
+
+#: templates/asset/movement_correct.html:1
+#: templates/asset/movement_corrections.html:85
+#: templates/asset/movement_detail.html:810
+msgid "Correct Movement"
+msgstr "Correct Movement"
+
+#: templates/asset/movement_correct.html:261
+msgid "Correct Asset Movement"
+msgstr "Correct Asset Movement"
+
+#: templates/asset/movement_correct.html:264
+msgid "Fix the movement data"
+msgstr "Fix the movement data"
+
+#: templates/asset/movement_correct.html:266
+msgid "without creating a new movement number."
+msgstr "without creating a new movement number."
+
+#: templates/asset/movement_correct.html:280
+msgid "Attention"
+msgstr "Attention"
+
+#: templates/asset/movement_correct.html:283
+msgid "Correction is only allowed for the"
+msgstr "Correction is only allowed for the"
+
+#: templates/asset/movement_correct.html:284
+msgid "most recent movement"
+msgstr "most recent movement"
+
+#: templates/asset/movement_correct.html:285
+msgid ""
+"of this asset. If the old signature is still correct, you can keep it. If "
+"the person handing over or receiving has changed, use the"
+msgstr ""
+"of this asset. If the old signature is still correct, you can keep it. If "
+"the person handing over or receiving has changed, use the"
+
+#: templates/asset/movement_correct.html:286
+msgid "Re-sign button"
+msgstr "Re-sign button"
+
+#: templates/asset/movement_correct.html:296
+#: templates/asset/movement_detail.html:966
+msgid "Asset Identity"
+msgstr "Asset Identity"
+
+#: templates/asset/movement_correct.html:331
+#: templates/asset/movement_detail.html:1000
+msgid "Asset Status"
+msgstr "Asset Status"
+
+#: templates/asset/movement_correct.html:343
+#: templates/asset/movement_detail.html:944 templates/backup/list.html:65
+msgid "Created"
+msgstr "Created"
+
+#: templates/asset/movement_correct.html:412
+msgid "Movement Details"
+msgstr "Movement Details"
+
+#: templates/asset/movement_correct.html:425
+#: templates/asset/movement_detail.html:1021
+#: templates/asset/movement_verify.html:258
+#: templates/asset/movement_verify.html:288
+#: templates/asset/movement_verify.html:318
+msgid "BEFORE"
+msgstr "BEFORE"
+
+#: templates/asset/movement_correct.html:430
+msgid "Origin Location"
+msgstr "Origin Location"
+
+#: templates/asset/movement_correct.html:444
+msgid ""
+"The origin location is determined automatically from the movement history "
+"and cannot be changed."
+msgstr ""
+"The origin location is determined automatically from the movement history "
+"and cannot be changed."
+
+#: templates/asset/movement_correct.html:450
+msgid "Origin Department"
+msgstr "Origin Department"
+
+#: templates/asset/movement_correct.html:464
+msgid ""
+"The origin department is determined automatically from the movement history "
+"and cannot be changed."
+msgstr ""
+"The origin department is determined automatically from the movement history "
+"and cannot be changed."
+
+#: templates/asset/movement_correct.html:469
+msgid "Origin PIC"
+msgstr "Origin PIC"
+
+#: templates/asset/movement_correct.html:481
+msgid ""
+"The origin PIC is determined automatically from the movement history and "
+"cannot be changed."
+msgstr ""
+"The origin PIC is determined automatically from the movement history and "
+"cannot be changed."
+
+#: templates/asset/movement_correct.html:495
+#: templates/asset/movement_detail.html:1025
+#: templates/asset/movement_verify.html:268
+#: templates/asset/movement_verify.html:298
+#: templates/asset/movement_verify.html:328
+msgid "AFTER"
+msgstr "AFTER"
+
+#: templates/asset/movement_correct.html:558
+msgid "Destination PIC"
+msgstr "Destination PIC"
+
+#: templates/asset/movement_correct.html:581
+#: templates/asset/movement_corrections.html:181
+msgid "Reason & Notes"
+msgstr "Reason & Notes"
+
+#: templates/asset/movement_correct.html:594
+msgid "Enter the movement reason"
+msgstr "Enter the movement reason"
+
+#: templates/asset/movement_correct.html:605
+msgid "Enter additional notes"
+msgstr "Enter additional notes"
+
+#: templates/asset/movement_correct.html:631
+#: templates/asset/movement_detail.html:1133
+msgid "HANDED OVER BY"
+msgstr "HANDED OVER BY"
+
+#: templates/asset/movement_correct.html:663
+#: templates/asset/movement_correct.html:773
+msgid "Saved signature"
+msgstr "Saved signature"
+
+#: templates/asset/movement_correct.html:668
+msgid "Signature of the person handing over"
+msgstr "Signature of the person handing over"
+
+#: templates/asset/movement_correct.html:677
+#: templates/asset/movement_correct.html:787
+msgid "Use Old Signature"
+msgstr "Use Old Signature"
+
+#: templates/asset/movement_correct.html:693
+#: templates/asset/movement_correct.html:800
+msgid "Sign here using a mouse, touchpad, or touchscreen"
+msgstr "Sign here using a mouse, touchpad, or touchscreen"
+
+#: templates/asset/movement_correct.html:711
+#: templates/asset/movement_correct.html:818 templates/audit/list.html:70
+#: templates/master/category/list.html:163
+#: templates/master/department/list.html:138
+#: templates/master/location/list.html:144 templates/master/menu/list.html:156
+#: templates/master/menu/list.html:214 templates/master/user/list.html:158
+#: templates/master/vendor/list.html:152
+msgid "Delete"
+msgstr "Delete"
+
+#: templates/asset/movement_correct.html:720
+#: templates/asset/movement_correct.html:827
+msgid "Keep Old"
+msgstr "Keep Old"
+
+#: templates/asset/movement_correct.html:725
+#: templates/asset/movement_correct.html:832
+msgid "The old signature is being used."
+msgstr "The old signature is being used."
+
+#: templates/asset/movement_correct.html:726
+#: templates/asset/movement_correct.html:833
+msgid "No signature yet."
+msgstr "No signature yet."
+
+#: templates/asset/movement_correct.html:730
+#: templates/asset/movement_correct.html:837
+msgid "Use a mouse/touchpad to draw. Click Delete to create a new signature."
+msgstr "Use a mouse/touchpad to draw. Click Delete to create a new signature."
+
+#: templates/asset/movement_correct.html:741
+#: templates/asset/movement_detail.html:1168
+msgid "RECEIVED BY"
+msgstr "RECEIVED BY"
+
+#: templates/asset/movement_correct.html:778
+msgid "Signature of the recipient"
+msgstr "Signature of the recipient"
+
+#: templates/asset/movement_correct.html:878
+msgid "Save Correction"
+msgstr "Save Correction"
+
+#: templates/asset/movement_correct.html:1169
+msgid "A new signature is being drawn."
+msgstr "A new signature is being drawn."
+
+#: templates/asset/movement_correct.html:1271
+msgid "New signature ready to be saved."
+msgstr "New signature ready to be saved."
+
+#: templates/asset/movement_correct.html:1326
+msgid "Signature deleted."
+msgstr "Signature deleted."
+
+#: templates/asset/movement_correct.html:1353
+msgid "There is no old signature."
+msgstr "There is no old signature."
+
+#: templates/asset/movement_correct.html:1400
+msgid "The old signature will be kept."
+msgstr "The old signature will be kept."
+
+#: templates/asset/movement_correct.html:1486
+msgid "Reset all correction data to the original state?"
+msgstr "Reset all correction data to the original state?"
+
+#: templates/asset/movement_corrections.html:1
+#: templates/asset/movement_corrections.html:69
+msgid "Movement Correction History"
+msgstr "Movement Correction History"
+
+#: templates/asset/movement_corrections.html:70
+msgid "History of asset movement data changes"
+msgstr "History of asset movement data changes"
+
+#: templates/asset/movement_corrections.html:165
+#: templates/asset/movement_detail.html:823
+msgid "Correction History"
+msgstr "Correction History"
+
+#: templates/asset/movement_corrections.html:166
+#: templates/asset/movements_global.html:702
+msgid "Corrections"
+msgstr "Corrections"
+
+#: templates/asset/movement_corrections.html:178
+msgid "Correction Time"
+msgstr "Correction Time"
+
+#: templates/asset/movement_corrections.html:179
+msgid "Data Before"
+msgstr "Data Before"
+
+#: templates/asset/movement_corrections.html:180
+msgid "Data After"
+msgstr "Data After"
+
+#: templates/asset/movement_corrections.html:282
+msgid "No correction reason."
+msgstr "No correction reason."
+
+#: templates/asset/movement_corrections.html:295
+msgid "No Correction History Yet"
+msgstr "No Correction History Yet"
+
+#: templates/asset/movement_corrections.html:296
+msgid "This movement has never been corrected."
+msgstr "This movement has never been corrected."
+
+#: templates/asset/movement_corrections.html:301
+msgid "Create Correction"
+msgstr "Create Correction"
+
+#: templates/asset/movement_detail.html:1
+msgid "Asset Movement Proof"
+msgstr "Asset Movement Proof"
+
+#: templates/asset/movement_detail.html:762
+msgid "Back to History"
+msgstr "Back to History"
+
+#: templates/asset/movement_detail.html:788
+msgid "Verification QR"
+msgstr "Verification QR"
+
+#: templates/asset/movement_detail.html:833
+msgid "Print A4"
+msgstr "Print A4"
+
+#: templates/asset/movement_detail.html:853
+msgid "Movement Verification QR"
+msgstr "Movement Verification QR"
+
+#: templates/asset/movement_detail.html:856
+msgid "Scan to verify"
+msgstr "Scan to verify"
+
+#: templates/asset/movement_detail.html:872
+msgid "Logo"
+msgstr "Logo"
+
+#: templates/asset/movement_detail.html:880
+msgid "COMPANY NAME"
+msgstr "COMPANY NAME"
+
+#: templates/asset/movement_detail.html:892
+msgid "Tel."
+msgstr "Tel."
+
+#: templates/asset/movement_detail.html:900 templates/company/edit.html:109
+#: templates/company/list.html:218 templates/master/vendor/add.html:89
+#: templates/master/vendor/edit.html:91 templates/master/vendor/list.html:96
+msgid "Email"
+msgstr "Email"
+
+#: templates/asset/movement_detail.html:913
+msgid "ASSET MOVEMENT PROOF"
+msgstr "ASSET MOVEMENT PROOF"
+
+#: templates/asset/movement_detail.html:926
+msgid "Document Information"
+msgstr "Document Information"
+
+#: templates/asset/movement_detail.html:954
+msgid "COMPLETED"
+msgstr "COMPLETED"
+
+#: templates/asset/movement_detail.html:1013
+msgid "Asset Transfer Detail"
+msgstr "Asset Transfer Detail"
+
+#: templates/asset/movement_detail.html:1019
+msgid "DESCRIPTION"
+msgstr "DESCRIPTION"
+
+#: templates/asset/movement_detail.html:1083
+msgid "Movement Description"
+msgstr "Movement Description"
+
+#: templates/asset/movement_detail.html:1115
+msgid ""
+"By signing this document, the parties declare that the asset listed in this "
+"document has been handed over and received in accordance with the movement "
+"information recorded in the Asset Tracker system."
+msgstr ""
+"By signing this document, the parties declare that the asset listed in this "
+"document has been handed over and received in accordance with the movement "
+"information recorded in the Asset Tracker system."
+
+#: templates/asset/movement_detail.html:1125
+msgid "Approval / Handover"
+msgstr "Approval / Handover"
+
+#: templates/asset/movement_detail.html:1144
+msgid "Signature of the handing-over party"
+msgstr "Signature of the handing-over party"
+
+#: templates/asset/movement_detail.html:1149
+#: templates/asset/movement_detail.html:1184
+msgid "No signature"
+msgstr "No signature"
+
+#: templates/asset/movement_detail.html:1156
+#: templates/asset/movement_detail.html:1191
+msgid "Signed"
+msgstr "Signed"
+
+#: templates/asset/movement_detail.html:1179
+msgid "Signature of the receiving party"
+msgstr "Signature of the receiving party"
+
+#: templates/asset/movement_detail.html:1213
+msgid "Asset Movement Document"
+msgstr "Asset Movement Document"
+
+#: templates/asset/movement_detail.html:1220
+msgid "Verification"
+msgstr "Verification"
+
+#: templates/asset/movement_qr.html:169
+msgid "QR code to access the movement document"
+msgstr "QR code to access the movement document"
+
+#: templates/asset/movement_qr.html:192
+msgid ""
+"Scan the QR code using your smartphone camera to open the movement "
+"information."
+msgstr ""
+"Scan the QR code using your smartphone camera to open the movement "
+"information."
+
+#: templates/asset/movement_qr.html:238
+msgid "Transfer"
+msgstr "Transfer"
+
+#: templates/asset/movement_qr.html:291
+msgid "Document URL"
+msgstr "Document URL"
+
+#: templates/asset/movement_qr.html:312
+#: templates/asset/movement_verify.html:401
+msgid "View Movement Proof"
+msgstr "View Movement Proof"
+
+#: templates/asset/movement_qr.html:331
+msgid "Print QR"
+msgstr "Print QR"
+
+#: templates/asset/movement_report.html:1
+#: templates/asset/movement_report.html:508
+msgid "Asset Movement Report"
+msgstr "Asset Movement Report"
+
+#: templates/asset/movement_report.html:511
+msgid "Asset movement history by movement date."
+msgstr "Asset movement history by movement date."
+
+#: templates/asset/movement_report.html:515
+msgid "Printed from the Asset Tracker system."
+msgstr "Printed from the Asset Tracker system."
+
+#: templates/asset/movement_report.html:557
+msgid "Filtered Results"
+msgstr "Filtered Results"
+
+#: templates/asset/movement_report.html:563
+msgid "Most Common Destination Location"
+msgstr "Most Common Destination Location"
+
+#: templates/asset/movement_report.html:569
+msgid "Most Common Destination Department"
+msgstr "Most Common Destination Department"
+
+#: templates/asset/movement_report.html:585
+msgid "Report Filter"
+msgstr "Report Filter"
+
+#: templates/asset/movement_report.html:593
+msgid "Start Date"
+msgstr "Start Date"
+
+#: templates/asset/movement_report.html:605 templates/warranty/alert.html:454
+msgid "End Date"
+msgstr "End Date"
+
+#: templates/asset/movement_report.html:618
+#: templates/asset/movement_report.html:622
+msgid "Showing movements from"
+msgstr "Showing movements from"
+
+#: templates/asset/movement_report.html:620
+msgid "to"
+msgstr "to"
+
+#: templates/asset/movement_report.html:624
+msgid "Showing movements until"
+msgstr "Showing movements until"
+
+#: templates/asset/movement_report.html:626
+msgid "Showing all movements."
+msgstr "Showing all movements."
+
+#: templates/asset/movement_report.html:634
+msgid "Apply Filter"
+msgstr "Apply Filter"
+
+#: templates/asset/movement_report.html:662
+msgid "Asset Movement Data"
+msgstr "Asset Movement Data"
+
+#: templates/asset/movement_report.html:665
+msgid "movements shown"
+msgstr "movements shown"
+
+#: templates/asset/movement_report.html:672
+msgid "Period:"
+msgstr "Period:"
+
+#: templates/asset/movement_report.html:674
+msgid "From:"
+msgstr "From:"
+
+#: templates/asset/movement_report.html:675
+msgid "Until:"
+msgstr "Until:"
+
+#: templates/asset/movement_report.html:676
+msgid "Entire period"
+msgstr "Entire period"
+
+#: templates/asset/movement_report.html:702
+msgid "Reason / Description"
+msgstr "Reason / Description"
+
+#: templates/asset/movement_report.html:826
+msgid "View Movement Detail"
+msgstr "View Movement Detail"
+
+#: templates/asset/movement_report.html:846
+msgid "No movement data"
+msgstr "No movement data"
+
+#: templates/asset/movement_report.html:849
+msgid "No asset movement data found"
+msgstr "No asset movement data found"
+
+#: templates/asset/movement_report.html:849
+msgid "for the selected period."
+msgstr "for the selected period."
+
+#: templates/asset/movement_report.html:849
+msgid "in the database."
+msgstr "in the database."
+
+#: templates/asset/movement_report.html:875
+msgid "total movements."
+msgstr "total movements."
+
+#: templates/asset/movement_report.html:875
+msgid "No movements displayed."
+msgstr "No movements displayed."
+
+#: templates/asset/movement_verify.html:1
+msgid "Asset Movement Verification"
+msgstr "Asset Movement Verification"
+
+#: templates/asset/movement_verify.html:171
+msgid "Asset Movement Verified"
+msgstr "Asset Movement Verified"
+
+#: templates/asset/movement_verify.html:173
+msgid "Movement data found in the Asset Tracker system"
+msgstr "Movement data found in the Asset Tracker system"
+
+#: templates/asset/movement_verify.html:193
+msgid "VALID DATA"
+msgstr "VALID DATA"
+
+#: templates/asset/movement_verify.html:253
+msgid "Location Change"
+msgstr "Location Change"
+
+#: templates/asset/movement_verify.html:283
+msgid "Department Change"
+msgstr "Department Change"
+
+#: templates/asset/movement_verify.html:313
+msgid "PIC Change"
+msgstr "PIC Change"
+
+#: templates/asset/movement_verify.html:374
+msgid "Verification Information"
+msgstr "Verification Information"
+
+#: templates/asset/movement_verify.html:379
+msgid ""
+"The data above is taken directly from the asset movement record stored in "
+"the Asset Tracker system."
+msgstr ""
+"The data above is taken directly from the asset movement record stored in "
+"the Asset Tracker system."
+
+#: templates/asset/movement_verify.html:383
+msgid ""
+"Use the movement number and Asset Tag as a reference if further verification"
+" is required."
+msgstr ""
+"Use the movement number and Asset Tag as a reference if further verification"
+" is required."
+
+#: templates/asset/movement_verify.html:414
+msgid "View QR"
+msgstr "View QR"
+
+#: templates/asset/movements.html:140
+msgid "Current Location"
+msgstr "Current Location"
+
+#: templates/asset/movements.html:148
+msgid "Current Department"
+msgstr "Current Department"
+
+#: templates/asset/movements.html:156
+msgid "Current PIC"
+msgstr "Current PIC"
+
+#: templates/asset/movements.html:172
+msgid "Current Asset Condition"
+msgstr "Current Asset Condition"
+
+#: templates/asset/movements.html:214
+msgid "Movement History"
+msgstr "Movement History"
+
+#: templates/asset/movements.html:217
+msgid "movement"
+msgstr "movement"
+
+#: templates/asset/movements.html:347
+#: templates/asset/movements_global.html:142
+#: templates/asset/movements_global.html:146
+#: templates/asset/movements_global.html:646
+msgid "CURRENT"
+msgstr "CURRENT"
+
+#: templates/asset/movements.html:351
+#: templates/asset/movements_global.html:156
+#: templates/asset/movements_global.html:160
+#: templates/asset/movements_global.html:652
+msgid "HISTORY"
+msgstr "HISTORY"
+
+#: templates/asset/movements.html:385
+#: templates/asset/movements_global.html:719
+msgid "Correct"
+msgstr "Correct"
+
+#: templates/asset/movements_global.html:3
+#: templates/asset/movements_global.html:22
+msgid "Global Movement"
+msgstr "Global Movement"
+
+#: templates/asset/movements_global.html:24
+msgid "All asset movement history"
+msgstr "All asset movement history"
+
+#: templates/asset/movements_global.html:51
+msgid "Filter Movement"
+msgstr "Filter Movement"
+
+#: templates/asset/movements_global.html:78
+msgid "Movement No / Asset Tag / Asset Name / PIC"
+msgstr "Movement No / Asset Tag / Asset Name / PIC"
+
+#: templates/asset/movements_global.html:106
+msgid "Until"
+msgstr "Until"
+
+#: templates/asset/movements_global.html:290 templates/warranty/alert.html:361
+#: templates/warranty/notifications.html:311
+msgid "Filter"
+msgstr "Filter"
+
+#: templates/asset/movements_global.html:358
+msgid "Current"
+msgstr "Current"
+
+#: templates/asset/movements_global.html:399
+msgid "History"
+msgstr "History"
+
+#: templates/asset/movements_global.html:445
+msgid "Movement Data"
+msgstr "Movement Data"
+
+#: templates/asset/movements_global.html:449
+msgid "data"
+msgstr "data"
+
+#: templates/asset/movements_global.html:740
+msgid "Movement page navigation"
+msgstr "Movement page navigation"
+
+#: templates/asset/movements_global.html:787
+msgid "No movements found"
+msgstr "No movements found"
+
+#: templates/asset/movements_global.html:791
+msgid "No data matches the filter."
+msgstr "No data matches the filter."
+
+#: templates/audit/list.html:3 templates/audit/list.html:16
+msgid "Audit Log"
+msgstr "Audit Log"
+
+#: templates/audit/list.html:17
+msgid "History of who added/changed/deleted data"
+msgstr "History of who added/changed/deleted data"
+
+#: templates/audit/list.html:32
+msgid "Activity List"
+msgstr "Activity List"
+
+#: templates/audit/list.html:35
+msgid "entries found"
+msgstr "entries found"
+
+#: templates/audit/list.html:49
+msgid "Time"
+msgstr "Time"
+
+#: templates/audit/list.html:50
+msgid "User"
+msgstr "User"
+
+#: templates/audit/list.html:52
+msgid "Data Type"
+msgstr "Data Type"
+
+#: templates/audit/list.html:53
+msgid "Data"
+msgstr "Data"
+
+#: templates/audit/list.html:66
+msgid "Add"
+msgstr "Add"
+
+#: templates/audit/list.html:68
+msgid "Update"
+msgstr "Update"
+
+#: templates/audit/list.html:82
+msgid "No activity recorded yet."
+msgstr "No activity recorded yet."
+
+#: templates/audit/list.html:95
+msgid "Audit log page navigation"
+msgstr "Audit log page navigation"
+
+#: templates/backup/list.html:3 templates/backup/list.html:16
+msgid "Backup Database"
+msgstr "Backup Database"
+
+#: templates/backup/list.html:17
+msgid ""
+"Back up the database and photo files (assets, company logo) into a single "
+".zip file"
+msgstr ""
+"Back up the database and photo files (assets, company logo) into a single "
+".zip file"
+
+#: templates/backup/list.html:32
+msgid "Backup List"
+msgstr "Backup List"
+
+#: templates/backup/list.html:40 templates/backup/restore_upload.html:3
+#: templates/backup/restore_upload.html:16
+msgid "Restore from Uploaded File"
+msgstr "Restore from Uploaded File"
+
+#: templates/backup/list.html:47
+msgid "Create New Backup"
+msgstr "Create New Backup"
+
+#: templates/backup/list.html:63
+msgid "File Name"
+msgstr "File Name"
+
+#: templates/backup/list.html:64
+msgid "Size"
+msgstr "Size"
+
+#: templates/backup/list.html:81
+msgid "Download"
+msgstr "Download"
+
+#: templates/backup/list.html:86
+msgid "Restore"
+msgstr "Restore"
+
+#: templates/backup/list.html:89
+msgid "Delete this backup file?"
+msgstr "Delete this backup file?"
+
+#: templates/backup/list.html:106
+msgid "Restore Database"
+msgstr "Restore Database"
+
+#: templates/backup/list.html:113 templates/backup/restore_upload.html:28
+msgid "This will"
+msgstr "This will"
+
+#: templates/backup/list.html:113 templates/backup/restore_upload.html:28
+msgid "OVERWRITE"
+msgstr "OVERWRITE"
+
+#: templates/backup/list.html:113
+msgid "all data currently in use with the contents of backup"
+msgstr "all data currently in use with the contents of backup"
+
+#: templates/backup/list.html:114
+msgid "All changes made after that date will be lost."
+msgstr "All changes made after that date will be lost."
+
+#: templates/backup/list.html:118
+msgid ""
+"The current state will automatically be backed up first before being "
+"overwritten, so it can still be restored if you choose incorrectly."
+msgstr ""
+"The current state will automatically be backed up first before being "
+"overwritten, so it can still be restored if you choose incorrectly."
+
+#: templates/backup/list.html:121 templates/backup/restore_upload.html:41
+#: templates/roles/list.html:72
+msgid "Type"
+msgstr "Type"
+
+#: templates/backup/list.html:121
+msgid "to confirm:"
+msgstr "to confirm:"
+
+#: templates/backup/list.html:128
+msgid "Yes, Overwrite Database Now"
+msgstr "Yes, Overwrite Database Now"
+
+#: templates/backup/list.html:142
+msgid "No backups yet. Click \"Create New Backup\" above."
+msgstr "No backups yet. Click \"Create New Backup\" above."
+
+#: templates/backup/list.html:157
+msgid "Backups are stored in the"
+msgstr "Backups are stored in the"
+
+#: templates/backup/list.html:157
+msgid ""
+"folder on the server. It is recommended to periodically download and store "
+"copies elsewhere (Google Drive, USB drive, etc)."
+msgstr ""
+"folder on the server. It is recommended to periodically download and store "
+"copies elsewhere (Google Drive, USB drive, etc)."
+
+#: templates/backup/restore_upload.html:28
+msgid ""
+"the entire database and photos currently in use with the contents of the "
+"backup file you upload. The current state will automatically be backed up "
+"first before being overwritten."
+msgstr ""
+"the entire database and photos currently in use with the contents of the "
+"backup file you upload. The current state will automatically be backed up "
+"first before being overwritten."
+
+#: templates/backup/restore_upload.html:36
+msgid "Backup File (.zip)"
+msgstr "Backup File (.zip)"
+
+#: templates/backup/restore_upload.html:41
+msgid "to confirm"
+msgstr "to confirm"
+
+#: templates/backup/restore_upload.html:47
+msgid "Overwrite Database Now"
+msgstr "Overwrite Database Now"
+
+#: templates/company/edit.html:3 templates/company/edit.html:16
+#: templates/company/list.html:122
+msgid "Edit Company Data"
+msgstr "Edit Company Data"
+
+#: templates/company/edit.html:17
+msgid "Set the company identity used in documents and reports"
+msgstr "Set the company identity used in documents and reports"
+
+#: templates/company/edit.html:42
+msgid "Company Information"
+msgstr "Company Information"
+
+#: templates/company/edit.html:60
+msgid "Company Name"
+msgstr "Company Name"
+
+#: templates/company/edit.html:66
+msgid "PT Company Name"
+msgstr "PT Company Name"
+
+#: templates/company/edit.html:77 templates/company/list.html:202
+#: templates/master/vendor/add.html:104 templates/master/vendor/edit.html:107
+msgid "Address"
+msgstr "Address"
+
+#: templates/company/edit.html:82
+msgid "Full company address"
+msgstr "Full company address"
+
+#: templates/company/edit.html:93 templates/company/list.html:210
+#: templates/master/vendor/add.html:74 templates/master/vendor/edit.html:75
+#: templates/master/vendor/list.html:95
+msgid "Phone"
+msgstr "Phone"
+
+#: templates/company/edit.html:125 templates/company/list.html:226
+msgid "Website"
+msgstr "Website"
+
+#: templates/company/edit.html:141 templates/company/list.html:240
+msgid "NPWP"
+msgstr "NPWP"
+
+#: templates/company/edit.html:146
+msgid "NPWP Number"
+msgstr "NPWP Number"
+
+#: templates/company/edit.html:157
+msgid "Document Number Prefix"
+msgstr "Document Number Prefix"
+
+#: templates/company/edit.html:166
+msgid "Example:"
+msgstr "Example:"
+
+#: templates/company/edit.html:168
+msgid "produces a number like"
+msgstr "produces a number like"
+
+#: templates/company/edit.html:197
+msgid "Company Logo"
+msgstr "Company Logo"
+
+#: templates/company/edit.html:221
+msgid "No logo yet"
+msgstr "No logo yet"
+
+#: templates/company/edit.html:226
+msgid "Logo Preview"
+msgstr "Logo Preview"
+
+#: templates/company/edit.html:235
+msgid "Upload Logo"
+msgstr "Upload Logo"
+
+#: templates/company/edit.html:264 templates/master/category/add.html:85
+#: templates/master/department/add.html:70
+#: templates/master/location/add.html:84 templates/roles/edit.html:40
+msgid "Save"
+msgstr "Save"
+
+#: templates/company/list.html:3 templates/company/list.html:115
+msgid "Company Data"
+msgstr "Company Data"
+
+#: templates/company/list.html:116
+msgid ""
+"Company information used on document headers and asset movement receipts"
+msgstr ""
+"Company information used on document headers and asset movement receipts"
+
+#: templates/company/list.html:162
+msgid "Prefix:"
+msgstr "Prefix:"
+
+#: templates/company/list.html:168
+msgid "This data is automatically used in the"
+msgstr "This data is automatically used in the"
+
+#: templates/company/list.html:168
+msgid "Asset Movement Receipt"
+msgstr "Asset Movement Receipt"
+
+#: templates/company/list.html:168
+msgid "header and document numbering."
+msgstr "header and document numbering."
+
+#: templates/company/list.html:189
+msgid "Contact Information"
+msgstr "Contact Information"
+
+#: templates/company/list.html:260
+msgid "Company data is not yet available."
+msgstr "Company data is not yet available."
+
+#: templates/company/list.html:261
+msgid "Add company data"
+msgstr "Add company data"
+
+#: templates/master/category/add.html:3 templates/master/category/add.html:21
+#: templates/master/category/list.html:40
+msgid "Add Category"
+msgstr "Add Category"
+
+#: templates/master/category/add.html:51
+#: templates/master/category/edit.html:51
+#: templates/master/category/list.html:106
+msgid "Category Name"
+msgstr "Category Name"
+
+#: templates/master/category/add.html:58
+msgid "Example: Laptop"
+msgstr "Example: Laptop"
+
+#: templates/master/category/add.html:75
+msgid "Category description..."
+msgstr "Category description..."
+
+#: templates/master/category/edit.html:3
+#: templates/master/category/edit.html:21
+msgid "Edit Category"
+msgstr "Edit Category"
+
+#: templates/master/category/list.html:3
+msgid "Categories"
+msgstr "Categories"
+
+#: templates/master/category/list.html:22
+msgid "Category Master"
+msgstr "Category Master"
+
+#: templates/master/category/list.html:26
+msgid "Manage asset categories"
+msgstr "Manage asset categories"
+
+#: templates/master/category/list.html:79
+msgid "Category List"
+msgstr "Category List"
+
+#: templates/master/category/list.html:83
+msgid "categories found"
+msgstr "categories found"
+
+#: templates/master/category/list.html:154
+msgid "Delete this category?"
+msgstr "Delete this category?"
+
+#: templates/master/category/list.html:180
+msgid "No categories yet."
+msgstr "No categories yet."
+
+#: templates/master/department/add.html:3
+#: templates/master/department/add.html:16
+#: templates/master/department/list.html:36
+msgid "Add Department"
+msgstr "Add Department"
+
+#: templates/master/department/add.html:39
+#: templates/master/department/edit.html:39
+msgid "Department Name"
+msgstr "Department Name"
+
+#: templates/master/department/add.html:46
+msgid "Example: IT"
+msgstr "Example: IT"
+
+#: templates/master/department/edit.html:3
+#: templates/master/department/edit.html:16
+msgid "Edit Department"
+msgstr "Edit Department"
+
+#: templates/master/department/list.html:3
+msgid "Departments"
+msgstr "Departments"
+
+#: templates/master/department/list.html:20
+msgid "Department Master"
+msgstr "Department Master"
+
+#: templates/master/department/list.html:23
+msgid "Manage asset user departments"
+msgstr "Manage asset user departments"
+
+#: templates/master/department/list.html:69
+msgid "Department List"
+msgstr "Department List"
+
+#: templates/master/department/list.html:73
+msgid "departments found"
+msgstr "departments found"
+
+#: templates/master/department/list.html:129
+msgid "Delete this department?"
+msgstr "Delete this department?"
+
+#: templates/master/department/list.html:155
+msgid "No departments yet."
+msgstr "No departments yet."
+
+#: templates/master/location/add.html:3 templates/master/location/add.html:21
+#: templates/master/location/list.html:38
+msgid "Add Location"
+msgstr "Add Location"
+
+#: templates/master/location/add.html:51
+#: templates/master/location/edit.html:51
+#: templates/master/location/list.html:94
+msgid "Location Name"
+msgstr "Location Name"
+
+#: templates/master/location/add.html:58
+msgid "Example: Office"
+msgstr "Example: Office"
+
+#: templates/master/location/edit.html:3
+#: templates/master/location/edit.html:21
+msgid "Edit Location"
+msgstr "Edit Location"
+
+#: templates/master/location/list.html:3
+msgid "Locations"
+msgstr "Locations"
+
+#: templates/master/location/list.html:21
+msgid "Location Master"
+msgstr "Location Master"
+
+#: templates/master/location/list.html:24
+msgid "Manage asset locations"
+msgstr "Manage asset locations"
+
+#: templates/master/location/list.html:73
+msgid "Location List"
+msgstr "Location List"
+
+#: templates/master/location/list.html:77
+msgid "locations found"
+msgstr "locations found"
+
+#: templates/master/location/list.html:135
+msgid "Delete this location?"
+msgstr "Delete this location?"
+
+#: templates/master/location/list.html:161
+msgid "No locations yet."
+msgstr "No locations yet."
+
+#: templates/master/menu/add.html:3 templates/master/menu/add.html:20
+#: templates/master/menu/list.html:36
+msgid "Add Menu Item"
+msgstr "Add Menu Item"
+
+#: templates/master/menu/add.html:42 templates/master/menu/edit.html:42
+#: templates/master/menu/list.html:92
+msgid "Label"
+msgstr "Label"
+
+#: templates/master/menu/add.html:49
+msgid "Example: Stock Report"
+msgstr "Example: Stock Report"
+
+#: templates/master/menu/add.html:53 templates/master/menu/edit.html:53
+msgid "Can be left blank if this menu item will be a divider."
+msgstr "Can be left blank if this menu item will be a divider."
+
+#: templates/master/menu/add.html:62 templates/master/menu/edit.html:62
+#: templates/master/menu/list.html:93
+msgid "URL"
+msgstr "URL"
+
+#: templates/master/menu/add.html:69
+msgid "Example: /assets or leave blank if this is a dropdown group"
+msgstr "Example: /assets or leave blank if this is a dropdown group"
+
+#: templates/master/menu/add.html:73 templates/master/menu/edit.html:73
+msgid "Leave blank if this menu item is only a dropdown group (has submenus)."
+msgstr ""
+"Leave blank if this menu item is only a dropdown group (has submenus)."
+
+#: templates/master/menu/add.html:82 templates/master/menu/edit.html:82
+msgid "Icon (Bootstrap Icons)"
+msgstr "Icon (Bootstrap Icons)"
+
+#: templates/master/menu/add.html:89 templates/master/menu/edit.html:90
+msgid "Example: bi-box-seam"
+msgstr "Example: bi-box-seam"
+
+#: templates/master/menu/add.html:93
+msgid "See the list of icon names at"
+msgstr "See the list of icon names at"
+
+#: templates/master/menu/add.html:105 templates/master/menu/edit.html:99
+msgid "Parent Menu"
+msgstr "Parent Menu"
+
+#: templates/master/menu/add.html:112 templates/master/menu/edit.html:107
+msgid "None (top-level menu)"
+msgstr "None (top-level menu)"
+
+#: templates/master/menu/add.html:120
+msgid "Select a parent menu if this is a submenu (dropdown)."
+msgstr "Select a parent menu if this is a submenu (dropdown)."
+
+#: templates/master/menu/add.html:129 templates/master/menu/edit.html:123
+#: templates/master/menu/list.html:95
+msgid "Order"
+msgstr "Order"
+
+#: templates/master/menu/add.html:140
+msgid "Smaller numbers appear first."
+msgstr "Smaller numbers appear first."
+
+#: templates/master/menu/add.html:149 templates/master/menu/edit.html:139
+msgid "Visible For Roles"
+msgstr "Visible For Roles"
+
+#: templates/master/menu/add.html:172 templates/master/menu/edit.html:165
+msgid "Leave all unchecked if this menu item should be visible to all roles."
+msgstr "Leave all unchecked if this menu item should be visible to all roles."
+
+#: templates/master/menu/add.html:192 templates/master/menu/edit.html:185
+msgid "Active Menu"
+msgstr "Active Menu"
+
+#: templates/master/menu/add.html:213 templates/master/menu/edit.html:207
+msgid "Make this a divider (not a link)"
+msgstr "Make this a divider (not a link)"
+
+#: templates/master/menu/add.html:227
+msgid "Save Menu"
+msgstr "Save Menu"
+
+#: templates/master/menu/edit.html:3 templates/master/menu/edit.html:20
+msgid "Edit Menu Item"
+msgstr "Edit Menu Item"
+
+#: templates/master/menu/list.html:3 templates/master/menu/list.html:20
+msgid "Menu Management"
+msgstr "Menu Management"
+
+#: templates/master/menu/list.html:23
+msgid "Manage the navigation menu shown in the navbar"
+msgstr "Manage the navigation menu shown in the navbar"
+
+#: templates/master/menu/list.html:71
+msgid "Menu List"
+msgstr "Menu List"
+
+#: templates/master/menu/list.html:75
+msgid "menu items found"
+msgstr "menu items found"
+
+#: templates/master/menu/list.html:94
+msgid "Icon"
+msgstr "Icon"
+
+#: templates/master/menu/list.html:96 templates/master/user/add.html:90
+#: templates/master/user/edit.html:92 templates/master/user/list.html:95
+msgid "Role"
+msgstr "Role"
+
+#: templates/master/menu/list.html:112
+msgid "Dropdown"
+msgstr "Dropdown"
+
+#: templates/master/menu/list.html:124 templates/master/menu/list.html:182
+msgid "All Roles"
+msgstr "All Roles"
+
+#: templates/master/menu/list.html:147
+msgid "Delete this menu? Its submenus will also be deleted."
+msgstr "Delete this menu? Its submenus will also be deleted."
+
+#: templates/master/menu/list.html:205
+msgid "Delete this menu?"
+msgstr "Delete this menu?"
+
+#: templates/master/menu/list.html:233
+msgid "No menu items yet."
+msgstr "No menu items yet."
+
+#: templates/master/user/add.html:3 templates/master/user/add.html:20
+#: templates/master/user/list.html:36
+msgid "Add User"
+msgstr "Add User"
+
+#: templates/master/user/add.html:114
+msgid "Save User"
+msgstr "Save User"
+
+#: templates/master/user/edit.html:3 templates/master/user/edit.html:20
+msgid "Edit User"
+msgstr "Edit User"
+
+#: templates/master/user/edit.html:126
+msgid "Active Account"
+msgstr "Active Account"
+
+#: templates/master/user/list.html:3 templates/master/user/list.html:20
+msgid "User Management"
+msgstr "User Management"
+
+#: templates/master/user/list.html:23
+msgid "Manage user accounts and access rights"
+msgstr "Manage user accounts and access rights"
+
+#: templates/master/user/list.html:71
+msgid "User List"
+msgstr "User List"
+
+#: templates/master/user/list.html:75
+msgid "users found"
+msgstr "users found"
+
+#: templates/master/user/list.html:149
+msgid "Delete this user?"
+msgstr "Delete this user?"
+
+#: templates/master/user/list.html:177
+msgid "No users yet."
+msgstr "No users yet."
+
+#: templates/master/vendor/add.html:3 templates/master/vendor/add.html:20
+#: templates/master/vendor/list.html:36
+msgid "Add Vendor"
+msgstr "Add Vendor"
+
+#: templates/master/vendor/add.html:42 templates/master/vendor/edit.html:42
+msgid "Vendor Name"
+msgstr "Vendor Name"
+
+#: templates/master/vendor/add.html:49
+msgid "Company/vendor name"
+msgstr "Company/vendor name"
+
+#: templates/master/vendor/add.html:59 templates/master/vendor/edit.html:59
+#: templates/master/vendor/list.html:94
+msgid "Contact Person"
+msgstr "Contact Person"
+
+#: templates/master/vendor/add.html:137
+msgid "Save Vendor"
+msgstr "Save Vendor"
+
+#: templates/master/vendor/edit.html:3 templates/master/vendor/edit.html:20
+msgid "Edit Vendor"
+msgstr "Edit Vendor"
+
+#: templates/master/vendor/list.html:3
+msgid "Vendors"
+msgstr "Vendors"
+
+#: templates/master/vendor/list.html:20
+msgid "Vendor Master"
+msgstr "Vendor Master"
+
+#: templates/master/vendor/list.html:23
+msgid "Manage asset suppliers and vendors"
+msgstr "Manage asset suppliers and vendors"
+
+#: templates/master/vendor/list.html:71
+msgid "Vendor List"
+msgstr "Vendor List"
+
+#: templates/master/vendor/list.html:75
+msgid "vendors found"
+msgstr "vendors found"
+
+#: templates/master/vendor/list.html:143
+msgid "Delete this vendor?"
+msgstr "Delete this vendor?"
+
+#: templates/master/vendor/list.html:169
+msgid "No vendors yet."
+msgstr "No vendors yet."
+
+#: templates/roles/add.html:3 templates/roles/add.html:16
+#: templates/roles/list.html:23
+msgid "Add Role"
+msgstr "Add Role"
+
+#: templates/roles/add.html:31 templates/roles/edit.html:31
+#: templates/roles/list.html:69
+msgid "Role Name"
+msgstr "Role Name"
+
+#: templates/roles/add.html:32
+msgid "Example: Warehouse Staff"
+msgstr "Example: Warehouse Staff"
+
+#: templates/roles/add.html:42
+msgid ""
+"After the role is created, you will be directed to the page to set its "
+"permissions (Create/Read/Edit/Delete per page). New roles have no access by "
+"default."
+msgstr ""
+"After the role is created, you will be directed to the page to set its "
+"permissions (Create/Read/Edit/Delete per page). New roles have no access by "
+"default."
+
+#: templates/roles/add.html:45
+msgid "Save & Set Permissions"
+msgstr "Save & Set Permissions"
+
+#: templates/roles/edit.html:3 templates/roles/edit.html:16
+msgid "Edit Role"
+msgstr "Edit Role"
+
+#: templates/roles/edit.html:41
+msgid "Set Permissions"
+msgstr "Set Permissions"
+
+#: templates/roles/import.html:3
+msgid "Import Permissions"
+msgstr "Import Permissions"
+
+#: templates/roles/import.html:16
+msgid "Import Roles & Permissions"
+msgstr "Import Roles & Permissions"
+
+#: templates/roles/import.html:28
+msgid "Use the"
+msgstr "Use the"
+
+#: templates/roles/import.html:28
+msgid ""
+"file from the Role Management page as a template. Roles whose names already "
+"exist will have their permissions updated (except built-in roles, whose "
+"names cannot be changed); roles with new names will be created "
+"automatically."
+msgstr ""
+"file from the Role Management page as a template. Roles whose names already "
+"exist will have their permissions updated (except built-in roles, whose "
+"names cannot be changed); roles with new names will be created "
+"automatically."
+
+#: templates/roles/import.html:36
+msgid "Excel File (.xlsx)"
+msgstr "Excel File (.xlsx)"
+
+#: templates/roles/import.html:42 templates/roles/list.html:31
+msgid "Import"
+msgstr "Import"
+
+#: templates/roles/import.html:49
+msgid "Download Template (Export Now)"
+msgstr "Download Template (Export Now)"
+
+#: templates/roles/list.html:3 templates/roles/list.html:16
+msgid "Role Management"
+msgstr "Role Management"
+
+#: templates/roles/list.html:17
+msgid "Manage roles and page-level permissions (Create/Read/Edit/Delete)"
+msgstr "Manage roles and page-level permissions (Create/Read/Edit/Delete)"
+
+#: templates/roles/list.html:49
+msgid "Role List"
+msgstr "Role List"
+
+#: templates/roles/list.html:53
+msgid "roles found"
+msgstr "roles found"
+
+#: templates/roles/list.html:71
+msgid "User Count"
+msgstr "User Count"
+
+#: templates/roles/list.html:86 templates/roles/permissions.html:19
+msgid "Built-in"
+msgstr "Built-in"
+
+#: templates/roles/list.html:88
+msgid "Custom"
+msgstr "Custom"
+
+#: templates/roles/list.html:95 templates/roles/permissions.html:3
+msgid "Permissions"
+msgstr "Permissions"
+
+#: templates/roles/list.html:104
+msgid "Delete this role?"
+msgstr "Delete this role?"
+
+#: templates/roles/list.html:117
+msgid "No roles yet."
+msgstr "No roles yet."
+
+#: templates/roles/permissions.html:17
+msgid "Permissions:"
+msgstr "Permissions:"
+
+#: templates/roles/permissions.html:31
+msgid "The role"
+msgstr "The role"
+
+#: templates/roles/permissions.html:31
+msgid ""
+"always has full access to all pages (superuser), regardless of the settings "
+"below. This matrix is for display/reference only."
+msgstr ""
+"always has full access to all pages (superuser), regardless of the settings "
+"below. This matrix is for display/reference only."
+
+#: templates/roles/permissions.html:38
+msgid "Permission Matrix per Page"
+msgstr "Permission Matrix per Page"
+
+#: templates/roles/permissions.html:53
+msgid "Object"
+msgstr "Object"
+
+#: templates/roles/permissions.html:58
+msgid "all"
+msgstr "all"
+
+#: templates/roles/permissions.html:59
+msgid "clear"
+msgstr "clear"
+
+#: templates/roles/permissions.html:99
+msgid "Save Permissions"
+msgstr "Save Permissions"
+
+#: templates/settings/general.html:3 templates/settings/general.html:16
+msgid "Application Settings"
+msgstr "Application Settings"
+
+#: templates/settings/general.html:17
+msgid "Application name, logo, footer, and login page"
+msgstr "Application name, logo, footer, and login page"
+
+#: templates/settings/general.html:44
+msgid "Application Identity"
+msgstr "Application Identity"
+
+#: templates/settings/general.html:52
+msgid "Application Name"
+msgstr "Application Name"
+
+#: templates/settings/general.html:54
+msgid "Appears in the sidebar, browser tab, and login page."
+msgstr "Appears in the sidebar, browser tab, and login page."
+
+#: templates/settings/general.html:58
+msgid "Footer Text"
+msgstr "Footer Text"
+
+#: templates/settings/general.html:59
+msgid "Example: PT Tradecorp Indonesia © 2026"
+msgstr "Example: PT Tradecorp Indonesia © 2026"
+
+#: templates/settings/general.html:60
+msgid "Leave blank to use the default:"
+msgstr "Leave blank to use the default:"
+
+#: templates/settings/general.html:64
+msgid "Login Page Message"
+msgstr "Login Page Message"
+
+#: templates/settings/general.html:65
+msgid "Example: Internal Asset Management System"
+msgstr "Example: Internal Asset Management System"
+
+#: templates/settings/general.html:66
+msgid ""
+"Small text below the application name on the login page. May be left blank."
+msgstr ""
+"Small text below the application name on the login page. May be left blank."
+
+#: templates/settings/general.html:81
+msgid "Sidebar Brand Display"
+msgstr "Sidebar Brand Display"
+
+#: templates/settings/general.html:88
+msgid "Choose how the app identity appears next to the sidebar menu."
+msgstr "Choose how the app identity appears next to the sidebar menu."
+
+#: templates/settings/general.html:92
+msgid "Logo only"
+msgstr "Logo only"
+
+#: templates/settings/general.html:97
+msgid "Application name only"
+msgstr "Application name only"
+
+#: templates/settings/general.html:102
+msgid "Logo and application name"
+msgstr "Logo and application name"
+
+#: templates/settings/general.html:105
+msgid ""
+"If no wide logo has been uploaded yet, the sidebar falls back to the "
+"application name regardless of this setting."
+msgstr ""
+"If no wide logo has been uploaded yet, the sidebar falls back to the "
+"application name regardless of this setting."
+
+#: templates/settings/general.html:113
+msgid "Save Settings"
+msgstr "Save Settings"
+
+#: templates/settings/general.html:132
+msgid "Wide Logo (Sidebar)"
+msgstr "Wide Logo (Sidebar)"
+
+#: templates/settings/general.html:142
+msgid "Wide logo"
+msgstr "Wide logo"
+
+#: templates/settings/general.html:144
+msgid "No wide logo yet"
+msgstr "No wide logo yet"
+
+#: templates/settings/general.html:155
+msgid "Remove wide logo (use default icon)"
+msgstr "Remove wide logo (use default icon)"
+
+#: templates/settings/general.html:159
+msgid ""
+"Recommended: wide (horizontal) shape, transparent background, height around "
+"40-60px."
+msgstr ""
+"Recommended: wide (horizontal) shape, transparent background, height around "
+"40-60px."
+
+#: templates/settings/general.html:173
+msgid "Square Logo (Login & Favicon)"
+msgstr "Square Logo (Login & Favicon)"
+
+#: templates/settings/general.html:183
+msgid "Square logo"
+msgstr "Square logo"
+
+#: templates/settings/general.html:185
+msgid "No square logo yet"
+msgstr "No square logo yet"
+
+#: templates/settings/general.html:196
+msgid "Remove square logo (use default icon)"
+msgstr "Remove square logo (use default icon)"
+
+#: templates/settings/general.html:200
+msgid "Recommended: 1:1 (square) ratio, also used as the browser tab favicon."
+msgstr ""
+"Recommended: 1:1 (square) ratio, also used as the browser tab favicon."
+
+#: templates/warranty/alert.html:3 templates/warranty/alert.html:209
+msgid "Warranty Alert Detail"
+msgstr "Warranty Alert Detail"
+
+#: templates/warranty/alert.html:213
+msgid "Warranty status monitoring for all assets"
+msgstr "Warranty status monitoring for all assets"
+
+#: templates/warranty/alert.html:221 templates/warranty/index.html:3
+#: templates/warranty/index.html:308 templates/warranty/notifications.html:224
+msgid "Warranty Management"
+msgstr "Warranty Management"
+
+#: templates/warranty/alert.html:226
+msgid "Alert"
+msgstr "Alert"
+
+#: templates/warranty/alert.html:241
+msgid "Total Warranty"
+msgstr "Total Warranty"
+
+#: templates/warranty/alert.html:286 templates/warranty/alert.html:347
+#: templates/warranty/alert.html:646 templates/warranty/index.html:630
+msgid "Incomplete"
+msgstr "Incomplete"
+
+#: templates/warranty/alert.html:313 templates/warranty/index.html:361
+msgid "Asset tag, name, brand, model, serial number, vendor..."
+msgstr "Asset tag, name, brand, model, serial number, vendor..."
+
+#: templates/warranty/alert.html:321 templates/warranty/index.html:368
+msgid "Warranty Status"
+msgstr "Warranty Status"
+
+#: templates/warranty/alert.html:396 templates/warranty/index.html:478
+msgid "Warranty List"
+msgstr "Warranty List"
+
+#: templates/warranty/alert.html:402
+msgid "Showing warranty expiring within ≤ 7 days."
+msgstr "Showing warranty expiring within ≤ 7 days."
+
+#: templates/warranty/alert.html:405
+msgid "Showing warranty expiring within 8–30 days."
+msgstr "Showing warranty expiring within 8–30 days."
+
+#: templates/warranty/alert.html:408
+msgid "Showing warranty that has already expired."
+msgstr "Showing warranty that has already expired."
+
+#: templates/warranty/alert.html:411
+msgid "Showing warranty that is still active."
+msgstr "Showing warranty that is still active."
+
+#: templates/warranty/alert.html:414
+msgid "Showing warranty with incomplete data."
+msgstr "Showing warranty with incomplete data."
+
+#: templates/warranty/alert.html:417
+msgid "Showing all warranty data."
+msgstr "Showing all warranty data."
+
+#: templates/warranty/alert.html:449
+msgid "Tag"
+msgstr "Tag"
+
+#: templates/warranty/alert.html:455
+msgid "Days Left"
+msgstr "Days Left"
+
+#: templates/warranty/alert.html:488
+msgid "SN:"
+msgstr "SN:"
+
+#: templates/warranty/alert.html:572 templates/warranty/index.html:574
+msgid "days ago"
+msgstr "days ago"
+
+#: templates/warranty/alert.html:623
+msgid "≤ 7 Days"
+msgstr "≤ 7 Days"
+
+#: templates/warranty/alert.html:630
+msgid "8–30 Days"
+msgstr "8–30 Days"
+
+#: templates/warranty/alert.html:663
+msgid "View Asset Detail"
+msgstr "View Asset Detail"
+
+#: templates/warranty/alert.html:673
+msgid "Edit Asset / Update Warranty"
+msgstr "Edit Asset / Update Warranty"
+
+#: templates/warranty/alert.html:682 templates/warranty/history.html:4
+#: templates/warranty/history.html:138 templates/warranty/history.html:268
+msgid "Warranty History"
+msgstr "Warranty History"
+
+#: templates/warranty/alert.html:707 templates/warranty/index.html:665
+msgid "No warranty data"
+msgstr "No warranty data"
+
+#: templates/warranty/alert.html:711 templates/warranty/index.html:669
+msgid "No assets found matching the selected filter."
+msgstr "No assets found matching the selected filter."
+
+#: templates/warranty/history.html:142
+msgid "Asset warranty change history"
+msgstr "Asset warranty change history"
+
+#: templates/warranty/history.html:213
+msgid "Asset Tag:"
+msgstr "Asset Tag:"
+
+#: templates/warranty/history.html:221
+msgid "Brand:"
+msgstr "Brand:"
+
+#: templates/warranty/history.html:229
+msgid "Model:"
+msgstr "Model:"
+
+#: templates/warranty/history.html:239
+msgid "Serial:"
+msgstr "Serial:"
+
+#: templates/warranty/history.html:273
+msgid "changes recorded"
+msgstr "changes recorded"
+
+#: templates/warranty/history.html:282
+msgid "Current Warranty:"
+msgstr "Current Warranty:"
+
+#: templates/warranty/history.html:307
+msgid "Change Date"
+msgstr "Change Date"
+
+#: templates/warranty/history.html:311
+msgid "Old Warranty"
+msgstr "Old Warranty"
+
+#: templates/warranty/history.html:315
+msgid "Old End Date"
+msgstr "Old End Date"
+
+#: templates/warranty/history.html:322
+msgid "New Warranty"
+msgstr "New Warranty"
+
+#: templates/warranty/history.html:326
+msgid "New End Date"
+msgstr "New End Date"
+
+#: templates/warranty/history.html:507
+msgid "No warranty history yet"
+msgstr "No warranty history yet"
+
+#: templates/warranty/history.html:513
+msgid "Changes to this asset's warranty will be recorded automatically here."
+msgstr "Changes to this asset's warranty will be recorded automatically here."
+
+#: templates/warranty/index.html:312
+msgid "Monitoring the warranty period for all assets."
+msgstr "Monitoring the warranty period for all assets."
+
+#: templates/warranty/index.html:380 templates/warranty/index.html:616
+msgid "Expiring"
+msgstr "Expiring"
+
+#: templates/warranty/index.html:388 templates/warranty/index.html:457
+#: templates/warranty/notifications.html:293
+msgid "Incomplete Data"
+msgstr "Incomplete Data"
+
+#: templates/warranty/index.html:401
+msgid "Apply"
+msgstr "Apply"
+
+#: templates/warranty/index.html:437
+msgid "Expiring within 30 Days"
+msgstr "Expiring within 30 Days"
+
+#: templates/warranty/index.html:481
+msgid "found"
+msgstr "found"
+
+#: templates/warranty/notifications.html:4
+#: templates/warranty/notifications.html:194
+msgid "Warranty Notifications"
+msgstr "Warranty Notifications"
+
+#: templates/warranty/notifications.html:198
+msgid "Center for monitoring warranties that need attention"
+msgstr "Center for monitoring warranties that need attention"
+
+#: templates/warranty/notifications.html:214
+msgid "Warranty Detail"
+msgstr "Warranty Detail"
+
+#: templates/warranty/notifications.html:257
+msgid "Asset tag, name, brand, model, serial, vendor, location..."
+msgstr "Asset tag, name, brand, model, serial, vendor, location..."
+
+#: templates/warranty/notifications.html:270
+msgid "Notification Status"
+msgstr "Notification Status"
+
+#: templates/warranty/notifications.html:277
+msgid "All Notifications"
+msgstr "All Notifications"
+
+#: templates/warranty/notifications.html:281
+#: templates/warranty/notifications.html:344
+msgid "Critical ≤ 7 Days"
+msgstr "Critical ≤ 7 Days"
+
+#: templates/warranty/notifications.html:285
+#: templates/warranty/notifications.html:357
+msgid "Warning 8–30 Days"
+msgstr "Warning 8–30 Days"
+
+#: templates/warranty/notifications.html:383
+msgid "Total Alerts"
+msgstr "Total Alerts"
+
+#: templates/warranty/notifications.html:412
+msgid "Warranty Expiring Immediately"
+msgstr "Warranty Expiring Immediately"
+
+#: templates/warranty/notifications.html:416
+msgid "Warranty remaining a maximum of 7 days"
+msgstr "Warranty remaining a maximum of 7 days"
+
+#: templates/warranty/notifications.html:449
+#: templates/warranty/notifications.html:581
+#: templates/warranty/notifications.html:694
+msgid "Tag:"
+msgstr "Tag:"
+
+#: templates/warranty/notifications.html:479
+msgid "Expires today"
+msgstr "Expires today"
+
+#: templates/warranty/notifications.html:483
+msgid "1 day left"
+msgstr "1 day left"
+
+#: templates/warranty/notifications.html:487
+#: templates/warranty/notifications.html:602
+msgid "days left"
+msgstr "days left"
+
+#: templates/warranty/notifications.html:497
+#: templates/warranty/notifications.html:610
+#: templates/warranty/notifications.html:723
+msgid "Update Warranty"
+msgstr "Update Warranty"
+
+#: templates/warranty/notifications.html:518
+msgid "No critical warranties."
+msgstr "No critical warranties."
+
+#: templates/warranty/notifications.html:548
+msgid "Warranty remaining 8 to 30 days"
+msgstr "Warranty remaining 8 to 30 days"
+
+#: templates/warranty/notifications.html:588
+msgid "Vendor:"
+msgstr "Vendor:"
+
+#: templates/warranty/notifications.html:631
+msgid "No warranties in the warning period."
+msgstr "No warranties in the warning period."
+
+#: templates/warranty/notifications.html:661
+msgid "Warranty that has passed its end date"
+msgstr "Warranty that has passed its end date"
+
+#: templates/warranty/notifications.html:701
+msgid "Expires:"
+msgstr "Expires:"
+
+#: templates/warranty/notifications.html:760
+msgid "Last checked:"
+msgstr "Last checked:"
+
+msgid "Settings"
+msgstr "Settings"
+
+#~ msgid "All Vendors"
+#~ msgstr "All Vendors"
+
+#~ msgid "Laporan Mutasi"
+#~ msgstr "Movement Report"
+
+#~ msgid "Kategori"
+#~ msgstr "Categories"
+
+#~ msgid "Lokasi"
+#~ msgstr "Locations"
+
+#~ msgid "Departemen"
+#~ msgstr "Departments"
+
+#~ msgid "Hapus Cache"
+#~ msgstr "Clear Cache"
+
+#~ msgid "Role Akses"
+#~ msgstr "Access Roles"
+
+#~ msgid "Pengaturan Aplikasi"
+#~ msgstr "Application Settings"
+
+#~ msgid "Pemisah"
+#~ msgstr "Divider"

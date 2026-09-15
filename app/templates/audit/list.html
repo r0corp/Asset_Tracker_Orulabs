@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Audit Log') }} - {{ app_setting.app_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <div>
+                    <h3 class="page-header-title">{{ _('Audit Log') }}</h3>
+                    <p class="page-header-subtitle mb-0">{{ _('History of who added/changed/deleted data') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card overflow-hidden">
+
+        <div class="card-header-accent">
+            <div class="card-header-accent-left">
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-list-ul"></i>
+                </div>
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Activity List') }}
+                    </div>
+                    <div class="card-header-accent-subtitle">
+                        {{ pagination.total or 0 }} {{ _('entries found') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>{{ _('Time') }}</th>
+                            <th>{{ _('User') }}</th>
+                            <th>{{ _('Actions') }}</th>
+                            <th>{{ _('Data Type') }}</th>
+                            <th>{{ _('Data') }}</th>
+                            <th>{{ _('Description') }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for log in pagination.items %}
+                        <tr>
+                            <td class="text-nowrap">{{ log.created_at.strftime('%d-%m-%Y %H:%M:%S') }}</td>
+                            <td>{{ log.username or '-' }}</td>
+                            <td>
+                                {% if log.action == 'create' %}
+                                <span class="badge bg-success">{{ _('Add') }}</span>
+                                {% elif log.action == 'update' %}
+                                <span class="badge bg-warning text-dark">{{ _('Update') }}</span>
+                                {% elif log.action == 'delete' %}
+                                <span class="badge bg-danger">{{ _('Delete') }}</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ log.action }}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ log.entity_type }}</td>
+                            <td>{{ log.entity_label or '-' }}</td>
+                            <td>{{ log.description or '-' }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">
+                                {{ _('No activity recorded yet.') }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% if pagination and pagination.pages > 1 %}
+
+            <nav class="mt-3" aria-label="{{ _('Audit log page navigation') }}">
+
+                <ul class="pagination pagination-sm justify-content-center mb-0">
+
+                    <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('main.audit_log', page=pagination.prev_num) if pagination.has_prev else '#' }}">{{ _('Previous') }}</a>
+                    </li>
+
+                    {% for page_num in pagination.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                        {% if page_num %}
+                        <li class="page-item {% if page_num == pagination.page %}active{% endif %}">
+                            <a class="page-link" href="{{ url_for('main.audit_log', page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled"><span class="page-link">…</span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('main.audit_log', page=pagination.next_num) if pagination.has_next else '#' }}">{{ _('Next') }}</a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

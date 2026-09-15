@@ -1,0 +1,528 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Warranty History') }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .history-page {
+        padding: 24px 0 30px;
+    }
+
+    .asset-summary {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .asset-summary-title {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .asset-summary-meta {
+        color: #6c757d;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .history-card {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+    }
+
+    .history-table-wrapper {
+        overflow-x: auto;
+        padding: 0 20px;
+    }
+
+    .history-table {
+        width: 100%;
+        min-width: 950px;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .history-table th {
+        background: #f8f9fa;
+        color: #495057;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        padding: 12px 14px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .history-table td {
+        padding: 13px 14px;
+        vertical-align: middle;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 13px;
+    }
+
+    .history-table tbody tr:hover {
+        background: #fafafa;
+    }
+
+    .old-value {
+        color: #6c757d;
+    }
+
+    .new-value {
+        font-weight: 700;
+        color: #198754;
+    }
+
+    .arrow-change {
+        color: #6c757d;
+        font-size: 16px;
+    }
+
+    .history-date {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .history-reason {
+        font-weight: 600;
+    }
+
+    .history-notes {
+        color: #6c757d;
+        font-size: 12px;
+        max-width: 250px;
+    }
+
+    .empty-history {
+        text-align: center;
+        padding: 55px 20px;
+        color: #6c757d;
+    }
+
+    .empty-history i {
+        font-size: 38px;
+        margin-bottom: 12px;
+    }
+
+</style>
+
+
+<div class="container-fluid history-page">
+
+
+    <!-- ====================================================
+         HEADER
+         ==================================================== -->
+
+    <div class="history-header page-header-card">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 page-header-row">
+
+            <div class="page-header-left">
+
+                <div class="page-header-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="page-header-title">
+                        {{ _('Warranty History') }}
+                    </h2>
+
+                    <p class="page-header-subtitle mb-0">
+                        {{ _('Asset warranty change history') }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-2 page-header-actions">
+
+                <!-- EXPORT HISTORY -->
+
+                <a href="{{ url_for(
+            'main.export_warranty_history',
+            asset_id=asset.id
+        ) }}" class="btn btn-success">
+
+                    <i class="bi bi-file-earmark-excel me-1"></i>
+
+                    {{ _('Export Excel') }}
+
+                </a>
+
+
+                <!-- WARRANTY ALERT -->
+
+                <a href="{{ url_for(
+            'main.warranty_alert_detail'
+        ) }}" class="btn btn-outline-primary">
+
+                    <i class="bi bi-shield-exclamation me-1"></i>
+
+                    {{ _('Warranty Alert') }}
+
+                </a>
+
+
+                <!-- DETAIL ASSET -->
+
+                <a href="{{ url_for(
+            'main.asset_detail',
+            asset_id=asset.id
+        ) }}" class="btn btn-outline-secondary">
+
+                    <i class="bi bi-box-seam me-1"></i>
+
+                    {{ _('Asset Detail') }}
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ====================================================
+         ASSET SUMMARY
+         ==================================================== -->
+
+    <div class="asset-summary">
+
+        <div class="asset-summary-title">
+
+            {{ asset.asset_name or "-" }}
+
+        </div>
+
+        <div class="asset-summary-meta">
+
+            <strong>
+                {{ _('Asset Tag:') }}
+            </strong>
+
+            {{ asset.asset_tag or "-" }}
+
+            &nbsp; • &nbsp;
+
+            <strong>
+                {{ _('Brand:') }}
+            </strong>
+
+            {{ asset.brand or "-" }}
+
+            &nbsp; • &nbsp;
+
+            <strong>
+                {{ _('Model:') }}
+            </strong>
+
+            {{ asset.model or "-" }}
+
+            {% if asset.serial_number %}
+
+            &nbsp; • &nbsp;
+
+            <strong>
+                {{ _('Serial:') }}
+            </strong>
+
+            {{ asset.serial_number }}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ====================================================
+         HISTORY
+         ==================================================== -->
+
+    <div class="history-card">
+
+
+        <div class="card-header-accent">
+
+            <div class="card-header-accent-left">
+
+                <div class="card-header-accent-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+
+                <div>
+                    <div class="card-header-accent-title">
+                        {{ _('Warranty History') }}
+                    </div>
+
+                    <div class="card-header-accent-subtitle">
+                        {{ histories|length }}
+                        {{ _('changes recorded') }}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="card-header-accent-actions">
+                <span class="badge bg-light text-dark border">
+                    {{ _('Current Warranty:') }}
+                    {{ asset.warranty or "-" }}
+                </span>
+            </div>
+
+        </div>
+
+
+        {% if histories %}
+
+
+        <div class="history-table-wrapper">
+
+            <table class="history-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th style="width:50px;">
+                            {{ _('No.') }}
+                        </th>
+
+                        <th>
+                            {{ _('Change Date') }}
+                        </th>
+
+                        <th>
+                            {{ _('Old Warranty') }}
+                        </th>
+
+                        <th>
+                            {{ _('Old End Date') }}
+                        </th>
+
+                        <th style="width:40px;">
+                        </th>
+
+                        <th>
+                            {{ _('New Warranty') }}
+                        </th>
+
+                        <th>
+                            {{ _('New End Date') }}
+                        </th>
+
+                        <th>
+                            {{ _('Reason') }}
+                        </th>
+
+                        <th>
+                            {{ _('Notes') }}
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for history in histories %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            {{ loop.index }}
+
+                        </td>
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            {% if history.changed_date %}
+
+                            <span class="history-date">
+
+                                {{ history.changed_date.strftime(
+                                        "%d-%m-%Y"
+                                    ) }}
+
+                            </span>
+
+                            {% else %}
+
+                            -
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- OLD WARRANTY -->
+
+                        <td>
+
+                            <span class="old-value">
+
+                                {{ history.old_warranty or "-" }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- OLD END DATE -->
+
+                        <td>
+
+                            {% if history.old_end_date %}
+
+                            {{ history.old_end_date.strftime(
+                                    "%d-%m-%Y"
+                                ) }}
+
+                            {% else %}
+
+                            -
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ARROW -->
+
+                        <td>
+
+                            <span class="arrow-change">
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- NEW WARRANTY -->
+
+                        <td>
+
+                            <span class="new-value">
+
+                                {{ history.new_warranty or "-" }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- NEW END DATE -->
+
+                        <td>
+
+                            {% if history.new_end_date %}
+
+                            {{ history.new_end_date.strftime(
+                                    "%d-%m-%Y"
+                                ) }}
+
+                            {% else %}
+
+                            -
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- REASON -->
+
+                        <td>
+
+                            <span class="history-reason">
+
+                                {{ history.reason or "-" }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- NOTES -->
+
+                        <td>
+
+                            <div class="history-notes">
+
+                                {{ history.notes or "-" }}
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty-history">
+
+            <i class="bi bi-clock-history"></i>
+
+            <div class="fw-bold mb-1">
+
+                {{ _('No warranty history yet') }}
+
+            </div>
+
+            <div>
+
+                {{ _("Changes to this asset's warranty will be recorded automatically here.") }}
+
+            </div>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

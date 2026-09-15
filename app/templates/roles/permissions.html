@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Permissions') }} {{ role.name }} - Asset Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="page-header-card">
+        <div class="page-header-row">
+            <div class="page-header-left">
+                <div class="page-header-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div>
+                    <h2 class="page-header-title">
+                        {{ _('Permissions:') }}
+                        <span class="text-primary">{{ role.name }}</span>
+                        {% if role.is_system %}<span class="badge bg-primary ms-1">{{ _('Built-in') }}</span>{% endif %}
+                    </h2>
+                    <p class="page-header-subtitle mb-0">{{ role.description or '' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if role.name == 'administrator' %}
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-1"></i>
+        {{ _('The role') }} <strong>administrator</strong> {{ _('always has full access to all pages (superuser), regardless of the settings below. This matrix is for display/reference only.') }}
+    </div>
+    {% endif %}
+
+    <div class="card">
+
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ _('Permission Matrix per Page') }}</h5>
+        </div>
+
+        <form method="POST">
+
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>{{ _('Object') }}</th>
+                                {% for action in permission_actions %}
+                                <th class="text-center text-capitalize">
+                                    {{ action }}
+                                    <br>
+                                    <a href="#" class="small check-all" data-action="{{ action }}">{{ _('all') }}</a> /
+                                    <a href="#" class="small uncheck-all" data-action="{{ action }}">{{ _('clear') }}</a>
+                                </th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for object_key, object_label in permission_objects %}
+
+                            {% set permission = permissions_by_object[object_key] %}
+
+                            <tr>
+                                <td><strong>{{ object_label }}</strong></td>
+
+                                {% for action in permission_actions %}
+                                <td class="text-center">
+                                    <input
+                                        class="form-check-input perm-checkbox perm-{{ action }}"
+                                        type="checkbox"
+                                        name="perm_{{ object_key }}_{{ action }}"
+                                        {% if permission and permission.allows(action) %}checked{% endif %}
+                                    >
+                                </td>
+                                {% endfor %}
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i>
+                    {{ _('Save Permissions') }}
+                </button>
+                <a href="{{ url_for('main.roles') }}" class="btn btn-secondary">{{ _('Back') }}</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.check-all, .uncheck-all').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var action = this.dataset.action;
+        var checked = this.classList.contains('check-all');
+        document.querySelectorAll('.perm-' + action).forEach(function (box) {
+            box.checked = checked;
+        });
+    });
+});
+</script>
+{% endblock %}
