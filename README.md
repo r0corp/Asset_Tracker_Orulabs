@@ -25,6 +25,23 @@ Tersedia dalam Bahasa Indonesia dan English.
 - **Multi-bahasa** — Bahasa Indonesia & English, bisa diganti dari halaman
   manapun.
 
+## Screenshot
+
+| Login | Dashboard |
+|---|---|
+| ![Login](docs/screenshots/01-login.png) | ![Dashboard](docs/screenshots/02-dashboard.png) |
+
+| Daftar Asset | Laporan Mutasi |
+|---|---|
+| ![Asset List](docs/screenshots/03-asset-list.png) | ![Movement Report](docs/screenshots/04-movement-report.png) |
+
+| Warranty Management |
+|---|
+| ![Warranty](docs/screenshots/05-warranty.png) |
+
+> Data pada screenshot di atas adalah data contoh (dummy), bukan data
+> perusahaan sungguhan.
+
 ## Teknologi
 
 Python 3.10+, Flask, SQLAlchemy (Flask-Migrate/Alembic), Flask-Login,

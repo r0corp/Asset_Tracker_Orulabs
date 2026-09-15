@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-15 10:59+0700\n"
+"POT-Creation-Date: 2026-09-15 12:58+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -42,97 +42,97 @@ msgstr "Application name is required."
 msgid "Application settings saved successfully."
 msgstr "Application settings saved successfully."
 
-#: blueprints/assets.py:402
+#: blueprints/assets.py:403
 msgid "Excel file has not been selected."
 msgstr "Excel file has not been selected."
 
-#: blueprints/assets.py:417
+#: blueprints/assets.py:418
 msgid "File format must be .xlsx or .xlsm."
 msgstr "File format must be .xlsx or .xlsm."
 
-#: blueprints/assets.py:447
+#: blueprints/assets.py:448
 msgid "Excel file is empty."
 msgstr "Excel file is empty."
 
-#: blueprints/assets.py:476
+#: blueprints/assets.py:477
 #, python-format
 msgid "Required columns not found: %(columns)s"
 msgstr "Required columns not found: %(columns)s"
 
-#: blueprints/assets.py:844
+#: blueprints/assets.py:845
 msgid "Select at least one asset to print."
 msgstr "Select at least one asset to print."
 
-#: blueprints/assets.py:872
+#: blueprints/assets.py:873
 msgid "Selected assets are invalid."
 msgstr "Selected assets are invalid."
 
-#: blueprints/assets.py:894 blueprints/assets.py:2112
+#: blueprints/assets.py:895 blueprints/assets.py:2122
 msgid "Selected assets were not found."
 msgstr "Selected assets were not found."
 
-#: blueprints/assets.py:985
+#: blueprints/assets.py:995
 msgid "Asset was successfully deleted."
 msgstr "Asset was successfully deleted."
 
-#: blueprints/assets.py:1035
+#: blueprints/assets.py:1045
 msgid "Asset Tag is required."
 msgstr "Asset Tag is required."
 
-#: blueprints/assets.py:1054
+#: blueprints/assets.py:1064
 msgid "Asset name is required."
 msgstr "Asset name is required."
 
-#: blueprints/assets.py:1077
+#: blueprints/assets.py:1087
 msgid "Asset Tag is already in use."
 msgstr "Asset Tag is already in use."
 
-#: blueprints/assets.py:1132
+#: blueprints/assets.py:1142
 #, python-format
 msgid "Invalid asset photo: %(error)s"
 msgstr "Invalid asset photo: %(error)s"
 
-#: blueprints/assets.py:1153
+#: blueprints/assets.py:1163
 msgid "Asset photo failed to upload."
 msgstr "Asset photo failed to upload."
 
-#: blueprints/assets.py:1267
+#: blueprints/assets.py:1277
 msgid "Asset failed to save."
 msgstr "Asset failed to save."
 
-#: blueprints/assets.py:1301
+#: blueprints/assets.py:1311
 msgid "Asset was successfully added."
 msgstr "Asset was successfully added."
 
-#: blueprints/assets.py:1646
+#: blueprints/assets.py:1656
 msgid "Invalid purchase date format."
 msgstr "Invalid purchase date format."
 
-#: blueprints/assets.py:1686
+#: blueprints/assets.py:1696
 msgid "Invalid purchase price."
 msgstr "Invalid purchase price."
 
-#: blueprints/assets.py:1777
+#: blueprints/assets.py:1787
 msgid "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
 msgstr "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
 
-#: blueprints/assets.py:1923
+#: blueprints/assets.py:1933
 msgid "Asset was successfully updated and warranty history was recorded."
 msgstr "Asset was successfully updated and warranty history was recorded."
 
-#: blueprints/assets.py:1932
+#: blueprints/assets.py:1942
 msgid "Asset was successfully updated."
 msgstr "Asset was successfully updated."
 
-#: blueprints/assets.py:1953
+#: blueprints/assets.py:1963
 msgid "Failed to update asset."
 msgstr "Failed to update asset."
 
-#: blueprints/assets.py:2034
+#: blueprints/assets.py:2044
 msgid "Select at least one asset to export to Excel."
 msgstr "Select at least one asset to export to Excel."
 
-#: blueprints/assets.py:2078
+#: blueprints/assets.py:2088
 msgid "Invalid asset ID."
 msgstr "Invalid asset ID."
 
@@ -506,7 +506,7 @@ msgstr "User deleted successfully."
 msgid "Toggle sidebar"
 msgstr "Toggle sidebar"
 
-#: templates/base.html:638 templates/login.html:550
+#: templates/base.html:638 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr "Toggle color scheme"
 
@@ -1092,45 +1092,45 @@ msgstr "No Location"
 msgid "No Department"
 msgstr "No Department"
 
-#: templates/login.html:523
+#: templates/login.html:534
 msgid "Welcome"
 msgstr "Welcome"
 
-#: templates/login.html:530
+#: templates/login.html:541
 msgid "Manage and track your company assets in one integrated system."
 msgstr "Manage and track your company assets in one integrated system."
 
-#: templates/login.html:584
+#: templates/login.html:595
 msgid "Sign In"
 msgstr "Sign In"
 
-#: templates/login.html:586
+#: templates/login.html:597
 msgid "Enter your credentials to access your account."
 msgstr "Enter your credentials to access your account."
 
-#: templates/login.html:596 templates/master/user/add.html:42
+#: templates/login.html:607 templates/master/user/add.html:42
 #: templates/master/user/edit.html:42 templates/master/user/list.html:93
 #: templates/profile.html:75
 msgid "Username"
 msgstr "Username"
 
-#: templates/login.html:611 templates/master/user/add.html:74
+#: templates/login.html:622 templates/master/user/add.html:74
 msgid "Password"
 msgstr "Password"
 
-#: templates/login.html:625
+#: templates/login.html:636
 msgid "Show password"
 msgstr "Show password"
 
-#: templates/login.html:635
+#: templates/login.html:646
 msgid "Remember me"
 msgstr "Remember me"
 
-#: templates/login.html:641
+#: templates/login.html:652
 msgid "Login"
 msgstr "Login"
 
-#: templates/login.html:647
+#: templates/login.html:658
 msgid "Forgot your password? Contact your administrator."
 msgstr "Forgot your password? Contact your administrator."
 
@@ -3550,8 +3550,8 @@ msgid "Footer Text"
 msgstr "Footer Text"
 
 #: templates/settings/general.html:59
-msgid "Example: PT Tradecorp Indonesia © 2026"
-msgstr "Example: PT Tradecorp Indonesia © 2026"
+msgid "Example: PT Contoh Sejahtera © 2026"
+msgstr "Example: PT Contoh Sejahtera © 2026"
 
 #: templates/settings/general.html:60
 msgid "Leave blank to use the default:"
@@ -3936,9 +3936,6 @@ msgstr "Expires:"
 msgid "Last checked:"
 msgstr "Last checked:"
 
-msgid "Settings"
-msgstr "Settings"
-
 #~ msgid "All Vendors"
 #~ msgstr "All Vendors"
 
@@ -3965,3 +3962,6 @@ msgstr "Settings"
 
 #~ msgid "Pemisah"
 #~ msgstr "Divider"
+
+#~ msgid "Settings"
+#~ msgstr "Settings"

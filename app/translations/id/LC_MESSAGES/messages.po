@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-15 10:59+0700\n"
+"POT-Creation-Date: 2026-09-15 12:58+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: id <LL@li.org>\n"
@@ -42,97 +42,97 @@ msgstr "Nama aplikasi wajib diisi."
 msgid "Application settings saved successfully."
 msgstr "Pengaturan aplikasi berhasil disimpan."
 
-#: blueprints/assets.py:402
+#: blueprints/assets.py:403
 msgid "Excel file has not been selected."
 msgstr "File Excel belum dipilih."
 
-#: blueprints/assets.py:417
+#: blueprints/assets.py:418
 msgid "File format must be .xlsx or .xlsm."
 msgstr "Format file harus .xlsx atau .xlsm."
 
-#: blueprints/assets.py:447
+#: blueprints/assets.py:448
 msgid "Excel file is empty."
 msgstr "File Excel kosong."
 
-#: blueprints/assets.py:476
+#: blueprints/assets.py:477
 #, python-format
 msgid "Required columns not found: %(columns)s"
 msgstr "Kolom wajib tidak ditemukan: %(columns)s"
 
-#: blueprints/assets.py:844
+#: blueprints/assets.py:845
 msgid "Select at least one asset to print."
 msgstr "Pilih minimal satu asset untuk dicetak."
 
-#: blueprints/assets.py:872
+#: blueprints/assets.py:873
 msgid "Selected assets are invalid."
 msgstr "Asset yang dipilih tidak valid."
 
-#: blueprints/assets.py:894 blueprints/assets.py:2112
+#: blueprints/assets.py:895 blueprints/assets.py:2122
 msgid "Selected assets were not found."
 msgstr "Asset yang dipilih tidak ditemukan."
 
-#: blueprints/assets.py:985
+#: blueprints/assets.py:995
 msgid "Asset was successfully deleted."
 msgstr "Asset berhasil dihapus."
 
-#: blueprints/assets.py:1035
+#: blueprints/assets.py:1045
 msgid "Asset Tag is required."
 msgstr "Asset Tag wajib diisi."
 
-#: blueprints/assets.py:1054
+#: blueprints/assets.py:1064
 msgid "Asset name is required."
 msgstr "Nama asset wajib diisi."
 
-#: blueprints/assets.py:1077
+#: blueprints/assets.py:1087
 msgid "Asset Tag is already in use."
 msgstr "Asset Tag sudah digunakan."
 
-#: blueprints/assets.py:1132
+#: blueprints/assets.py:1142
 #, python-format
 msgid "Invalid asset photo: %(error)s"
 msgstr "Foto asset tidak valid: %(error)s"
 
-#: blueprints/assets.py:1153
+#: blueprints/assets.py:1163
 msgid "Asset photo failed to upload."
 msgstr "Foto asset gagal diunggah."
 
-#: blueprints/assets.py:1267
+#: blueprints/assets.py:1277
 msgid "Asset failed to save."
 msgstr "Asset gagal disimpan."
 
-#: blueprints/assets.py:1301
+#: blueprints/assets.py:1311
 msgid "Asset was successfully added."
 msgstr "Asset berhasil ditambahkan."
 
-#: blueprints/assets.py:1646
+#: blueprints/assets.py:1656
 msgid "Invalid purchase date format."
 msgstr "Format tanggal pembelian tidak valid."
 
-#: blueprints/assets.py:1686
+#: blueprints/assets.py:1696
 msgid "Invalid purchase price."
 msgstr "Harga pembelian tidak valid."
 
-#: blueprints/assets.py:1777
+#: blueprints/assets.py:1787
 msgid "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
 msgstr "Format foto tidak didukung. Gunakan JPG, JPEG, PNG, atau WEBP."
 
-#: blueprints/assets.py:1923
+#: blueprints/assets.py:1933
 msgid "Asset was successfully updated and warranty history was recorded."
 msgstr "Asset berhasil diperbarui dan histori garansi telah dicatat."
 
-#: blueprints/assets.py:1932
+#: blueprints/assets.py:1942
 msgid "Asset was successfully updated."
 msgstr "Asset berhasil diperbarui."
 
-#: blueprints/assets.py:1953
+#: blueprints/assets.py:1963
 msgid "Failed to update asset."
 msgstr "Asset gagal diperbarui."
 
-#: blueprints/assets.py:2034
+#: blueprints/assets.py:2044
 msgid "Select at least one asset to export to Excel."
 msgstr "Pilih minimal satu asset untuk diekspor ke Excel."
 
-#: blueprints/assets.py:2078
+#: blueprints/assets.py:2088
 msgid "Invalid asset ID."
 msgstr "ID asset tidak valid."
 
@@ -501,7 +501,7 @@ msgstr "User berhasil dihapus."
 msgid "Toggle sidebar"
 msgstr "Buka/tutup sidebar"
 
-#: templates/base.html:638 templates/login.html:550
+#: templates/base.html:638 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr "Ganti skema warna"
 
@@ -1088,46 +1088,46 @@ msgstr "Tanpa Lokasi"
 msgid "No Department"
 msgstr "Tanpa Departemen"
 
-#: templates/login.html:523
+#: templates/login.html:534
 msgid "Welcome"
 msgstr "Selamat Datang"
 
-#: templates/login.html:530
+#: templates/login.html:541
 msgid "Manage and track your company assets in one integrated system."
 msgstr ""
 "Kelola dan pantau aset perusahaan Anda dalam satu sistem terintegrasi."
 
-#: templates/login.html:584
+#: templates/login.html:595
 msgid "Sign In"
 msgstr "Masuk ke Akun"
 
-#: templates/login.html:586
+#: templates/login.html:597
 msgid "Enter your credentials to access your account."
 msgstr "Masukkan kredensial Anda untuk mengakses akun."
 
-#: templates/login.html:596 templates/master/user/add.html:42
+#: templates/login.html:607 templates/master/user/add.html:42
 #: templates/master/user/edit.html:42 templates/master/user/list.html:93
 #: templates/profile.html:75
 msgid "Username"
 msgstr "Username"
 
-#: templates/login.html:611 templates/master/user/add.html:74
+#: templates/login.html:622 templates/master/user/add.html:74
 msgid "Password"
 msgstr "Password"
 
-#: templates/login.html:625
+#: templates/login.html:636
 msgid "Show password"
 msgstr "Tampilkan password"
 
-#: templates/login.html:635
+#: templates/login.html:646
 msgid "Remember me"
 msgstr "Ingat saya"
 
-#: templates/login.html:641
+#: templates/login.html:652
 msgid "Login"
 msgstr "Masuk"
 
-#: templates/login.html:647
+#: templates/login.html:658
 msgid "Forgot your password? Contact your administrator."
 msgstr "Lupa password? Hubungi administrator Anda."
 
@@ -3544,8 +3544,8 @@ msgid "Footer Text"
 msgstr "Teks Footer"
 
 #: templates/settings/general.html:59
-msgid "Example: PT Tradecorp Indonesia © 2026"
-msgstr "Contoh: PT Tradecorp Indonesia © 2026"
+msgid "Example: PT Contoh Sejahtera © 2026"
+msgstr "Contoh: PT Contoh Sejahtera © 2026"
 
 #: templates/settings/general.html:60
 msgid "Leave blank to use the default:"
@@ -3931,9 +3931,6 @@ msgstr "Berakhir:"
 msgid "Last checked:"
 msgstr "Pemeriksaan terakhir:"
 
-msgid "Settings"
-msgstr "Pengaturan"
-
 #~ msgid "All Vendors"
 #~ msgstr "Semua Vendor"
 
@@ -3960,3 +3957,6 @@ msgstr "Pengaturan"
 
 #~ msgid "Pemisah"
 #~ msgstr "Pemisah"
+
+#~ msgid "Settings"
+#~ msgstr "Pengaturan"

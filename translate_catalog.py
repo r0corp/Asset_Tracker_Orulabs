@@ -168,7 +168,7 @@ ID_TRANSLATIONS = {
     "Application Name": "Nama Aplikasi",
     "Appears in the sidebar, browser tab, and login page.": "Muncul di sidebar, tab browser, dan halaman login.",
     "Footer Text": "Teks Footer",
-    "Example: PT Tradecorp Indonesia © 2026": "Contoh: PT Tradecorp Indonesia © 2026",
+    "Example: PT Contoh Sejahtera © 2026": "Contoh: PT Contoh Sejahtera © 2026",
     "Leave blank to use the default:": "Kosongkan untuk pakai default:",
     "Login Page Message": "Pesan di Halaman Login",
     "Example: Internal Asset Management System": "Contoh: Sistem Manajemen Asset Internal",

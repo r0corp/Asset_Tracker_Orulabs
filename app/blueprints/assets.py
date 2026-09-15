@@ -34,6 +34,7 @@ from ..models import (
     Vendor,
     AssetMovement,
     WarrantyHistory,
+    Company,
 )
 from ..auth import requires_permission
 
@@ -933,9 +934,18 @@ def print_asset_labels():
                     exc,
                 )
 
+    company = (
+        Company.query
+        .order_by(
+            Company.id.asc()
+        )
+        .first()
+    )
+
     return render_template(
         "asset/labels.html",
         assets=assets,
+        company_name=company.name if company else "",
     )
 
 # ============================================================
@@ -2123,8 +2133,18 @@ def export_asset_labels_excel():
     # PERUSAHAAN
     # ========================================================
 
+    company = (
+        Company.query
+        .order_by(
+            Company.id.asc()
+        )
+        .first()
+    )
+
     company_name = (
-        "PT TRADECORP INDONESIA"
+        company.name
+        if company
+        else ""
     )
 
     # ========================================================
