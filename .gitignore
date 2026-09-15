@@ -21,6 +21,7 @@ app/static/qrcodes/
 # Editor / tooling
 .vscode/
 .idea/
+.claude/settings.local.json
 
 # Leftover local artifacts
 .refactor_backup/

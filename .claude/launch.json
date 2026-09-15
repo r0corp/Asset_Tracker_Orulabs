@@ -7,6 +7,12 @@
       "runtimeArgs": ["run.py"],
       "port": 5000,
       "autoPort": true
+    },
+    {
+      "name": "asset-tracker-prod",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["serve_production.py"],
+      "port": 8000
     }
   ]
 }
