@@ -91,9 +91,13 @@
 
         row-gap: 3mm;
 
-        justify-content: center;
+        justify-content: start;
 
         align-content: start;
+
+        margin-left: 8mm;
+
+        margin-top: 8mm;
 
     }
 
@@ -583,21 +587,25 @@
 
             /*
            POSISI ANTAR LABEL
+
+           Diukur langsung dari lembar Tom & Jerry No. 108
+           fisik: jarak antar label 3mm, margin dari tepi
+           kertas ke label pertama (kiri & atas) 8mm.
         */
 
-            column-gap: 2.5mm !important;
+            column-gap: 3mm !important;
 
-            row-gap: 0mm !important;
+            row-gap: 3mm !important;
 
-            justify-content: center !important;
+            justify-content: start !important;
 
             align-content: start !important;
 
             margin: 0 !important;
 
-            padding-top: 5mm !important;
+            padding-top: 8mm !important;
 
-            padding-left: 0 !important;
+            padding-left: 8mm !important;
 
             padding-right: 0 !important;
 
@@ -886,6 +894,16 @@
                             <strong>{{ _('5 labels') }}</strong>
 
                             {{ _('for laptop, charger, box, bag, and accessories.') }}
+
+                        </span>
+
+                        <br>
+
+                        <span class="text-warning">
+
+                            <i class="bi bi-exclamation-triangle me-1"></i>
+
+                            {{ _('Before printing, make sure Paper size is set to A4 (not A5/Letter) and Scale to Default/100%% (not "Fit to page") in the print dialog, so the labels line up with the physical sheet.') }}
 
                         </span>
 
