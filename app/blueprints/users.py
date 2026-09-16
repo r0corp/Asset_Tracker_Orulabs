@@ -2,7 +2,7 @@
 Manajemen user (CRUD akun) - khusus administrator.
 """
 
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, jsonify
 from flask_babel import gettext as _
 from flask_login import current_user
 
@@ -37,6 +37,32 @@ def users():
         "master/user/list.html",
         users=items,
     )
+
+
+@main.route("/users/online-status")
+@administrator_required
+def users_online_status():
+    """
+    Dipanggil berkala (polling) lewat JavaScript di halaman User
+    Management supaya status online/offline ter-update otomatis
+    tanpa reload halaman.
+    """
+
+    items = User.query.all()
+
+    return jsonify({
+        "users": {
+            str(user.id): {
+                "online": user.is_online,
+                "last_seen": (
+                    user.last_seen.isoformat() + "Z"
+                    if user.last_seen
+                    else None
+                ),
+            }
+            for user in items
+        }
+    })
 
 
 @main.route(

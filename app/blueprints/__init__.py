@@ -9,6 +9,8 @@ sehingga seluruh url_for("main.xxx") di template TIDAK perlu diubah
 sama sekali.
 """
 
+from datetime import datetime
+
 from flask import (
     Blueprint,
     redirect,
@@ -16,6 +18,8 @@ from flask import (
     url_for,
 )
 from flask_login import current_user
+
+from .. import db
 
 
 main = Blueprint("main", __name__)
@@ -104,6 +108,37 @@ def require_login():
                 next=request.path,
             )
         )
+
+    return None
+
+
+# ============================================================
+# JEJAK AKTIVITAS USER (status online)
+# ============================================================
+# Diperbarui paling sering tiap 60 detik per user (bukan di setiap
+# request) supaya tidak membebani database dengan UPDATE terus-
+# menerus. "Online" dihitung dari selisih last_seen ini - lihat
+# User.is_online di models.py.
+
+LAST_SEEN_UPDATE_INTERVAL_SECONDS = 60
+
+
+@main.before_request
+def touch_last_seen():
+
+    if not current_user.is_authenticated:
+        return None
+
+    now = datetime.utcnow()
+
+    if (
+        not current_user.last_seen
+        or (now - current_user.last_seen).total_seconds()
+        > LAST_SEEN_UPDATE_INTERVAL_SECONDS
+    ):
+
+        current_user.last_seen = now
+        db.session.commit()
 
     return None
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 15:27+0700\n"
+"POT-Creation-Date: 2026-09-16 16:09+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -507,7 +507,7 @@ msgstr ""
 msgid "New password confirmation does not match."
 msgstr ""
 
-#: blueprints/profile.py:68 blueprints/users.py:85 blueprints/users.py:219
+#: blueprints/profile.py:68 blueprints/users.py:111 blueprints/users.py:245
 #, python-format
 msgid "Password must be at least %(min_length)s characters."
 msgstr ""
@@ -578,67 +578,72 @@ msgid ""
 "%(permission_count)s object row(s) updated."
 msgstr ""
 
-#: blueprints/users.py:74
+#: blueprints/users.py:100
 msgid "Username, full name, and password are required."
 msgstr ""
 
-#: blueprints/users.py:97 blueprints/users.py:193
+#: blueprints/users.py:123 blueprints/users.py:219
 msgid "Invalid role."
 msgstr ""
 
-#: blueprints/users.py:108 blueprints/users.py:208
+#: blueprints/users.py:134 blueprints/users.py:234
 msgid "Username is already in use."
 msgstr ""
 
-#: blueprints/users.py:134
+#: blueprints/users.py:160
 msgid "User added successfully."
 msgstr ""
 
-#: blueprints/users.py:182
+#: blueprints/users.py:208
 msgid "Username and full name are required."
 msgstr ""
 
-#: blueprints/users.py:247
+#: blueprints/users.py:273
 msgid "User updated successfully."
 msgstr ""
 
-#: blueprints/users.py:274
+#: blueprints/users.py:300
 msgid "You cannot delete your own account."
 msgstr ""
 
-#: blueprints/users.py:294
+#: blueprints/users.py:320
 msgid "User deleted successfully."
 msgstr ""
 
-#: templates/base.html:634
+#: templates/base.html:691
 msgid "Toggle sidebar"
 msgstr ""
 
-#: templates/base.html:647 templates/login.html:561
+#: templates/base.html:704 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr ""
 
-#: templates/base.html:658
+#: templates/base.html:715
 msgid "Light"
 msgstr ""
 
-#: templates/base.html:666
+#: templates/base.html:723
 msgid "Dark"
 msgstr ""
 
-#: templates/base.html:674
+#: templates/base.html:731
 msgid "Auto"
 msgstr ""
 
-#: templates/base.html:751
-msgid "Profile"
-msgstr ""
-
-#: templates/base.html:756
-msgid "Logout"
+#: templates/base.html:788 templates/master/user/list.html:97
+#: templates/master/user/list.html:139 templates/master/user/list.html:213
+msgid "Online"
 msgstr ""
 
 #: templates/base.html:815
+msgid "Profile"
+msgstr ""
+
+#: templates/base.html:820
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:879
 msgid "Main menu"
 msgstr ""
 
@@ -843,7 +848,7 @@ msgstr ""
 #: templates/asset/list.html:502 templates/asset/list.html:912
 #: templates/asset/movements.html:117 templates/dashboard.html:1090
 #: templates/index.html:2130 templates/master/menu/list.html:128
-#: templates/master/menu/list.html:186 templates/master/user/list.html:128
+#: templates/master/menu/list.html:186 templates/master/user/list.html:129
 #: templates/profile.html:39 templates/warranty/alert.html:277
 #: templates/warranty/alert.html:639 templates/warranty/index.html:323
 #: templates/warranty/index.html:556
@@ -928,7 +933,7 @@ msgstr ""
 #: templates/asset/list.html:941 templates/asset/movements.html:125
 #: templates/index.html:811 templates/index.html:2151
 #: templates/master/menu/list.html:130 templates/master/menu/list.html:188
-#: templates/master/user/list.html:130 templates/profile.html:41
+#: templates/master/user/list.html:131 templates/profile.html:41
 msgid "Inactive"
 msgstr ""
 
@@ -1074,7 +1079,7 @@ msgstr ""
 #: templates/master/category/list.html:114
 #: templates/master/department/list.html:91
 #: templates/master/location/list.html:96 templates/master/menu/list.html:98
-#: templates/master/user/list.html:97 templates/master/vendor/list.html:97
+#: templates/master/user/list.html:98 templates/master/vendor/list.html:97
 #: templates/roles/list.html:73 templates/warranty/alert.html:457
 #: templates/warranty/index.html:451
 msgid "Actions"
@@ -1924,7 +1929,7 @@ msgstr ""
 #: templates/asset/list.html:1016 templates/master/category/list.html:147
 #: templates/master/department/list.html:122
 #: templates/master/location/list.html:128 templates/master/menu/list.html:140
-#: templates/master/menu/list.html:198 templates/master/user/list.html:140
+#: templates/master/menu/list.html:198 templates/master/user/list.html:150
 #: templates/master/vendor/list.html:136
 msgid "Edit"
 msgstr ""
@@ -2244,7 +2249,7 @@ msgstr ""
 #: templates/master/category/list.html:163
 #: templates/master/department/list.html:138
 #: templates/master/location/list.html:144 templates/master/menu/list.html:156
-#: templates/master/menu/list.html:214 templates/master/user/list.html:158
+#: templates/master/menu/list.html:214 templates/master/user/list.html:168
 #: templates/master/vendor/list.html:152
 msgid "Delete"
 msgstr ""
@@ -3314,11 +3319,15 @@ msgstr ""
 msgid "users found"
 msgstr ""
 
-#: templates/master/user/list.html:149
+#: templates/master/user/list.html:139 templates/master/user/list.html:214
+msgid "Offline"
+msgstr ""
+
+#: templates/master/user/list.html:159
 msgid "Delete this user?"
 msgstr ""
 
-#: templates/master/user/list.html:177
+#: templates/master/user/list.html:187
 msgid "No users yet."
 msgstr ""
 

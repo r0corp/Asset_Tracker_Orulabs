@@ -62,6 +62,23 @@ class User(db.Model, UserMixin):
         server_default=db.func.now(),
     )
 
+    last_seen = db.Column(
+        db.DateTime,
+        nullable=True,
+    )
+
+    ONLINE_THRESHOLD_SECONDS = 120
+
+    @property
+    def is_online(self):
+
+        if not self.last_seen:
+            return False
+
+        return (
+            datetime.utcnow() - self.last_seen
+        ).total_seconds() < self.ONLINE_THRESHOLD_SECONDS
+
     def set_password(self, password):
 
         self.password_hash = generate_password_hash(

@@ -107,3 +107,61 @@ html:not([data-bs-theme="dark"]) .sidebar-menu .nav-link.active .nav-icon,
 html:not([data-bs-theme="dark"]) .sidebar-menu .nav-link.active p {
     color: #fff !important;
 }
+
+
+/* ============================================================
+   INDIKATOR STATUS ONLINE (Manajemen User)
+   ============================================================
+   Warna dot pakai token semantik Bootstrap (--bs-success/--bs-
+   secondary) supaya otomatis theme-aware, tidak perlu override
+   terpisah untuk dark mode.
+   ============================================================ */
+
+.online-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.online-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.online-status-indicator.is-online {
+    color: var(--bs-success-text-emphasis, var(--bs-success));
+}
+
+.online-status-indicator.is-online .online-status-dot {
+    background-color: var(--bs-success);
+    box-shadow: 0 0 0 rgba(var(--bs-success-rgb), 0.5);
+    animation: online-status-pulse 2s infinite;
+}
+
+.online-status-indicator.is-offline {
+    color: var(--bs-secondary-color);
+}
+
+.online-status-indicator.is-offline .online-status-dot {
+    background-color: var(--bs-secondary-color);
+}
+
+@keyframes online-status-pulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-success-rgb), 0.45);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(var(--bs-success-rgb), 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-success-rgb), 0);
+    }
+
+}
