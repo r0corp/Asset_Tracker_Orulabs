@@ -152,13 +152,19 @@
    2. HEADER SIDEBAR / NAVBAR
    ============================================================ */
 
-[data-bs-theme="dark"] .sidebar-menu .nav-link.active {
+/* Discoped ke "html[data-bs-theme]" (bukan sekadar "[data-bs-theme]")
+   supaya aturan ini hanya berlaku saat HALAMAN memang dark mode -
+   sidebar sendiri selalu ber-atribut dark (lihat base.html), jadi
+   selector tanpa scope "html" akan selalu match walau halamannya
+   sedang light mode. Padanan warna biru untuk light mode ada di
+   style.css. */
+html[data-bs-theme="dark"] .sidebar-menu .nav-link.active {
     background-color: #ef4444 !important;
     color: #fff !important;
 }
 
-[data-bs-theme="dark"] .sidebar-menu .nav-link.active .nav-icon,
-[data-bs-theme="dark"] .sidebar-menu .nav-link.active p {
+html[data-bs-theme="dark"] .sidebar-menu .nav-link.active .nav-icon,
+html[data-bs-theme="dark"] .sidebar-menu .nav-link.active p {
     color: #fff !important;
 }
 

@@ -1,14 +1,3 @@
-body {
-    background-color: #f5f6f8;
-}
-
-
-.dashboard-card {
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-
 .dashboard-number {
     font-size: 28px;
     font-weight: 700;
@@ -16,8 +5,14 @@ body {
 }
 
 
+/* Kartu polos (tanpa class kustom per halaman) diberi bayangan
+   halus supaya tetap punya batas yang jelas dari latar belakang
+   setelah border dihilangkan - senada dengan kartu2 lain yang
+   sudah didesain khusus (mis. .asset-form-card, .dashboard-card). */
 .card {
     border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
 }
 
 
@@ -68,4 +63,47 @@ body {
    kesatuan - tidak ikut naik sendiri-sendiri saat hover. */
 .btn-group > .btn:hover {
     transform: none;
+}
+
+
+/* ============================================================
+   NAVBAR, SIDEBAR & FOOTER - KESELARASAN VISUAL
+   ============================================================ */
+
+/* Garis pemisah tipis antara navbar/footer dan konten, senada
+   dengan garis card - theme-aware lewat variabel Bootstrap,
+   tidak perlu override terpisah untuk dark mode. */
+.app-header.navbar {
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.app-footer {
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: var(--bs-secondary-color);
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.app-footer strong {
+    font-weight: 500;
+}
+
+/* Item menu aktif di sidebar - sidebar SENGAJA selalu gelap
+   (lihat base.html, <aside data-bs-theme="dark">), jadi warna
+   aksennya harus di-set eksplisit di sini supaya ikut tema
+   HALAMAN (biru di light mode), bukan warna sidebar yang statis
+   gelap. Padanan warna merah untuk dark mode ada di
+   theme-dark.css - dua-duanya sengaja dipasangkan karena akar
+   masalahnya sama (sidebar yang selalu ber-atribut dark). */
+html:not([data-bs-theme="dark"]) .sidebar-menu .nav-link.active {
+    background-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+html:not([data-bs-theme="dark"]) .sidebar-menu .nav-link.active .nav-icon,
+html:not([data-bs-theme="dark"]) .sidebar-menu .nav-link.active p {
+    color: #fff !important;
 }
