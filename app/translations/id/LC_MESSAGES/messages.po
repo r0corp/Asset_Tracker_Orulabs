@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-15 12:58+0700\n"
+"POT-Creation-Date: 2026-09-15 16:41+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: id <LL@li.org>\n"
@@ -1554,8 +1554,8 @@ msgstr "Pihak yang Menerima"
 msgid "Detail"
 msgstr "Detail"
 
-#: templates/asset/history.html:723 templates/asset/labels.html:1094
-#: templates/asset/labels.html:1106 templates/asset/labels_print.html:85
+#: templates/asset/history.html:723 templates/asset/labels.html:1112
+#: templates/asset/labels.html:1124 templates/asset/labels_print.html:85
 #: templates/asset/movements_global.html:687
 msgid "QR"
 msgstr "QR"
@@ -1661,49 +1661,60 @@ msgstr "Impor Lagi"
 msgid "View Assets"
 msgstr "Lihat Asset"
 
-#: templates/asset/labels.html:4 templates/asset/labels.html:865
+#: templates/asset/labels.html:4 templates/asset/labels.html:873
 msgid "Print QR / Label Asset"
 msgstr "Cetak QR / Label Asset"
 
-#: templates/asset/labels.html:870 templates/company/edit.html:244
+#: templates/asset/labels.html:878 templates/company/edit.html:244
 msgid "Format:"
 msgstr "Format:"
 
-#: templates/asset/labels.html:878
+#: templates/asset/labels.html:886
 msgid "— 5 columns × 8 rows — 40 labels / sheet."
 msgstr "— 5 kolom × 8 baris — 40 label / lembar."
 
-#: templates/asset/labels.html:884
+#: templates/asset/labels.html:892
 msgid "Each asset is printed as"
 msgstr "Setiap asset dicetak"
 
-#: templates/asset/labels.html:886
+#: templates/asset/labels.html:894
 msgid "5 labels"
 msgstr "5 label"
 
-#: templates/asset/labels.html:888
+#: templates/asset/labels.html:896
 msgid "for laptop, charger, box, bag, and accessories."
 msgstr "untuk laptop, charger, kardus, tas, dan aksesori."
 
-#: templates/asset/labels.html:920 templates/asset/labels.html:1168
+#: templates/asset/labels.html:906
+#, python-format
+msgid ""
+"Before printing, make sure Paper size is set to A4 (not A5/Letter) and Scale"
+" to Default/100%% (not \"Fit to page\") in the print dialog, so the labels "
+"line up with the physical sheet."
+msgstr ""
+"Sebelum mencetak, pastikan Paper size diset ke A4 (bukan A5/Letter) dan "
+"Scale ke Default/100%% (bukan \"Fit to page\") di jendela print, supaya "
+"posisi label pas dengan lembar fisiknya."
+
+#: templates/asset/labels.html:938 templates/asset/labels.html:1186
 msgid "Select Asset"
 msgstr "Pilih Asset"
 
-#: templates/asset/labels.html:952 templates/asset/movement_report.html:539
+#: templates/asset/labels.html:970 templates/asset/movement_report.html:539
 #: templates/warranty/history.html:160 templates/warranty/index.html:330
 msgid "Export Excel"
 msgstr "Ekspor Excel"
 
-#: templates/asset/labels.html:971 templates/asset/labels_print.html:54
+#: templates/asset/labels.html:989 templates/asset/labels_print.html:54
 #: templates/asset/movement_report.html:527 templates/warranty/index.html:335
 msgid "Print"
 msgstr "Cetak"
 
-#: templates/asset/labels.html:1147
+#: templates/asset/labels.html:1165
 msgid "No assets to print."
 msgstr "Tidak ada asset untuk dicetak."
 
-#: templates/asset/labels.html:1154
+#: templates/asset/labels.html:1172
 msgid "Please select an asset first."
 msgstr "Silakan pilih asset terlebih dahulu."
 

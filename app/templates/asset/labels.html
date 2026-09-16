@@ -108,9 +108,13 @@
 
         row-gap: var(--tj108-row-gap);
 
-        justify-content: center;
+        justify-content: start;
 
         align-content: start;
+
+        margin-left: 8mm;
+
+        margin-top: 8mm;
 
     }
 
@@ -598,14 +602,17 @@
 
             /*
            POSISI ANTAR LABEL
-           (diatur lewat panel kalibrasi di layar)
+           (diatur lewat panel kalibrasi di layar; nilai default
+           sudah diukur langsung dari lembar Tom & Jerry No. 108
+           fisik: jarak antar label 3mm, margin dari tepi kertas
+           ke label pertama (kiri & atas) 8mm)
         */
 
             column-gap: var(--tj108-col-gap) !important;
 
             row-gap: var(--tj108-row-gap) !important;
 
-            justify-content: center !important;
+            justify-content: start !important;
 
             align-content: start !important;
 
@@ -902,6 +909,16 @@
                             <strong>{{ _('5 labels') }}</strong>
 
                             {{ _('for laptop, charger, box, bag, and accessories.') }}
+
+                        </span>
+
+                        <br>
+
+                        <span class="text-warning">
+
+                            <i class="bi bi-exclamation-triangle me-1"></i>
+
+                            {{ _('Before printing, make sure Paper size is set to A4 (not A5/Letter) and Scale to Default/100%% (not "Fit to page") in the print dialog, so the labels line up with the physical sheet.') }}
 
                         </span>
 
@@ -1290,12 +1307,12 @@
         var STORAGE_KEY = "tj108_calibration_v4";
 
         var DEFAULTS = {
-            "--tj108-offset-top": 1,
-            "--tj108-offset-left": 0,
+            "--tj108-offset-top": 8,
+            "--tj108-offset-left": 8,
             "--tj108-w": 38,
             "--tj108-h": 18,
-            "--tj108-col-gap": 3.1,
-            "--tj108-row-gap": 2,
+            "--tj108-col-gap": 3,
+            "--tj108-row-gap": 3,
         };
 
         var root = document.documentElement;
