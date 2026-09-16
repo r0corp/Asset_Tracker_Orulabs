@@ -47,38 +47,17 @@ def index():
         })
 
     # ========================================================
-    # STATUS SUMMARY
+    # STATUS SUMMARY (dari status_rows di atas - tidak perlu
+    # query .count() terpisah lagi per status)
     # ========================================================
 
-    active_assets = (
-        Asset.query
-        .filter_by(status="Active")
-        .count()
-    )
+    status_counts = dict(status_rows)
 
-    maintenance_assets = (
-        Asset.query
-        .filter_by(status="Maintenance")
-        .count()
-    )
-
-    inactive_assets = (
-        Asset.query
-        .filter_by(status="Inactive")
-        .count()
-    )
-
-    lost_assets = (
-        Asset.query
-        .filter_by(status="Lost")
-        .count()
-    )
-
-    retired_assets = (
-        Asset.query
-        .filter_by(status="Retired")
-        .count()
-    )
+    active_assets = status_counts.get("Active", 0)
+    maintenance_assets = status_counts.get("Maintenance", 0)
+    inactive_assets = status_counts.get("Inactive", 0)
+    lost_assets = status_counts.get("Lost", 0)
+    retired_assets = status_counts.get("Retired", 0)
 
     # ========================================================
     # TOTAL NILAI ASSET
@@ -666,6 +645,47 @@ def dashboard():
 
     current_month = today.month
 
+    # --------------------------------------------------------
+    # BATAS RENTANG 12 BULAN (bulan ini + 11 bulan sebelumnya) -
+    # dipakai untuk SATU query GROUP BY per bulan di bawah, bukan
+    # 12 query .count() terpisah di dalam loop seperti sebelumnya.
+    # --------------------------------------------------------
+
+    earliest_month_index = (
+        current_year * 12
+        + current_month
+        - 1
+        - 11
+    )
+
+    earliest_year = earliest_month_index // 12
+    earliest_month = earliest_month_index % 12 + 1
+
+    range_start = date(earliest_year, earliest_month, 1)
+
+    if current_month == 12:
+        range_end = date(current_year + 1, 1, 1)
+    else:
+        range_end = date(current_year, current_month + 1, 1)
+
+    month_key = db.func.strftime(
+        "%Y-%m",
+        AssetMovement.movement_date,
+    )
+
+    monthly_counts = dict(
+        db.session.query(
+            month_key,
+            db.func.count(AssetMovement.id),
+        )
+        .filter(
+            AssetMovement.movement_date >= range_start,
+            AssetMovement.movement_date < range_end,
+        )
+        .group_by(month_key)
+        .all()
+    )
+
     monthly_movement_summary = []
 
     for offset in range(
@@ -699,62 +719,6 @@ def dashboard():
         )
 
         # ----------------------------------------------------
-        # BULAN BERIKUTNYA
-        # ----------------------------------------------------
-
-        if month == 12:
-
-            next_year = (
-                year + 1
-            )
-
-            next_month = 1
-
-        else:
-
-            next_year = year
-
-            next_month = (
-                month + 1
-            )
-
-        # ----------------------------------------------------
-        # TANGGAL AWAL
-        # ----------------------------------------------------
-
-        start_date = date(
-            year,
-            month,
-            1
-        )
-
-        # ----------------------------------------------------
-        # TANGGAL AKHIR
-        # ----------------------------------------------------
-
-        end_date = date(
-            next_year,
-            next_month,
-            1
-        )
-
-        # ----------------------------------------------------
-        # JUMLAH MOVEMENT
-        # ----------------------------------------------------
-
-        movement_count = (
-            AssetMovement.query
-            .filter(
-                AssetMovement.movement_date
-                >= start_date,
-
-                AssetMovement.movement_date
-                < end_date
-            )
-            .count()
-        )
-
-        # ----------------------------------------------------
         # SIMPAN SUMMARY
         # ----------------------------------------------------
 
@@ -762,7 +726,10 @@ def dashboard():
             "month": (
                 f"{month:02d}-{year}"
             ),
-            "count": movement_count
+            "count": monthly_counts.get(
+                f"{year:04d}-{month:02d}",
+                0,
+            )
         })
 
     # ========================================================
@@ -836,25 +803,23 @@ def dashboard():
         .all()
     )
 
-    movement_asset_summary = []
-
-    for row in movement_by_asset:
-
-        movement_asset = (
-            Asset.query
-            .filter(
-                Asset.id
-                == row.asset_id
+    top_moved_assets_by_id = {
+        asset.id: asset
+        for asset in Asset.query.filter(
+            Asset.id.in_(
+                [row.asset_id for row in movement_by_asset]
             )
-            .first()
-        )
+        ).all()
+    }
 
-        if movement_asset:
-
-            movement_asset_summary.append({
-                "asset": movement_asset,
-                "count": row.movement_count
-            })
+    movement_asset_summary = [
+        {
+            "asset": top_moved_assets_by_id[row.asset_id],
+            "count": row.movement_count,
+        }
+        for row in movement_by_asset
+        if row.asset_id in top_moved_assets_by_id
+    ]
 
     # ========================================================
     # RENDER DASHBOARD

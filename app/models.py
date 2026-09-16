@@ -293,7 +293,8 @@ class Asset(db.Model):
     )
 
     category = db.Column(
-        db.String(50)
+        db.String(50),
+        index=True,
     )
 
     brand = db.Column(
@@ -309,11 +310,13 @@ class Asset(db.Model):
     )
 
     location = db.Column(
-        db.String(100)
+        db.String(100),
+        index=True,
     )
 
     department = db.Column(
-        db.String(100)
+        db.String(100),
+        index=True,
     )
 
     pic = db.Column(
@@ -329,7 +332,8 @@ class Asset(db.Model):
     )
 
     status = db.Column(
-        db.String(30)
+        db.String(30),
+        index=True,
     )
 
     description = db.Column(
@@ -342,7 +346,8 @@ class Asset(db.Model):
     )
 
     vendor = db.Column(
-        db.String(100)
+        db.String(100),
+        index=True,
     )
 
     warranty = db.Column(
@@ -488,12 +493,14 @@ class AssetMovement(db.Model):
     asset_id = db.Column(
         db.Integer,
         db.ForeignKey("assets.id"),
-        nullable=False
+        nullable=False,
+        index=True,
     )
 
     movement_date = db.Column(
         db.Date,
-        nullable=False
+        nullable=False,
+        index=True,
     )
 
     from_location = db.Column(

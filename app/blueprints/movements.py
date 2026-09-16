@@ -21,6 +21,7 @@ from flask_babel import gettext as _
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
+from sqlalchemy.orm import contains_eager
 
 from .. import db
 from ..models import (
@@ -452,6 +453,9 @@ def global_asset_movements():
             AssetMovement.asset_id
             == Asset.id
         )
+        .options(
+            contains_eager(AssetMovement.asset)
+        )
     )
 
     # ========================================================
@@ -630,8 +634,14 @@ def global_asset_movements():
 
     latest_movement_by_asset = {}
 
-    all_asset_movements = (
-        AssetMovement.query
+    # Cuma ambil kolom (asset_id, id) - bukan seluruh baris (yang
+    # ikut menyeret from_signature/to_signature TEXT besar) - kita
+    # cuma butuh id movement terbaru per asset di sini.
+    all_asset_movement_ids = (
+        db.session.query(
+            AssetMovement.asset_id,
+            AssetMovement.id,
+        )
         .order_by(
             AssetMovement.asset_id.asc(),
             AssetMovement.movement_date.desc(),
@@ -640,13 +650,11 @@ def global_asset_movements():
         .all()
     )
 
-    for item in all_asset_movements:
+    for asset_id, movement_id in all_asset_movement_ids:
 
-        if item.asset_id not in latest_movement_by_asset:
+        if asset_id not in latest_movement_by_asset:
 
-            latest_movement_by_asset[
-                item.asset_id
-            ] = item.id
+            latest_movement_by_asset[asset_id] = movement_id
 
     # ========================================================
     # BENTUK DATA UNTUK TEMPLATE

@@ -8,6 +8,8 @@ from flask_wtf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_babel import Babel, gettext as _, lazy_gettext as _l
+from flask_compress import Compress
+from sqlalchemy.orm import joinedload
 
 
 db = SQLAlchemy()
@@ -24,6 +26,8 @@ limiter = Limiter(
 )
 
 babel = Babel()
+
+compress = Compress()
 
 
 def get_locale():
@@ -74,6 +78,8 @@ def create_app():
 
     babel.init_app(app, locale_selector=get_locale)
 
+    compress.init_app(app)
+
     from .blueprints import main
 
     app.register_blueprint(main)
@@ -113,6 +119,9 @@ def create_app():
             .filter_by(
                 parent_id=None,
                 is_active=True,
+            )
+            .options(
+                joinedload(models.MenuItem.children)
             )
             .order_by(
                 models.MenuItem.order,
