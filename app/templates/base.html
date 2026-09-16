@@ -497,6 +497,17 @@
         .navbar-nav > .nav-item > .nav-link {
             display: flex;
             align-items: center;
+
+            border-radius: 10px;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+            transition: background-color 0.15s ease;
+        }
+
+        .navbar-nav > .nav-item > .nav-link:hover,
+        .navbar-nav > .nav-item > .nav-link:focus,
+        .navbar-nav > .nav-item.show > .nav-link {
+            background-color: var(--bs-tertiary-bg);
         }
 
         .navbar-nav > .nav-item > .nav-link > i.bi {
@@ -512,12 +523,38 @@
             background-position: center;
         }
 
+        /* Semua dropdown di navbar (tema, bahasa, profil) pakai gaya
+           melayang & animasi masuk yang sama, supaya terasa satu
+           sistem yang elegan - bukan cuma dropdown profil saja yang
+           beda sendiri dari dua dropdown di sebelahnya. */
+        .navbar-nav .dropdown-menu {
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+            transform-origin: top right;
+            animation: navbar-dropdown-pop 0.16s ease;
+        }
+
+        @keyframes navbar-dropdown-pop {
+
+            from {
+                opacity: 0;
+                transform: translateY(-6px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
         /* ========================================================
            USER MENU DROPDOWN (profil header)
         ======================================================== */
 
         .user-menu-dropdown {
-            width: 270px;
+            width: 290px;
         }
 
         .user-menu-header {
@@ -554,10 +591,30 @@
             z-index: 1;
         }
 
+        .user-menu-avatar-wrap {
+            position: relative;
+            width: 58px;
+            margin: 0 auto 0.7rem;
+        }
+
+        .user-menu-online-dot {
+            position: absolute;
+            right: 2px;
+            bottom: 2px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--bs-success);
+            border: 2px solid #0a3fa3;
+        }
+
+        [data-bs-theme="dark"] .user-menu-online-dot {
+            border-color: #b91c1c;
+        }
+
         .user-menu-avatar {
             width: 58px;
             height: 58px;
-            margin: 0 auto 0.7rem;
 
             display: flex;
             align-items: center;
@@ -724,8 +781,11 @@
                             <li class="user-menu-header text-center">
                                 <div class="user-menu-header-inner">
 
-                                    <div class="user-menu-avatar">
-                                        {{ user_initials | upper }}
+                                    <div class="user-menu-avatar-wrap">
+                                        <div class="user-menu-avatar">
+                                            {{ user_initials | upper }}
+                                        </div>
+                                        <span class="user-menu-online-dot" title="{{ _('Online') }}"></span>
                                     </div>
 
                                     <div class="user-menu-name">
@@ -743,6 +803,10 @@
 
                                 </div>
                             </li>
+
+                            <!-- Slot untuk daftar "user sedang online" (khusus
+                                 administrator) - menyusul, lihat permintaan
+                                 fitur terkait Manajemen User. -->
 
                             <li class="user-menu-footer d-flex gap-2 p-2">
 
