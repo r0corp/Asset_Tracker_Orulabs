@@ -2,7 +2,7 @@
 Route login dan logout.
 """
 
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 from flask_babel import gettext as _
 
 from flask_login import (
@@ -12,7 +12,7 @@ from flask_login import (
     current_user,
 )
 
-from .. import limiter
+from .. import db, limiter
 from ..models import User
 
 from . import main
@@ -59,6 +59,9 @@ def login():
 
             login_user(user, remember=remember)
 
+            session.permanent = True
+            session["security_stamp"] = user.security_stamp
+
             next_url = request.form.get("next")
 
             return redirect(
@@ -81,7 +84,12 @@ def login():
 @login_required
 def logout():
 
+    current_user.rotate_security_stamp()
+    db.session.commit()
+
     logout_user()
+
+    session.pop("security_stamp", None)
 
     flash(
         _("You have been logged out."),

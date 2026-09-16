@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 17:42+0700\n"
+"POT-Creation-Date: 2026-09-16 18:32+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: id\n"
@@ -158,6 +158,14 @@ msgstr "Pengaturan Aplikasi"
 #: menu_labels.py:34
 msgid "Pemisah"
 msgstr "Pemisah"
+
+#: blueprints/__init__.py:150
+msgid "Your session is no longer valid. Please log in again."
+msgstr "Sesi Anda sudah tidak valid. Silakan login kembali."
+
+#: blueprints/__init__.py:171
+msgid "You have been logged out due to inactivity."
+msgstr "Anda telah otomatis logout karena tidak ada aktivitas."
 
 #: blueprints/app_settings.py:79
 msgid "Logo format must be PNG, JPG, JPEG, WEBP, or SVG."
@@ -326,11 +334,11 @@ msgstr "Data perusahaan berhasil diperbarui."
 msgid "Photo format must be JPG, JPEG, PNG, or WEBP."
 msgstr "Format foto harus JPG, JPEG, PNG, atau WEBP."
 
-#: blueprints/login.py:70
+#: blueprints/login.py:73
 msgid "Incorrect username or password."
 msgstr "Username atau password salah."
 
-#: blueprints/login.py:87
+#: blueprints/login.py:95
 msgid "You have been logged out."
 msgstr "Anda telah logout."
 
@@ -1599,8 +1607,8 @@ msgstr "Pihak yang Menerima"
 msgid "Detail"
 msgstr "Detail"
 
-#: templates/asset/history.html:723 templates/asset/labels.html:1208
-#: templates/asset/labels.html:1220 templates/asset/labels_print.html:85
+#: templates/asset/history.html:723 templates/asset/labels.html:1227
+#: templates/asset/labels.html:1239 templates/asset/labels_print.html:85
 #: templates/asset/movements_global.html:687
 msgid "QR"
 msgstr "QR"
@@ -1705,31 +1713,45 @@ msgstr "Impor Lagi"
 msgid "View Assets"
 msgstr "Lihat Asset"
 
-#: templates/asset/labels.html:4 templates/asset/labels.html:888
+#: templates/asset/labels.html:4 templates/asset/labels.html:892
 msgid "Print QR / Label Asset"
 msgstr "Cetak QR / Label Asset"
 
-#: templates/asset/labels.html:893 templates/company/edit.html:244
+#: templates/asset/labels.html:920 templates/asset/labels.html:1301
+msgid "Select Asset"
+msgstr "Pilih Asset"
+
+#: templates/asset/labels.html:952 templates/asset/movement_report.html:503
+#: templates/warranty/history.html:160 templates/warranty/index.html:277
+msgid "Export Excel"
+msgstr "Ekspor Excel"
+
+#: templates/asset/labels.html:971 templates/asset/labels_print.html:54
+#: templates/asset/movement_report.html:491 templates/warranty/index.html:282
+msgid "Print"
+msgstr "Cetak"
+
+#: templates/asset/labels.html:984 templates/company/edit.html:244
 msgid "Format:"
 msgstr "Format:"
 
-#: templates/asset/labels.html:901
+#: templates/asset/labels.html:992
 msgid "— 5 columns × 8 rows — 40 labels / sheet."
 msgstr "— 5 kolom × 8 baris — 40 label / lembar."
 
-#: templates/asset/labels.html:907
+#: templates/asset/labels.html:998
 msgid "Each asset is printed as"
 msgstr "Setiap asset dicetak"
 
-#: templates/asset/labels.html:909
+#: templates/asset/labels.html:1000
 msgid "5 labels"
 msgstr "5 label"
 
-#: templates/asset/labels.html:911
+#: templates/asset/labels.html:1002
 msgid "for laptop, charger, box, bag, and accessories."
 msgstr "untuk laptop, charger, kardus, tas, dan aksesori."
 
-#: templates/asset/labels.html:921
+#: templates/asset/labels.html:1012
 #, python-format
 msgid ""
 "Before printing, make sure Paper size is set to A4 (not A5/Letter) and "
@@ -1740,25 +1762,11 @@ msgstr ""
 "Scale ke Default/100%% (bukan \"Fit to page\") di jendela print, supaya "
 "posisi label pas dengan lembar fisiknya."
 
-#: templates/asset/labels.html:953 templates/asset/labels.html:1282
-msgid "Select Asset"
-msgstr "Pilih Asset"
-
-#: templates/asset/labels.html:985 templates/asset/movement_report.html:503
-#: templates/warranty/history.html:160 templates/warranty/index.html:277
-msgid "Export Excel"
-msgstr "Ekspor Excel"
-
-#: templates/asset/labels.html:1004 templates/asset/labels_print.html:54
-#: templates/asset/movement_report.html:491 templates/warranty/index.html:282
-msgid "Print"
-msgstr "Cetak"
-
-#: templates/asset/labels.html:1029
+#: templates/asset/labels.html:1042
 msgid "Print Position Calibration"
 msgstr "Kalibrasi Posisi Cetak"
 
-#: templates/asset/labels.html:1033
+#: templates/asset/labels.html:1050
 msgid ""
 "If the printed labels are shifted from the physical Tom & Jerry No. 108 "
 "sheet, nudge the values below, print a test page, and repeat until "
@@ -1768,39 +1776,39 @@ msgstr ""
 "sesuaikan nilai di bawah ini, cetak halaman uji coba, dan ulangi sampai "
 "posisinya pas. Nilai ini tersimpan di browser ini."
 
-#: templates/asset/labels.html:1039
+#: templates/asset/labels.html:1056
 msgid "Top offset"
 msgstr "Jarak Atas"
 
-#: templates/asset/labels.html:1047
+#: templates/asset/labels.html:1064
 msgid "Left offset"
 msgstr "Jarak Kiri"
 
-#: templates/asset/labels.html:1055
+#: templates/asset/labels.html:1072
 msgid "Label width"
 msgstr "Lebar Label"
 
-#: templates/asset/labels.html:1063
+#: templates/asset/labels.html:1080
 msgid "Label height"
 msgstr "Tinggi Label"
 
-#: templates/asset/labels.html:1071
+#: templates/asset/labels.html:1088
 msgid "Column gap"
 msgstr "Jarak Kolom"
 
-#: templates/asset/labels.html:1079
+#: templates/asset/labels.html:1096
 msgid "Row gap"
 msgstr "Jarak Baris"
 
-#: templates/asset/labels.html:1087
+#: templates/asset/labels.html:1104
 msgid "Reset to default"
 msgstr "Kembalikan ke Default"
 
-#: templates/asset/labels.html:1261
+#: templates/asset/labels.html:1280
 msgid "No assets to print."
 msgstr "Tidak ada asset untuk dicetak."
 
-#: templates/asset/labels.html:1268
+#: templates/asset/labels.html:1287
 msgid "Please select an asset first."
 msgstr "Silakan pilih asset terlebih dahulu."
 

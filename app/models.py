@@ -1,3 +1,4 @@
+import secrets
 from datetime import datetime
 
 from flask_login import UserMixin
@@ -67,6 +68,12 @@ class User(db.Model, UserMixin):
         nullable=True,
     )
 
+    security_stamp = db.Column(
+        db.String(64),
+        nullable=False,
+        default=lambda: secrets.token_hex(32),
+    )
+
     ONLINE_THRESHOLD_SECONDS = 120
 
     @property
@@ -78,6 +85,18 @@ class User(db.Model, UserMixin):
         return (
             datetime.utcnow() - self.last_seen
         ).total_seconds() < self.ONLINE_THRESHOLD_SECONDS
+
+    def rotate_security_stamp(self):
+        """
+        Mengganti "tanda tangan" sesi user dengan yang baru - membuat
+        SEMUA sesi login yang sedang aktif untuk user ini (termasuk
+        cookie yang mungkin sudah dicuri sebelumnya) langsung tidak
+        valid lagi, bukan cuma menghapus cookie di browser yang
+        sedang dipakai logout. Dipanggil saat logout - lihat
+        blueprints/login.py dan pengecekannya di blueprints/__init__.py.
+        """
+
+        self.security_stamp = secrets.token_hex(32)
 
     def set_password(self, password):
 

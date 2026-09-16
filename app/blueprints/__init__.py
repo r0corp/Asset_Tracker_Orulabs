@@ -13,11 +13,14 @@ from datetime import datetime
 
 from flask import (
     Blueprint,
+    flash,
     redirect,
     request,
+    session,
     url_for,
 )
-from flask_login import current_user
+from flask_babel import gettext as _
+from flask_login import current_user, logout_user
 
 from .. import db
 
@@ -101,6 +104,73 @@ def require_login():
         return None
 
     if not current_user.is_authenticated:
+
+        return redirect(
+            url_for(
+                "main.login",
+                next=request.path,
+            )
+        )
+
+    return None
+
+
+# ============================================================
+# KEAMANAN SESI (auto-logout idle + invalidasi sesi saat logout)
+# ============================================================
+# 1. Idle timeout: sesi dianggap kedaluwarsa kalau user tidak
+#    beraktivitas (request apapun) selama IDLE_TIMEOUT_SECONDS,
+#    dihitung dari User.last_seen - berlaku juga untuk sesi yang
+#    "Remember me" (jangka panjangnya cuma soal tidak perlu
+#    login ulang setelah browser ditutup, bukan pengecualian dari
+#    pengecekan idle ini).
+# 2. Invalidasi sesi: setiap sesi login menyimpan salinan
+#    User.security_stamp saat itu di cookie session. Saat user
+#    logout, stamp di database di-acak ulang (lihat
+#    User.rotate_security_stamp() & blueprints/login.py) - jadi
+#    SEMUA cookie sesi lama untuk user itu (termasuk yang mungkin
+#    sempat dicuri sebelum logout) langsung tidak valid lagi,
+#    bukan cuma cookie di browser yang dipakai logout saja.
+
+IDLE_TIMEOUT_SECONDS = 30 * 60
+
+
+@main.before_request
+def enforce_session_security():
+
+    if not current_user.is_authenticated:
+        return None
+
+    if session.get("security_stamp") != current_user.security_stamp:
+
+        logout_user()
+        session.pop("security_stamp", None)
+
+        flash(
+            _("Your session is no longer valid. Please log in again."),
+            "warning",
+        )
+
+        return redirect(
+            url_for(
+                "main.login",
+                next=request.path,
+            )
+        )
+
+    if (
+        current_user.last_seen
+        and (datetime.utcnow() - current_user.last_seen).total_seconds()
+        > IDLE_TIMEOUT_SECONDS
+    ):
+
+        logout_user()
+        session.pop("security_stamp", None)
+
+        flash(
+            _("You have been logged out due to inactivity."),
+            "warning",
+        )
 
         return redirect(
             url_for(

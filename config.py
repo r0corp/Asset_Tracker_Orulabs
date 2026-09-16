@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 from dotenv import load_dotenv
 
@@ -35,6 +36,16 @@ class Config:
     RATELIMIT_ENABLED = (
         os.environ.get("RATELIMIT_ENABLED", "True") == "True"
     )
+
+    # ========================================================
+    # KEAMANAN SESI
+    # ========================================================
+    # Umur cookie sesi (server-side idle check-nya ada di
+    # blueprints/__init__.py::enforce_session_security, ini cuma
+    # lapisan tambahan di sisi cookie - jendelanya "geser" otomatis
+    # tiap request selama masih aktif, lihat login() di
+    # blueprints/login.py yang men-set session.permanent = True).
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=30)
 
     # ========================================================
     # BAHASA (i18n)
