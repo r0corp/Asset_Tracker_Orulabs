@@ -497,7 +497,16 @@ def import_assets():
             if asset.asset_tag
         }
 
+        existing_serials = {
+            asset.serial_number
+            for asset in Asset.query.with_entities(
+                Asset.serial_number
+            ).all()
+            if asset.serial_number
+        }
+
         imported_tags = set()
+        imported_serials = set()
 
         def get_value(row, column):
 
@@ -560,6 +569,27 @@ def import_assets():
                         f"Asset Tag '{asset_tag}' "
                         "duplikat di file Excel."
                     )
+
+                serial_number = clean_text(
+                    get_value(
+                        row,
+                        "Serial Number",
+                    )
+                )
+
+                if serial_number:
+
+                    if serial_number in existing_serials:
+                        raise ValueError(
+                            f"Serial Number '{serial_number}' "
+                            "sudah ada di database."
+                        )
+
+                    if serial_number in imported_serials:
+                        raise ValueError(
+                            f"Serial Number '{serial_number}' "
+                            "duplikat di file Excel."
+                        )
 
                 purchase_date = get_value(
                     row,
@@ -635,9 +665,7 @@ def import_assets():
                     model=clean_text(
                         get_value(row, "Model")
                     ),
-                    serial_number=clean_text(
-                        get_value(row, "Serial Number")
-                    ),
+                    serial_number=serial_number,
                     location=clean_text(
                         get_value(row, "Location")
                     ),
@@ -664,6 +692,9 @@ def import_assets():
                 db.session.add(asset)
 
                 imported_tags.add(asset_tag)
+
+                if serial_number:
+                    imported_serials.add(serial_number)
 
                 success_count += 1
 
@@ -769,6 +800,37 @@ def download_import_template():
             horizontal="center",
             vertical="center",
         )
+
+    example_asset = Asset.query.order_by(
+        Asset.id.asc()
+    ).first()
+
+    if example_asset:
+
+        worksheet.append([
+            example_asset.asset_tag,
+            example_asset.asset_name,
+            example_asset.category,
+            example_asset.brand,
+            example_asset.model,
+            example_asset.serial_number,
+            example_asset.location,
+            example_asset.department,
+            example_asset.pic,
+            example_asset.vendor,
+            example_asset.warranty,
+            example_asset.purchase_date,
+            example_asset.purchase_price,
+            example_asset.status,
+            example_asset.description,
+        ])
+
+        for cell in worksheet[2]:
+
+            cell.font = Font(
+                italic=True,
+                color="808080",
+            )
 
     worksheet.freeze_panes = "A2"
 
