@@ -64,6 +64,23 @@
 
 
     /* ============================================================
+   KALIBRASI POSISI CETAK
+   Diisi ulang oleh JS dari localStorage (lihat panel kalibrasi)
+   ============================================================ */
+
+    :root {
+
+        --tj108-w: 38mm;
+        --tj108-h: 18mm;
+        --tj108-col-gap: 3.1mm;
+        --tj108-row-gap: 2mm;
+        --tj108-offset-top: 1mm;
+        --tj108-offset-left: 0mm;
+
+    }
+
+
+    /* ============================================================
    LABEL GRID
 
    TOM & JERRY NO. 108
@@ -80,16 +97,16 @@
         grid-template-columns:
 
             repeat(5,
-                38mm);
+                var(--tj108-w));
 
         grid-template-rows:
 
             repeat(8,
-                18mm);
+                var(--tj108-h));
 
-        column-gap: 3mm;
+        column-gap: var(--tj108-col-gap);
 
-        row-gap: 3mm;
+        row-gap: var(--tj108-row-gap);
 
         justify-content: center;
 
@@ -106,9 +123,9 @@
 
     .asset-label {
 
-        width: 38mm;
+        width: var(--tj108-w);
 
-        height: 18mm;
+        height: var(--tj108-h);
 
         box-sizing: border-box;
 
@@ -485,8 +502,6 @@
 
             width: 210mm;
 
-            height: 297mm;
-
             margin: 0 !important;
 
             padding: 0 !important;
@@ -519,9 +534,9 @@
 
             width: 210mm !important;
 
-            height: 297mm !important;
+            height: auto !important;
 
-            min-height: 297mm !important;
+            min-height: 0 !important;
 
             margin: 0 !important;
 
@@ -538,9 +553,9 @@
 
             width: 210mm !important;
 
-            height: 297mm !important;
+            height: auto !important;
 
-            min-height: 297mm !important;
+            min-height: 0 !important;
 
             margin: 0 !important;
 
@@ -567,27 +582,28 @@
 
             width: 210mm !important;
 
-            height: 297mm !important;
+            height: auto !important;
 
             display: grid !important;
 
             grid-template-columns:
 
                 repeat(5,
-                    38mm) !important;
+                    var(--tj108-w)) !important;
 
             grid-template-rows:
 
                 repeat(8,
-                    18mm) !important;
+                    var(--tj108-h)) !important;
 
             /*
            POSISI ANTAR LABEL
+           (diatur lewat panel kalibrasi di layar)
         */
 
-            column-gap: 2.5mm !important;
+            column-gap: var(--tj108-col-gap) !important;
 
-            row-gap: 0mm !important;
+            row-gap: var(--tj108-row-gap) !important;
 
             justify-content: center !important;
 
@@ -595,9 +611,9 @@
 
             margin: 0 !important;
 
-            padding-top: 5mm !important;
+            padding-top: var(--tj108-offset-top) !important;
 
-            padding-left: 0 !important;
+            padding-left: var(--tj108-offset-left) !important;
 
             padding-right: 0 !important;
 
@@ -614,25 +630,25 @@
 
         .asset-label {
 
-            width: 38mm !important;
+            width: var(--tj108-w) !important;
 
-            height: 18mm !important;
+            height: var(--tj108-h) !important;
 
-            min-width: 38mm !important;
+            min-width: var(--tj108-w) !important;
 
-            max-width: 38mm !important;
+            max-width: var(--tj108-w) !important;
 
-            min-height: 18mm !important;
+            min-height: var(--tj108-h) !important;
 
-            max-height: 18mm !important;
+            max-height: var(--tj108-h) !important;
 
             box-sizing: border-box !important;
 
             background: #ffffff !important;
 
-            border: 0.25mm solid #555 !important;
+            border: none !important;
 
-            border-radius: 1.2mm !important;
+            border-radius: 0 !important;
 
             padding: 1.2mm !important;
 
@@ -983,6 +999,87 @@
 
 
     <!-- ========================================================
+         PANEL KALIBRASI POSISI CETAK
+         (TIDAK IKUT TERCETAK)
+         ======================================================== -->
+
+    <div class="card no-print mb-3">
+
+        <div class="card-body">
+
+            <h6 class="mb-2">
+                <i class="bi bi-sliders me-1"></i>
+                {{ _('Print Position Calibration') }}
+            </h6>
+
+            <p class="text-muted small mb-3">
+                {{ _('If the printed labels are shifted from the physical Tom & Jerry No. 108 sheet, nudge the values below, print a test page, and repeat until aligned. Values are saved in this browser.') }}
+            </p>
+
+            <div class="d-flex flex-wrap align-items-end gap-3" id="tj108-calibration-form">
+
+                <div style="width: 132px;">
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Top offset') }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" step="0.5" class="form-control" id="tj108-offset-top" data-var="--tj108-offset-top">
+                        <span class="input-group-text">mm</span>
+                    </div>
+                </div>
+
+                <div style="width: 132px;">
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Left offset') }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" step="0.5" class="form-control" id="tj108-offset-left" data-var="--tj108-offset-left">
+                        <span class="input-group-text">mm</span>
+                    </div>
+                </div>
+
+                <div style="width: 132px;">
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Label width') }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" step="0.1" class="form-control" id="tj108-w" data-var="--tj108-w">
+                        <span class="input-group-text">mm</span>
+                    </div>
+                </div>
+
+                <div style="width: 132px;">
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Label height') }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" step="0.1" class="form-control" id="tj108-h" data-var="--tj108-h">
+                        <span class="input-group-text">mm</span>
+                    </div>
+                </div>
+
+                <div style="width: 132px;">
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Column gap') }}</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" step="0.1" class="form-control" id="tj108-col-gap" data-var="--tj108-col-gap">
+                        <span class="input-group-text">mm</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label small mb-1 text-nowrap">{{ _('Row gap') }}</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="width: 110px;">
+                            <input type="number" step="0.1" class="form-control" id="tj108-row-gap" data-var="--tj108-row-gap">
+                            <span class="input-group-text">mm</span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap" id="tj108-reset-btn">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>
+                            {{ _('Reset to default') }}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
          LABEL SHEET
          ======================================================== -->
 
@@ -1043,12 +1140,12 @@
 
 
                     <!-- ==================================
-                                 ASSET NAME / MODEL
+                                 MODEL
                                  ================================== -->
 
-                    <div class="asset-label-name" title="{{ asset.asset_name or '-' }}">
+                    <div class="asset-label-name" title="{{ asset.model or '-' }}">
 
-                        {{ asset.asset_name or "-" }}
+                        {{ asset.model or "-" }}
 
                     </div>
 
@@ -1181,5 +1278,137 @@
 
 </div>
 
+
+<!-- ============================================================
+     KALIBRASI POSISI CETAK (TOM & JERRY NO. 108)
+     ============================================================ -->
+
+<script>
+
+    (function () {
+
+        var STORAGE_KEY = "tj108_calibration_v4";
+
+        var DEFAULTS = {
+            "--tj108-offset-top": 1,
+            "--tj108-offset-left": 0,
+            "--tj108-w": 38,
+            "--tj108-h": 18,
+            "--tj108-col-gap": 3.1,
+            "--tj108-row-gap": 2,
+        };
+
+        var root = document.documentElement;
+
+        function loadSaved() {
+
+            try {
+
+                var raw = localStorage.getItem(STORAGE_KEY);
+
+                return raw ? JSON.parse(raw) : {};
+
+            } catch (e) {
+
+                return {};
+
+            }
+
+        }
+
+        function apply(values) {
+
+            Object.keys(DEFAULTS).forEach(function (varName) {
+
+                var mm = (values[varName] !== undefined)
+                    ? values[varName]
+                    : DEFAULTS[varName];
+
+                root.style.setProperty(varName, mm + "mm");
+
+            });
+
+        }
+
+        function save(values) {
+
+            try {
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(values)
+                );
+
+            } catch (e) {
+
+                // localStorage tidak tersedia, abaikan.
+
+            }
+
+        }
+
+        function populateInputs(values) {
+
+            document
+                .querySelectorAll("#tj108-calibration-form [data-var]")
+                .forEach(function (input) {
+
+                    var varName = input.getAttribute("data-var");
+
+                    input.value = (values[varName] !== undefined)
+                        ? values[varName]
+                        : DEFAULTS[varName];
+
+                });
+
+        }
+
+        var current = Object.assign({}, DEFAULTS, loadSaved());
+
+        apply(current);
+        populateInputs(current);
+
+        document
+            .querySelectorAll("#tj108-calibration-form [data-var]")
+            .forEach(function (input) {
+
+                input.addEventListener("input", function () {
+
+                    var varName = input.getAttribute("data-var");
+
+                    var num = parseFloat(input.value);
+
+                    if (isNaN(num)) {
+                        return;
+                    }
+
+                    current[varName] = num;
+
+                    apply(current);
+                    save(current);
+
+                });
+
+            });
+
+        var resetBtn = document.getElementById("tj108-reset-btn");
+
+        if (resetBtn) {
+
+            resetBtn.addEventListener("click", function () {
+
+                current = Object.assign({}, DEFAULTS);
+
+                apply(current);
+                populateInputs(current);
+                save(current);
+
+            });
+
+        }
+
+    })();
+
+</script>
 
 {% endblock %}

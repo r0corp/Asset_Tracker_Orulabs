@@ -20,7 +20,7 @@ from waitress import serve
 from app import create_app
 
 
-HOST = "0.0.0.0"
+HOST = "192.168.120.229"
 PORT = 8000
 
 app = create_app()
