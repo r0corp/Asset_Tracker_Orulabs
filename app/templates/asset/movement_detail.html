@@ -629,21 +629,6 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
        padding: 0 4px;
    }
 
-   .screen-actions .btn {
-       display: inline-flex;
-       align-items: center;
-       gap: 6px;
-       white-space: nowrap;
-       border-radius: 8px;
-       font-weight: 600;
-       transition: transform 0.15s ease, box-shadow 0.15s ease;
-   }
-
-   .screen-actions .btn:hover {
-       transform: translateY(-1px);
-       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
-   }
-
    .movement-document {
        position: relative;
        overflow: hidden;
@@ -758,7 +743,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
             ) }}"
       class="btn btn-secondary btn-sm"
     >
-      <i class="bi bi-arrow-left"></i>
+      <i class="bi bi-arrow-left me-1"></i>
       {{ _('Back to History') }}
     </a>
 
@@ -770,7 +755,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
             ) }}"
       class="btn btn-outline-primary btn-sm"
     >
-      <i class="bi bi-eye"></i>
+      <i class="bi bi-eye me-1"></i>
       {{ _('Detail') }}
     </a>
   </div>
@@ -784,7 +769,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
             ) }}"
       class="btn btn-outline-primary btn-sm"
     >
-      <i class="bi bi-qr-code"></i>
+      <i class="bi bi-qr-code me-1"></i>
       {{ _('Verification QR') }}
     </a>
 
@@ -794,7 +779,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
       rel="noopener"
       class="btn btn-outline-success btn-sm"
     >
-      <i class="bi bi-shield-check"></i>
+      <i class="bi bi-shield-check me-1"></i>
       {{ _('Verify') }}
     </a>
 
@@ -806,7 +791,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
             ) }}"
       class="btn btn-outline-danger btn-sm"
     >
-      <i class="bi bi-pencil-square"></i>
+      <i class="bi bi-pencil-square me-1"></i>
       {{ _('Correct Movement') }}
     </a>
 
@@ -819,7 +804,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
             ) }}"
       class="btn btn-outline-secondary btn-sm"
     >
-      <i class="bi bi-clock-history"></i>
+      <i class="bi bi-clock-history me-1"></i>
       {{ _('Correction History') }}
     </a>
     {% endif %}
@@ -829,7 +814,7 @@ movement.movement_no or '-' }} {% endblock %} {% block content %}
       class="btn btn-primary btn-sm"
       onclick="window.print()"
     >
-      <i class="bi bi-printer"></i>
+      <i class="bi bi-printer me-1"></i>
       {{ _('Print A4') }}
     </button>
   </div>

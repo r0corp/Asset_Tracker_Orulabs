@@ -29,3 +29,43 @@ body {
 .table td {
     vertical-align: middle;
 }
+
+
+/* ============================================================
+   TOMBOL SERAGAM DI SEMUA HALAMAN
+   ============================================================
+   Bentuk & animasi generik untuk semua .btn, berlaku sama di
+   tema terang maupun gelap. Warna TIDAK diatur di sini - warna
+   tetap ikut varian Bootstrap (btn-primary, btn-outline-secondary,
+   dst) yang sudah theme-aware lewat CSS variable Bootstrap dan
+   override di theme-dark.css. Jangan tambah <style> button lokal
+   per halaman lagi - kalau perlu pengecualian, tambahkan di sini
+   supaya semua halaman tetap konsisten.
+   ============================================================ */
+
+.btn:not(.btn-close) {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-sm:not(.btn-close) {
+    border-radius: 7px;
+}
+
+.btn:not(.btn-close):not(:disabled):not(.disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+}
+
+.btn:not(.btn-close):not(:disabled):not(.disabled):active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Tombol yang tergabung dalam btn-group tetap terasa satu
+   kesatuan - tidak ikut naik sendiri-sendiri saat hover. */
+.btn-group > .btn:hover {
+    transform: none;
+}

@@ -80,6 +80,21 @@
     --bs-btn-active-border-color: #ef4444;
 }
 
+/* Outline-secondary bawaan Bootstrap terlalu redup di atas kartu
+   gelap - dipertegas di sini supaya konsisten di SEMUA halaman
+   (dulu di-patch manual per halaman di report-actions/warranty-
+   header-actions saja, sekarang jadi satu aturan generik). */
+[data-bs-theme="dark"] .btn-outline-secondary {
+    --bs-btn-color: #e9ecef;
+    --bs-btn-border-color: #3a3f4b;
+    --bs-btn-hover-color: #f1f3f5;
+    --bs-btn-hover-bg: #262933;
+    --bs-btn-hover-border-color: #4a4f5b;
+    --bs-btn-active-color: #f1f3f5;
+    --bs-btn-active-bg: #262933;
+    --bs-btn-active-border-color: #4a4f5b;
+}
+
 [data-bs-theme="dark"] .page-item.active .page-link {
     background-color: #ef4444;
     border-color: #ef4444;
@@ -663,31 +678,6 @@
 [data-bs-theme="dark"] .filter-card-header,
 [data-bs-theme="dark"] .table-card-header {
     background: #20232c;
-}
-
-/* Tombol Print di header Laporan Mutasi - outline abu bawaan
-   Bootstrap terlalu redup di kartu gelap, dipertegas supaya
-   kontrasnya senada dengan tombol Export Excel di sebelahnya. */
-[data-bs-theme="dark"] .report-actions .btn-outline-secondary {
-    border-color: #3a3f4b;
-    color: #e9ecef;
-}
-
-[data-bs-theme="dark"] .report-actions .btn-outline-secondary:hover {
-    background: #262933;
-    border-color: #4a4f5b;
-    color: #f1f3f5;
-}
-
-[data-bs-theme="dark"] .warranty-header-actions .btn-outline-secondary {
-    border-color: #3a3f4b;
-    color: #e9ecef;
-}
-
-[data-bs-theme="dark"] .warranty-header-actions .btn-outline-secondary:hover {
-    background: #262933;
-    border-color: #4a4f5b;
-    color: #f1f3f5;
 }
 
 [data-bs-theme="dark"] .correction-warning {
