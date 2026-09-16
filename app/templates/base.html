@@ -554,23 +554,23 @@
         ======================================================== */
 
         .user-menu-dropdown {
-            width: 290px;
+            width: 250px;
         }
 
         .user-menu-header {
             position: relative;
             overflow: hidden;
-            padding: 1.5rem 1rem 1.25rem;
+            padding: 1rem 0.85rem 0.85rem;
             background: linear-gradient(135deg, #0d6efd 0%, #0a3fa3 100%);
         }
 
         .user-menu-header::before {
             content: "";
             position: absolute;
-            top: -50px;
-            right: -40px;
-            width: 140px;
-            height: 140px;
+            top: -40px;
+            right: -35px;
+            width: 105px;
+            height: 105px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.08);
         }
@@ -578,10 +578,10 @@
         .user-menu-header::after {
             content: "";
             position: absolute;
-            bottom: -60px;
-            left: -30px;
-            width: 110px;
-            height: 110px;
+            bottom: -50px;
+            left: -25px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.06);
         }
@@ -589,20 +589,24 @@
         .user-menu-header-inner {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
         }
 
         .user-menu-avatar-wrap {
             position: relative;
-            width: 58px;
-            margin: 0 auto 0.7rem;
+            width: 48px;
+            margin-bottom: 0.2rem;
         }
 
         .user-menu-online-dot {
             position: absolute;
-            right: 2px;
-            bottom: 2px;
-            width: 13px;
-            height: 13px;
+            right: 1px;
+            bottom: 1px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: var(--bs-success);
             border: 2px solid #0a3fa3;
@@ -613,19 +617,20 @@
         }
 
         .user-menu-avatar {
-            width: 58px;
-            height: 58px;
+            width: 48px;
+            height: 48px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.16);
-            border: 2px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.18);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 
             color: #fff;
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
@@ -633,33 +638,135 @@
         .user-menu-name {
             color: #fff;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         .user-menu-username {
             color: rgba(255, 255, 255, 0.75);
-            font-size: 0.78rem;
-            margin-bottom: 0.65rem;
+            font-size: 0.68rem;
         }
 
         .user-menu-role-badge {
             display: inline-flex;
             align-items: center;
+            margin-top: 0.3rem;
 
-            padding: 0.3rem 0.75rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
 
-            background: rgba(255, 255, 255, 0.92);
-            color: #0a3fa3;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            color: #fff;
 
-            font-size: 0.63rem;
+            font-size: 0.56rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
-        .user-menu-footer {
+        /* ------------------------------------------------------
+           DAFTAR USER ONLINE (khusus administrator)
+        ------------------------------------------------------ */
+
+        .user-menu-online-section {
+            padding: 0.6rem 0.85rem;
             border-top: 1px solid var(--bs-border-color);
+        }
+
+        .user-menu-online-title {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: var(--bs-secondary-color);
+            margin-bottom: 0.45rem;
+        }
+
+        .user-menu-online-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            max-height: 130px;
+            overflow-y: auto;
+        }
+
+        .user-menu-online-item {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .user-menu-online-avatar {
+            position: relative;
+            flex-shrink: 0;
+            width: 23px;
+            height: 23px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--bs-tertiary-bg);
+            color: var(--bs-emphasis-color);
+
+            font-size: 0.58rem;
+            font-weight: 700;
+        }
+
+        .user-menu-online-avatar .online-status-indicator {
+            position: absolute;
+            right: -2px;
+            bottom: -2px;
+        }
+
+        .user-menu-online-avatar .online-status-indicator .online-status-dot {
+            width: 7px;
+            height: 7px;
+            border: 1.5px solid var(--bs-body-bg);
+        }
+
+        .user-menu-online-name {
+            font-size: 0.74rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .user-menu-online-role {
+            font-size: 0.63rem;
+            color: var(--bs-secondary-color);
+            line-height: 1.2;
+        }
+
+        .user-menu-online-empty {
+            font-size: 0.72rem;
+            color: var(--bs-secondary-color);
+        }
+
+        .user-menu-footer {
+            display: flex;
+            gap: 0.4rem;
+            padding: 0.6rem;
+            border-top: 1px solid var(--bs-border-color);
+        }
+
+        .user-menu-footer .btn-profile {
+            --bs-btn-color: #0d6efd;
+            --bs-btn-bg: var(--bs-primary-bg-subtle);
+            --bs-btn-border-color: var(--bs-primary-bg-subtle);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: #0d6efd;
+            --bs-btn-hover-border-color: #0d6efd;
+        }
+
+        [data-bs-theme="dark"] .user-menu-footer .btn-profile {
+            --bs-btn-color: #f87171;
+            --bs-btn-hover-bg: #ef4444;
+            --bs-btn-hover-border-color: #ef4444;
         }
     </style>
 
@@ -741,9 +848,8 @@
 
                     <li class="nav-item dropdown">
 
-                        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                        <a href="#" class="nav-link d-flex align-items-center" data-bs-toggle="dropdown" aria-label="{{ _('Change language') }}">
                             <span class="fi fi-{{ available_languages[current_language][1] }} rounded-1"></span>
-                            <span class="d-none d-md-inline ms-2">{{ available_languages[current_language][0] }}</span>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -804,13 +910,57 @@
                                 </div>
                             </li>
 
-                            <!-- Slot untuk daftar "user sedang online" (khusus
-                                 administrator) - menyusul, lihat permintaan
-                                 fitur terkait Manajemen User. -->
+                            {% if current_user.role == 'administrator' %}
 
-                            <li class="user-menu-footer d-flex gap-2 p-2">
+                            <li class="user-menu-online-section" data-online-users-section>
 
-                                <a href="{{ url_for('main.profile') }}" class="btn btn-outline-primary btn-sm flex-fill">
+                                <div class="user-menu-online-title">
+                                    <span class="online-status-indicator is-online">
+                                        <span class="online-status-dot"></span>
+                                    </span>
+                                    {{ _('Other users online') }}
+                                </div>
+
+                                <div class="user-menu-online-list" data-online-users-list>
+
+                                    {% for u in online_users %}
+
+                                    {% set parts = u.full_name.split() %}
+                                    {% set initials = (parts[0][0] ~ (parts[-1][0] if parts|length > 1 else '')) if parts else 'U' %}
+
+                                    <div class="user-menu-online-item">
+
+                                        <span class="user-menu-online-avatar">
+                                            {{ initials | upper }}
+                                            <span class="online-status-indicator is-online">
+                                                <span class="online-status-dot"></span>
+                                            </span>
+                                        </span>
+
+                                        <div>
+                                            <div class="user-menu-online-name">{{ u.full_name }}</div>
+                                            <div class="user-menu-online-role">{{ u.role }}</div>
+                                        </div>
+
+                                    </div>
+
+                                    {% else %}
+
+                                    <div class="user-menu-online-empty" data-online-users-empty>
+                                        {{ _('No other users online right now.') }}
+                                    </div>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            </li>
+
+                            {% endif %}
+
+                            <li class="user-menu-footer">
+
+                                <a href="{{ url_for('main.profile') }}" class="btn btn-profile btn-sm flex-fill">
                                     <i class="bi bi-person-lines-fill me-1"></i>
                                     {{ _('Profile') }}
                                 </a>
@@ -1103,6 +1253,126 @@
 
         });
     </script>
+
+    {% if current_user.is_authenticated and current_user.role == 'administrator' %}
+    <!-- ============================================================
+         DAFTAR USER ONLINE DI DROPDOWN PROFIL (khusus administrator)
+         - di-refresh berkala, terpisah dari polling di halaman User
+         Management (lihat master/user/list.html).
+    ============================================================ -->
+    <script>
+        (function () {
+
+            var LIST_URL = "{{ url_for('main.users_online_list') }}";
+            var POLL_INTERVAL_MS = 20000;
+            var EMPTY_LABEL = "{{ _('No other users online right now.') }}";
+
+            function initials(fullName) {
+
+                var parts = (fullName || "U").trim().split(/\s+/);
+                var first = parts[0] ? parts[0][0] : "U";
+                var last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+
+                return (first + last).toUpperCase();
+
+            }
+
+            function buildItem(user) {
+
+                var item = document.createElement("div");
+                item.className = "user-menu-online-item";
+
+                var avatar = document.createElement("span");
+                avatar.className = "user-menu-online-avatar";
+                avatar.appendChild(
+                    document.createTextNode(initials(user.full_name))
+                );
+
+                var dotWrap = document.createElement("span");
+                dotWrap.className = "online-status-indicator is-online";
+
+                var dot = document.createElement("span");
+                dot.className = "online-status-dot";
+
+                dotWrap.appendChild(dot);
+                avatar.appendChild(dotWrap);
+
+                var info = document.createElement("div");
+
+                var nameEl = document.createElement("div");
+                nameEl.className = "user-menu-online-name";
+                nameEl.textContent = user.full_name;
+
+                var roleEl = document.createElement("div");
+                roleEl.className = "user-menu-online-role";
+                roleEl.textContent = user.role;
+
+                info.appendChild(nameEl);
+                info.appendChild(roleEl);
+
+                item.appendChild(avatar);
+                item.appendChild(info);
+
+                return item;
+
+            }
+
+            function render(users) {
+
+                var listEl = document.querySelector("[data-online-users-list]");
+
+                if (!listEl) {
+                    return;
+                }
+
+                listEl.textContent = "";
+
+                if (!users.length) {
+
+                    var empty = document.createElement("div");
+                    empty.className = "user-menu-online-empty";
+                    empty.textContent = EMPTY_LABEL;
+
+                    listEl.appendChild(empty);
+
+                    return;
+
+                }
+
+                users.forEach(function (user) {
+                    listEl.appendChild(buildItem(user));
+                });
+
+            }
+
+            function refresh() {
+
+                fetch(LIST_URL, {
+                    headers: { "X-Requested-With": "XMLHttpRequest" },
+                })
+                    .then(function (response) {
+                        return response.ok ? response.json() : null;
+                    })
+                    .then(function (data) {
+
+                        if (!data || !data.users) {
+                            return;
+                        }
+
+                        render(data.users);
+
+                    })
+                    .catch(function () {
+                        // Koneksi gagal sesaat - abaikan, polling berikutnya coba lagi.
+                    });
+
+            }
+
+            setInterval(refresh, POLL_INTERVAL_MS);
+
+        })();
+    </script>
+    {% endif %}
 
     {% block scripts %}
     {% endblock %}

@@ -72,11 +72,19 @@
 
         --tj108-w: 38mm;
         --tj108-h: 18mm;
-        --tj108-col-gap: 3.1mm;
+        --tj108-col-gap: 3mm;
         --tj108-row-gap: 2mm;
-        --tj108-offset-top: 1mm;
-        --tj108-offset-left: 0mm;
+        --tj108-offset-top: -1mm;
+        --tj108-offset-left: 3.5mm;
 
+    }
+
+    #tj108-calibration-chevron {
+        transition: transform 0.2s ease;
+    }
+
+    #tj108-calibration-chevron.tj108-chevron-open {
+        transform: rotate(180deg);
     }
 
 
@@ -108,13 +116,9 @@
 
         row-gap: var(--tj108-row-gap);
 
-        justify-content: start;
+        justify-content: center;
 
         align-content: start;
-
-        margin-left: 8mm;
-
-        margin-top: 8mm;
 
     }
 
@@ -888,43 +892,6 @@
                         {{ _('Print QR / Label Asset') }}
                     </h2>
 
-                    <p class="page-header-subtitle mb-0">
-
-                        {{ _('Format:') }}
-
-                        <strong>
-                            Tom &amp; Jerry No. 108
-                        </strong>
-
-                        — 38 × 18 mm
-
-                        {{ _('— 5 columns × 8 rows — 40 labels / sheet.') }}
-
-                        <br>
-
-                        <span class="text-muted">
-
-                            {{ _('Each asset is printed as') }}
-
-                            <strong>{{ _('5 labels') }}</strong>
-
-                            {{ _('for laptop, charger, box, bag, and accessories.') }}
-
-                        </span>
-
-                        <br>
-
-                        <span class="text-warning">
-
-                            <i class="bi bi-exclamation-triangle me-1"></i>
-
-                            {{ _('Before printing, make sure Paper size is set to A4 (not A5/Letter) and Scale to Default/100%% (not "Fit to page") in the print dialog, so the labels line up with the physical sheet.') }}
-
-                        </span>
-
-                    </p>
-
-
                 </div>
 
             </div>
@@ -1012,6 +979,43 @@
         </div>
 
 
+        <p class="page-header-subtitle mb-0 mt-3">
+
+            {{ _('Format:') }}
+
+            <strong>
+                Tom &amp; Jerry No. 108
+            </strong>
+
+            — 38 × 18 mm
+
+            {{ _('— 5 columns × 8 rows — 40 labels / sheet.') }}
+
+            <br>
+
+            <span class="text-muted">
+
+                {{ _('Each asset is printed as') }}
+
+                <strong>{{ _('5 labels') }}</strong>
+
+                {{ _('for laptop, charger, box, bag, and accessories.') }}
+
+            </span>
+
+            <br>
+
+            <span class="text-warning">
+
+                <i class="bi bi-exclamation-triangle me-1"></i>
+
+                {{ _('Before printing, make sure Paper size is set to A4 (not A5/Letter) and Scale to Default/100%% (not "Fit to page") in the print dialog, so the labels line up with the physical sheet.') }}
+
+            </span>
+
+        </p>
+
+
     </div>
 
 
@@ -1024,12 +1028,25 @@
 
         <div class="card-body">
 
-            <h6 class="mb-2">
-                <i class="bi bi-sliders me-1"></i>
-                {{ _('Print Position Calibration') }}
-            </h6>
+            <button
+                type="button"
+                class="btn btn-link p-0 d-flex align-items-center justify-content-between w-100 text-decoration-none text-body"
+                id="tj108-calibration-toggle"
+                data-bs-toggle="collapse"
+                data-bs-target="#tj108-calibration-collapse"
+                aria-expanded="false"
+                aria-controls="tj108-calibration-collapse"
+            >
+                <h6 class="mb-0">
+                    <i class="bi bi-sliders me-1"></i>
+                    {{ _('Print Position Calibration') }}
+                </h6>
+                <i class="bi bi-chevron-down" id="tj108-calibration-chevron"></i>
+            </button>
 
-            <p class="text-muted small mb-3">
+            <div class="collapse" id="tj108-calibration-collapse">
+
+            <p class="text-muted small mb-3 mt-3">
                 {{ _('If the printed labels are shifted from the physical Tom & Jerry No. 108 sheet, nudge the values below, print a test page, and repeat until aligned. Values are saved in this browser.') }}
             </p>
 
@@ -1077,8 +1094,8 @@
 
                 <div>
                     <label class="form-label small mb-1 text-nowrap">{{ _('Row gap') }}</label>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="input-group input-group-sm" style="width: 110px;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="input-group input-group-sm" style="width: 132px;">
                             <input type="number" step="0.1" class="form-control" id="tj108-row-gap" data-var="--tj108-row-gap">
                             <span class="input-group-text">mm</span>
                         </div>
@@ -1088,6 +1105,8 @@
                         </button>
                     </div>
                 </div>
+
+            </div>
 
             </div>
 
@@ -1307,12 +1326,12 @@
         var STORAGE_KEY = "tj108_calibration_v4";
 
         var DEFAULTS = {
-            "--tj108-offset-top": 8,
-            "--tj108-offset-left": 8,
+            "--tj108-offset-top": -1,
+            "--tj108-offset-left": 3.5,
             "--tj108-w": 38,
             "--tj108-h": 18,
             "--tj108-col-gap": 3,
-            "--tj108-row-gap": 3,
+            "--tj108-row-gap": 2,
         };
 
         var root = document.documentElement;
@@ -1419,6 +1438,49 @@
                 apply(current);
                 populateInputs(current);
                 save(current);
+
+            });
+
+        }
+
+        var COLLAPSE_STORAGE_KEY = "tj108_calibration_open_v1";
+
+        var toggleBtn = document.getElementById("tj108-calibration-toggle");
+        var collapseEl = document.getElementById("tj108-calibration-collapse");
+        var chevron = document.getElementById("tj108-calibration-chevron");
+
+        if (toggleBtn && collapseEl) {
+
+            var wasOpen = localStorage.getItem(COLLAPSE_STORAGE_KEY) === "1";
+
+            if (wasOpen) {
+
+                collapseEl.classList.add("show");
+                toggleBtn.setAttribute("aria-expanded", "true");
+
+                if (chevron) {
+                    chevron.classList.add("tj108-chevron-open");
+                }
+
+            }
+
+            collapseEl.addEventListener("shown.bs.collapse", function () {
+
+                localStorage.setItem(COLLAPSE_STORAGE_KEY, "1");
+
+                if (chevron) {
+                    chevron.classList.add("tj108-chevron-open");
+                }
+
+            });
+
+            collapseEl.addEventListener("hidden.bs.collapse", function () {
+
+                localStorage.setItem(COLLAPSE_STORAGE_KEY, "0");
+
+                if (chevron) {
+                    chevron.classList.remove("tj108-chevron-open");
+                }
 
             });
 

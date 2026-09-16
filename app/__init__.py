@@ -143,6 +143,27 @@ def create_app():
         return {"nav_menu": nav_menu}
 
     @app.context_processor
+    def inject_online_users():
+
+        if (
+            not current_user.is_authenticated
+            or current_user.role != models.ROLE_ADMINISTRATOR
+        ):
+            return {"online_users": []}
+
+        online_users = sorted(
+            (
+                user
+                for user in models.User.query.all()
+                if user.id != current_user.id
+                and user.is_online
+            ),
+            key=lambda user: user.full_name,
+        )
+
+        return {"online_users": online_users}
+
+    @app.context_processor
     def inject_app_setting():
 
         from .blueprints.app_settings import get_app_setting

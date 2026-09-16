@@ -65,6 +65,39 @@ def users_online_status():
     })
 
 
+@main.route("/users/online-list")
+@administrator_required
+def users_online_list():
+    """
+    Dipanggil berkala (polling) oleh dropdown profil di navbar untuk
+    menampilkan daftar user lain yang sedang online - lihat
+    base.html. Terpisah dari /users/online-status (yang dipakai
+    halaman User Management) karena responsnya perlu nama & role,
+    bukan cuma status online/offline per id.
+    """
+
+    online_users = sorted(
+        (
+            user
+            for user in User.query.all()
+            if user.id != current_user.id
+            and user.is_online
+        ),
+        key=lambda user: user.full_name,
+    )
+
+    return jsonify({
+        "users": [
+            {
+                "id": user.id,
+                "full_name": user.full_name,
+                "role": user.role,
+            }
+            for user in online_users
+        ]
+    })
+
+
 @main.route(
     "/users/add",
     methods=["GET", "POST"],

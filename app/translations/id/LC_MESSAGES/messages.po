@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 16:09+0700\n"
+"POT-Creation-Date: 2026-09-16 17:42+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: id\n"
@@ -514,7 +514,7 @@ msgstr "Nama lengkap wajib diisi."
 msgid "New password confirmation does not match."
 msgstr "Konfirmasi password baru tidak cocok."
 
-#: blueprints/profile.py:68 blueprints/users.py:111 blueprints/users.py:245
+#: blueprints/profile.py:68 blueprints/users.py:144 blueprints/users.py:278
 #, python-format
 msgid "Password must be at least %(min_length)s characters."
 msgstr "Password minimal %(min_length)s karakter."
@@ -593,72 +593,84 @@ msgstr ""
 "Impor berhasil. %(role_count)s role baru dibuat, izin untuk "
 "%(permission_count)s baris objek diperbarui."
 
-#: blueprints/users.py:100
+#: blueprints/users.py:133
 msgid "Username, full name, and password are required."
 msgstr "Username, nama lengkap, dan password wajib diisi."
 
-#: blueprints/users.py:123 blueprints/users.py:219
+#: blueprints/users.py:156 blueprints/users.py:252
 msgid "Invalid role."
 msgstr "Role tidak valid."
 
-#: blueprints/users.py:134 blueprints/users.py:234
+#: blueprints/users.py:167 blueprints/users.py:267
 msgid "Username is already in use."
 msgstr "Username sudah digunakan."
 
-#: blueprints/users.py:160
+#: blueprints/users.py:193
 msgid "User added successfully."
 msgstr "User berhasil ditambahkan."
 
-#: blueprints/users.py:208
+#: blueprints/users.py:241
 msgid "Username and full name are required."
 msgstr "Username dan nama lengkap wajib diisi."
 
-#: blueprints/users.py:273
+#: blueprints/users.py:306
 msgid "User updated successfully."
 msgstr "User berhasil diperbarui."
 
-#: blueprints/users.py:300
+#: blueprints/users.py:333
 msgid "You cannot delete your own account."
 msgstr "Anda tidak dapat menghapus akun Anda sendiri."
 
-#: blueprints/users.py:320
+#: blueprints/users.py:353
 msgid "User deleted successfully."
 msgstr "User berhasil dihapus."
 
-#: templates/base.html:691
+#: templates/base.html:798
 msgid "Toggle sidebar"
 msgstr "Buka/tutup sidebar"
 
-#: templates/base.html:704 templates/login.html:561
+#: templates/base.html:811 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr "Ganti skema warna"
 
-#: templates/base.html:715
+#: templates/base.html:822
 msgid "Light"
 msgstr "Terang"
 
-#: templates/base.html:723
+#: templates/base.html:830
 msgid "Dark"
 msgstr "Gelap"
 
-#: templates/base.html:731
+#: templates/base.html:838
 msgid "Auto"
 msgstr "Otomatis"
 
-#: templates/base.html:788 templates/master/user/list.html:97
+#: templates/base.html:851
+msgid "Change language"
+msgstr "Ganti Bahasa"
+
+#: templates/base.html:894 templates/master/user/list.html:97
 #: templates/master/user/list.html:139 templates/master/user/list.html:213
 msgid "Online"
 msgstr "Online"
 
-#: templates/base.html:815
+#: templates/base.html:921
+msgid "Other users online"
+msgstr "User Lain yang Online"
+
+#: templates/base.html:950 templates/base.html:1268
+msgid "No other users online right now."
+msgstr "Tidak ada user lain yang online saat ini."
+
+#: templates/base.html:965
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/base.html:820
+#: templates/base.html:970
 msgid "Logout"
 msgstr "Keluar"
 
-#: templates/base.html:879
+#: templates/base.html:1029
 msgid "Main menu"
 msgstr "Menu utama"
 
@@ -1744,7 +1756,7 @@ msgstr "Cetak"
 
 #: templates/asset/labels.html:1029
 msgid "Print Position Calibration"
-msgstr ""
+msgstr "Kalibrasi Posisi Cetak"
 
 #: templates/asset/labels.html:1033
 msgid ""
@@ -1752,6 +1764,9 @@ msgid ""
 "sheet, nudge the values below, print a test page, and repeat until "
 "aligned. Values are saved in this browser."
 msgstr ""
+"Jika label hasil cetak bergeser dari lembar fisik Tom & Jerry No. 108, "
+"sesuaikan nilai di bawah ini, cetak halaman uji coba, dan ulangi sampai "
+"posisinya pas. Nilai ini tersimpan di browser ini."
 
 #: templates/asset/labels.html:1039
 msgid "Top offset"

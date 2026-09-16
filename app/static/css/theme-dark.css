@@ -110,6 +110,14 @@
     color: #ef4444 !important;
 }
 
+/* Kartu ".card" polos (tanpa class kustom per halaman) - Bootstrap
+   bawaan mewarnainya #212529 di dark mode, beda sendiri dari token
+   kartu baku aplikasi (#1b1e27) yang dipakai di semua kartu custom
+   lain, jadi ditegaskan di sini supaya seragam. */
+[data-bs-theme="dark"] .card {
+    background-color: #1b1e27;
+}
+
 /* Tombol btn-primary di dalam header berwarna (lihat base.html)
    dibuat merah juga di dark mode, bukan biru bawaan. */
 [data-bs-theme="dark"] .card-header .btn-primary,

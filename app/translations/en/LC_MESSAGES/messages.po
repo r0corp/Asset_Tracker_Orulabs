@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 16:09+0700\n"
+"POT-Creation-Date: 2026-09-16 17:42+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -520,7 +520,7 @@ msgstr "Full name is required."
 msgid "New password confirmation does not match."
 msgstr "New password confirmation does not match."
 
-#: blueprints/profile.py:68 blueprints/users.py:111 blueprints/users.py:245
+#: blueprints/profile.py:68 blueprints/users.py:144 blueprints/users.py:278
 #, python-format
 msgid "Password must be at least %(min_length)s characters."
 msgstr "Password must be at least %(min_length)s characters."
@@ -599,72 +599,84 @@ msgstr ""
 "Import successful. %(role_count)s new role(s) created, permissions for "
 "%(permission_count)s object row(s) updated."
 
-#: blueprints/users.py:100
+#: blueprints/users.py:133
 msgid "Username, full name, and password are required."
 msgstr "Username, full name, and password are required."
 
-#: blueprints/users.py:123 blueprints/users.py:219
+#: blueprints/users.py:156 blueprints/users.py:252
 msgid "Invalid role."
 msgstr "Invalid role."
 
-#: blueprints/users.py:134 blueprints/users.py:234
+#: blueprints/users.py:167 blueprints/users.py:267
 msgid "Username is already in use."
 msgstr "Username is already in use."
 
-#: blueprints/users.py:160
+#: blueprints/users.py:193
 msgid "User added successfully."
 msgstr "User added successfully."
 
-#: blueprints/users.py:208
+#: blueprints/users.py:241
 msgid "Username and full name are required."
 msgstr "Username and full name are required."
 
-#: blueprints/users.py:273
+#: blueprints/users.py:306
 msgid "User updated successfully."
 msgstr "User updated successfully."
 
-#: blueprints/users.py:300
+#: blueprints/users.py:333
 msgid "You cannot delete your own account."
 msgstr "You cannot delete your own account."
 
-#: blueprints/users.py:320
+#: blueprints/users.py:353
 msgid "User deleted successfully."
 msgstr "User deleted successfully."
 
-#: templates/base.html:691
+#: templates/base.html:798
 msgid "Toggle sidebar"
 msgstr "Toggle sidebar"
 
-#: templates/base.html:704 templates/login.html:561
+#: templates/base.html:811 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr "Toggle color scheme"
 
-#: templates/base.html:715
+#: templates/base.html:822
 msgid "Light"
 msgstr "Light"
 
-#: templates/base.html:723
+#: templates/base.html:830
 msgid "Dark"
 msgstr "Dark"
 
-#: templates/base.html:731
+#: templates/base.html:838
 msgid "Auto"
 msgstr "Auto"
 
-#: templates/base.html:788 templates/master/user/list.html:97
+#: templates/base.html:851
+msgid "Change language"
+msgstr "Change language"
+
+#: templates/base.html:894 templates/master/user/list.html:97
 #: templates/master/user/list.html:139 templates/master/user/list.html:213
 msgid "Online"
 msgstr "Online"
 
-#: templates/base.html:815
+#: templates/base.html:921
+msgid "Other users online"
+msgstr "Other users online"
+
+#: templates/base.html:950 templates/base.html:1268
+msgid "No other users online right now."
+msgstr "No other users online right now."
+
+#: templates/base.html:965
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/base.html:820
+#: templates/base.html:970
 msgid "Logout"
 msgstr "Logout"
 
-#: templates/base.html:879
+#: templates/base.html:1029
 msgid "Main menu"
 msgstr "Main menu"
 
@@ -1748,7 +1760,7 @@ msgstr "Print"
 
 #: templates/asset/labels.html:1029
 msgid "Print Position Calibration"
-msgstr ""
+msgstr "Print Position Calibration"
 
 #: templates/asset/labels.html:1033
 msgid ""
@@ -1756,6 +1768,9 @@ msgid ""
 "sheet, nudge the values below, print a test page, and repeat until "
 "aligned. Values are saved in this browser."
 msgstr ""
+"If the printed labels are shifted from the physical Tom & Jerry No. 108 "
+"sheet, nudge the values below, print a test page, and repeat until "
+"aligned. Values are saved in this browser."
 
 #: templates/asset/labels.html:1039
 msgid "Top offset"

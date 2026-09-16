@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-16 16:09+0700\n"
+"POT-Creation-Date: 2026-09-16 17:42+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -507,7 +507,7 @@ msgstr ""
 msgid "New password confirmation does not match."
 msgstr ""
 
-#: blueprints/profile.py:68 blueprints/users.py:111 blueprints/users.py:245
+#: blueprints/profile.py:68 blueprints/users.py:144 blueprints/users.py:278
 #, python-format
 msgid "Password must be at least %(min_length)s characters."
 msgstr ""
@@ -578,72 +578,84 @@ msgid ""
 "%(permission_count)s object row(s) updated."
 msgstr ""
 
-#: blueprints/users.py:100
+#: blueprints/users.py:133
 msgid "Username, full name, and password are required."
 msgstr ""
 
-#: blueprints/users.py:123 blueprints/users.py:219
+#: blueprints/users.py:156 blueprints/users.py:252
 msgid "Invalid role."
 msgstr ""
 
-#: blueprints/users.py:134 blueprints/users.py:234
+#: blueprints/users.py:167 blueprints/users.py:267
 msgid "Username is already in use."
 msgstr ""
 
-#: blueprints/users.py:160
+#: blueprints/users.py:193
 msgid "User added successfully."
 msgstr ""
 
-#: blueprints/users.py:208
+#: blueprints/users.py:241
 msgid "Username and full name are required."
 msgstr ""
 
-#: blueprints/users.py:273
+#: blueprints/users.py:306
 msgid "User updated successfully."
 msgstr ""
 
-#: blueprints/users.py:300
+#: blueprints/users.py:333
 msgid "You cannot delete your own account."
 msgstr ""
 
-#: blueprints/users.py:320
+#: blueprints/users.py:353
 msgid "User deleted successfully."
 msgstr ""
 
-#: templates/base.html:691
+#: templates/base.html:798
 msgid "Toggle sidebar"
 msgstr ""
 
-#: templates/base.html:704 templates/login.html:561
+#: templates/base.html:811 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr ""
 
-#: templates/base.html:715
+#: templates/base.html:822
 msgid "Light"
 msgstr ""
 
-#: templates/base.html:723
+#: templates/base.html:830
 msgid "Dark"
 msgstr ""
 
-#: templates/base.html:731
+#: templates/base.html:838
 msgid "Auto"
 msgstr ""
 
-#: templates/base.html:788 templates/master/user/list.html:97
+#: templates/base.html:851
+msgid "Change language"
+msgstr ""
+
+#: templates/base.html:894 templates/master/user/list.html:97
 #: templates/master/user/list.html:139 templates/master/user/list.html:213
 msgid "Online"
 msgstr ""
 
-#: templates/base.html:815
+#: templates/base.html:921
+msgid "Other users online"
+msgstr ""
+
+#: templates/base.html:950 templates/base.html:1268
+msgid "No other users online right now."
+msgstr ""
+
+#: templates/base.html:965
 msgid "Profile"
 msgstr ""
 
-#: templates/base.html:820
+#: templates/base.html:970
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:879
+#: templates/base.html:1029
 msgid "Main menu"
 msgstr ""
 
