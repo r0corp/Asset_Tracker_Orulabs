@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-15 16:41+0700\n"
+"POT-Creation-Date: 2026-09-16 15:27+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,135 @@ msgstr ""
 
 #: auth.py:90
 msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: menu_labels.py:16 templates/dashboard.html:1 templates/dashboard.html:500
+#: templates/warranty/index.html:287
+msgid "Dashboard"
+msgstr ""
+
+#: menu_labels.py:17 templates/asset/labels_print.html:121
+#: templates/asset/labels_select.html:349
+#: templates/asset/movement_report.html:658
+#: templates/asset/movements_global.html:481 templates/dashboard.html:1169
+#: templates/index.html:1551 templates/index.html:1798
+#: templates/index.html:2018 templates/warranty/alert.html:448
+#: templates/warranty/index.html:444
+msgid "Asset"
+msgstr ""
+
+#: menu_labels.py:18 templates/index.html:889
+msgid "Master Data"
+msgstr ""
+
+#: menu_labels.py:19 templates/asset/add.html:373
+#: templates/asset/detail.html:638 templates/asset/edit.html:450
+#: templates/asset/history.html:500 templates/asset/labels_print.html:134
+#: templates/asset/list.html:538 templates/asset/list.html:694
+#: templates/asset/movement_correct.html:314
+#: templates/asset/movement_detail.html:968 templates/dashboard.html:741
+#: templates/dashboard.html:1052 templates/index.html:906
+#: templates/index.html:2022
+msgid "Category"
+msgstr ""
+
+#: menu_labels.py:20 templates/asset/add.html:573
+#: templates/asset/detail.html:692 templates/asset/detail.html:893
+#: templates/asset/edit.html:543 templates/asset/history.html:543
+#: templates/asset/labels_select.html:364 templates/asset/list.html:574
+#: templates/asset/list.html:714 templates/asset/movement_add.html:627
+#: templates/asset/movement_corrections.html:141
+#: templates/asset/movement_corrections.html:198
+#: templates/asset/movement_corrections.html:237
+#: templates/asset/movement_detail.html:1017
+#: templates/asset/movement_qr.html:242
+#: templates/asset/movement_report.html:660 templates/asset/movements.html:180
+#: templates/asset/movements.html:234 templates/asset/movements_global.html:173
+#: templates/asset/movements_global.html:489 templates/dashboard.html:798
+#: templates/dashboard.html:1054 templates/index.html:917
+#: templates/index.html:2026
+msgid "Location"
+msgstr ""
+
+#: menu_labels.py:21 templates/asset/add.html:607
+#: templates/asset/detail.html:705 templates/asset/detail.html:895
+#: templates/asset/edit.html:582 templates/asset/history.html:551
+#: templates/asset/history.html:623 templates/asset/history.html:641
+#: templates/asset/labels_select.html:369 templates/asset/list.html:610
+#: templates/asset/list.html:719 templates/asset/movement_add.html:652
+#: templates/asset/movement_corrections.html:148
+#: templates/asset/movement_corrections.html:205
+#: templates/asset/movement_corrections.html:244
+#: templates/asset/movement_detail.html:1031
+#: templates/asset/movement_qr.html:256
+#: templates/asset/movement_report.html:662 templates/asset/movements.html:188
+#: templates/asset/movements.html:236 templates/asset/movements_global.html:218
+#: templates/asset/movements_global.html:493 templates/dashboard.html:855
+#: templates/dashboard.html:1056 templates/index.html:928
+#: templates/index.html:2030 templates/master/department/list.html:89
+msgid "Department"
+msgstr ""
+
+#: menu_labels.py:22 templates/asset/add.html:710
+#: templates/asset/detail.html:763 templates/asset/edit.html:699
+#: templates/index.html:939 templates/master/vendor/list.html:93
+#: templates/warranty/alert.html:451 templates/warranty/index.html:445
+msgid "Vendor"
+msgstr ""
+
+#: menu_labels.py:23
+msgid "Company"
+msgstr ""
+
+#: menu_labels.py:24 templates/asset/movements_global.html:35
+#: templates/dashboard.html:522
+msgid "Movement Report"
+msgstr ""
+
+#: menu_labels.py:25 templates/asset/add.html:744
+#: templates/asset/detail.html:776 templates/asset/edit.html:738
+#: templates/index.html:1555 templates/index.html:1802
+#: templates/warranty/alert.html:453 templates/warranty/index.html:446
+msgid "Warranty"
+msgstr ""
+
+#: menu_labels.py:26 templates/audit/list.html:3 templates/audit/list.html:16
+msgid "Audit Log"
+msgstr ""
+
+#: menu_labels.py:27 templates/backup/list.html:3 templates/backup/list.html:16
+msgid "Backup Database"
+msgstr ""
+
+#: menu_labels.py:28 templates/clear_cache.html:3
+msgid "Clear Cache"
+msgstr ""
+
+#: menu_labels.py:29 templates/master/user/list.html:3
+#: templates/master/user/list.html:20
+msgid "User Management"
+msgstr ""
+
+#: menu_labels.py:30 templates/roles/list.html:3 templates/roles/list.html:16
+msgid "Role Management"
+msgstr ""
+
+#: menu_labels.py:31 templates/master/menu/list.html:3
+#: templates/master/menu/list.html:20
+msgid "Menu Management"
+msgstr ""
+
+#: menu_labels.py:32
+msgid "Settings"
+msgstr ""
+
+#: menu_labels.py:33 templates/settings/general.html:3
+#: templates/settings/general.html:16
+msgid "Application Settings"
+msgstr ""
+
+#: menu_labels.py:34
+msgid "Pemisah"
 msgstr ""
 
 #: blueprints/app_settings.py:79
@@ -58,80 +187,80 @@ msgstr ""
 msgid "Required columns not found: %(columns)s"
 msgstr ""
 
-#: blueprints/assets.py:845
+#: blueprints/assets.py:907
 msgid "Select at least one asset to print."
 msgstr ""
 
-#: blueprints/assets.py:873
+#: blueprints/assets.py:935
 msgid "Selected assets are invalid."
 msgstr ""
 
-#: blueprints/assets.py:895 blueprints/assets.py:2122
+#: blueprints/assets.py:957 blueprints/assets.py:2184
 msgid "Selected assets were not found."
 msgstr ""
 
-#: blueprints/assets.py:995
+#: blueprints/assets.py:1057
 msgid "Asset was successfully deleted."
 msgstr ""
 
-#: blueprints/assets.py:1045
+#: blueprints/assets.py:1107
 msgid "Asset Tag is required."
 msgstr ""
 
-#: blueprints/assets.py:1064
+#: blueprints/assets.py:1126
 msgid "Asset name is required."
 msgstr ""
 
-#: blueprints/assets.py:1087
+#: blueprints/assets.py:1149
 msgid "Asset Tag is already in use."
 msgstr ""
 
-#: blueprints/assets.py:1142
+#: blueprints/assets.py:1204
 #, python-format
 msgid "Invalid asset photo: %(error)s"
 msgstr ""
 
-#: blueprints/assets.py:1163
+#: blueprints/assets.py:1225
 msgid "Asset photo failed to upload."
 msgstr ""
 
-#: blueprints/assets.py:1277
+#: blueprints/assets.py:1339
 msgid "Asset failed to save."
 msgstr ""
 
-#: blueprints/assets.py:1311
+#: blueprints/assets.py:1373
 msgid "Asset was successfully added."
 msgstr ""
 
-#: blueprints/assets.py:1656
+#: blueprints/assets.py:1718
 msgid "Invalid purchase date format."
 msgstr ""
 
-#: blueprints/assets.py:1696
+#: blueprints/assets.py:1758
 msgid "Invalid purchase price."
 msgstr ""
 
-#: blueprints/assets.py:1787
+#: blueprints/assets.py:1849
 msgid "Unsupported photo format. Use JPG, JPEG, PNG, or WEBP."
 msgstr ""
 
-#: blueprints/assets.py:1933
+#: blueprints/assets.py:1995
 msgid "Asset was successfully updated and warranty history was recorded."
 msgstr ""
 
-#: blueprints/assets.py:1942
+#: blueprints/assets.py:2004
 msgid "Asset was successfully updated."
 msgstr ""
 
-#: blueprints/assets.py:1963
+#: blueprints/assets.py:2025
 msgid "Failed to update asset."
 msgstr ""
 
-#: blueprints/assets.py:2044
+#: blueprints/assets.py:2106
 msgid "Select at least one asset to export to Excel."
 msgstr ""
 
-#: blueprints/assets.py:2088
+#: blueprints/assets.py:2150
 msgid "Invalid asset ID."
 msgstr ""
 
@@ -481,40 +610,36 @@ msgstr ""
 msgid "User deleted successfully."
 msgstr ""
 
-#: templates/base.html:625
+#: templates/base.html:634
 msgid "Toggle sidebar"
 msgstr ""
 
-#: templates/base.html:638 templates/login.html:561
+#: templates/base.html:647 templates/login.html:561
 msgid "Toggle color scheme"
 msgstr ""
 
-#: templates/base.html:649
+#: templates/base.html:658
 msgid "Light"
 msgstr ""
 
-#: templates/base.html:657
+#: templates/base.html:666
 msgid "Dark"
 msgstr ""
 
-#: templates/base.html:665
+#: templates/base.html:674
 msgid "Auto"
 msgstr ""
 
-#: templates/base.html:742
+#: templates/base.html:751
 msgid "Profile"
 msgstr ""
 
-#: templates/base.html:747
+#: templates/base.html:756
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:806
+#: templates/base.html:815
 msgid "Main menu"
-msgstr ""
-
-#: templates/clear_cache.html:3
-msgid "Clear Cache"
 msgstr ""
 
 #: templates/clear_cache.html:16
@@ -549,11 +674,6 @@ msgstr ""
 msgid "Failed to clear cache:"
 msgstr ""
 
-#: templates/dashboard.html:1 templates/dashboard.html:500
-#: templates/warranty/index.html:340
-msgid "Dashboard"
-msgstr ""
-
 #: templates/dashboard.html:504
 msgid "Asset Tracker summary information"
 msgstr ""
@@ -562,10 +682,6 @@ msgstr ""
 #: templates/asset/list.html:367 templates/dashboard.html:513
 #: templates/index.html:567
 msgid "Asset List"
-msgstr ""
-
-#: templates/asset/movements_global.html:35 templates/dashboard.html:522
-msgid "Movement Report"
 msgstr ""
 
 #: templates/dashboard.html:540 templates/index.html:602
@@ -592,15 +708,15 @@ msgstr ""
 
 #: templates/asset/add.html:762 templates/asset/detail.html:789
 #: templates/asset/edit.html:756 templates/asset/history.html:524
-#: templates/asset/labels_select.html:374 templates/asset/list.html:480
-#: templates/asset/list.html:720 templates/asset/movement_add.html:452
-#: templates/asset/movement_detail.html:951 templates/asset/movements.html:112
+#: templates/asset/labels_select.html:374 templates/asset/list.html:489
+#: templates/asset/list.html:729 templates/asset/movement_add.html:452
+#: templates/asset/movement_detail.html:936 templates/asset/movements.html:112
 #: templates/asset/movements.html:240 templates/asset/movements_global.html:124
 #: templates/asset/movements_global.html:504 templates/dashboard.html:650
 #: templates/dashboard.html:1058 templates/index.html:1810
 #: templates/index.html:2034 templates/master/menu/list.html:97
 #: templates/master/user/list.html:96 templates/warranty/alert.html:456
-#: templates/warranty/index.html:503
+#: templates/warranty/index.html:450
 msgid "Status"
 msgstr ""
 
@@ -617,16 +733,6 @@ msgstr ""
 msgid "Assets by Category"
 msgstr ""
 
-#: templates/asset/add.html:373 templates/asset/detail.html:638
-#: templates/asset/edit.html:450 templates/asset/history.html:500
-#: templates/asset/labels_print.html:134 templates/asset/list.html:529
-#: templates/asset/list.html:685 templates/asset/movement_correct.html:314
-#: templates/asset/movement_detail.html:983 templates/dashboard.html:741
-#: templates/dashboard.html:1052 templates/index.html:906
-#: templates/index.html:2022
-msgid "Category"
-msgstr ""
-
 #: templates/dashboard.html:767
 msgid "No category data yet."
 msgstr ""
@@ -635,49 +741,12 @@ msgstr ""
 msgid "Assets by Location"
 msgstr ""
 
-#: templates/asset/add.html:573 templates/asset/detail.html:692
-#: templates/asset/detail.html:893 templates/asset/edit.html:543
-#: templates/asset/history.html:543 templates/asset/labels_select.html:364
-#: templates/asset/list.html:565 templates/asset/list.html:705
-#: templates/asset/movement_add.html:627
-#: templates/asset/movement_corrections.html:144
-#: templates/asset/movement_corrections.html:201
-#: templates/asset/movement_corrections.html:240
-#: templates/asset/movement_detail.html:1032
-#: templates/asset/movement_qr.html:242
-#: templates/asset/movement_report.html:696 templates/asset/movements.html:180
-#: templates/asset/movements.html:234 templates/asset/movements_global.html:173
-#: templates/asset/movements_global.html:489 templates/dashboard.html:798
-#: templates/dashboard.html:1054 templates/index.html:917
-#: templates/index.html:2026
-msgid "Location"
-msgstr ""
-
 #: templates/dashboard.html:824
 msgid "No location data yet."
 msgstr ""
 
 #: templates/dashboard.html:843 templates/index.html:1059
 msgid "Assets by Department"
-msgstr ""
-
-#: templates/asset/add.html:607 templates/asset/detail.html:705
-#: templates/asset/detail.html:895 templates/asset/edit.html:582
-#: templates/asset/history.html:551 templates/asset/history.html:623
-#: templates/asset/history.html:641 templates/asset/labels_select.html:369
-#: templates/asset/list.html:601 templates/asset/list.html:710
-#: templates/asset/movement_add.html:652
-#: templates/asset/movement_corrections.html:151
-#: templates/asset/movement_corrections.html:208
-#: templates/asset/movement_corrections.html:247
-#: templates/asset/movement_detail.html:1046
-#: templates/asset/movement_qr.html:256
-#: templates/asset/movement_report.html:698 templates/asset/movements.html:188
-#: templates/asset/movements.html:236 templates/asset/movements_global.html:218
-#: templates/asset/movements_global.html:493 templates/dashboard.html:855
-#: templates/dashboard.html:1056 templates/index.html:928
-#: templates/index.html:2030 templates/master/department/list.html:89
-msgid "Department"
 msgstr ""
 
 #: templates/dashboard.html:881
@@ -696,7 +765,7 @@ msgstr ""
 msgid "No movement data yet."
 msgstr ""
 
-#: templates/asset/history.html:530 templates/asset/movement_report.html:551
+#: templates/asset/history.html:530 templates/asset/movement_report.html:515
 #: templates/asset/movements_global.html:329 templates/dashboard.html:966
 msgid "Total Movements"
 msgstr ""
@@ -734,7 +803,7 @@ msgstr ""
 msgid "View All"
 msgstr ""
 
-#: templates/asset/list.html:670 templates/asset/movement_report.html:688
+#: templates/asset/list.html:679 templates/asset/movement_report.html:652
 #: templates/asset/movements_global.html:473 templates/dashboard.html:1046
 #: templates/dashboard.html:1163 templates/master/category/list.html:102
 #: templates/master/department/list.html:88
@@ -747,10 +816,10 @@ msgstr ""
 #: templates/asset/add.html:329 templates/asset/detail.html:612
 #: templates/asset/edit.html:414 templates/asset/history.html:488
 #: templates/asset/labels_print.html:108 templates/asset/labels_select.html:344
-#: templates/asset/list.html:675 templates/asset/movement_add.html:401
+#: templates/asset/list.html:684 templates/asset/movement_add.html:401
 #: templates/asset/movement_correct.html:302
-#: templates/asset/movement_corrections.html:104
-#: templates/asset/movement_detail.html:971
+#: templates/asset/movement_corrections.html:101
+#: templates/asset/movement_detail.html:956
 #: templates/asset/movement_qr.html:201
 #: templates/asset/movement_verify.html:220 templates/asset/movements.html:72
 #: templates/dashboard.html:1048 templates/index.html:2014
@@ -759,10 +828,10 @@ msgstr ""
 
 #: templates/asset/add.html:351 templates/asset/detail.html:625
 #: templates/asset/edit.html:432 templates/asset/history.html:494
-#: templates/asset/list.html:680 templates/asset/movement_add.html:418
+#: templates/asset/list.html:689 templates/asset/movement_add.html:418
 #: templates/asset/movement_correct.html:308
-#: templates/asset/movement_corrections.html:108
-#: templates/asset/movement_detail.html:977
+#: templates/asset/movement_corrections.html:105
+#: templates/asset/movement_detail.html:962
 #: templates/asset/movement_qr.html:209
 #: templates/asset/movement_verify.html:228 templates/asset/movements.html:80
 #: templates/dashboard.html:1050
@@ -771,19 +840,19 @@ msgstr ""
 
 #: templates/asset/add.html:771 templates/asset/detail.html:793
 #: templates/asset/edit.html:769 templates/asset/labels_select.html:492
-#: templates/asset/list.html:493 templates/asset/list.html:903
+#: templates/asset/list.html:502 templates/asset/list.html:912
 #: templates/asset/movements.html:117 templates/dashboard.html:1090
 #: templates/index.html:2130 templates/master/menu/list.html:128
 #: templates/master/menu/list.html:186 templates/master/user/list.html:128
 #: templates/profile.html:39 templates/warranty/alert.html:277
-#: templates/warranty/alert.html:639 templates/warranty/index.html:376
-#: templates/warranty/index.html:609
+#: templates/warranty/alert.html:639 templates/warranty/index.html:323
+#: templates/warranty/index.html:556
 msgid "Active"
 msgstr ""
 
 #: templates/asset/add.html:778 templates/asset/detail.html:798
 #: templates/asset/edit.html:774 templates/asset/labels_select.html:500
-#: templates/asset/list.html:498 templates/asset/list.html:918
+#: templates/asset/list.html:507 templates/asset/list.html:927
 #: templates/asset/movements.html:121 templates/dashboard.html:1094
 #: templates/index.html:702 templates/index.html:2141
 msgid "Maintenance"
@@ -791,7 +860,7 @@ msgstr ""
 
 #: templates/asset/add.html:792 templates/asset/detail.html:809
 #: templates/asset/edit.html:784 templates/asset/labels_select.html:508
-#: templates/asset/list.html:508 templates/asset/list.html:946
+#: templates/asset/list.html:517 templates/asset/list.html:955
 #: templates/dashboard.html:1098 templates/index.html:837
 #: templates/index.html:2161
 msgid "Lost"
@@ -799,7 +868,7 @@ msgstr ""
 
 #: templates/asset/add.html:799 templates/asset/detail.html:813
 #: templates/asset/edit.html:789 templates/asset/labels_select.html:516
-#: templates/asset/list.html:513 templates/asset/list.html:960
+#: templates/asset/list.html:522 templates/asset/list.html:969
 #: templates/dashboard.html:1102 templates/index.html:863
 #: templates/index.html:2171
 msgid "Retired"
@@ -818,29 +887,20 @@ msgid "View Report"
 msgstr ""
 
 #: templates/asset/detail.html:891 templates/asset/movement_correct.html:337
-#: templates/asset/movement_corrections.html:133
-#: templates/asset/movement_detail.html:931
+#: templates/asset/movement_corrections.html:130
+#: templates/asset/movement_detail.html:916
 #: templates/asset/movement_qr.html:221
-#: templates/asset/movement_report.html:690
+#: templates/asset/movement_report.html:654
 #: templates/asset/movement_verify.html:203 templates/dashboard.html:1165
 msgid "Movement No."
 msgstr ""
 
 #: templates/asset/detail.html:889
-#: templates/asset/movement_corrections.html:222
-#: templates/asset/movement_corrections.html:261
-#: templates/asset/movement_report.html:692 templates/asset/movements.html:230
+#: templates/asset/movement_corrections.html:219
+#: templates/asset/movement_corrections.html:258
+#: templates/asset/movement_report.html:656 templates/asset/movements.html:230
 #: templates/asset/movements_global.html:485 templates/dashboard.html:1167
 msgid "Date"
-msgstr ""
-
-#: templates/asset/labels_print.html:121 templates/asset/labels_select.html:349
-#: templates/asset/movement_report.html:694
-#: templates/asset/movements_global.html:481 templates/dashboard.html:1169
-#: templates/index.html:1551 templates/index.html:1798
-#: templates/index.html:2018 templates/warranty/alert.html:448
-#: templates/warranty/index.html:497
-msgid "Asset"
 msgstr ""
 
 #: templates/asset/movements_global.html:88 templates/dashboard.html:1171
@@ -864,23 +924,12 @@ msgid "Active Assets"
 msgstr ""
 
 #: templates/asset/add.html:785 templates/asset/detail.html:804
-#: templates/asset/edit.html:779 templates/asset/list.html:503
-#: templates/asset/list.html:932 templates/asset/movements.html:125
+#: templates/asset/edit.html:779 templates/asset/list.html:512
+#: templates/asset/list.html:941 templates/asset/movements.html:125
 #: templates/index.html:811 templates/index.html:2151
 #: templates/master/menu/list.html:130 templates/master/menu/list.html:188
 #: templates/master/user/list.html:130 templates/profile.html:41
 msgid "Inactive"
-msgstr ""
-
-#: templates/index.html:889
-msgid "Master Data"
-msgstr ""
-
-#: templates/asset/add.html:710 templates/asset/detail.html:763
-#: templates/asset/edit.html:699 templates/index.html:939
-#: templates/master/vendor/list.html:93 templates/warranty/alert.html:451
-#: templates/warranty/index.html:498
-msgid "Vendor"
 msgstr ""
 
 #: templates/index.html:975
@@ -900,7 +949,7 @@ msgid "Asset distribution by department"
 msgstr ""
 
 #: templates/index.html:1104 templates/warranty/alert.html:343
-#: templates/warranty/index.html:427
+#: templates/warranty/index.html:374
 msgid "Active Warranty"
 msgstr ""
 
@@ -926,7 +975,7 @@ msgid "Unknown Warranty"
 msgstr ""
 
 #: templates/index.html:1336 templates/warranty/history.html:173
-#: templates/warranty/index.html:321
+#: templates/warranty/index.html:268
 msgid "Warranty Alert"
 msgstr ""
 
@@ -976,29 +1025,22 @@ msgstr ""
 msgid "View Warranty Alert Detail"
 msgstr ""
 
-#: templates/asset/add.html:744 templates/asset/detail.html:776
-#: templates/asset/edit.html:738 templates/index.html:1555
-#: templates/index.html:1802 templates/warranty/alert.html:453
-#: templates/warranty/index.html:499
-msgid "Warranty"
-msgstr ""
-
 #: templates/index.html:1559 templates/index.html:1806
-#: templates/warranty/index.html:501
+#: templates/warranty/index.html:448
 msgid "Expires"
 msgstr ""
 
-#: templates/index.html:1563 templates/warranty/index.html:502
+#: templates/index.html:1563 templates/warranty/index.html:449
 msgid "Remaining"
 msgstr ""
 
-#: templates/index.html:1653 templates/warranty/index.html:580
+#: templates/index.html:1653 templates/warranty/index.html:527
 msgid "Today"
 msgstr ""
 
 #: templates/index.html:1670 templates/warranty/alert.html:578
 #: templates/warranty/alert.html:584 templates/warranty/alert.html:590
-#: templates/warranty/index.html:586 templates/warranty/index.html:592
+#: templates/warranty/index.html:533 templates/warranty/index.html:539
 msgid "days"
 msgstr ""
 
@@ -1011,8 +1053,8 @@ msgid "Warranty that has already expired"
 msgstr ""
 
 #: templates/index.html:1895 templates/warranty/alert.html:268
-#: templates/warranty/alert.html:614 templates/warranty/index.html:384
-#: templates/warranty/index.html:447 templates/warranty/index.html:623
+#: templates/warranty/alert.html:614 templates/warranty/index.html:331
+#: templates/warranty/index.html:394 templates/warranty/index.html:570
 #: templates/warranty/notifications.html:715
 msgid "Expired"
 msgstr ""
@@ -1025,8 +1067,8 @@ msgstr ""
 msgid "10 most recently added assets"
 msgstr ""
 
-#: templates/asset/detail.html:901 templates/asset/list.html:725
-#: templates/asset/movement_report.html:704 templates/asset/movements.html:242
+#: templates/asset/detail.html:901 templates/asset/list.html:734
+#: templates/asset/movement_report.html:668 templates/asset/movements.html:242
 #: templates/asset/movements_global.html:511 templates/audit/list.html:51
 #: templates/backup/list.html:66 templates/index.html:2038
 #: templates/master/category/list.html:114
@@ -1034,18 +1076,18 @@ msgstr ""
 #: templates/master/location/list.html:96 templates/master/menu/list.html:98
 #: templates/master/user/list.html:97 templates/master/vendor/list.html:97
 #: templates/roles/list.html:73 templates/warranty/alert.html:457
-#: templates/warranty/index.html:504
+#: templates/warranty/index.html:451
 msgid "Actions"
 msgstr ""
 
-#: templates/asset/detail.html:818 templates/asset/list.html:974
+#: templates/asset/detail.html:818 templates/asset/list.html:983
 #: templates/index.html:2184 templates/index.html:2270
 msgid "No Status"
 msgstr ""
 
 #: templates/asset/detail.html:1 templates/asset/detail.html:483
 #: templates/asset/movement_verify.html:426 templates/index.html:2207
-#: templates/warranty/history.html:187 templates/warranty/index.html:642
+#: templates/warranty/history.html:187 templates/warranty/index.html:589
 msgid "Asset Detail"
 msgstr ""
 
@@ -1145,7 +1187,7 @@ msgid "Save Changes"
 msgstr ""
 
 #: templates/asset/add.html:4 templates/asset/add.html:249
-#: templates/asset/list.html:402 templates/asset/list.html:1069
+#: templates/asset/list.html:411 templates/asset/list.html:1078
 msgid "Add Asset"
 msgstr ""
 
@@ -1156,7 +1198,7 @@ msgstr ""
 #: templates/asset/add.html:264 templates/asset/detail.html:498
 #: templates/asset/edit.html:239 templates/asset/import.html:40
 #: templates/asset/labels_print.html:44 templates/asset/labels_select.html:162
-#: templates/asset/movement_corrections.html:91
+#: templates/asset/movement_corrections.html:88
 #: templates/asset/movement_qr.html:343 templates/company/edit.html:273
 #: templates/master/category/add.html:31 templates/master/category/edit.html:31
 #: templates/master/department/add.html:22
@@ -1168,7 +1210,7 @@ msgstr ""
 
 #: templates/asset/add.html:288 templates/asset/detail.html:600
 #: templates/asset/edit.html:400 templates/asset/history.html:483
-#: templates/asset/movement_corrections.html:99
+#: templates/asset/movement_corrections.html:96
 #: templates/asset/movements.html:60
 msgid "Asset Information"
 msgstr ""
@@ -1191,7 +1233,7 @@ msgstr ""
 
 #: templates/asset/add.html:407 templates/asset/detail.html:651
 #: templates/asset/edit.html:489 templates/asset/history.html:506
-#: templates/asset/labels_print.html:147 templates/asset/list.html:690
+#: templates/asset/labels_print.html:147 templates/asset/list.html:699
 #: templates/asset/movements.html:88
 msgid "Brand"
 msgstr ""
@@ -1202,7 +1244,7 @@ msgstr ""
 
 #: templates/asset/add.html:425 templates/asset/detail.html:664
 #: templates/asset/edit.html:507 templates/asset/history.html:512
-#: templates/asset/labels_print.html:160 templates/asset/list.html:695
+#: templates/asset/labels_print.html:160 templates/asset/list.html:704
 #: templates/asset/movements.html:96
 msgid "Model"
 msgstr ""
@@ -1214,10 +1256,10 @@ msgstr ""
 #: templates/asset/add.html:443 templates/asset/add.html:449
 #: templates/asset/detail.html:677 templates/asset/edit.html:525
 #: templates/asset/history.html:518 templates/asset/labels_select.html:359
-#: templates/asset/list.html:700 templates/asset/movement_add.html:435
+#: templates/asset/list.html:709 templates/asset/movement_add.html:435
 #: templates/asset/movement_correct.html:327
-#: templates/asset/movement_corrections.html:119
-#: templates/asset/movement_detail.html:996
+#: templates/asset/movement_corrections.html:116
+#: templates/asset/movement_detail.html:981
 #: templates/asset/movement_qr.html:215
 #: templates/asset/movement_verify.html:234 templates/asset/movements.html:104
 msgid "Serial Number"
@@ -1226,13 +1268,13 @@ msgstr ""
 #: templates/asset/add.html:461 templates/asset/detail.html:718
 #: templates/asset/detail.html:897 templates/asset/edit.html:621
 #: templates/asset/history.html:559 templates/asset/history.html:628
-#: templates/asset/history.html:646 templates/asset/list.html:715
+#: templates/asset/history.html:646 templates/asset/list.html:724
 #: templates/asset/movement_add.html:677
-#: templates/asset/movement_corrections.html:215
-#: templates/asset/movement_corrections.html:254
-#: templates/asset/movement_detail.html:1060
+#: templates/asset/movement_corrections.html:212
+#: templates/asset/movement_corrections.html:251
+#: templates/asset/movement_detail.html:1045
 #: templates/asset/movement_qr.html:270
-#: templates/asset/movement_report.html:700 templates/asset/movements.html:196
+#: templates/asset/movement_report.html:664 templates/asset/movements.html:196
 #: templates/asset/movements.html:238 templates/asset/movements_global.html:263
 #: templates/asset/movements_global.html:497
 msgid "PIC"
@@ -1283,7 +1325,7 @@ msgstr ""
 
 #: templates/asset/add.html:666 templates/asset/detail.html:731
 #: templates/asset/edit.html:663 templates/warranty/alert.html:452
-#: templates/warranty/index.html:500
+#: templates/warranty/index.html:447
 msgid "Purchase Date"
 msgstr ""
 
@@ -1375,13 +1417,13 @@ msgid "Add Movement"
 msgstr ""
 
 #: templates/asset/detail.html:899 templates/asset/history.html:656
-#: templates/asset/movement_corrections.html:228
-#: templates/asset/movement_corrections.html:267
+#: templates/asset/movement_corrections.html:225
+#: templates/asset/movement_corrections.html:264
 #: templates/warranty/history.html:330
 msgid "Reason"
 msgstr ""
 
-#: templates/asset/detail.html:974 templates/asset/movement_corrections.html:79
+#: templates/asset/detail.html:974 templates/asset/movement_corrections.html:76
 msgid "Movement Detail"
 msgstr ""
 
@@ -1404,7 +1446,7 @@ msgstr ""
 msgid "Add First Movement"
 msgstr ""
 
-#: templates/asset/edit.html:308 templates/asset/list.html:762
+#: templates/asset/edit.html:308 templates/asset/list.html:771
 msgid "No photo yet"
 msgstr ""
 
@@ -1495,9 +1537,9 @@ msgstr ""
 
 #: templates/asset/history.html:662 templates/asset/movement_add.html:932
 #: templates/asset/movement_correct.html:599
-#: templates/asset/movement_corrections.html:232
-#: templates/asset/movement_corrections.html:271
-#: templates/asset/movement_detail.html:1097
+#: templates/asset/movement_corrections.html:229
+#: templates/asset/movement_corrections.html:268
+#: templates/asset/movement_detail.html:1082
 #: templates/asset/movement_verify.html:359 templates/warranty/history.html:334
 msgid "Notes"
 msgstr ""
@@ -1510,20 +1552,20 @@ msgstr ""
 msgid "Received By"
 msgstr ""
 
-#: templates/asset/history.html:712 templates/asset/list.html:995
-#: templates/asset/movement_detail.html:774
-#: templates/asset/movement_report.html:829 templates/asset/movements.html:371
+#: templates/asset/history.html:712 templates/asset/list.html:1004
+#: templates/asset/movement_detail.html:759
+#: templates/asset/movement_report.html:793 templates/asset/movements.html:371
 #: templates/asset/movements_global.html:673
 msgid "Detail"
 msgstr ""
 
-#: templates/asset/history.html:723 templates/asset/labels.html:1112
-#: templates/asset/labels.html:1124 templates/asset/labels_print.html:85
+#: templates/asset/history.html:723 templates/asset/labels.html:1208
+#: templates/asset/labels.html:1220 templates/asset/labels_print.html:85
 #: templates/asset/movements_global.html:687
 msgid "QR"
 msgstr ""
 
-#: templates/asset/history.html:734 templates/asset/movement_detail.html:798
+#: templates/asset/history.html:734 templates/asset/movement_detail.html:783
 #: templates/asset/movement_qr.html:325
 msgid "Verify"
 msgstr ""
@@ -1623,31 +1665,31 @@ msgstr ""
 msgid "View Assets"
 msgstr ""
 
-#: templates/asset/labels.html:4 templates/asset/labels.html:873
+#: templates/asset/labels.html:4 templates/asset/labels.html:888
 msgid "Print QR / Label Asset"
 msgstr ""
 
-#: templates/asset/labels.html:878 templates/company/edit.html:244
+#: templates/asset/labels.html:893 templates/company/edit.html:244
 msgid "Format:"
 msgstr ""
 
-#: templates/asset/labels.html:886
+#: templates/asset/labels.html:901
 msgid "— 5 columns × 8 rows — 40 labels / sheet."
 msgstr ""
 
-#: templates/asset/labels.html:892
+#: templates/asset/labels.html:907
 msgid "Each asset is printed as"
 msgstr ""
 
-#: templates/asset/labels.html:894
+#: templates/asset/labels.html:909
 msgid "5 labels"
 msgstr ""
 
-#: templates/asset/labels.html:896
+#: templates/asset/labels.html:911
 msgid "for laptop, charger, box, bag, and accessories."
 msgstr ""
 
-#: templates/asset/labels.html:906
+#: templates/asset/labels.html:921
 #, python-format
 msgid ""
 "Before printing, make sure Paper size is set to A4 (not A5/Letter) and "
@@ -1655,25 +1697,64 @@ msgid ""
 "labels line up with the physical sheet."
 msgstr ""
 
-#: templates/asset/labels.html:938 templates/asset/labels.html:1186
+#: templates/asset/labels.html:953 templates/asset/labels.html:1282
 msgid "Select Asset"
 msgstr ""
 
-#: templates/asset/labels.html:970 templates/asset/movement_report.html:539
-#: templates/warranty/history.html:160 templates/warranty/index.html:330
+#: templates/asset/labels.html:985 templates/asset/movement_report.html:503
+#: templates/warranty/history.html:160 templates/warranty/index.html:277
 msgid "Export Excel"
 msgstr ""
 
-#: templates/asset/labels.html:989 templates/asset/labels_print.html:54
-#: templates/asset/movement_report.html:527 templates/warranty/index.html:335
+#: templates/asset/labels.html:1004 templates/asset/labels_print.html:54
+#: templates/asset/movement_report.html:491 templates/warranty/index.html:282
 msgid "Print"
 msgstr ""
 
-#: templates/asset/labels.html:1165
+#: templates/asset/labels.html:1029
+msgid "Print Position Calibration"
+msgstr ""
+
+#: templates/asset/labels.html:1033
+msgid ""
+"If the printed labels are shifted from the physical Tom & Jerry No. 108 "
+"sheet, nudge the values below, print a test page, and repeat until "
+"aligned. Values are saved in this browser."
+msgstr ""
+
+#: templates/asset/labels.html:1039
+msgid "Top offset"
+msgstr ""
+
+#: templates/asset/labels.html:1047
+msgid "Left offset"
+msgstr ""
+
+#: templates/asset/labels.html:1055
+msgid "Label width"
+msgstr ""
+
+#: templates/asset/labels.html:1063
+msgid "Label height"
+msgstr ""
+
+#: templates/asset/labels.html:1071
+msgid "Column gap"
+msgstr ""
+
+#: templates/asset/labels.html:1079
+msgid "Row gap"
+msgstr ""
+
+#: templates/asset/labels.html:1087
+msgid "Reset to default"
+msgstr ""
+
+#: templates/asset/labels.html:1261
 msgid "No assets to print."
 msgstr ""
 
-#: templates/asset/labels.html:1172
+#: templates/asset/labels.html:1268
 msgid "Please select an asset first."
 msgstr ""
 
@@ -1687,8 +1768,8 @@ msgstr ""
 
 #: templates/asset/labels_print.html:31 templates/asset/labels_select.html:249
 #: templates/asset/labels_select.html:992
-#: templates/asset/labels_select.html:1001 templates/asset/list.html:1117
-#: templates/warranty/alert.html:422 templates/warranty/index.html:481
+#: templates/asset/labels_select.html:1001 templates/asset/list.html:1126
+#: templates/warranty/alert.html:422 templates/warranty/index.html:428
 msgid "assets"
 msgstr ""
 
@@ -1717,7 +1798,7 @@ msgid "Select the assets whose labels you want to print."
 msgstr ""
 
 #: templates/asset/labels_select.html:230 templates/warranty/alert.html:309
-#: templates/warranty/index.html:357 templates/warranty/notifications.html:252
+#: templates/warranty/index.html:304 templates/warranty/notifications.html:252
 msgid "Search Asset"
 msgstr ""
 
@@ -1727,8 +1808,8 @@ msgstr ""
 
 #: templates/asset/labels_select.html:247
 #: templates/asset/labels_select.html:990
-#: templates/asset/labels_select.html:997 templates/asset/list.html:1105
-#: templates/asset/movement_report.html:871
+#: templates/asset/labels_select.html:997 templates/asset/list.html:1114
+#: templates/asset/movement_report.html:835
 msgid "Showing"
 msgstr ""
 
@@ -1747,8 +1828,8 @@ msgstr ""
 
 #: templates/asset/labels_select.html:354
 #: templates/asset/movement_correct.html:318
-#: templates/asset/movement_corrections.html:112
-#: templates/asset/movement_detail.html:987
+#: templates/asset/movement_corrections.html:109
+#: templates/asset/movement_detail.html:972
 #: templates/asset/movement_verify.html:240 templates/warranty/alert.html:450
 msgid "Brand / Model"
 msgstr ""
@@ -1770,8 +1851,8 @@ msgstr ""
 msgid "Print Label"
 msgstr ""
 
-#: templates/asset/labels_select.html:999 templates/asset/list.html:1111
-#: templates/asset/movement_report.html:873
+#: templates/asset/labels_select.html:999 templates/asset/list.html:1120
+#: templates/asset/movement_report.html:837
 msgid "of"
 msgstr ""
 
@@ -1784,7 +1865,7 @@ msgid "Manage and monitor all company assets"
 msgstr ""
 
 #: templates/asset/list.html:381 templates/asset/list.html:384
-#: templates/asset/list.html:1019
+#: templates/asset/list.html:1028
 msgid "Print QR / Label"
 msgstr ""
 
@@ -1793,49 +1874,54 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: templates/asset/list.html:436 templates/asset/list.html:456
+#: templates/asset/list.html:402 templates/roles/import.html:42
+#: templates/roles/list.html:31
+msgid "Import"
+msgstr ""
+
+#: templates/asset/list.html:445 templates/asset/list.html:465
 #: templates/asset/movements_global.html:69
 msgid "Search"
 msgstr ""
 
-#: templates/asset/list.html:452
+#: templates/asset/list.html:461
 msgid "Asset tag, name, brand, serial..."
 msgstr ""
 
-#: templates/asset/list.html:461 templates/asset/movement_report.html:858
+#: templates/asset/list.html:470 templates/asset/movement_report.html:822
 #: templates/asset/movements_global.html:296
 #: templates/asset/movements_global.html:799 templates/warranty/alert.html:365
 #: templates/warranty/notifications.html:318
 msgid "Reset Filter"
 msgstr ""
 
-#: templates/asset/list.html:463 templates/asset/movement_correct.html:873
-#: templates/asset/movement_report.html:642 templates/warranty/index.html:405
+#: templates/asset/list.html:472 templates/asset/movement_correct.html:873
+#: templates/asset/movement_report.html:606 templates/warranty/index.html:352
 msgid "Reset"
 msgstr ""
 
-#: templates/asset/list.html:488 templates/asset/movements_global.html:134
-#: templates/warranty/index.html:373
+#: templates/asset/list.html:497 templates/asset/movements_global.html:134
+#: templates/warranty/index.html:320
 msgid "All Statuses"
 msgstr ""
 
-#: templates/asset/list.html:537
+#: templates/asset/list.html:546
 msgid "All Categories"
 msgstr ""
 
-#: templates/asset/list.html:573 templates/asset/movements_global.html:183
+#: templates/asset/list.html:582 templates/asset/movements_global.html:183
 msgid "All Locations"
 msgstr ""
 
-#: templates/asset/list.html:609 templates/asset/movements_global.html:228
+#: templates/asset/list.html:618 templates/asset/movements_global.html:228
 msgid "All Departments"
 msgstr ""
 
-#: templates/asset/list.html:665
+#: templates/asset/list.html:674
 msgid "Photo"
 msgstr ""
 
-#: templates/asset/list.html:1007 templates/master/category/list.html:147
+#: templates/asset/list.html:1016 templates/master/category/list.html:147
 #: templates/master/department/list.html:122
 #: templates/master/location/list.html:128 templates/master/menu/list.html:140
 #: templates/master/menu/list.html:198 templates/master/user/list.html:140
@@ -1843,28 +1929,28 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: templates/asset/list.html:1053
+#: templates/asset/list.html:1062
 msgid "No assets found."
 msgstr ""
 
-#: templates/asset/list.html:1060
+#: templates/asset/list.html:1069
 msgid "Try changing your search term or filters."
 msgstr ""
 
-#: templates/asset/list.html:1126
+#: templates/asset/list.html:1135
 msgid "Search:"
 msgstr ""
 
-#: templates/asset/list.html:1143
+#: templates/asset/list.html:1152
 msgid "Asset page navigation"
 msgstr ""
 
-#: templates/asset/list.html:1149 templates/asset/movements_global.html:746
+#: templates/asset/list.html:1158 templates/asset/movements_global.html:746
 #: templates/audit/list.html:100
 msgid "Previous"
 msgstr ""
 
-#: templates/asset/list.html:1171 templates/asset/movements_global.html:768
+#: templates/asset/list.html:1180 templates/asset/movements_global.html:768
 #: templates/audit/list.html:114
 msgid "Next"
 msgstr ""
@@ -1883,14 +1969,14 @@ msgstr ""
 
 #: templates/asset/movement_add.html:494
 #: templates/asset/movement_correct.html:377
-#: templates/asset/movement_corrections.html:128
+#: templates/asset/movement_corrections.html:125
 msgid "Movement Information"
 msgstr ""
 
 #: templates/asset/movement_add.html:515
 #: templates/asset/movement_correct.html:384
-#: templates/asset/movement_corrections.html:137
-#: templates/asset/movement_detail.html:935
+#: templates/asset/movement_corrections.html:134
+#: templates/asset/movement_detail.html:920
 #: templates/asset/movement_qr.html:229
 #: templates/asset/movement_verify.html:211
 msgid "Movement Date"
@@ -1898,7 +1984,7 @@ msgstr ""
 
 #: templates/asset/movement_add.html:550
 #: templates/asset/movement_correct.html:586
-#: templates/asset/movement_detail.html:1089
+#: templates/asset/movement_detail.html:1074
 #: templates/asset/movement_verify.html:345
 msgid "Movement Reason"
 msgstr ""
@@ -1975,8 +2061,8 @@ msgstr ""
 #: templates/asset/movement_add.html:1132
 #: templates/asset/movement_correct.html:647
 #: templates/asset/movement_correct.html:757
-#: templates/asset/movement_detail.html:1136
-#: templates/asset/movement_detail.html:1171
+#: templates/asset/movement_detail.html:1121
+#: templates/asset/movement_detail.html:1156
 msgid "Position"
 msgstr ""
 
@@ -2008,8 +2094,8 @@ msgid "Save Movement"
 msgstr ""
 
 #: templates/asset/movement_correct.html:1
-#: templates/asset/movement_corrections.html:85
-#: templates/asset/movement_detail.html:810
+#: templates/asset/movement_corrections.html:82
+#: templates/asset/movement_detail.html:795
 msgid "Correct Movement"
 msgstr ""
 
@@ -2048,17 +2134,17 @@ msgid "Re-sign button"
 msgstr ""
 
 #: templates/asset/movement_correct.html:296
-#: templates/asset/movement_detail.html:966
+#: templates/asset/movement_detail.html:951
 msgid "Asset Identity"
 msgstr ""
 
 #: templates/asset/movement_correct.html:331
-#: templates/asset/movement_detail.html:1000
+#: templates/asset/movement_detail.html:985
 msgid "Asset Status"
 msgstr ""
 
 #: templates/asset/movement_correct.html:343
-#: templates/asset/movement_detail.html:944 templates/backup/list.html:65
+#: templates/asset/movement_detail.html:929 templates/backup/list.html:65
 msgid "Created"
 msgstr ""
 
@@ -2067,7 +2153,7 @@ msgid "Movement Details"
 msgstr ""
 
 #: templates/asset/movement_correct.html:425
-#: templates/asset/movement_detail.html:1021
+#: templates/asset/movement_detail.html:1006
 #: templates/asset/movement_verify.html:258
 #: templates/asset/movement_verify.html:288
 #: templates/asset/movement_verify.html:318
@@ -2105,7 +2191,7 @@ msgid ""
 msgstr ""
 
 #: templates/asset/movement_correct.html:495
-#: templates/asset/movement_detail.html:1025
+#: templates/asset/movement_detail.html:1010
 #: templates/asset/movement_verify.html:268
 #: templates/asset/movement_verify.html:298
 #: templates/asset/movement_verify.html:328
@@ -2117,7 +2203,7 @@ msgid "Destination PIC"
 msgstr ""
 
 #: templates/asset/movement_correct.html:581
-#: templates/asset/movement_corrections.html:181
+#: templates/asset/movement_corrections.html:178
 msgid "Reason & Notes"
 msgstr ""
 
@@ -2130,7 +2216,7 @@ msgid "Enter additional notes"
 msgstr ""
 
 #: templates/asset/movement_correct.html:631
-#: templates/asset/movement_detail.html:1133
+#: templates/asset/movement_detail.html:1118
 msgid "HANDED OVER BY"
 msgstr ""
 
@@ -2184,7 +2270,7 @@ msgid "Use a mouse/touchpad to draw. Click Delete to create a new signature."
 msgstr ""
 
 #: templates/asset/movement_correct.html:741
-#: templates/asset/movement_detail.html:1168
+#: templates/asset/movement_detail.html:1153
 msgid "RECEIVED BY"
 msgstr ""
 
@@ -2221,49 +2307,49 @@ msgid "Reset all correction data to the original state?"
 msgstr ""
 
 #: templates/asset/movement_corrections.html:1
-#: templates/asset/movement_corrections.html:69
+#: templates/asset/movement_corrections.html:66
 msgid "Movement Correction History"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:70
+#: templates/asset/movement_corrections.html:67
 msgid "History of asset movement data changes"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:165
-#: templates/asset/movement_detail.html:823
+#: templates/asset/movement_corrections.html:162
+#: templates/asset/movement_detail.html:808
 msgid "Correction History"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:166
+#: templates/asset/movement_corrections.html:163
 #: templates/asset/movements_global.html:702
 msgid "Corrections"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:178
+#: templates/asset/movement_corrections.html:175
 msgid "Correction Time"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:179
+#: templates/asset/movement_corrections.html:176
 msgid "Data Before"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:180
+#: templates/asset/movement_corrections.html:177
 msgid "Data After"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:282
+#: templates/asset/movement_corrections.html:279
 msgid "No correction reason."
 msgstr ""
 
-#: templates/asset/movement_corrections.html:295
+#: templates/asset/movement_corrections.html:292
 msgid "No Correction History Yet"
 msgstr ""
 
-#: templates/asset/movement_corrections.html:296
+#: templates/asset/movement_corrections.html:293
 msgid "This movement has never been corrected."
 msgstr ""
 
-#: templates/asset/movement_corrections.html:301
+#: templates/asset/movement_corrections.html:298
 msgid "Create Correction"
 msgstr ""
 
@@ -2271,102 +2357,102 @@ msgstr ""
 msgid "Asset Movement Proof"
 msgstr ""
 
-#: templates/asset/movement_detail.html:762
+#: templates/asset/movement_detail.html:747
 msgid "Back to History"
 msgstr ""
 
-#: templates/asset/movement_detail.html:788
+#: templates/asset/movement_detail.html:773
 msgid "Verification QR"
 msgstr ""
 
-#: templates/asset/movement_detail.html:833
+#: templates/asset/movement_detail.html:818
 msgid "Print A4"
 msgstr ""
 
-#: templates/asset/movement_detail.html:853
+#: templates/asset/movement_detail.html:838
 msgid "Movement Verification QR"
 msgstr ""
 
-#: templates/asset/movement_detail.html:856
+#: templates/asset/movement_detail.html:841
 msgid "Scan to verify"
 msgstr ""
 
-#: templates/asset/movement_detail.html:872
+#: templates/asset/movement_detail.html:857
 msgid "Logo"
 msgstr ""
 
-#: templates/asset/movement_detail.html:880
+#: templates/asset/movement_detail.html:865
 msgid "COMPANY NAME"
 msgstr ""
 
-#: templates/asset/movement_detail.html:892
+#: templates/asset/movement_detail.html:877
 msgid "Tel."
 msgstr ""
 
-#: templates/asset/movement_detail.html:900 templates/company/edit.html:109
+#: templates/asset/movement_detail.html:885 templates/company/edit.html:109
 #: templates/company/list.html:218 templates/master/vendor/add.html:89
 #: templates/master/vendor/edit.html:91 templates/master/vendor/list.html:96
 msgid "Email"
 msgstr ""
 
-#: templates/asset/movement_detail.html:913
+#: templates/asset/movement_detail.html:898
 msgid "ASSET MOVEMENT PROOF"
 msgstr ""
 
-#: templates/asset/movement_detail.html:926
+#: templates/asset/movement_detail.html:911
 msgid "Document Information"
 msgstr ""
 
-#: templates/asset/movement_detail.html:954
+#: templates/asset/movement_detail.html:939
 msgid "COMPLETED"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1013
+#: templates/asset/movement_detail.html:998
 msgid "Asset Transfer Detail"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1019
+#: templates/asset/movement_detail.html:1004
 msgid "DESCRIPTION"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1083
+#: templates/asset/movement_detail.html:1068
 msgid "Movement Description"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1115
+#: templates/asset/movement_detail.html:1100
 msgid ""
 "By signing this document, the parties declare that the asset listed in "
 "this document has been handed over and received in accordance with the "
 "movement information recorded in the Asset Tracker system."
 msgstr ""
 
-#: templates/asset/movement_detail.html:1125
+#: templates/asset/movement_detail.html:1110
 msgid "Approval / Handover"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1144
+#: templates/asset/movement_detail.html:1129
 msgid "Signature of the handing-over party"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1149
-#: templates/asset/movement_detail.html:1184
+#: templates/asset/movement_detail.html:1134
+#: templates/asset/movement_detail.html:1169
 msgid "No signature"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1156
-#: templates/asset/movement_detail.html:1191
+#: templates/asset/movement_detail.html:1141
+#: templates/asset/movement_detail.html:1176
 msgid "Signed"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1179
+#: templates/asset/movement_detail.html:1164
 msgid "Signature of the receiving party"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1213
+#: templates/asset/movement_detail.html:1198
 msgid "Asset Movement Document"
 msgstr ""
 
-#: templates/asset/movement_detail.html:1220
+#: templates/asset/movement_detail.html:1205
 msgid "Verification"
 msgstr ""
 
@@ -2398,116 +2484,116 @@ msgid "Print QR"
 msgstr ""
 
 #: templates/asset/movement_report.html:1
-#: templates/asset/movement_report.html:508
+#: templates/asset/movement_report.html:472
 msgid "Asset Movement Report"
 msgstr ""
 
-#: templates/asset/movement_report.html:511
+#: templates/asset/movement_report.html:475
 msgid "Asset movement history by movement date."
 msgstr ""
 
-#: templates/asset/movement_report.html:515
+#: templates/asset/movement_report.html:479
 msgid "Printed from the Asset Tracker system."
 msgstr ""
 
-#: templates/asset/movement_report.html:557
+#: templates/asset/movement_report.html:521
 msgid "Filtered Results"
 msgstr ""
 
-#: templates/asset/movement_report.html:563
+#: templates/asset/movement_report.html:527
 msgid "Most Common Destination Location"
 msgstr ""
 
-#: templates/asset/movement_report.html:569
+#: templates/asset/movement_report.html:533
 msgid "Most Common Destination Department"
 msgstr ""
 
-#: templates/asset/movement_report.html:585
+#: templates/asset/movement_report.html:549
 msgid "Report Filter"
 msgstr ""
 
-#: templates/asset/movement_report.html:593
+#: templates/asset/movement_report.html:557
 msgid "Start Date"
 msgstr ""
 
-#: templates/asset/movement_report.html:605 templates/warranty/alert.html:454
+#: templates/asset/movement_report.html:569 templates/warranty/alert.html:454
 msgid "End Date"
 msgstr ""
 
-#: templates/asset/movement_report.html:618
-#: templates/asset/movement_report.html:622
+#: templates/asset/movement_report.html:582
+#: templates/asset/movement_report.html:586
 msgid "Showing movements from"
 msgstr ""
 
-#: templates/asset/movement_report.html:620
+#: templates/asset/movement_report.html:584
 msgid "to"
 msgstr ""
 
-#: templates/asset/movement_report.html:624
+#: templates/asset/movement_report.html:588
 msgid "Showing movements until"
 msgstr ""
 
-#: templates/asset/movement_report.html:626
+#: templates/asset/movement_report.html:590
 msgid "Showing all movements."
 msgstr ""
 
-#: templates/asset/movement_report.html:634
+#: templates/asset/movement_report.html:598
 msgid "Apply Filter"
 msgstr ""
 
-#: templates/asset/movement_report.html:662
+#: templates/asset/movement_report.html:626
 msgid "Asset Movement Data"
 msgstr ""
 
-#: templates/asset/movement_report.html:665
+#: templates/asset/movement_report.html:629
 msgid "movements shown"
 msgstr ""
 
-#: templates/asset/movement_report.html:672
+#: templates/asset/movement_report.html:636
 msgid "Period:"
 msgstr ""
 
-#: templates/asset/movement_report.html:674
+#: templates/asset/movement_report.html:638
 msgid "From:"
 msgstr ""
 
-#: templates/asset/movement_report.html:675
+#: templates/asset/movement_report.html:639
 msgid "Until:"
 msgstr ""
 
-#: templates/asset/movement_report.html:676
+#: templates/asset/movement_report.html:640
 msgid "Entire period"
 msgstr ""
 
-#: templates/asset/movement_report.html:702
+#: templates/asset/movement_report.html:666
 msgid "Reason / Description"
 msgstr ""
 
-#: templates/asset/movement_report.html:826
+#: templates/asset/movement_report.html:790
 msgid "View Movement Detail"
 msgstr ""
 
-#: templates/asset/movement_report.html:846
+#: templates/asset/movement_report.html:810
 msgid "No movement data"
 msgstr ""
 
-#: templates/asset/movement_report.html:849
+#: templates/asset/movement_report.html:813
 msgid "No asset movement data found"
 msgstr ""
 
-#: templates/asset/movement_report.html:849
+#: templates/asset/movement_report.html:813
 msgid "for the selected period."
 msgstr ""
 
-#: templates/asset/movement_report.html:849
+#: templates/asset/movement_report.html:813
 msgid "in the database."
 msgstr ""
 
-#: templates/asset/movement_report.html:875
+#: templates/asset/movement_report.html:839
 msgid "total movements."
 msgstr ""
 
-#: templates/asset/movement_report.html:875
+#: templates/asset/movement_report.html:839
 msgid "No movements displayed."
 msgstr ""
 
@@ -2653,10 +2739,6 @@ msgstr ""
 msgid "No data matches the filter."
 msgstr ""
 
-#: templates/audit/list.html:3 templates/audit/list.html:16
-msgid "Audit Log"
-msgstr ""
-
 #: templates/audit/list.html:17
 msgid "History of who added/changed/deleted data"
 msgstr ""
@@ -2699,10 +2781,6 @@ msgstr ""
 
 #: templates/audit/list.html:95
 msgid "Audit log page navigation"
-msgstr ""
-
-#: templates/backup/list.html:3 templates/backup/list.html:16
-msgid "Backup Database"
 msgstr ""
 
 #: templates/backup/list.html:17
@@ -3166,10 +3244,6 @@ msgstr ""
 msgid "Edit Menu Item"
 msgstr ""
 
-#: templates/master/menu/list.html:3 templates/master/menu/list.html:20
-msgid "Menu Management"
-msgstr ""
-
 #: templates/master/menu/list.html:23
 msgid "Manage the navigation menu shown in the navbar"
 msgstr ""
@@ -3226,10 +3300,6 @@ msgstr ""
 
 #: templates/master/user/edit.html:126
 msgid "Active Account"
-msgstr ""
-
-#: templates/master/user/list.html:3 templates/master/user/list.html:20
-msgid "User Management"
 msgstr ""
 
 #: templates/master/user/list.html:23
@@ -3363,16 +3433,8 @@ msgstr ""
 msgid "Excel File (.xlsx)"
 msgstr ""
 
-#: templates/roles/import.html:42 templates/roles/list.html:31
-msgid "Import"
-msgstr ""
-
 #: templates/roles/import.html:49
 msgid "Download Template (Export Now)"
-msgstr ""
-
-#: templates/roles/list.html:3 templates/roles/list.html:16
-msgid "Role Management"
 msgstr ""
 
 #: templates/roles/list.html:17
@@ -3443,10 +3505,6 @@ msgstr ""
 
 #: templates/roles/permissions.html:99
 msgid "Save Permissions"
-msgstr ""
-
-#: templates/settings/general.html:3 templates/settings/general.html:16
-msgid "Application Settings"
 msgstr ""
 
 #: templates/settings/general.html:17
@@ -3572,7 +3630,7 @@ msgid "Warranty status monitoring for all assets"
 msgstr ""
 
 #: templates/warranty/alert.html:221 templates/warranty/index.html:3
-#: templates/warranty/index.html:308 templates/warranty/notifications.html:224
+#: templates/warranty/index.html:255 templates/warranty/notifications.html:224
 msgid "Warranty Management"
 msgstr ""
 
@@ -3585,19 +3643,19 @@ msgid "Total Warranty"
 msgstr ""
 
 #: templates/warranty/alert.html:286 templates/warranty/alert.html:347
-#: templates/warranty/alert.html:646 templates/warranty/index.html:630
+#: templates/warranty/alert.html:646 templates/warranty/index.html:577
 msgid "Incomplete"
 msgstr ""
 
-#: templates/warranty/alert.html:313 templates/warranty/index.html:361
+#: templates/warranty/alert.html:313 templates/warranty/index.html:308
 msgid "Asset tag, name, brand, model, serial number, vendor..."
 msgstr ""
 
-#: templates/warranty/alert.html:321 templates/warranty/index.html:368
+#: templates/warranty/alert.html:321 templates/warranty/index.html:315
 msgid "Warranty Status"
 msgstr ""
 
-#: templates/warranty/alert.html:396 templates/warranty/index.html:478
+#: templates/warranty/alert.html:396 templates/warranty/index.html:425
 msgid "Warranty List"
 msgstr ""
 
@@ -3637,7 +3695,7 @@ msgstr ""
 msgid "SN:"
 msgstr ""
 
-#: templates/warranty/alert.html:572 templates/warranty/index.html:574
+#: templates/warranty/alert.html:572 templates/warranty/index.html:521
 msgid "days ago"
 msgstr ""
 
@@ -3662,11 +3720,11 @@ msgstr ""
 msgid "Warranty History"
 msgstr ""
 
-#: templates/warranty/alert.html:707 templates/warranty/index.html:665
+#: templates/warranty/alert.html:707 templates/warranty/index.html:612
 msgid "No warranty data"
 msgstr ""
 
-#: templates/warranty/alert.html:711 templates/warranty/index.html:669
+#: templates/warranty/alert.html:711 templates/warranty/index.html:616
 msgid "No assets found matching the selected filter."
 msgstr ""
 
@@ -3726,28 +3784,28 @@ msgstr ""
 msgid "Changes to this asset's warranty will be recorded automatically here."
 msgstr ""
 
-#: templates/warranty/index.html:312
+#: templates/warranty/index.html:259
 msgid "Monitoring the warranty period for all assets."
 msgstr ""
 
-#: templates/warranty/index.html:380 templates/warranty/index.html:616
+#: templates/warranty/index.html:327 templates/warranty/index.html:563
 msgid "Expiring"
 msgstr ""
 
-#: templates/warranty/index.html:388 templates/warranty/index.html:457
+#: templates/warranty/index.html:335 templates/warranty/index.html:404
 #: templates/warranty/notifications.html:293
 msgid "Incomplete Data"
 msgstr ""
 
-#: templates/warranty/index.html:401
+#: templates/warranty/index.html:348
 msgid "Apply"
 msgstr ""
 
-#: templates/warranty/index.html:437
+#: templates/warranty/index.html:384
 msgid "Expiring within 30 Days"
 msgstr ""
 
-#: templates/warranty/index.html:481
+#: templates/warranty/index.html:428
 msgid "found"
 msgstr ""
 
