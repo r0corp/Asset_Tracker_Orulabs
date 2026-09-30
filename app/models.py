@@ -360,6 +360,70 @@ class Asset(db.Model):
         cascade="all, delete-orphan"
     )
 
+    photos = db.relationship(
+        "AssetPhoto",
+        back_populates="asset",
+        cascade="all, delete-orphan",
+        order_by="AssetPhoto.sort_order"
+    )
+
+# ============================================================
+# ASSET PHOTO
+# ============================================================
+
+
+class AssetPhoto(db.Model):
+
+    __tablename__ = "asset_photos"
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        nullable=False
+    )
+
+    asset_id = db.Column(
+        db.Integer,
+        db.ForeignKey("assets.id"),
+        nullable=False,
+        index=True,
+    )
+
+    filename = db.Column(
+        db.String(255),
+        nullable=False
+    )
+
+    is_cover = db.Column(
+        db.Boolean,
+        nullable=False,
+        server_default=db.text("0"),
+    )
+
+    sort_order = db.Column(
+        db.Integer,
+        nullable=False,
+        server_default=db.text("0"),
+    )
+
+    created_at = db.Column(
+        db.DateTime,
+        server_default=db.func.now()
+    )
+
+    asset = db.relationship(
+        "Asset",
+        back_populates="photos"
+    )
+
+    def __repr__(self):
+
+        return (
+            f"<AssetPhoto "
+            f"{self.asset_id} "
+            f"{self.filename}>"
+        )
+
 # ============================================================
 # WARRANTY HISTORY
 # ============================================================
